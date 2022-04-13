@@ -7,7 +7,7 @@ var engineContainer = new JintContainer();
 
 container.Register(new()
 {
-    { "", new ExecuteCommand(engineContainer) }
+    { "exec", new ExecuteCommand(engineContainer) }
 });
 
 container.WaitForNextCommand();
