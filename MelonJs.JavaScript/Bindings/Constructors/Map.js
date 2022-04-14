@@ -24,4 +24,16 @@
     get(key) {
         return this._entries[key];
     }
+
+    delete(key) {
+        this.set(key, null);
+    }
+
+    keys() {
+        return Object.keys(this._entries);
+    }
+
+    values() {
+        return Object.values(this._entries);
+    }
 }
