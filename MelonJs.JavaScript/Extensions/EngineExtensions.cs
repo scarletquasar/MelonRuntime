@@ -17,14 +17,9 @@ namespace MelonJs.JavaScript.Extensions
         public static void EnableConsoleLogging(this Engine engine)
         {
             engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
-            
-            engine.Execute(@"
-                const console = {
-                    log: function(message) { melon_internal_console_log(message, 15) },
-                    error: function(message) { melon_internal_console_log('[X] ' + message, 12) },
-                    warn: function(message) { melon_internal_console_log('[!] ' + message, 14) }
-                };
-            ");
+            engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
+
+            engine.Execute(BindingReader.Get("console"));
         }
 
         /// <summary>

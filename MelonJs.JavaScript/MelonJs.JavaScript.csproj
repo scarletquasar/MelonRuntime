@@ -14,4 +14,10 @@
     <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Bindings\console.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
