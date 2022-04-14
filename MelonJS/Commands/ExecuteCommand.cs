@@ -14,7 +14,7 @@ namespace MelonJS.Commands
 
         public void Execute(string[] arguments)
         {
-            var script = string.Join("", arguments);
+            var script = string.Join(" ", arguments);
             _container.Execute(script);
         }
     }
