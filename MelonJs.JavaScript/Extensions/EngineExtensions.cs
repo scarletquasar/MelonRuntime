@@ -32,12 +32,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
 
-            engine.Execute(@"
-                const fs = {
-                    read: function(path) { return melon_internal_fs_read(path) },
-                    write: function(path, content) { melon_internal_fs_write(path, content) }
-                };
-            ");
+            engine.Execute(BindingReader.Get("fs"));
         }
     }
 }
