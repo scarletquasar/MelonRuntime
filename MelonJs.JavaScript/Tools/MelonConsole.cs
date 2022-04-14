@@ -1,5 +1,6 @@
 ﻿using Cli.NET.Tools;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MelonJs.JavaScript.Tools
 {
@@ -7,7 +8,13 @@ namespace MelonJs.JavaScript.Tools
     {
         public static void Write(object obj, int color)
         {
-            CLNConsole.WriteLine(JsonSerializer.Serialize(obj), color);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                WriteIndented = true
+            };
+
+            CLNConsole.WriteLine(JsonSerializer.Serialize(obj, options), color);
         }
     }
 }

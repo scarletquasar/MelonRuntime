@@ -19,7 +19,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
             engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
 
-            engine.Execute(BindingReader.Get("console"));
+            engine.Execute(BindingReader.Get("Tools/console"));
         }
 
         /// <summary>
@@ -32,7 +32,12 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
 
-            engine.Execute(BindingReader.Get("fs"));
+            engine.Execute(BindingReader.Get("Tools/fs"));
+        }
+
+        public static void EnableDefaultConstructors(this Engine engine)
+        {
+            engine.Execute(BindingReader.Get("Constructors/Map"));
         }
     }
 }

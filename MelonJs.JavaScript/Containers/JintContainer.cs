@@ -18,13 +18,15 @@ namespace MelonJs.JavaScript.Containers
         public JintContainer(
             string? initialScript = null,
             bool enableConsoleLogging = true,
-            bool enableFileSystem = true)
+            bool enableFileSystem = true,
+            bool enableDefaultConstructors = true)
         {
             _engine = new();
             _engine.SetupSystemVariables();
 
             if (enableFileSystem) _engine.EnableFileSystem();
             if (enableConsoleLogging) _engine.EnableConsoleLogging();
+            if (enableDefaultConstructors) _engine.EnableDefaultConstructors();
 
             _engine.Execute(initialScript ?? "");
         }

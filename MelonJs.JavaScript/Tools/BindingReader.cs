@@ -2,9 +2,9 @@
 {
     public static class BindingReader
     {
-        public static string Get(string identifier)
+        public static string Get(string fragmentPath)
         {
-            var path = Environment.CurrentDirectory + "\\Bindings\\" + identifier + ".js";
+            var path = Environment.CurrentDirectory + "\\Bindings\\" + fragmentPath + ".js";
             var content = string.Empty;
 
             if(File.Exists(path))
