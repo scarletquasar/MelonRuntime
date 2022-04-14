@@ -21,6 +21,7 @@ namespace MelonJs.JavaScript.Containers
             bool enableFileSystem = true)
         {
             _engine = new();
+            _engine.SetupSystemVariables();
 
             if (enableFileSystem) _engine.EnableFileSystem();
             if (enableConsoleLogging) _engine.EnableConsoleLogging();

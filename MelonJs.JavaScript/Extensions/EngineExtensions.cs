@@ -5,6 +5,11 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        public static void SetupSystemVariables(this Engine engine)
+        {
+            engine.SetValue("__dirname", Environment.CurrentDirectory);
+        }
+
         /// <summary>
         /// Enables console logging (binding with abstract Console.Write related
         /// functions to show content in the screen).
@@ -24,7 +29,7 @@ namespace MelonJs.JavaScript.Extensions
 
         /// <summary>
         /// Enables the "fs" module and file system management (binding with File related
-        /// functions to deal with files).
+        /// functions to deal with files). 
         /// </summary>
         /// <param name="engine"></param>
         public static void EnableFileSystem(this Engine engine)
@@ -34,7 +39,7 @@ namespace MelonJs.JavaScript.Extensions
 
             engine.Execute(@"
                 const fs = {
-                    read: function(path) { melon_internal_fs_read(path) },
+                    read: function(path) { return melon_internal_fs_read(path) },
                     write: function(path, content) { melon_internal_fs_write(path, content) }
                 };
             ");
