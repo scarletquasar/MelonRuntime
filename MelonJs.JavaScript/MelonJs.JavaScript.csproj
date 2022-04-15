@@ -18,6 +18,9 @@
     <None Update="Bindings\Constructors\Map.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Constructors\Set.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\console.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

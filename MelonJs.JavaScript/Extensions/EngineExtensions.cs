@@ -37,6 +37,7 @@ namespace MelonJs.JavaScript.Extensions
 
         public static void EnableDefaultConstructors(this Engine engine)
         {
+            engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
         }
     }
