@@ -1,13 +1,17 @@
 ﻿using Cli.NET.Tools;
 using MelonJs.JavaScript.Containers;
+using MelonJS;
 using MelonJS.Commands;
 
-var container = new CommandContainer();
+var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 var engineContainer = new JintContainer();
+
+CLNConsole.WriteLine(StaticData.ApplicationData(), ConsoleColor.Yellow);
+Console.WriteLine();
 
 container.Register(new()
 {
-    { "exec", new ExecuteCommand(engineContainer) }
+    { "run", new ExecuteCommand(engineContainer) }
 });
 
 container.WaitForNextCommand();

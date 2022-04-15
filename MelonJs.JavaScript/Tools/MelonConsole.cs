@@ -14,7 +14,9 @@ namespace MelonJs.JavaScript.Tools
                 WriteIndented = true
             };
 
-            CLNConsole.WriteLine(JsonSerializer.Serialize(obj, options), color);
+            CLNConsole.Write("< ", ConsoleColor.Red);
+            CLNConsole.Write(JsonSerializer.Serialize(obj, options), color);
+            Console.WriteLine();
         }
     }
 }
