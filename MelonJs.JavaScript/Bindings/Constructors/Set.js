@@ -5,7 +5,9 @@
 
         if (baseEntries) {
             baseEntries.forEach(entry => {
-                this._entries.push(entry);
+                if (!this._entries.includes(entry)) {
+                    this._entries.push(entry);
+                }
             });
         }
     }
