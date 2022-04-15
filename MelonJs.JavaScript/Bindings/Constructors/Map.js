@@ -1,6 +1,7 @@
 ﻿class Map {
     constructor(baseEntries) {
         this._entries = {};
+        this.size = 0;
 
         if (baseEntries) {
             baseEntries.forEach(entry => {
@@ -10,7 +11,7 @@
     }
 
     entries() {
-        return this._entries;
+        return Object.entries(this._entries);
     }
 
     has(key) {
@@ -18,6 +19,7 @@
     }
 
     set(key, value) {
+        if (!this.has(key)) this.size++;
         this._entries[key] = value;
     }
 
@@ -26,6 +28,7 @@
     }
 
     delete(key) {
+        if (this.has(key)) this.size--;
         this.set(key, null);
     }
 
@@ -35,5 +38,15 @@
 
     values() {
         return Object.values(this._entries);
+    }
+
+    /*
+     * forEach(() => { ... } )
+     * forEach((value) => { ... } )
+     * forEach((value, key) => { ... } )
+     * forEach((value, key, map) => { ... } )
+     */
+    forEach(callback) {
+        this.entries().forEach(x => callback(x[1], x[0], this));
     }
 }
