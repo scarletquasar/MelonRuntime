@@ -32,6 +32,18 @@ namespace MelonJs.JavaScript.Tools.Web
                 case "POST":
                     result = client.PostAsync(target, bodyObject).Result;
                     break;
+
+                case "PUT":
+                    result = client.PutAsync(target, bodyObject).Result;
+                    break;
+
+                case "PATCH":
+                    result = client.PatchAsync(target, bodyObject).Result;
+                    break;
+
+                case "DELETE":
+                    result = client.DeleteAsync(target).Result;
+                    break;
             } 
 
             return new MelonHttpResponse
