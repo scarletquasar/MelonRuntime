@@ -1,5 +1,7 @@
 ﻿using Jint;
-using MelonJs.JavaScript.Tools;
+using MelonJs.JavaScript.Tools.Scripting;
+using MelonJs.JavaScript.Tools.Output;
+using MelonJs.JavaScript.Tools.Web;
 
 namespace MelonJs.JavaScript.Extensions
 {

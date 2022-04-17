@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace MelonJs.JavaScript.Tools
+namespace MelonJs.JavaScript.Tools.Web
 {
     public static class MelonHttp
     {
