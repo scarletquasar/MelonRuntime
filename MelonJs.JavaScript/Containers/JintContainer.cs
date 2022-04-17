@@ -31,6 +31,9 @@ namespace MelonJs.JavaScript.Containers
             _engine.Execute(initialScript ?? "");
         }
 
-        public void Execute(string script) => _engine.Execute(script);
+        public void Execute(string script)
+        {
+            _engine.Execute(script);
+        }  
     }
 }

@@ -35,6 +35,9 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingReader.Get("Tools/fs"));
         }
 
+        /// <summary>
+        /// Enables the JavaScript polyfilled default constructors built-in with MelonJS.
+        /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
             engine.Execute(BindingReader.Get("Constructors/Set"));
