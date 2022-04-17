@@ -58,7 +58,7 @@ namespace MelonJs.JavaScript.Tools.Web
                 Headers = result.Headers,
                 Latency = timer.ElapsedMilliseconds,
                 Ok = result.IsSuccessStatusCode,
-                StatusCode = uint.Parse(result.StatusCode.ToString())
+                StatusCode = (uint)result.StatusCode
             };
         }
     }

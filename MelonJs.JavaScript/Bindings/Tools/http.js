@@ -5,7 +5,7 @@
 
         const rawResult = melon_internal_fetch_request(target, method, body, headers);
 
-        return new HttpResponse(
+        return new Response(
             rawResult.body,
             rawResult.headers,
             rawResult.latency,
