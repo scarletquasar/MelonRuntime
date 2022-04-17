@@ -47,7 +47,7 @@ namespace MelonJs.JavaScript.Extensions
                 new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
 
             engine.Execute(BindingReader.Get("Tools/http"));
-            engine.Execute(BindingReader.Get("Constructors/HttpResponse"));
+            engine.Execute(BindingReader.Get("Constructors/Response"));
         }
 
         /// <summary>

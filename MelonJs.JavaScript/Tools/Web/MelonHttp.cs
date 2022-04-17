@@ -1,4 +1,5 @@
 ﻿using MelonJs.JavaScript.Models.Web;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -23,7 +24,10 @@ namespace MelonJs.JavaScript.Tools.Web
                 client.DefaultRequestHeaders.Add(item.Key, item.Value);
             }
 
-            switch(method)
+            var timer = new Stopwatch();
+            timer.Start();
+
+            switch (method)
             {
                 case "GET":
                     result = client.GetAsync(target).Result;
@@ -44,12 +48,17 @@ namespace MelonJs.JavaScript.Tools.Web
                 case "DELETE":
                     result = client.DeleteAsync(target).Result;
                     break;
-            } 
+            }
+
+            timer.Stop();
 
             return new MelonHttpResponse
             {
-                Response = result.Content.ReadAsStringAsync().Result,
-                Headers = result.Headers
+                Body = result.Content.ReadAsStringAsync().Result,
+                Headers = result.Headers,
+                Latency = timer.ElapsedMilliseconds,
+                Ok = result.IsSuccessStatusCode,
+                StatusCode = (uint)result.StatusCode
             };
         }
     }
