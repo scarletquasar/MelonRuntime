@@ -2,6 +2,7 @@
 using MelonJs.JavaScript.Tools.Scripting;
 using MelonJs.JavaScript.Tools.Output;
 using MelonJs.JavaScript.Tools.Web;
+using MelonJs.JavaScript.Models.Web;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -35,6 +36,18 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
 
             engine.Execute(BindingReader.Get("Tools/fs"));
+        }
+
+        /// <summary>
+        /// Enables Http operations and related constructors built-in with MelonJS.
+        /// </summary>
+        public static void EnableHttpOperations(this Engine engine)
+        {
+            engine.SetValue("melon_internal_fetch_request", 
+                new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
+
+            engine.Execute(BindingReader.Get("Tools/http"));
+            engine.Execute(BindingReader.Get("Constructors/HttpResponse"));
         }
 
         /// <summary>

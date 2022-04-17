@@ -1,15 +1,12 @@
-﻿using System.Net.Http.Headers;
+﻿using MelonJs.JavaScript.Models.Web;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace MelonJs.JavaScript.Tools.Web
 {
     public static class MelonHttp
     {
-        public static async Task<string> Fetch(
-            string target, 
-            string method = "GET", 
-            string body = "{}",
-            string headers = "{}")
+        public static MelonHttpResponse Request(string target, string method, string body, string headers)
         {
             HttpResponseMessage result = new();
 
@@ -29,11 +26,19 @@ namespace MelonJs.JavaScript.Tools.Web
             switch(method)
             {
                 case "GET":
-                    result = await client.PostAsync(target, bodyObject);
+                    result = client.GetAsync(target).Result;
+                    break;
+
+                case "POST":
+                    result = client.PostAsync(target, bodyObject).Result;
                     break;
             } 
 
-            return JsonSerializer.Serialize(result);
+            return new MelonHttpResponse
+            {
+                Response = result.Content.ReadAsStringAsync().Result,
+                Headers = result.Headers
+            };
         }
     }
 }

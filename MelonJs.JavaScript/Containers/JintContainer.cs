@@ -19,7 +19,8 @@ namespace MelonJs.JavaScript.Containers
             string? initialScript = null,
             bool enableConsoleLogging = true,
             bool enableFileSystem = true,
-            bool enableDefaultConstructors = true)
+            bool enableDefaultConstructors = true,
+            bool enableHttpOperations = true)
         {
             _engine = new();
             _engine.SetupSystemVariables();
@@ -27,6 +28,7 @@ namespace MelonJs.JavaScript.Containers
             if (enableFileSystem) _engine.EnableFileSystem();
             if (enableConsoleLogging) _engine.EnableConsoleLogging();
             if (enableDefaultConstructors) _engine.EnableDefaultConstructors();
+            if (enableHttpOperations) _engine.EnableHttpOperations();
 
             _engine.Execute(initialScript ?? "");
         }
@@ -34,6 +36,6 @@ namespace MelonJs.JavaScript.Containers
         public void Execute(string script)
         {
             _engine.Execute(script);
-        }  
+        }
     }
 }
