@@ -1,4 +1,6 @@
-﻿using Jint;
+﻿using Cli.NET.Tools;
+using Jint;
+using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
 
 namespace MelonJs.JavaScript.Containers
@@ -35,7 +37,14 @@ namespace MelonJs.JavaScript.Containers
 
         public void Execute(string script)
         {
-            _engine.Execute(script);
+            try
+            {
+                _engine.Execute(script);
+            }
+            catch(JavaScriptException e)
+            {
+                CLNConsole.WriteLine($"> [Exception in line {e.LineNumber}] {e.Error} ", ConsoleColor.Red);
+            }
         }
     }
 }
