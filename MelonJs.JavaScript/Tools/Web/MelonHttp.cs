@@ -73,6 +73,8 @@ namespace MelonJs.JavaScript.Tools.Web
 
                 try
                 {
+                    target = target.Replace("http://", "").Replace("https://", "");
+
                     PingReply reply = ping.Send(target);
                     results.Add(reply.RoundtripTime);
                 }
@@ -80,6 +82,8 @@ namespace MelonJs.JavaScript.Tools.Web
                 {
                     ping.Dispose();
                 }
+
+                times--;
             }
 
             return new(results);

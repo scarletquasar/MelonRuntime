@@ -51,6 +51,7 @@ namespace MelonJs.JavaScript.Extensions
 
             engine.Execute(BindingReader.Get("Tools/http"));
             engine.Execute(BindingReader.Get("Constructors/Response"));
+            engine.Execute(BindingReader.Get("Constructors/PingResponse"));
         }
 
         /// <summary>
