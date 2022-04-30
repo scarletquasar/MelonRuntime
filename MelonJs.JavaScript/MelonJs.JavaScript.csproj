@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Bindings\Constructors\PingResponse.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Constructors\Response.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

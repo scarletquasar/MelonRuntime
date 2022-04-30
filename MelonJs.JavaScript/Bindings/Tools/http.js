@@ -5,12 +5,25 @@
 
         const rawResult = melon_internal_fetch_request(target, method, body, headers);
 
+        //Calling "Response.js" binding constructor
         return new Response(
-            rawResult.body,
-            rawResult.headers,
-            rawResult.latency,
-            rawResult.statusCode,
-            rawResult.ok
+            rawResult.Body ?? "",
+            rawResult.Headers ?? {},
+            rawResult.Latency ?? 0,
+            rawResult.StatusCode ?? 599,
+            rawResult.Ok ?? false
+        );
+    },
+
+    ping: (target, times = 1) => {
+        const rawResult = melon_internal_ping_request(target, times);
+
+        //Calling "PingResponse.js" binding constructor
+        return new PingResponse(
+            rawResult.Results ?? [],
+            rawResult.MaxLatency ?? 0,
+            rawResult.MinLatency ?? 0,
+            rawResult.AverageLatency ?? 0
         );
     }
 }
