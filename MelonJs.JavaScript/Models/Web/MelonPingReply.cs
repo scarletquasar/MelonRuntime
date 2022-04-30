@@ -4,11 +4,21 @@
     {
         public MelonPingReply(List<float> results)
         {
-            MaxLatency = results.Max();
-            MinLatency = results.Min();
-            AverageLatency = results.Average();
+            if(results != null)
+            {
+                MaxLatency = results.Max();
+                MinLatency = results.Min();
+                AverageLatency = results.Average();
 
-            Results = results;
+                Results = results;
+                return;
+            }
+
+            MaxLatency = 0;
+            MinLatency = 0;
+            AverageLatency = 0;
+
+            Results = new();
         }
 
         public List<float> Results { get; set; }

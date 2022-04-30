@@ -7,23 +7,23 @@
 
         //Calling "Response.js" binding constructor
         return new Response(
-            rawResult.Body,
-            rawResult.Headers,
-            rawResult.Latency,
-            rawResult.StatusCode,
-            rawResult.Ok
+            rawResult.Body ?? "",
+            rawResult.Headers ?? {},
+            rawResult.Latency ?? 0,
+            rawResult.StatusCode ?? 599,
+            rawResult.Ok ?? false
         );
     },
 
-    ping: (target, times) => {
+    ping: (target, times = 1) => {
         const rawResult = melon_internal_ping_request(target, times);
 
         //Calling "PingResponse.js" binding constructor
         return new PingResponse(
-            rawResult.Results,
-            rawResult.MaxLatency,
-            rawResult.MinLatency,
-            rawResult.AverageLatency
+            rawResult.Results ?? [],
+            rawResult.MaxLatency ?? 0,
+            rawResult.MinLatency ?? 0,
+            rawResult.AverageLatency ?? 0
         );
     }
 }
