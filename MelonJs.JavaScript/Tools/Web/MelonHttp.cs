@@ -1,6 +1,7 @@
 ﻿using MelonJs.JavaScript.Models.Web;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace MelonJs.JavaScript.Tools.Web
@@ -60,6 +61,28 @@ namespace MelonJs.JavaScript.Tools.Web
                 Ok = result.IsSuccessStatusCode,
                 StatusCode = (uint)result.StatusCode
             };
+        }
+
+        public static MelonPingReply Ping(string target, uint times)
+        {
+            List<float> results = new();
+
+            while (times > 0)
+            {
+                Ping ping = new();
+
+                try
+                {
+                    PingReply reply = ping.Send(target);
+                    results.Add(reply.RoundtripTime);
+                }
+                finally
+                {
+                    ping.Dispose();
+                }
+            }
+
+            return new(results);
         }
     }
 }

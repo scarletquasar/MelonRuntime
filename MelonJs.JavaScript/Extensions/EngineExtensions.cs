@@ -46,6 +46,9 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_fetch_request", 
                 new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
 
+            engine.SetValue("melon_internal_ping_request", 
+                new Func<string, uint, MelonPingReply>(MelonHttp.Ping));
+
             engine.Execute(BindingReader.Get("Tools/http"));
             engine.Execute(BindingReader.Get("Constructors/Response"));
         }
