@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonJS", "MelonJS\MelonJS.csproj", "{ECACA7B4-EDCF-4325-9F3B-D5F4DDAB6AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJS", "MelonJS\MelonJS.csproj", "{ECACA7B4-EDCF-4325-9F3B-D5F4DDAB6AF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cli.NET", "Cli.NET\Cli.NET.csproj", "{084C9A1F-648C-4DA6-8490-54F9C6521055}"
 EndProject
@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{09FE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{69B6AC33-D81C-47B3-A3C2-0C06AA75D47D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonJs.JavaScript", "MelonJs.JavaScript\MelonJs.JavaScript.csproj", "{9197A455-E38D-44F8-9077-BD8B1555EBC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.JavaScript", "MelonJs.JavaScript\MelonJs.JavaScript.csproj", "{9197A455-E38D-44F8-9077-BD8B1555EBC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonJs.Models", "MelonJs.Models\MelonJs.Models.csproj", "{235AC530-7D8B-428B-AAA4-60E8BB749173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9197A455-E38D-44F8-9077-BD8B1555EBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9197A455-E38D-44F8-9077-BD8B1555EBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9197A455-E38D-44F8-9077-BD8B1555EBC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235AC530-7D8B-428B-AAA4-60E8BB749173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235AC530-7D8B-428B-AAA4-60E8BB749173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235AC530-7D8B-428B-AAA4-60E8BB749173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235AC530-7D8B-428B-AAA4-60E8BB749173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{084C9A1F-648C-4DA6-8490-54F9C6521055} = {BE206C08-19D3-4EDF-90F7-F49852B0C780}
 		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32} = {BE206C08-19D3-4EDF-90F7-F49852B0C780}
 		{9197A455-E38D-44F8-9077-BD8B1555EBC2} = {69B6AC33-D81C-47B3-A3C2-0C06AA75D47D}
+		{235AC530-7D8B-428B-AAA4-60E8BB749173} = {69B6AC33-D81C-47B3-A3C2-0C06AA75D47D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0645CBF0-EA5F-400B-A1EA-0292855E38AE}

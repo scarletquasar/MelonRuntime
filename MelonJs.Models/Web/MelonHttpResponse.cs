@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace MelonJs.JavaScript.Models.Web
+namespace MelonJs.Models.Web
 {
     public class MelonHttpResponse
     {

@@ -1,4 +1,4 @@
-﻿namespace MelonJs.JavaScript.Models.Web
+﻿namespace MelonJs.Models.Web
 {
     public class MelonPingReply
     {
