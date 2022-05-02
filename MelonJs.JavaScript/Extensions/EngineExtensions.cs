@@ -18,6 +18,8 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("melon_internal_debug_set_stack_tracing", 
                 new Action<bool>((bool status) => container.EnableStackTracing = status));
+
+            engine.Execute(BindingReader.Get("Tools/debug"));
         }
 
         /// <summary>
