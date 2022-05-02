@@ -50,7 +50,7 @@ namespace MelonJs.JavaScript.Containers
             catch(Exception e)
             {
                 CLNConsole.WriteLine
-                    ($"> [Unknown Internal Exception] {e.ToString()} ", ConsoleColor.DarkRed);
+                    ($"> [Unknown Internal Exception] {e} ", ConsoleColor.DarkRed);
             }
         }
     }
