@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
+    <ProjectReference Include="..\MelonJs.Models\MelonJs.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
