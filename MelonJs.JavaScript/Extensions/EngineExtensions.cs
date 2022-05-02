@@ -3,6 +3,7 @@ using MelonJs.JavaScript.Tools.Scripting;
 using MelonJs.JavaScript.Tools.Output;
 using MelonJs.JavaScript.Tools.Web;
 using MelonJs.JavaScript.Models.Web;
+using MelonJs.JavaScript.Containers;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -11,6 +12,14 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupSystemVariables(this Engine engine)
         {
             engine.SetValue("__dirname", Environment.CurrentDirectory);
+        }
+
+        public static void SetupDebugMethods(this Engine engine, JintContainer container)
+        {
+            engine.SetValue("melon_internal_debug_set_stack_tracing", 
+                new Action<bool>((bool status) => container.EnableStackTracing = status));
+
+            engine.Execute(BindingReader.Get("Tools/debug"));
         }
 
         /// <summary>

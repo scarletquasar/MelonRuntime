@@ -9,6 +9,7 @@ namespace MelonJs.JavaScript.Containers
     public class JintContainer
     {
         private readonly Engine _engine;
+        public bool EnableStackTracing;
 
         /// <summary>
         /// A JintContainer is an object responsible for managing all the
@@ -20,6 +21,7 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="enableFileSystem">Enables the file system related functions</param>
         public JintContainer(
             string? initialScript = null,
+            bool enableStackTracing = false,
             bool enableConsoleLogging = true,
             bool enableFileSystem = true,
             bool enableDefaultConstructors = true,
@@ -27,6 +29,9 @@ namespace MelonJs.JavaScript.Containers
         {
             _engine = new();
             _engine.SetupSystemVariables();
+            _engine.SetupDebugMethods(this);
+
+            EnableStackTracing = enableStackTracing;
 
             if (enableFileSystem) _engine.EnableFileSystem();
             if (enableConsoleLogging) _engine.EnableConsoleLogging();
@@ -46,11 +51,17 @@ namespace MelonJs.JavaScript.Containers
             {
                 dynamic ex = e;
                 CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
+
+                if(EnableStackTracing)
+                    CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             catch(Exception e)
             {
                 CLNConsole.WriteLine
-                    ($"> [Unknown Internal Exception] {e} ", ConsoleColor.DarkRed);
+                    ($"> [Unknown Internal Exception] {e} ", ConsoleColor.Red);
+
+                if (EnableStackTracing)
+                    CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
         }
     }
