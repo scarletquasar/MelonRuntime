@@ -47,6 +47,11 @@ namespace MelonJs.JavaScript.Containers
                 dynamic ex = e;
                 CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
             }
+            catch(Exception e)
+            {
+                CLNConsole.WriteLine
+                    ($"> [Unknown Internal Exception] {e.ToString()} ", ConsoleColor.DarkRed);
+            }
         }
     }
 }
