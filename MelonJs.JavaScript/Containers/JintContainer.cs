@@ -1,4 +1,7 @@
-﻿using Jint;
+﻿using Cli.NET.Tools;
+using Esprima;
+using Jint;
+using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
 
 namespace MelonJs.JavaScript.Containers
@@ -35,7 +38,20 @@ namespace MelonJs.JavaScript.Containers
 
         public void Execute(string script)
         {
-            _engine.Execute(script);
+            try
+            {
+                _engine.Execute(script);
+            }
+            catch(Exception e) when (e is ParserException || e is JavaScriptException)
+            {
+                dynamic ex = e;
+                CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
+            }
+            catch(Exception e)
+            {
+                CLNConsole.WriteLine
+                    ($"> [Unknown Internal Exception] {e} ", ConsoleColor.DarkRed);
+            }
         }
     }
 }
