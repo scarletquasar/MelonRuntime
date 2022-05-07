@@ -1,6 +1,8 @@
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
 
+static void Main(string[] args) { }
+
 namespace MelonJs.WebApps {
     public static class WebApplicationManager
     {

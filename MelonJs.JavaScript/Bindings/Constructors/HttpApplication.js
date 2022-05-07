@@ -3,23 +3,22 @@
         this.host = host;
         this.port = port;
         this.enableHttps = enableHttps;
+        this.routes = []; //HttpRoute Array
     }
 
-    routes = []; //HttpRoute Array
-
-    get(httpRoute) {
-        httpRoute.method = "GET";
-        routes.push(routes);
+    get(route, callback) {
+        const httpRoute = new HttpRoute(route, "GET", callback);
+        this.routes.push(httpRoute);
     }
 
-    post(httpRoute) {
-        httpRoute.method = "POST";
-        routes.push(routes);
+    post(route, callback) {
+        const httpRoute = new HttpRoute(route, "POST", callback);
+        this.routes.push(httpRoute);
     }
 
-    delete(httpRoute) {
-        httpRoute.method = "DELETE";
-        routes.push(routes);
+    delete(route, callback) {
+        const httpRoute = new HttpRoute(route, "DELETE", callback);
+        this.routes.push(httpRoute);
     }
 
     run() {
