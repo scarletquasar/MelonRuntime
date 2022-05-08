@@ -1,5 +1,6 @@
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
+using MelonJs.Static;
 
 static void Main(string[] args) { }
 
@@ -7,14 +8,13 @@ namespace MelonJs.WebApps {
     public static class WebApplicationManager
     {
         public static void ExecuteWebApplication(
-            Engine engine,
             string host,
-            uint port,
+            int port,
             HttpRoute[] routes,
             bool enableHttps = true)
         {
             var app = new MelonHttpApplication(host, port, routes.ToList(), enableHttps);
-
+            var engine = JintStatic.CurrentJintEngine;
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
             var webApp = builder.Build();
 
@@ -28,7 +28,7 @@ namespace MelonJs.WebApps {
                     case "GET":
                         webApp.MapGet(route.Path, () =>
                         {
-                            var result = engine.Evaluate(route.Callback);
+                            var result = engine?.Evaluate(route.Callback);
                             return result.AsString();
                         });
 
@@ -37,7 +37,7 @@ namespace MelonJs.WebApps {
                     case "POST":
                         webApp.MapPost(route.Path, (object args) =>
                         {
-                            var result = engine.Evaluate(route.Callback);
+                            var result = engine?.Evaluate(route.Callback);
                             return result.AsString();
                         });
 

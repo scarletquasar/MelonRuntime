@@ -23,7 +23,6 @@
 
     run() {
         melon_internal_http_application_run(
-            melon_internal_engine,
             this.host,
             this.port,
             this.routes,

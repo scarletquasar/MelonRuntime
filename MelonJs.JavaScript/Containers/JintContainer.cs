@@ -20,6 +20,7 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
         public JintContainer(
+            Engine? engine = null,
             string? initialScript = null,
             bool enableStackTracing = false,
             bool enableConsoleLogging = true,
@@ -27,7 +28,7 @@ namespace MelonJs.JavaScript.Containers
             bool enableDefaultConstructors = true,
             bool enableHttpOperations = true)
         {
-            _engine = new();
+            _engine = engine ?? new();
             _engine.SetupSystemVariables();
             _engine.SetupDebugMethods(this);
 
