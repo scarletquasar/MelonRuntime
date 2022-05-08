@@ -25,7 +25,7 @@
         melon_internal_http_application_run(
             this.host,
             this.port,
-            this.routes,
+            JSON.stringify(this.routes),
             this.enableHttps
         );
     }
