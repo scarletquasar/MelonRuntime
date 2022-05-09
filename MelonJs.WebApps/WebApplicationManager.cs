@@ -44,15 +44,6 @@ namespace MelonJs.WebApps {
                         });
 
                         break;
-
-                    case "POST":
-                        webApp.MapPost(route.Route ?? "/", (object args) =>
-                        {
-                            var result = engine?.Evaluate($"({route.Callback})()");
-                            return result.AsString();
-                        });
-
-                        break;
                 }
             }
 
