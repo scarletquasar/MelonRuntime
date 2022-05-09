@@ -1,4 +1,4 @@
-﻿namespace MelonJs.JavaScript.Tools.Scripting
+﻿namespace MelonJs.Static.Tools.Scripting
 {
     public static class BindingReader
     {
