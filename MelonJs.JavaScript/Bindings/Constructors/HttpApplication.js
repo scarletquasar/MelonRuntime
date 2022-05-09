@@ -29,4 +29,15 @@
             this.enableHttps
         );
     }
+
+    listen(port, callback) {
+        melon_internal_http_application_run(
+            this.host,
+            port,
+            JSON.stringify(this.routes),
+            this.enableHttps
+        );
+
+        callback();
+    }
 }

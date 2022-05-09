@@ -1,3 +1,4 @@
+using Cli.NET.Tools;
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static;
@@ -21,13 +22,7 @@ namespace MelonJs.WebApps {
 
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
             var webApp = builder.Build();
-
-            webApp.UseSwagger();
-            webApp.UseSwaggerUI();
 
             if (app.EnableHttps)
                 webApp.UseHttpsRedirection();
@@ -42,14 +37,21 @@ namespace MelonJs.WebApps {
                             var result = engine?.Evaluate($"({route.Callback})()");
                             return result.AsString();
                         });
-
                         break;
                 }
             }
 
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
+            var fullPath = $"http{httpsCondition}://{app.Host}:{app.Port}";
 
-            webApp.Run($"http{httpsCondition}://{app.Host}:{app.Port}");
+            Console.WriteLine();
+            CLNConsole.Write("[MelonJS ASP.NET host] ", ConsoleColor.DarkYellow);
+            CLNConsole.Write("Starting web application in ", ConsoleColor.Green);
+            CLNConsole.Write(fullPath, ConsoleColor.Blue);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            webApp.Run(fullPath);
         }
     }
 }
