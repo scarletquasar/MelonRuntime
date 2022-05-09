@@ -4,19 +4,27 @@ using MelonJs.JavaScript.Tools.Output;
 using MelonJs.JavaScript.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
-using MelonJs.Models.Web.HttpApplication;
 using MelonJs.WebApps;
 
 namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        /// <summary>
+        /// Setup the system variables for the current engine
+        /// </summary>
+        /// <param name="engine">Jint engine</param>
         public static void SetupSystemVariables(this Engine engine)
         {
             engine.SetValue("__dirname", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_engine", engine);
         }
 
+        /// <summary>
+        /// Setup the debug methods for the current execution (engine and container)
+        /// </summary>
+        /// <param name="engine">Jint engine</param>
+        /// <param name="container">JintContainer instance</param>
         public static void SetupDebugMethods(this Engine engine, JintContainer container)
         {
             engine.SetValue("melon_internal_debug_set_stack_tracing", 
@@ -41,7 +49,7 @@ namespace MelonJs.JavaScript.Extensions
         /// Enables the "fs" module and file system management (binding with File related
         /// functions to deal with files). 
         /// </summary>
-        /// <param name="engine"></param>
+        /// <param name="engine">Jint engine</param>
         public static void EnableFileSystem(this Engine engine)
         {
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));

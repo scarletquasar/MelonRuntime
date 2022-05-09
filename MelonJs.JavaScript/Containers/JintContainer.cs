@@ -42,6 +42,10 @@ namespace MelonJs.JavaScript.Containers
             _engine.Execute(initialScript ?? "");
         }
 
+        /// <summary>
+        /// Executes the declared script string.
+        /// </summary>
+        /// <param name="script">Script string</param>
         public void Execute(string script)
         {
             try
@@ -59,7 +63,7 @@ namespace MelonJs.JavaScript.Containers
             catch(Exception e)
             {
                 CLNConsole.WriteLine
-                    ($"> [Unknown Internal Exception] {e} ", ConsoleColor.Red);
+                    ($"> [Unknown Internal Exception] {e.Message} ", ConsoleColor.Red);
 
                 if (EnableStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
