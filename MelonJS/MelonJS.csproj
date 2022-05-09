@@ -11,6 +11,7 @@
     <ProjectReference Include="..\Cli.NET.Abstractions\Cli.NET.Abstractions.csproj" />
     <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
     <ProjectReference Include="..\MelonJs.JavaScript\MelonJs.JavaScript.csproj" />
+    <ProjectReference Include="..\MelonJs.Static\MelonJs.Static.csproj" />
   </ItemGroup>
 
 </Project>

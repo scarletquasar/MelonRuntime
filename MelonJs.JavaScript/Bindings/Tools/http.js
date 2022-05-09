@@ -25,5 +25,7 @@
             rawResult.MinLatency ?? 0,
             rawResult.AverageLatency ?? 0
         );
-    }
+    },
+
+    app: (host = "localhost", port = "3000", enableHttps = true) => new HttpApplication(host, port, enableHttps)
 }

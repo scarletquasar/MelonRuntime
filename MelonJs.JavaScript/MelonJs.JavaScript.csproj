@@ -13,9 +13,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
     <ProjectReference Include="..\MelonJs.Models\MelonJs.Models.csproj" />
+    <ProjectReference Include="..\MelonJs.WebApps\MelonJs.WebApps.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Bindings\Constructors\HttpApplication.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Bindings\Constructors\HttpRoute.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Constructors\PingResponse.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

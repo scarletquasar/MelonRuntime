@@ -4,6 +4,8 @@ using MelonJs.JavaScript.Tools.Output;
 using MelonJs.JavaScript.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
+using MelonJs.Models.Web.HttpApplication;
+using MelonJs.WebApps;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -12,6 +14,7 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupSystemVariables(this Engine engine)
         {
             engine.SetValue("__dirname", Environment.CurrentDirectory);
+            engine.SetValue("melon_internal_engine", engine);
         }
 
         public static void SetupDebugMethods(this Engine engine, JintContainer container)
@@ -52,7 +55,7 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableHttpOperations(this Engine engine)
         {
-            engine.SetValue("melon_internal_fetch_request", 
+            engine.SetValue("melon_internal_fetch_request",
                 new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
 
             engine.SetValue("melon_internal_ping_request", 
@@ -61,6 +64,13 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingReader.Get("Tools/http"));
             engine.Execute(BindingReader.Get("Constructors/Response"));
             engine.Execute(BindingReader.Get("Constructors/PingResponse"));
+
+            engine.SetValue("melon_internal_http_application_run", 
+                new Action<string, int, string, bool>
+                (WebApplicationManager.ExecuteWebApplication));
+
+            engine.Execute(BindingReader.Get("Constructors/HttpRoute"));
+            engine.Execute(BindingReader.Get("Constructors/HttpApplication"));
         }
 
         /// <summary>
