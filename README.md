@@ -17,7 +17,7 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 | Implement `BroadcastChannel` | | ⛔ | |
 | Map and implement useful polyfill bindings | | ⛔ | |
 | Implement diverse bindings | `async`, `cron`, `generator`, `child`, `task` | ⛔ | |
-| Query support to `HttpApplication` routes | | ⛔ To Do | |
+| Query support to `HttpApplication` routes | | ⛔ | |
 | Basic documentation | | ✅ | [MelonJs.Docs](https://github.com/MelonRuntime/MelonJS.Docs) |
 | `HttpApplication` constructor | Constructor to make a new web application hosted in the local server with the method `get` and `http.app` | ✅ | [PR6](https://github.com/EternalQuasar0206/MelonJS/pull/6) |
 | `http` built in module | Http built in module that aggregates functions like `request` and `ping` | ✅ | [PR1](https://github.com/EternalQuasar0206/MelonJS/pull/1), [PR2](https://github.com/EternalQuasar0206/MelonJS/pull/2), [PR3](https://github.com/EternalQuasar0206/MelonJS/pull/3) |
