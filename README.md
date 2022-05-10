@@ -8,7 +8,8 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
 | Add `function` converter to string (to internal operations) | | ⛔ To Do | |
-| TypeScript JIT transpiling | The capacity to transpile TypeScript just-in-time during the engine execution | ⛔ To Do | |
+| TypeScript JIT runtime transpiling | | ⛔ To Do | |
+| Implement `shift` switch case [alternative](https://gist.github.com/EternalQuasar0206/9245eb9b6dd5e123e4c04604ccd4f630) | | ⛔ To Do | |
 | Implement `performance` module | | ⛔ To Do | |
 | Implement `BroadcastChannel` | | ⛔ To Do | |
 | Map and implement useful polyfill bindings | | ⛔ To Do | |
