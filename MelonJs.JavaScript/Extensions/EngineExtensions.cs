@@ -16,8 +16,10 @@ namespace MelonJs.JavaScript.Extensions
         /// <param name="engine">Jint engine</param>
         public static void SetupSystemVariables(this Engine engine)
         {
-            engine.SetValue("__dirname", Environment.CurrentDirectory);
+            engine.SetValue("__basedir", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_engine", engine);
+
+            engine.Execute(BindingReader.Get("Tools/require"));
         }
 
         /// <summary>

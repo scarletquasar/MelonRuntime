@@ -63,6 +63,9 @@ namespace MelonJs.JavaScript.Containers
                 _currentApp = JsonSerializer.Deserialize<App>(content) ?? new();
 
                 var entryPointScript = File.ReadAllText($"{path}/{_currentApp.EntryPoint}");
+
+                _engine.SetValue("__basedir", Environment.CurrentDirectory);
+
                 Execute(entryPointScript);
             }
             catch (Exception e)
