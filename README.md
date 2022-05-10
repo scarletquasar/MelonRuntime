@@ -7,10 +7,10 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 
 ⛔ To Do
 ✅ Done
+⚠️ In Progress
 
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
-| Project structure reader with `app.json` | | ⛔ | |
 | Fix `http.listen` to add new and not overwrite the current HttpApplication port | | ⛔ | |
 | Add `function` converter to string (to internal operations) | | ⛔ | |
 | TypeScript JIT runtime transpiling | | ⛔ | |
@@ -20,6 +20,7 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 | Map and implement useful polyfill bindings | | ⛔ | |
 | Implement diverse bindings | `async`, `cron`, `generator`, `child`, `task` | ⛔ | |
 | Query support to `HttpApplication` routes | | ⛔ | |
+| Project structure reader with `app.json` | | ⚠️ | |
 | Basic documentation | | ✅ | [MelonJs.Docs](https://github.com/MelonRuntime/MelonJS.Docs) |
 | `HttpApplication` constructor | Constructor to make a new web application hosted in the local server with the method `get` and `http.app` | ✅ | [PR6](https://github.com/EternalQuasar0206/MelonJS/pull/6) |
 | `http` built in module | Http built in module that aggregates functions like `request` and `ping` | ✅ | [PR1](https://github.com/EternalQuasar0206/MelonJS/pull/1), [PR2](https://github.com/EternalQuasar0206/MelonJS/pull/2), [PR3](https://github.com/EternalQuasar0206/MelonJS/pull/3) |
