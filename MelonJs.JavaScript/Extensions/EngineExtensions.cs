@@ -10,6 +10,12 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        public static void SetupSystemMethods(this Engine engine)
+        {
+            engine.Execute(BindingReader.Get("Tools/load"));
+            engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
+        }
+
         /// <summary>
         /// Setup the system variables for the current engine
         /// </summary>
@@ -18,8 +24,6 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("__basedir", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_engine", engine);
-
-            engine.Execute(BindingReader.Get("Tools/require"));
         }
 
         /// <summary>

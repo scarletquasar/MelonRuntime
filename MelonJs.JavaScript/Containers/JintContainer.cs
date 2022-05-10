@@ -44,6 +44,8 @@ namespace MelonJs.JavaScript.Containers
             if (enableDefaultConstructors) _engine.EnableDefaultConstructors();
             if (enableHttpOperations) _engine.EnableHttpOperations();
 
+            _engine.SetupSystemMethods();
+
             _engine.Execute(initialScript ?? "");
         }
 
@@ -59,12 +61,12 @@ namespace MelonJs.JavaScript.Containers
         {
             try
             {
-                var content = File.ReadAllText($"{path}/app.json");
+                var content = File.ReadAllText($"{path}\\app.json");
                 _currentApp = JsonSerializer.Deserialize<App>(content) ?? new();
 
-                var entryPointScript = File.ReadAllText($"{path}/{_currentApp.EntryPoint}");
+                var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
 
-                _engine.SetValue("__basedir", Environment.CurrentDirectory);
+                _engine.SetValue("__basedir", path + "\\");
 
                 Execute(entryPointScript);
             }
