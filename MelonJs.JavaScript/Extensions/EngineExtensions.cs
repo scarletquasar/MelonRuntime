@@ -1,7 +1,7 @@
 ﻿using Jint;
-using MelonJs.JavaScript.Tools.Scripting;
-using MelonJs.JavaScript.Tools.Output;
-using MelonJs.JavaScript.Tools.Web;
+using MelonJs.Static.Tools.Scripting;
+using MelonJs.Static.Tools.Output;
+using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;

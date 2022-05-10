@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MelonJs.JavaScript.Tools.Output
+namespace MelonJs.Static.Tools.Output
 {
     public static class MelonConsole
     {

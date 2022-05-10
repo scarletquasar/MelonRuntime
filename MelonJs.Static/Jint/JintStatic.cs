@@ -1,6 +1,6 @@
 ﻿using Jint;
 
-namespace MelonJs.Static
+namespace MelonJs.Static.Jint
 {
     public static class JintStatic
     {
