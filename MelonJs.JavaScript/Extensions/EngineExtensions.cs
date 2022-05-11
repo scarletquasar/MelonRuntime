@@ -5,6 +5,8 @@ using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
+using MelonJs.Static.Jint;
+using System.Diagnostics;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -14,6 +16,10 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Tools/load"));
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
+
+            //Development note [for Vic or me]: implement the new engine as a fresh copy of the old engine
+            engine.SetValue("melon_internal_reset_current_execution", 
+                new Action(() => _ = new JintContainer()));
         }
 
         /// <summary>
