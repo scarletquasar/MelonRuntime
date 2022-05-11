@@ -63,7 +63,9 @@ namespace MelonJs.WebApps {
                         webApp.MapPost(route.Route ?? "/", (HttpRequest req) =>
                         {
                             StreamReader bodyReader = new(req.Body);
-                            string body = bodyReader.ReadToEnd();
+                            string body = bodyReader.ReadToEndAsync().Result;
+
+                            var serializedBody = JsonSerializer.Serialize(body);
 
                             Dictionary<string, string> query =
                                 req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
@@ -76,7 +78,7 @@ namespace MelonJs.WebApps {
                             var serializedHeaders = JsonSerializer.Serialize(headers);
 
                             var result = engine?
-                                .Evaluate($"({route.Callback})('{body}', '{serializedQuery}', '{serializedHeaders}')");
+                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
                             return result.AsString();
                         });
                         break;
