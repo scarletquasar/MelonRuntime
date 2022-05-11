@@ -1,9 +1,8 @@
 using Cli.NET.Tools;
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
-using MelonJs.Static;
+using MelonJs.Static.Jint;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 static void Main(string[] args) { }
 

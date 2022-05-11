@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Text.Json;
 
-namespace MelonJs.JavaScript.Tools.Web
+namespace MelonJs.Static.Tools.Web
 {
     public static class MelonHttp
     {

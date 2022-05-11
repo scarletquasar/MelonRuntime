@@ -10,4 +10,9 @@
     <PackageReference Include="Jint" Version="3.0.0-beta-2037" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
+    <ProjectReference Include="..\MelonJs.Models\MelonJs.Models.csproj" />
+  </ItemGroup>
+
 </Project>

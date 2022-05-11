@@ -1,22 +1,36 @@
 ﻿using Jint;
-using MelonJs.JavaScript.Tools.Scripting;
-using MelonJs.JavaScript.Tools.Output;
-using MelonJs.JavaScript.Tools.Web;
+using MelonJs.Static.Tools.Scripting;
+using MelonJs.Static.Tools.Output;
+using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
+using MelonJs.Static.Jint;
+using System.Diagnostics;
 
 namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        public static void SetupSystemMethods(this Engine engine)
+        {
+            engine.Execute(BindingReader.Get("Tools/load"));
+            engine.Execute(BindingReader.Get("Tools/shift"));
+
+            engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
+
+            //Development note [for Vic or me]: implement the new engine as a fresh copy of the old engine
+            engine.SetValue("melon_internal_reset_current_execution", 
+                new Action(() => _ = new JintContainer()));
+        }
+
         /// <summary>
         /// Setup the system variables for the current engine
         /// </summary>
         /// <param name="engine">Jint engine</param>
         public static void SetupSystemVariables(this Engine engine)
         {
-            engine.SetValue("__dirname", Environment.CurrentDirectory);
+            engine.SetValue("__basedir", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_engine", engine);
         }
 

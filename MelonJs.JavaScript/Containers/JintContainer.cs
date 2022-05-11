@@ -3,12 +3,15 @@ using Esprima;
 using Jint;
 using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
+using MelonJs.Models.Project;
+using MelonJs.Static.Jint;
+using System.Text.Json;
 
 namespace MelonJs.JavaScript.Containers
 {
     public class JintContainer
     {
-        private readonly Engine _engine;
+        private App _currentApp;
         public bool EnableStackTracing;
 
         /// <summary>
@@ -28,18 +31,49 @@ namespace MelonJs.JavaScript.Containers
             bool enableDefaultConstructors = true,
             bool enableHttpOperations = true)
         {
-            _engine = engine ?? new();
-            _engine.SetupSystemVariables();
-            _engine.SetupDebugMethods(this);
+            _currentApp = new();
+
+            JintStatic.CurrentJintEngine = engine ?? new();
+            JintStatic.CurrentJintEngine.SetupSystemVariables();
+            JintStatic.CurrentJintEngine.SetupDebugMethods(this);
 
             EnableStackTracing = enableStackTracing;
 
-            if (enableFileSystem) _engine.EnableFileSystem();
-            if (enableConsoleLogging) _engine.EnableConsoleLogging();
-            if (enableDefaultConstructors) _engine.EnableDefaultConstructors();
-            if (enableHttpOperations) _engine.EnableHttpOperations();
+            if (enableFileSystem) JintStatic.CurrentJintEngine.EnableFileSystem();
+            if (enableConsoleLogging) JintStatic.CurrentJintEngine.EnableConsoleLogging();
+            if (enableDefaultConstructors) JintStatic.CurrentJintEngine.EnableDefaultConstructors();
+            if (enableHttpOperations) JintStatic.CurrentJintEngine.EnableHttpOperations();
 
-            _engine.Execute(initialScript ?? "");
+            JintStatic.CurrentJintEngine.SetupSystemMethods();
+
+            JintStatic.CurrentJintEngine.Execute(initialScript ?? "");
+        }
+
+        private void HandleUnknownException(Exception e)
+        {
+            CLNConsole.WriteLine($"> [Unknown Internal Exception] {e.Message} ", ConsoleColor.Red);
+
+            if (EnableStackTracing)
+                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+        }
+
+        public void LoadEntryPoint(string path)
+        {
+            try
+            {
+                var content = File.ReadAllText($"{path}\\app.json");
+                _currentApp = JsonSerializer.Deserialize<App>(content) ?? new();
+
+                var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
+
+                JintStatic.CurrentJintEngine?.SetValue("__basedir", path + "\\");
+
+                Execute(entryPointScript);
+            }
+            catch (Exception e)
+            {
+                HandleUnknownException(e);
+            }
         }
 
         /// <summary>
@@ -50,7 +84,7 @@ namespace MelonJs.JavaScript.Containers
         {
             try
             {
-                _engine.Execute(script);
+                JintStatic.CurrentJintEngine?.Execute(script);
             }
             catch(Exception e) when (e is ParserException || e is JavaScriptException)
             {
@@ -62,11 +96,7 @@ namespace MelonJs.JavaScript.Containers
             }
             catch(Exception e)
             {
-                CLNConsole.WriteLine
-                    ($"> [Unknown Internal Exception] {e.Message} ", ConsoleColor.Red);
-
-                if (EnableStackTracing)
-                    CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+                HandleUnknownException(e);
             }
         }
     }
