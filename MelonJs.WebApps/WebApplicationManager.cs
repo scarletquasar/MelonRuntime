@@ -72,7 +72,7 @@ namespace MelonJs.WebApps {
 
                             var serializedQuery = JsonSerializer.Serialize(query);
 
-                            Dictionary<string, string> headers =
+                            Dictionary<string,  string> headers =
                                 req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
                             var serializedHeaders = JsonSerializer.Serialize(headers);
