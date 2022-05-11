@@ -40,9 +40,18 @@ namespace MelonJs.WebApps {
                 switch (route.Method)
                 {
                     case "GET":
-                        webApp.MapGet(route.Route ?? "/", () =>
+                        webApp.MapGet(route.Route ?? "/", (HttpRequest req) =>
                         {
-                            var result = engine?.Evaluate($"({route.Callback})()");
+                            var query = new Dictionary<string, string>();
+
+                            foreach(var queryItem in req.Query)
+                            {
+                                query.Add(queryItem.Key, queryItem.Value);
+                            }
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            var result = engine?.Evaluate($"({route.Callback})('{serializedQuery}')");
                             return result.AsString();
                         });
                         break;
