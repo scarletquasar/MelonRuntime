@@ -48,7 +48,13 @@ namespace MelonJs.WebApps {
 
                             var serializedQuery = JsonSerializer.Serialize(query);
 
-                            var result = engine?.Evaluate($"({route.Callback})('{serializedQuery}')");
+                            Dictionary<string, string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedHeaders}')");
                             return result.AsString();
                         });
                         break;
