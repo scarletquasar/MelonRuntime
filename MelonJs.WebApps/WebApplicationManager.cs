@@ -2,6 +2,7 @@ using Cli.NET.Tools;
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
+using System.Linq;
 using System.Text.Json;
 
 static void Main(string[] args) { }
@@ -42,12 +43,8 @@ namespace MelonJs.WebApps {
                     case "GET":
                         webApp.MapGet(route.Route ?? "/", (HttpRequest req) =>
                         {
-                            var query = new Dictionary<string, string>();
-
-                            foreach(var queryItem in req.Query)
-                            {
-                                query.Add(queryItem.Key, queryItem.Value);
-                            }
+                            Dictionary<string, string> query = 
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
                             var serializedQuery = JsonSerializer.Serialize(query);
 
