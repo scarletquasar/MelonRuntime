@@ -15,6 +15,8 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupSystemMethods(this Engine engine)
         {
             engine.Execute(BindingReader.Get("Tools/load"));
+            engine.Execute(BindingReader.Get("Tools/shift"));
+
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
 
             //Development note [for Vic or me]: implement the new engine as a fresh copy of the old engine
