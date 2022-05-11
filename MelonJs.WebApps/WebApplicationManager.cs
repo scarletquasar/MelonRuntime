@@ -58,6 +58,28 @@ namespace MelonJs.WebApps {
                             return result.AsString();
                         });
                         break;
+
+                    case "POST":
+                        webApp.MapPost(route.Route ?? "/", (HttpRequest req) =>
+                        {
+                            StreamReader bodyReader = new(req.Body);
+                            string body = bodyReader.ReadToEnd();
+
+                            Dictionary<string, string> query =
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            Dictionary<string, string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{body}', '{serializedQuery}', '{serializedHeaders}')");
+                            return result.AsString();
+                        });
+                        break;
                 }
             }
 
