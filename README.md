@@ -3,7 +3,7 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs).
 
-![image](https://user-images.githubusercontent.com/70824102/167758200-e983576a-7eb8-4c99-b77e-649660abdd13.png)
+<img src="https://user-images.githubusercontent.com/70824102/167758200-e983576a-7eb8-4c99-b77e-649660abdd13.png" alt="drawing" width="500"/>
 
 ## Todo List
 
