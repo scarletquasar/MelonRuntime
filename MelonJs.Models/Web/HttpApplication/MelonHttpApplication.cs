@@ -2,9 +2,10 @@
 {
     public class MelonHttpApplication
     {
-        public MelonHttpApplication(string host, int port, List<HttpRoute> routes, bool enableHttps = true)
+        public MelonHttpApplication(string host, int port, List<HttpRoute> routes, List<HttpEcho> echoes, bool enableHttps = true)
         {
             Routes = routes;
+            Echoes = echoes;
             Host = host;
             Port = port;
             EnableHttps = enableHttps;
@@ -14,5 +15,6 @@
         public int Port { get; set; }
         public bool EnableHttps { get; set; }
         public List<HttpRoute> Routes { get; set; }
+        public List<HttpEcho> Echoes { get; set; }
     }
 }

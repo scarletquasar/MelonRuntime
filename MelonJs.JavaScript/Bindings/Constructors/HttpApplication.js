@@ -3,6 +3,7 @@
         this.host = host;
         this.port = port;
         this.enableHttps = enableHttps;
+        this.echoes = []; //Additional urls to be listen
         this.routes = []; //HttpRoute Array
     }
 
@@ -16,18 +17,15 @@
             this.host,
             this.port,
             JSON.stringify(this.routes),
+            JSON.stringify(this.echoes),
             this.enableHttps
         );
     }
 
-    listen(port, callback) {
-        melon_internal_http_application_run(
-            this.host,
-            port,
-            JSON.stringify(this.routes),
-            this.enableHttps
-        );
-
-        callback();
+    listen(port, host = this.host) {
+        this.echoes.push({
+            host: this.host,
+            port: Number(port)
+        });
     }
 }

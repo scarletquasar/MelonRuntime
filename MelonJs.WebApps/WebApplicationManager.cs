@@ -13,18 +13,27 @@ namespace MelonJs.WebApps {
             string host,
             int port,
             string routes,
+            string echoes,
             bool enableHttps = false)
         {
             var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(routes);
-            var app = new MelonHttpApplication(host, port, parsedRoutes ?? new(), enableHttps);
-            var engine = JintStatic.CurrentJintEngine;
+            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(echoes);
 
+            var app = new MelonHttpApplication(host, port, parsedRoutes ?? new(), parsedEchoes ?? new(), enableHttps);
+            var httpsCondition = app.EnableHttps ? "s" : string.Empty;
+
+            var engine = JintStatic.CurrentJintEngine;
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
             var webApp = builder.Build();
 
             if (app.EnableHttps)
                 webApp.UseHttpsRedirection();
+
+            webApp.Urls.Add($"http{httpsCondition}://{app.Host}:{app.Port}");
+
+            if (app.Echoes.Any())
+                app.Echoes.ForEach(x => webApp.Urls.Add($"http{httpsCondition}://{x.Host}:{x.Port}"));
 
             foreach (var route in app.Routes)
             {
@@ -40,17 +49,14 @@ namespace MelonJs.WebApps {
                 }
             }
 
-            var httpsCondition = app.EnableHttps ? "s" : string.Empty;
-            var fullPath = $"http{httpsCondition}://{app.Host}:{app.Port}";
-
             Console.WriteLine();
             CLNConsole.Write("[MelonJS ASP.NET host] ", ConsoleColor.DarkYellow);
-            CLNConsole.Write("Starting web application in ", ConsoleColor.Green);
-            CLNConsole.Write(fullPath, ConsoleColor.Blue);
+            CLNConsole.Write("Starting web application with default: ", ConsoleColor.Green);
+            CLNConsole.Write(webApp.Urls.ElementAt(0), ConsoleColor.Blue);
             Console.WriteLine();
             Console.WriteLine();
 
-            webApp.Run(fullPath);
+            webApp.Run();
         }
     }
 }
