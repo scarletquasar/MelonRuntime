@@ -2,6 +2,7 @@ using Cli.NET.Tools;
 using Jint;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
+using System.Linq;
 using System.Text.Json;
 
 static void Main(string[] args) { }
@@ -13,12 +14,16 @@ namespace MelonJs.WebApps {
             string host,
             int port,
             string routes,
+            string echoes,
             bool enableHttps = false)
         {
             var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(routes);
-            var app = new MelonHttpApplication(host, port, parsedRoutes ?? new(), enableHttps);
-            var engine = JintStatic.CurrentJintEngine;
+            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(echoes);
 
+            var app = new MelonHttpApplication(host, port, parsedRoutes ?? new(), parsedEchoes ?? new(), enableHttps);
+            var httpsCondition = app.EnableHttps ? "s" : string.Empty;
+
+            var engine = JintStatic.CurrentJintEngine;
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
             var webApp = builder.Build();
@@ -26,31 +31,96 @@ namespace MelonJs.WebApps {
             if (app.EnableHttps)
                 webApp.UseHttpsRedirection();
 
+            webApp.Urls.Add($"http{httpsCondition}://{app.Host}:{app.Port}");
+
+            if (app.Echoes.Any())
+                app.Echoes.ForEach(x => webApp.Urls.Add($"http{httpsCondition}://{x.Host}:{x.Port}"));
+
             foreach (var route in app.Routes)
             {
                 switch (route.Method)
                 {
                     case "GET":
-                        webApp.MapGet(route.Route ?? "/", () =>
+                        webApp.MapGet(route.Route ?? "/", (HttpRequest req) =>
                         {
-                            var result = engine?.Evaluate($"({route.Callback})()");
+                            Dictionary<string, string> query = 
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            Dictionary<string, string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedHeaders}')");
+                            
                             return result.AsString();
                         });
+                        break;
+
+                    case "POST":
+                        webApp.MapPost(route.Route ?? "/", (HttpRequest req) =>
+                        {
+                            StreamReader bodyReader = new(req.Body);
+                            string body = bodyReader.ReadToEndAsync().Result;
+
+                            var serializedBody = JsonSerializer.Serialize(body);
+
+                            Dictionary<string, string> query =
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            Dictionary<string,  string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+                            
+                            return result.AsString();
+                        });
+                        break;
+
+                    case "DELETE":
+                        webApp.MapDelete(route.Route ?? "/", (HttpRequest req) =>
+                        {
+                            StreamReader bodyReader = new(req.Body);
+                            string body = bodyReader.ReadToEndAsync().Result;
+
+                            var serializedBody = JsonSerializer.Serialize(body);
+
+                            Dictionary<string, string> query =
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            Dictionary<string, string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+
+                            return result.AsString();
+                        });
+
                         break;
                 }
             }
 
-            var httpsCondition = app.EnableHttps ? "s" : string.Empty;
-            var fullPath = $"http{httpsCondition}://{app.Host}:{app.Port}";
-
             Console.WriteLine();
             CLNConsole.Write("[MelonJS ASP.NET host] ", ConsoleColor.DarkYellow);
-            CLNConsole.Write("Starting web application in ", ConsoleColor.Green);
-            CLNConsole.Write(fullPath, ConsoleColor.Blue);
+            CLNConsole.Write("Starting web application with default: ", ConsoleColor.Green);
+            CLNConsole.Write(webApp.Urls.ElementAt(0), ConsoleColor.Blue);
             Console.WriteLine();
             Console.WriteLine();
 
-            webApp.Run(fullPath);
+            webApp.Run();
         }
     }
 }

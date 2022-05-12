@@ -88,7 +88,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingReader.Get("Constructors/PingResponse"));
 
             engine.SetValue("melon_internal_http_application_run", 
-                new Action<string, int, string, bool>
+                new Action<string, int, string, string, bool>
                 (WebApplicationManager.ExecuteWebApplication));
 
             engine.Execute(BindingReader.Get("Constructors/HttpRoute"));
