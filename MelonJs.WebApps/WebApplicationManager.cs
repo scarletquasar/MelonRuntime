@@ -55,6 +55,7 @@ namespace MelonJs.WebApps {
 
                             var result = engine?
                                 .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedHeaders}')");
+                            
                             return result.AsString();
                         });
                         break;
@@ -79,8 +80,35 @@ namespace MelonJs.WebApps {
 
                             var result = engine?
                                 .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+                            
                             return result.AsString();
                         });
+                        break;
+
+                    case "DELETE":
+                        webApp.MapDelete(route.Route ?? "/", (HttpRequest req) =>
+                        {
+                            StreamReader bodyReader = new(req.Body);
+                            string body = bodyReader.ReadToEndAsync().Result;
+
+                            var serializedBody = JsonSerializer.Serialize(body);
+
+                            Dictionary<string, string> query =
+                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedQuery = JsonSerializer.Serialize(query);
+
+                            Dictionary<string, string> headers =
+                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+
+                            var serializedHeaders = JsonSerializer.Serialize(headers);
+
+                            var result = engine?
+                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+
+                            return result.AsString();
+                        });
+
                         break;
                 }
             }
