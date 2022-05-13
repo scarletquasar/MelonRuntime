@@ -16,7 +16,6 @@ namespace MelonJs.Static.Tools.Scripting
                 content = File.ReadAllText(path);
             }
 
-
             return content;
         }
     }
