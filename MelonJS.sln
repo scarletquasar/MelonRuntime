@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.Models", "MelonJs.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.WebApps", "MelonJs.WebApps\MelonJs.WebApps.csproj", "{2A68FF72-5869-492D-9990-262689F23BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonJs.Static", "MelonJs.Static\MelonJs.Static.csproj", "{E38234BC-4E49-44FD-B2A4-6AF5323D1E18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.Static", "MelonJs.Static\MelonJs.Static.csproj", "{E38234BC-4E49-44FD-B2A4-6AF5323D1E18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +33,12 @@ Global
 		{ECACA7B4-EDCF-4325-9F3B-D5F4DDAB6AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECACA7B4-EDCF-4325-9F3B-D5F4DDAB6AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECACA7B4-EDCF-4325-9F3B-D5F4DDAB6AF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{084C9A1F-648C-4DA6-8490-54F9C6521055}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0634B048-3EFB-4EFF-9F87-BA3DEA564E32}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9197A455-E38D-44F8-9077-BD8B1555EBC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

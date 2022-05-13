@@ -1,2 +1,1 @@
-cd "./MelonJS/bin/Debug/net6.0/"
-MelonJS.exe
+dotnet run --project MelonJS/MelonJS.csproj "run console.log('Hello!')"
