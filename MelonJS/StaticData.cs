@@ -4,6 +4,6 @@ namespace MelonJS
 {
     public static class StaticData
     {
-        public static string ApplicationData() => $"MelonJS v{Assembly.GetExecutingAssembly().GetName().Version} (Testing Alpha)";
+        public static string ApplicationData() => $"MelonJS v{Assembly.GetExecutingAssembly().GetName().Version}";
     }
 }
