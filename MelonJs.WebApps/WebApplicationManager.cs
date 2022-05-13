@@ -1,5 +1,6 @@
 using Cli.NET.Tools;
 using Jint;
+using MelonJs.Models.Extensions;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
 using System.Linq;
@@ -66,7 +67,9 @@ namespace MelonJs.WebApps {
                             StreamReader bodyReader = new(req.Body);
                             string body = bodyReader.ReadToEndAsync().Result;
 
-                            var serializedBody = JsonSerializer.Serialize(body);
+                            var serializedBody = JsonSerializer.Serialize(body)
+                                                 .ReplaceFirst("\"{", "{")
+                                                 .Replace("}\"", "}");
 
                             Dictionary<string, string> query =
                                 req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
@@ -91,7 +94,9 @@ namespace MelonJs.WebApps {
                             StreamReader bodyReader = new(req.Body);
                             string body = bodyReader.ReadToEndAsync().Result;
 
-                            var serializedBody = JsonSerializer.Serialize(body);
+                            var serializedBody = JsonSerializer.Serialize(body)
+                                                 .ReplaceFirst("\"{", "{")
+                                                 .Replace("}\"", "}");
 
                             Dictionary<string, string> query =
                                 req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
@@ -104,7 +109,7 @@ namespace MelonJs.WebApps {
                             var serializedHeaders = JsonSerializer.Serialize(headers);
 
                             var result = engine?
-                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+                                .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedBody}', '{serializedHeaders}')");
 
                             return result.AsString();
                         });
