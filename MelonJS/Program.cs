@@ -1,4 +1,5 @@
-﻿using Cli.NET.Tools;
+﻿using Cli.NET.Actions;
+using Cli.NET.Tools;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS;
@@ -14,8 +15,10 @@ Console.WriteLine();
 
 container.Register(new()
 {
-    { "load", new LoadCommand(engineContainer) },
-    { "run", new ExecuteCommand(engineContainer) }
+    { "cls", new ClearCommand() },
+    { "clear", new ClearCommand() },
+    { "info", new InfoCommand() },
+    { "load", new LoadCommand(engineContainer) }
 });
 
 container.ExecuteEnvironmentCommands();
