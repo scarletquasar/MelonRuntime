@@ -10,7 +10,7 @@ app.get("/getEntries", "getEntriesRoute")
 //Body arguments: entryName, entryContent
 app.post("/writeEntry", "writeEntryRoute")
 
-//Query arguments entryName
+//Query arguments: entryName
 app.delete("/deleteEntry", "deleteEntryRoute")
 
 app.run()
