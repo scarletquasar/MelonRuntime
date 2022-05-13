@@ -1,0 +1,8 @@
+{
+	"name": "Hello World API Application",
+	"description": "A simple MelonJS hello world rest API application",
+	"author": "Victória Rose",
+	"version": "1.0.0",
+	"website": "https://github.com/MelonRuntime/MelonJS",
+	"entryPoint": "index.js"
+}

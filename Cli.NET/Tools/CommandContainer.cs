@@ -89,7 +89,9 @@ namespace Cli.NET.Tools
             foreach (var command in commands)
             {
                 var input = command.Split(" ").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-                CallCommandByName(input[0], input.Skip(1).ToArray());
+                
+                if(input.Length > 1)
+                    CallCommandByName(input[0], input.Skip(1).ToArray());
             }
         }
 
