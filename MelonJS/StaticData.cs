@@ -1,5 +1,4 @@
-﻿using Jint;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace MelonJS
 {

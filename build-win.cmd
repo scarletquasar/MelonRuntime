@@ -5,4 +5,5 @@
 
 echo [Building MelonJS...]
 echo.
-dotnet build
+
+dotnet build --configuration Release

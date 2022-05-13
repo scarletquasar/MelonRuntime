@@ -1,6 +1,7 @@
 :: dotnet run command focused in running the project on Windows
 :: and executing the passed commands
 :: [requires .NET 6 SDK/Runtime or later]
+:: Argument[*]: commands
 
 @echo off
 

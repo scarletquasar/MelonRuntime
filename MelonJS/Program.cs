@@ -14,8 +14,7 @@ Console.WriteLine();
 
 container.Register(new()
 {
-    { "load", new LoadCommand(engineContainer) },
-    { "run", new ExecuteCommand(engineContainer) }
+    { "load", new LoadCommand(engineContainer) }
 });
 
 container.ExecuteEnvironmentCommands();
