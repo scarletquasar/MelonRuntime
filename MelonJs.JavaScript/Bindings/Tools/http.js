@@ -51,9 +51,17 @@
 
     badRequest: (response = {}) => {
         return this.result(400, response);
-    }
+    },
 
     conflict: (response = {}) => {
+        return this.result(409, response);
+    },
 
+    noContent: () => {
+        return this.result(204);
+    },
+
+    unprocessableEntity: (response = {}) => {
+        return this.result(422, response);
     }
 }
