@@ -13,14 +13,9 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
-| Implement dynamic status code rest calls support | | ⛔ | |
 | TypeScript JIT runtime transpiling | | ⛔ | |
 | Implement `timer` module | | ⛔ | |
-| Implement `BroadcastChannel` | | ⛔ | |
-| Map and implement useful polyfill bindings | | ⛔ | |
-| Implement diverse bindings | `async`, `cron`, `generator`, `child`, `task` | ⛔ | |
-| Add `externals.json` and exernal code loader to make dynamic imports using 'load' | | ⛔ | |
-| Add known exception handler to `JintContainer` | | ⛔ | |
+| Implement dynamic status code rest calls support | | ✅ | [PR11](https://github.com/MelonRuntime/MelonJS/pull/11) |
 | Headers support to `HttpApplication` routes | | ✅ | [PR9](https://github.com/MelonRuntime/MelonJS/pull/9) |
 | Body support to `HttpApplication` routes | | ✅ | [PR9](https://github.com/MelonRuntime/MelonJS/pull/9) |
 | Query support to `HttpApplication` routes | | ✅ | [PR9](https://github.com/MelonRuntime/MelonJS/pull/9) |
