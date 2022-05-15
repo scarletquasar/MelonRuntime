@@ -35,6 +35,7 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupSystemVariables(this Engine engine)
         {
             engine.SetValue("__basedir", Environment.CurrentDirectory);
+            engine.SetValue("melon_internal_environment_variables", new Dictionary<string, string>());
             engine.SetValue("melon_internal_engine", engine);
         }
 

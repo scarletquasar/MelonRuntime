@@ -1,14 +1,11 @@
 ﻿const environment = {
-    _vars: {},
-
     getVariable: (name) => {
-        const externalVariables = melon_internal_get_environment_variables()[name];
-        return Object.assign(externalVariables, environment._vars);
+        return melon_internal_get_environment_variables()[name] ?? melon_internal_environment_variables[name];
     },
 
-    getVariables: melon_internal_get_environment_variables,
+    getVariables: () => Object.assign(melon_internal_get_environment_variables(), melon_internal_environment_variables),
 
     setVariable: (name, content) => {
-        environment._vars[name] = content;
+        melon_internal_environment_variables.Add(name, content);
     }
 }
