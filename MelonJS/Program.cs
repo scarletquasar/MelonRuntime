@@ -22,4 +22,4 @@ container.Register(new()
 });
 
 container.ExecuteEnvironmentCommands();
-container.WaitForNextCommand(); 
+container.WaitForNextCommand();

@@ -1,13 +1,18 @@
 function getEntriesRoute(query) {
-    const queryItems = JSON.parse(query);
-    let entries = JSON.parse(fs.read(__basedir + "/files.json"));
+    try {
+        const queryItems = JSON.parse(query);
+        let entries = JSON.parse(fs.read(__basedir + "/files.json"));
 
-    if(queryItems.fileName) {
-        const targetEntry = entryName[queryItems.entryName];
+        if(queryItems.fileName) {
+            const targetEntry = entryName[queryItems.entryName];
 
-        entries = {};
-        entries[queryItems.entryName] = targetEntry;
+            entries = {};
+            entries[queryItems.entryName] = targetEntry;
+        }
+
+        return http.result(200, entries);
     }
-
-    return JSON.stringify(entries);
+    catch(e) {
+        return http.result(500, e.toString());
+    }
 }

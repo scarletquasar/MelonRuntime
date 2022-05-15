@@ -28,5 +28,12 @@
     },
 
     //Calling "HttpApplication.js" binding constructor to make an alias
-    app: (host = "localhost", port = "3000", enableHttps = true) => new HttpApplication(host, port, enableHttps)
+    app: (host = "localhost", port = "3000", enableHttps = true) => new HttpApplication(host, port, enableHttps),
+
+    result: (statusCode, response = {}) => {
+        return {
+            status: statusCode,
+            response: JSON.stringify(response)
+        }
+    }
 }

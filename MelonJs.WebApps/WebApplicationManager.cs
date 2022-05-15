@@ -1,5 +1,6 @@
 using Cli.NET.Tools;
 using Jint;
+using Jint.Native;
 using MelonJs.Models.Extensions;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
@@ -56,8 +57,11 @@ namespace MelonJs.WebApps {
 
                             var result = engine?
                                 .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedHeaders}')");
-                            
-                            return result.AsString();
+
+                            if (result.IsString())
+                                return Results.Ok(result.AsString());
+
+                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
                         });
                         break;
 
@@ -83,8 +87,11 @@ namespace MelonJs.WebApps {
 
                             var result = engine?
                                 .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
-                            
-                            return result.AsString();
+
+                            if (result.IsString())
+                                return Results.Ok(result.AsString());
+
+                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
                         });
                         break;
 
@@ -111,7 +118,10 @@ namespace MelonJs.WebApps {
                             var result = engine?
                                 .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedBody}', '{serializedHeaders}')");
 
-                            return result.AsString();
+                            if (result.IsString())
+                                return Results.Ok(result.AsString());
+
+                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
                         });
 
                         break;
@@ -126,6 +136,24 @@ namespace MelonJs.WebApps {
             Console.WriteLine();
 
             webApp.Run();
+        }
+
+        private static IResult GetHttpResult(JsValue obj)
+        {
+            var httpResult = obj.AsObject();
+
+            return (double)httpResult.Get("status").AsNumber() switch
+            {
+                200 => Results.Ok(httpResult.Get("response").AsString()),
+                404 => Results.NotFound(httpResult.Get("response").AsString()),
+                401 => Results.Unauthorized(),
+                400 => Results.BadRequest(httpResult.Get("response").AsString()),
+                409 => Results.Conflict(httpResult.Get("response").AsString()),
+                204 => Results.NoContent(),
+                422 => Results.UnprocessableEntity(httpResult.Get("response").AsString()),
+                _ => Results.Problem(httpResult.Get("response").AsString(), 
+                     statusCode: Convert.ToInt32(httpResult.Get("status").AsNumber()))
+            };
         }
     }
 }
