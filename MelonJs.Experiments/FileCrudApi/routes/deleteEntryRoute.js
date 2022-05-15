@@ -1,18 +1,23 @@
 function deleteEntryRoute(query) {
-    const entriesIndex = JSON.parse(fs.read(__basedir + "/files.json"));
+    try {
+        const entriesIndex = JSON.parse(fs.read(__basedir + "/files.json"));
 
-    const queryEntryName = JSON.parse(query).entryName;
-    const newEntriesIndex = {};
+        const queryEntryName = (JSON.parse(query)).entryName;
 
-    Object.keys(entriesIndex).forEach(name => {
-        name != queryEntryName ? newEntriesIndex[name] = entriesIndex[name] : {}
-    });
-    
-    fs.write(__basedir + "/files.json", JSON.stringify(newEntriesIndex));
+        if(!entriesIndex[queryEntryName])
+            throw new Error(`Entry ${queryEntryName} does not exist.`);
 
-    const response = {
-        response: `Entry ${queryEntryName} deleted (if existed).`
+        const newEntriesIndex = {};
+
+        Object.keys(entriesIndex).forEach(name => {
+            name != queryEntryName ? newEntriesIndex[name] = entriesIndex[name] : {}
+        });
+        
+        fs.write(__basedir + "/files.json", JSON.stringify(newEntriesIndex));
+
+        return http.result(200, `Entry ${queryEntryName} deleted.`);
     }
-
-    return JSON.stringify(response);
+    catch(e) {
+        return http.result(500, e.toString());
+    }
 }

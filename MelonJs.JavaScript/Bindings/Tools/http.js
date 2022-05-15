@@ -35,33 +35,5 @@
             status: statusCode,
             response: JSON.stringify(response)
         }
-    },
-
-    ok: (response = {}) => {
-        return this.result(200, response);
-    },
-
-    notFound: (response = {}) => {
-        return this.result(404, response);
-    },
-
-    unauthorized: () => {
-        return this.result(401);
-    },
-
-    badRequest: (response = {}) => {
-        return this.result(400, response);
-    },
-
-    conflict: (response = {}) => {
-        return this.result(409, response);
-    },
-
-    noContent: () => {
-        return this.result(204);
-    },
-
-    unprocessableEntity: (response = {}) => {
-        return this.result(422, response);
     }
 }
