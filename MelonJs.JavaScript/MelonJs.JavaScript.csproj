@@ -50,6 +50,9 @@
     <None Update="Bindings\Tools\debug.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\environment.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\fs.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

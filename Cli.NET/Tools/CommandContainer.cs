@@ -90,7 +90,7 @@ namespace Cli.NET.Tools
             {
                 var input = command.Split(" ").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
                 
-                if(input.Length > 1)
+                if(input.Length > 1 && !string.IsNullOrWhiteSpace(input[0]))
                     CallCommandByName(input[0], input.Skip(1).ToArray());
             }
         }

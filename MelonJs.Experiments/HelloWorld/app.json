@@ -1,8 +1,8 @@
 {
 	"name": "Hello World Application",
-	"description": "A simple MelonJS hello world application",
-	"author": "Malu Rose",
-	"version": "1.0.0",
+	"description": "A simple MelonJS hello world application using environment variables",
+	"author": "Malu Rose, Victória Rose",
+	"version": "1.1.0",
 	"website": "https://github.com/MelonRuntime/MelonJS",
 	"entryPoint": "index.js"
 }
