@@ -17,11 +17,15 @@ namespace MelonJs.JavaScript.Extensions
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
 
-            //Development note [for Vic or me]: implement the new engine as a fresh copy of the old engine
+            //Development note [for Vic or me (Malu)]: implement the new engine as a fresh copy of the old engine
             engine.SetValue("melon_internal_reset_current_execution", 
                 new Action(() => _ = new JintContainer()));
 
+            engine.SetValue("melon_internal_get_environment_variables",
+                new Func<Dictionary<string, string>>(MelonEnvironment.GetEnvironmentVariables));
+
             engine.Execute(BindingReader.Get("Tools/application"));
+            engine.Execute(BindingReader.Get("Tools/environment"));
         }
 
         /// <summary>

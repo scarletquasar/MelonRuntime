@@ -4,7 +4,6 @@ using Jint.Native;
 using MelonJs.Models.Extensions;
 using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
-using System.Linq;
 using System.Text.Json;
 
 static void Main(string[] args) { }
