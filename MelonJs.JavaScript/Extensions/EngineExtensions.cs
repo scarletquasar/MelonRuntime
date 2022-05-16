@@ -112,6 +112,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
+            engine.Execute(BindingReader.Get("Constructors/Queue"));
             engine.Execute(BindingReader.Get("Constructors/Numbers/BigFloat"));
             engine.Execute(BindingReader.Get("Constructors/Numbers/NumberPeriod"));
         }
