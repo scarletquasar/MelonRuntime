@@ -10,6 +10,11 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        public static void SetupPolyfills(this Engine engine)
+        {
+            engine.Execute(BindingReader.Get("Polyfills/Number_isInteger"));
+        }
+
         public static void SetupSystemMethods(this Engine engine)
         {
             engine.Execute(BindingReader.Get("Tools/load"));
@@ -107,6 +112,8 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
+            engine.Execute(BindingReader.Get("Constructors/Numbers/BigFloat"));
+            engine.Execute(BindingReader.Get("Constructors/Numbers/NumberPeriod"));
         }
     }
 }
