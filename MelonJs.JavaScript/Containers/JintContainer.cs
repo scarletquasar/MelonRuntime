@@ -34,6 +34,7 @@ namespace MelonJs.JavaScript.Containers
             _currentApp = new();
 
             JintStatic.CurrentJintEngine = engine ?? new();
+            JintStatic.CurrentJintEngine.SetupPolyfills();
             JintStatic.CurrentJintEngine.SetupSystemVariables();
             JintStatic.CurrentJintEngine.SetupDebugMethods(this);
 

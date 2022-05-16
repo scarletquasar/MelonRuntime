@@ -8,7 +8,17 @@
     <DebugType>embedded</DebugType>
 	<AssemblyName>MelonJS</AssemblyName>
 	<AssemblyVersion>1.0.0</AssemblyVersion>
+	<SignAssembly>False</SignAssembly>
+	<PackageProjectUrl>https://github.com/MelonRuntime/MelonJS</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cli.NET.Abstractions\Cli.NET.Abstractions.csproj" />
