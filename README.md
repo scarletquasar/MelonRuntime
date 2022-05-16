@@ -13,6 +13,7 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
+| Write a better `fs` module to deal with files properly | | ⛔ | |
 | Create official multiplatform installer | | ⛔ | |
 | TypeScript JIT runtime transpiling | | ⛔ | |
 | Implement `timer` module | | ⛔ | |
