@@ -6,6 +6,8 @@ var a = new FileObject({
     encoding: "utf8"
 });
 
+var b = new File();
+
 console.log(a);
 
 environment.setVariable("hw","Hello World!")
