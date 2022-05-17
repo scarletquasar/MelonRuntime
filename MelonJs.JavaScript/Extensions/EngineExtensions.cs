@@ -110,6 +110,7 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
+            engine.Execute(BindingReader.Get("Constructors/Errors/FileErrorConstants"));
             engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
             engine.Execute(BindingReader.Get("Constructors/Queue"));

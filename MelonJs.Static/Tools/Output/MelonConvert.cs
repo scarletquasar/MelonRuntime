@@ -6,7 +6,7 @@ namespace MelonJs.Static.Tools.Output
     {
         public static byte[] ToByteArray(string data, string encoding)
         {
-            return encoding switch
+            return encoding.ToUpperInvariant() switch
             {
                 "UTF8" => Encoding.UTF8.GetBytes(data),
                 "UTF7" => Encoding.UTF7.GetBytes(data),
