@@ -1,4 +1,6 @@
-﻿class File {
+﻿class FileObject {
+    static test = 1;
+
     //Path
     path = null;
 
