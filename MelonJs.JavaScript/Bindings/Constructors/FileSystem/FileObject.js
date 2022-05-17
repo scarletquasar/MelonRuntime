@@ -1,25 +1,26 @@
 ﻿class FileObject {
     static test = 1;
 
-    //Path
-    path = null;
-
-    //File Information
-    fileName = null;
-    fileSize = null;
-    lastWriteTime = null;
-    creationTime = null;
-
-    //Object Limits
-    fileSizeLimit = 10000; //Measured in kb
-    fileNameSizeLimit = 64; //Measured in characters
-    notAllowedFileNameExpressions = [];
-    notAllowedFileExtensions = [];
-
     //File Content
     bytes = [];
 
     constructor(fileInfo) {
+        //Path
+        this.path = null;
+
+        //File Information
+        this.fileName = null;
+        this.fileSize = null;
+        this.lastWriteTime = null;
+        this.creationTime = null;
+
+        //Object Limits
+        this.fileSizeLimit = 10000; //Measured in kb
+        this.fileNameSizeLimit = 64; //Measured in characters
+        this.notAllowedFileNameExpressions = [];
+        this.notAllowedFileExtensions = [];
+
+        console.log(fileInfo);
         this.path = fileInfo.path;
 
         const bytes = melon_internal_convert.ToByteArray(fileInfo.content, fileInfo.encoding);
