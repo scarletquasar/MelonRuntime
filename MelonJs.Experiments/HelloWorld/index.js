@@ -1,6 +1,6 @@
 debug.enableStackTracing(true);
 
-var a = new FileObject({
+var a = new File({
     name: "Test",
     content: "Test",
     encoding: "utf8"

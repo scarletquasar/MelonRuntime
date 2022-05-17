@@ -15,12 +15,12 @@
         this.creationTime = null;
 
         //Object Limits
-        this.fileSizeLimit = 10000; //Measured in kb
-        this.fileNameSizeLimit = 64; //Measured in characters
-        this.notAllowedFileNameExpressions = [];
-        this.notAllowedFileExtensions = [];
+        this.fileSizeLimit = fileInfo.sizeLimit ?? 10000; //Measured in kb
+        this.fileNameSizeLimit = fileInfo.nameSizeLimit ?? 64; //Measured in characters
+        this.notAllowedFileNameExpressions = fileInfo.notAllowedFileNameExpressions ?? [];
+        this.notAllowedFileExtensions = fileInfo.notAllowedFileExtensions ?? [];
 
-        console.log(fileInfo);
+        //Operations
         this.path = fileInfo.path;
 
         const bytes = melon_internal_convert.ToByteArray(fileInfo.content, fileInfo.encoding);
