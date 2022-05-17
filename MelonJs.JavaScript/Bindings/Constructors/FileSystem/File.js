@@ -1,6 +1,4 @@
 ﻿class File {
-    static test = 1;
-
     //File Content
     bytes = [];
 
