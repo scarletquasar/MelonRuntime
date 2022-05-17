@@ -43,6 +43,11 @@
 
         this.fileName = fileInfo.name;
         this.fileSize = size;
+        this.bytes = bytes;
+    }
+
+    save(path) {
+        melon_internal_save_file(this, path);
     }
 }
 
