@@ -9,8 +9,8 @@
         //File Information
         this.fileName = null;
         this.fileSize = null;
-        this.lastWriteTime = null;
-        this.creationTime = null;
+        this.lastWriteTime = fileInfo.lastWriteTime;
+        this.creationTime = fileInfo.creationTime;
 
         //Object Limits
         this.fileSizeLimit = fileInfo.sizeLimit ?? 10000; //Measured in kb
@@ -44,4 +44,20 @@
         this.fileName = fileInfo.name;
         this.fileSize = size;
     }
+}
+
+File.load = (path) => {
+    const loadedFile = melon_internal_load_file(path); //TO BE IMPLEMENTED INTERNALLY
+
+    return new File({
+        name: loadedFile.Name,
+        content: loadedFile.Content,
+        encoding: loadedFile.Encoding,
+        creationTime: loadedFile.CreationTime,
+        latWriteTime: loadedFile.LastWriteTime,
+        fileSizeLimit: loadedFile.FileSizeLimit,
+        notAllowedFileNameExpressions: loadedFile.NotAllowedFileNameExpressions,
+        notAllowedFileExtensions: loadedFile.NotAllowedFileExtensions,
+        path: loadedFile.Path
+    });
 }
