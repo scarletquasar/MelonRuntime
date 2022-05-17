@@ -1,4 +1,8 @@
-var a = melon_internal_convert.ToByteArray("test", "UTF8");
+var a = new FileObject({
+    name: "Test",
+    content: "Test"
+});
+
 console.log(a);
 
 environment.setVariable("hw","Hello World!")
