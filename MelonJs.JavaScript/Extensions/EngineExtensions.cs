@@ -26,8 +26,8 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_reset_current_execution", 
                 new Action(() => _ = new JintContainer()));
 
-            engine.SetValue("melon_internal_get_environment_variables",
-                new Func<Dictionary<string, string>>(MelonEnvironment.GetEnvironmentVariables));
+            engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
+            engine.SetValue("melon_internal_convert", typeof(MelonConvert));
 
             engine.Execute(BindingReader.Get("Tools/application"));
             engine.Execute(BindingReader.Get("Tools/environment"));

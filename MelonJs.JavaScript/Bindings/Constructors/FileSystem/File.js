@@ -17,7 +17,7 @@
     //File Content
     bytes = new ArrayBuffer();
 
-    constructor(fileName, fileContent) {
+    constructor(fileName = "", fileContent = "") {
 
     }
 }
