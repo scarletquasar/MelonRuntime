@@ -28,11 +28,11 @@
         if (size > this.fileSizeLimit)
             throw new Error(FILE_ERRORS.INCORRECT_FILE_SIZE);
 
-        if (notAllowedFileNameExpressions.includes(fileInfo.name)) {
+        if (this.notAllowedFileNameExpressions.includes(fileInfo.name)) {
             throw new Error(FILE_ERRORS.ILLEGAL_EXPRESSION);
         }
 
-        notAllowedFileExtensions.forEach(extension => {
+        this.notAllowedFileExtensions.forEach(extension => {
             if (fileInfo.name.endsWith(extension)) {
                 throw new Error(FILE_ERRORS.ILLEGAL_EXTENSION);
             }

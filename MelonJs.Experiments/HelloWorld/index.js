@@ -1,6 +1,9 @@
+debug.enableStackTracing(true);
+
 var a = new FileObject({
     name: "Test",
-    content: "Test"
+    content: "Test",
+    encoding: "utf8"
 });
 
 console.log(a);
