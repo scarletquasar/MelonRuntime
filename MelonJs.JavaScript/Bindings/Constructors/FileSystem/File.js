@@ -4,7 +4,7 @@
     //File Content
     bytes = [];
 
-    constructor(fileInfo = {}) {
+    constructor(fileInfo = { name: "", content: "", encoding: "utf8" }) {
         //Path
         this.path = null;
 
@@ -23,7 +23,7 @@
         //Operations
         this.path = fileInfo.path;
 
-        const bytes = melon_internal_convert.ToByteArray(fileInfo.content, fileInfo.encoding ?? "utf8");
+        const bytes = melon_internal_convert.ToByteArray(fileInfo.content, fileInfo.encoding);
         const size = (bytes.length / 1024);
 
         if (size > this.fileSizeLimit)
