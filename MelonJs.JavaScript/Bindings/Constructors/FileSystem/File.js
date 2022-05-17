@@ -9,7 +9,11 @@
     creationTime = null;
 
     //Object Limits
-    fileSizeLimit = 1000;
+    fileSizeLimit = 1000; //Measured in kb
+    fileNameSizeLimit = 64; //Measured in characters
+    notAllowedFileNameExpressions = [];
+    notAllowedFileExtensions = [];
 
+    //File Content
     bytes = new ArrayBuffer();
 }
