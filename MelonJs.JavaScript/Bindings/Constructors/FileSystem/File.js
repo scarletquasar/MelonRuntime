@@ -1,7 +1,4 @@
 ﻿class File {
-    //File Content
-    bytes = [];
-
     constructor(fileInfo = { name: "", content: "", encoding: "utf8" }) {
         //Path
         this.path = null;
@@ -47,7 +44,7 @@
     }
 
     save(path) {
-        melon_internal_save_file(this, path);
+        melon_internal_save_file(this, path); //TO BE IMPLEMENTED INTERNALLY
     }
 }
 
