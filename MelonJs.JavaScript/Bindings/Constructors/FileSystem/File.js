@@ -44,7 +44,7 @@
     }
 
     save(path) {
-        melon_internal_save_file(path, this.bytes); //TO BE IMPLEMENTED INTERNALLY
+        melon_internal_save_file(path, this.bytes);
     }
 }
 
@@ -53,8 +53,8 @@ File.load = (path) => {
 
     return new File({
         name: loadedFile.Name,
-        content: loadedFile.Content,
-        encoding: loadedFile.Encoding,
+        [loadedFile.Bytes != null ? "bytes" : "content"]: loadedFile.Content,
+        encoding: loadedFile.Encoding ?? "utf8",
         creationTime: loadedFile.CreationTime,
         latWriteTime: loadedFile.LastWriteTime,
         fileSizeLimit: loadedFile.FileSizeLimit,

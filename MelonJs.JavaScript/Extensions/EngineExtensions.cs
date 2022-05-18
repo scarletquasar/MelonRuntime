@@ -78,6 +78,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
+            engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(File.WriteAllBytes));
 
             engine.Execute(BindingReader.Get("Tools/fs"));
         }
