@@ -44,7 +44,7 @@
     }
 
     save(path) {
-        melon_internal_save_file(this, path); //TO BE IMPLEMENTED INTERNALLY
+        melon_internal_save_file(path, this.bytes); //TO BE IMPLEMENTED INTERNALLY
     }
 }
 
