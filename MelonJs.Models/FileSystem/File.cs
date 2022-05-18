@@ -3,6 +3,6 @@
     public class File
     {
         public string? Name { get; set; }
-        public string? Content
+        public string? Content { get; set; }
     }
 }

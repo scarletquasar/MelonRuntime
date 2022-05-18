@@ -5,6 +5,8 @@ using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
+using Jint.Native;
+using MelonJs.Static.Jint;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -17,6 +19,14 @@ namespace MelonJs.JavaScript.Extensions
 
         public static void SetupSystemMethods(this Engine engine)
         {
+            engine.SetValue("melon_internal_xset", new Action<string, object>(XSetValue));
+
+            static void XSetValue(string name, object value)
+            {
+                JintStatic.CurrentJintEngine?.SetValue(name, value);
+            }
+
+            engine.Execute(BindingReader.Get("Tools/ref"));
             engine.Execute(BindingReader.Get("Tools/load"));
             engine.Execute(BindingReader.Get("Tools/shift"));
 

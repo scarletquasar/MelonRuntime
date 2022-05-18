@@ -77,6 +77,9 @@
     <None Update="Bindings\Tools\load.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\ref.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\shift.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
