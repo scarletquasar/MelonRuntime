@@ -49,7 +49,7 @@
 }
 
 File.load = (path) => {
-    const loadedFile = melon_internal_load_file(path); //TO BE IMPLEMENTED INTERNALLY
+    const loadedFile = new melon_internal_file(path, encoding); //TO ARGUMENTS UPDATED
 
     return new File({
         name: loadedFile.Name,

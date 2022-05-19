@@ -6,6 +6,7 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
 using MelonJs.Static.Jint;
+using MelonJs.Models.FileSystem;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -88,7 +89,8 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
             engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(File.WriteAllBytes));
-
+            engine.SetValue("melon_internal_file", typeof(MelonFile));
+            
             engine.Execute(BindingReader.Get("Tools/fs"));
         }
 
