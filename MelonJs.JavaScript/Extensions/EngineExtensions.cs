@@ -5,6 +5,8 @@ using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
+using MelonJs.Static.Jint;
+using MelonJs.Models.FileSystem;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -14,9 +16,17 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Polyfills/Number_isInteger"));
         }
-
+        
         public static void SetupSystemMethods(this Engine engine)
         {
+            engine.SetValue("melon_internal_xset", new Action<string, object>(XSetValue));
+
+            static void XSetValue(string name, object value)
+            {
+                JintStatic.CurrentJintEngine?.SetValue(name, value);
+            }
+
+            engine.Execute(BindingReader.Get("Tools/ref"));
             engine.Execute(BindingReader.Get("Tools/load"));
             engine.Execute(BindingReader.Get("Tools/shift"));
 
@@ -26,8 +36,8 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_reset_current_execution", 
                 new Action(() => _ = new JintContainer()));
 
-            engine.SetValue("melon_internal_get_environment_variables",
-                new Func<Dictionary<string, string>>(MelonEnvironment.GetEnvironmentVariables));
+            engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
+            engine.SetValue("melon_internal_convert", typeof(MelonConvert));
 
             engine.Execute(BindingReader.Get("Tools/application"));
             engine.Execute(BindingReader.Get("Tools/environment"));
@@ -78,6 +88,14 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
             engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
+            engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(File.WriteAllBytes));
+            engine.SetValue("melon_internal_delete_file", new Action<string>(File.Delete));
+            engine.SetValue("melon_internal_copy_file", new Action<string, string>(File.Copy));
+            engine.SetValue("melon_internal_move_file", new Action<string, string>(File.Move));
+            engine.SetValue("melon_internal_file", typeof(MelonFile));
+
+            engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
+            engine.SetValue("melon_internal_folder", typeof(MelonFolder));
 
             engine.Execute(BindingReader.Get("Tools/fs"));
         }
@@ -110,6 +128,9 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
+            engine.Execute(BindingReader.Get("Constructors/Errors/FileErrorConstants"));
+            engine.Execute(BindingReader.Get("Constructors/FileSystem/File"));
+            engine.Execute(BindingReader.Get("Constructors/FileSystem/Folder"));
             engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
             engine.Execute(BindingReader.Get("Constructors/Queue"));
