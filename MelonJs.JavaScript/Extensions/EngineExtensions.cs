@@ -95,6 +95,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_file", typeof(MelonFile));
 
             engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
+            engine.SetValue("melon_internal_folder", typeof(MelonFolder));
 
             engine.Execute(BindingReader.Get("Tools/fs"));
         }

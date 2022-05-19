@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace MelonJs.Models.FileSystem
+﻿namespace MelonJs.Models.FileSystem
 {
     public class MelonFile
     {
-        public MelonFile(string path)
+        public MelonFile(string? path = null)
         {
-            if(File.Exists(path))
+            if(path != null && File.Exists(path))
             {
                 FilePath = path;
                 Encoding = "ascii";
@@ -14,10 +12,7 @@ namespace MelonJs.Models.FileSystem
                 Name = Path.GetFileName(path);
                 CreationTime = File.GetCreationTime(path);
                 LastWriteTime = File.GetLastWriteTime(path);
-                return;
             }
-
-            //IMPLEMENT THROW IF FILE NOT EXISTS
         }
 
         public string? Name { get; set; }
