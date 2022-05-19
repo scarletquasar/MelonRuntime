@@ -18,8 +18,6 @@
 
         const size = (bytes.length / 1024);
 
-        this._validate();
-
         this.fileName = fileInfo.name;
         this.fileSize = size;
         this.bytes = bytes;
