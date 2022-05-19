@@ -30,6 +30,10 @@
     toString() {
         return melon_internal_convert.FromByteArrayToString(this.bytes, this.encoding);
     }
+
+    lines() {
+        return this.toString().split("\n");
+    }
 }
 
 File.load = (path) => {
@@ -43,4 +47,16 @@ File.load = (path) => {
         latWriteTime: loadedFile.LastWriteTime,
         path: loadedFile.FilePath
     });
+}
+
+File.delete = (path) => {
+    melon_internal_delete_file(path);
+}
+
+File.copy = (from, to) => {
+    melon_internal_copy_file(from, to);
+}
+
+File.move = (from, to) => {
+    melon_internal_move_file(from, to);
 }
