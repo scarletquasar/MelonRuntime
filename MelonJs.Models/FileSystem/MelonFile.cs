@@ -1,7 +1,15 @@
 ﻿namespace MelonJs.Models.FileSystem
 {
-    public class File
+    public class MelonFile
     {
+        public MelonFile(string path)
+        {
+            if(File.Exists(path))
+            {
+                Bytes = File.ReadAllBytes(path);
+            }
+        }
+
         public string? Name { get; set; }
         public string? Content { get; set; }
         public byte[]? Bytes { get; set; }
