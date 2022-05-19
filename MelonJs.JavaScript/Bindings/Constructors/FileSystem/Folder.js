@@ -28,3 +28,7 @@
         throw new Error("Only valid files can be added to a Folder object.");
     }
 }
+
+Folder.load = (path) => {
+
+}
