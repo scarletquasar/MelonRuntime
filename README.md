@@ -14,11 +14,11 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
 | Write a better `fs` module to deal with files properly | | ⚠️ | |
+| Implement `r*(target)` function | | ⚠️ | |
 | Create official multiplatform installer | | ⛔ | |
 | TypeScript JIT runtime transpiling | | ⛔ | |
 | Implement `performance` module | | ⛔ | |
 | Implement `timer` module | | ⛔ | |
-| Implement `fromRef` and `fromValue` functions | | ⛔ | |
 | Implement dynamic status code rest calls support | | ✅ | [PR11](https://github.com/MelonRuntime/MelonJS/pull/11) |
 | Headers support to `HttpApplication` routes | | ✅ | [PR9](https://github.com/MelonRuntime/MelonJS/pull/9) |
 | Body support to `HttpApplication` routes | | ✅ | [PR9](https://github.com/MelonRuntime/MelonJS/pull/9) |
