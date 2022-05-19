@@ -1,6 +1,3 @@
-const file = File.load("C:\\test.txt");
-console.log(file)
-
 const value = 1;
 const valueRef = r*(value);
 

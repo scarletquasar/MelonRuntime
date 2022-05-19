@@ -4,7 +4,7 @@ namespace MelonJs.Static.Tools.Output
 {
     public static class MelonConvert
     {
-        public static byte[] ToByteArray(string data, string encoding)
+        public static byte[] FromStringToByteArray(string data, string encoding)
         {
             return encoding.ToUpperInvariant() switch
             {
@@ -18,6 +18,8 @@ namespace MelonJs.Static.Tools.Output
 
         public static string FromByteArrayToString(byte[] bytes, string encoding)
         {
+            Console.WriteLine(encoding);
+
             return encoding.ToUpperInvariant() switch
             {
                 "UTF8" => Encoding.UTF8.GetString(bytes),

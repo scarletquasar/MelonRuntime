@@ -4,16 +4,16 @@
         this.path = null;
 
         //File Information
-        this.fileName = null;
-        this.fileSize = null;
+        this.fileName = fileInfo.name;
         this.lastWriteTime = fileInfo.lastWriteTime;
         this.creationTime = fileInfo.creationTime;
+        this.encoding = fileInfo.encoding;
 
         //Operations
         this.path = fileInfo.path;
 
         const bytes = fileInfo.content != null
-            ? melon_internal_convert.ToByteArray(fileInfo.content, fileInfo.encoding)
+            ? melon_internal_convert.FromStringToByteArray(fileInfo.content, fileInfo.encoding)
             : fileInfo.bytes;
 
         const size = (bytes.length / 1024);
@@ -25,6 +25,10 @@
 
     save(path) {
         melon_internal_save_file(path, this.bytes);
+    }
+
+    toString() {
+        return melon_internal_convert.FromByteArrayToString(this.bytes, this.encoding);
     }
 }
 
