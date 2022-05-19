@@ -103,8 +103,6 @@ namespace MelonJs.JavaScript.Containers
 
             script = string.Join("\n", rep);
 
-            Console.WriteLine(script);
-
             try
             {
                 JintStatic.CurrentJintEngine?.Execute(script);
