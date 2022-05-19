@@ -93,7 +93,9 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_copy_file", new Action<string, string>(File.Copy));
             engine.SetValue("melon_internal_move_file", new Action<string, string>(File.Move));
             engine.SetValue("melon_internal_file", typeof(MelonFile));
-            
+
+            engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
+
             engine.Execute(BindingReader.Get("Tools/fs"));
         }
 
