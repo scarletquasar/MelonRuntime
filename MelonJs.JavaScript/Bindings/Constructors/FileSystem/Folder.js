@@ -1,14 +1,23 @@
 ﻿class Folder {
-    constructor(folderInfo = { name: "", path: "", content: [], folders: [] }) {
+    constructor(folderInfo) {
+        console.log(folderInfo)
+
+        this.folderName = folderInfo.name ?? "";
+        this.path = folderInfo.path ?? "";
+        this.content = folderInfo.content ?? [];
+        this.folders = folderInfo.folders ?? [];
+
         folderInfo.content.forEach(file => {
             if (!(file instanceof File)) {
                 this._errValidFiles();
             }
         });
 
-        this.folderName = folderInfo.name;
-        this.content = folderInfo.content;
-        this.folders = folderInfo.folders;
+        folderInfo.folders.forEach(file => {
+            if (!(file instanceof Folder)) {
+                this._errValidFiles();
+            }
+        });
     }
 
     add(target) {
@@ -26,12 +35,12 @@
     }
 
     save(path) {
-        melon_internal_create_folder(path);
+        melon_internal_create_folder(path ?? this.path);
         this.content.forEach(file => file.save(path + file.fileName));
     }
 
     _errValidFiles() {
-        throw new Error("Only valid files can be added to a Folder object.");
+        throw new Error("Only valid files or folders can be added to a Folder object.");
     }
 }
 
