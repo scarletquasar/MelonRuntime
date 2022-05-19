@@ -1,10 +1,12 @@
-﻿namespace MelonJs.Models.FileSystem
+﻿using System.Text.Json.Serialization;
+
+namespace MelonJs.Models.FileSystem
 {
     public class MelonFile
     {
         public MelonFile(
             string path, 
-            string encoding = "utf8", 
+            string? encoding = null, 
             long fileSizeLimit = 1000, 
             string[]? notAllowedFileNameExpressions = null,
             string[]? notAllowedFileExtensions = null)
@@ -20,7 +22,10 @@
                 FileSizeLimit = fileSizeLimit;
                 NotAllowedFileExtensions = notAllowedFileExtensions;
                 NotAllowedFileNameExpressions = notAllowedFileNameExpressions;
+                return;
             }
+
+            //IMPLEMENT THROW IF FILE NOT EXISTS
         }
 
         public string? Name { get; set; }

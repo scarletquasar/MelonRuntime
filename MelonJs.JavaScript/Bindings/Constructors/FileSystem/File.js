@@ -60,6 +60,6 @@ File.load = (path) => {
         fileSizeLimit: loadedFile.FileSizeLimit,
         notAllowedFileNameExpressions: loadedFile.NotAllowedFileNameExpressions,
         notAllowedFileExtensions: loadedFile.NotAllowedFileExtensions,
-        path: loadedFile.Path
+        path: loadedFile.FilePath
     });
 }
