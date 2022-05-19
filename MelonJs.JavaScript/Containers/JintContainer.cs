@@ -6,6 +6,7 @@ using MelonJs.JavaScript.Extensions;
 using MelonJs.Models.Project;
 using MelonJs.Static.Jint;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace MelonJs.JavaScript.Containers
 {
@@ -83,6 +84,27 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="script">Script string</param>
         public void Execute(string script)
         {
+            var rep = script.Replace("\n", ";").Split(";");
+            rep = rep.Select(x =>
+            {
+                if(
+                    x.Contains(" r*(") 
+                    || x.Contains("=r*(") 
+                    || x.Contains("+r*(")
+                    || x.Contains("-r*(")
+                    || x.Contains("*r*(")
+                    )
+                {
+                    x = x.Replace("r*(", "ref('").Replace(")", "')");
+                }
+
+                return x;
+            }).ToArray();
+
+            script = string.Join("\n", rep);
+
+            Console.WriteLine(script);
+
             try
             {
                 JintStatic.CurrentJintEngine?.Execute(script);

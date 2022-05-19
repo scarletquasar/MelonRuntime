@@ -5,7 +5,6 @@ using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
-using Jint.Native;
 using MelonJs.Static.Jint;
 
 namespace MelonJs.JavaScript.Extensions
@@ -16,7 +15,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Polyfills/Number_isInteger"));
         }
-
+        
         public static void SetupSystemMethods(this Engine engine)
         {
             engine.SetValue("melon_internal_xset", new Action<string, object>(XSetValue));
