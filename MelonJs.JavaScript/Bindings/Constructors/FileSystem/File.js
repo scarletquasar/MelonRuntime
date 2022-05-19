@@ -16,7 +16,7 @@
             ? melon_internal_convert.FromStringToByteArray(fileInfo.content, fileInfo.encoding)
             : fileInfo.bytes;
 
-        const size = (bytes.length / 1024);
+        const size = (bytes?.length / 1024);
 
         this.fileName = fileInfo.name;
         this.fileSize = size;

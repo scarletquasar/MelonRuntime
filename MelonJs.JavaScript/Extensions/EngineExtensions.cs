@@ -129,6 +129,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.Execute(BindingReader.Get("Constructors/Errors/FileErrorConstants"));
             engine.Execute(BindingReader.Get("Constructors/FileSystem/File"));
+            engine.Execute(BindingReader.Get("Constructors/FileSystem/Folder"));
             engine.Execute(BindingReader.Get("Constructors/Set"));
             engine.Execute(BindingReader.Get("Constructors/Map"));
             engine.Execute(BindingReader.Get("Constructors/Queue"));

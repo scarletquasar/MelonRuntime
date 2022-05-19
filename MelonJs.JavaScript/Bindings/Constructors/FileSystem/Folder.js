@@ -1,6 +1,6 @@
 ﻿class Folder {
     constructor(folderInfo = { name: "", content: [] }) {
-        content.forEach(file => {
+        folderInfo.content.forEach(file => {
             if (!(file instanceof File)) {
                 this._errValidFiles();
             }
@@ -21,7 +21,7 @@
 
     save(path) {
         melon_internal_create_folder(path);
-        content.forEach(file => file.save(path + file.fileName));
+        this.content.forEach(file => file.save(path + file.fileName));
     }
 
     _errValidFiles() {
