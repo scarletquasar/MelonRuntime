@@ -1,4 +1,4 @@
-﻿function ref(target) {
+﻿const ref = (target) => {
     this.name = target;
 
     this.set = (value) => {

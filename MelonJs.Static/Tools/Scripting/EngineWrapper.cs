@@ -8,5 +8,10 @@ namespace MelonJs.Static.Tools.Scripting
         {
             JintStatic.CurrentJintEngine?.Execute(script);
         }
+
+        public static void XSetValue(string name, object value)
+        {
+            JintStatic.CurrentJintEngine?.SetValue(name, value);
+        }
     }
 }

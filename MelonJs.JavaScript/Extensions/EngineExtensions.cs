@@ -14,21 +14,16 @@ namespace MelonJs.JavaScript.Extensions
     {
         public static void SetupPolyfills(this Engine engine)
         {
-            engine.Execute(BindingReader.Get("Polyfills/Number_isInteger"));
+            engine.Execute(BindingManager.Get("Polyfills/Number_isInteger"));
         }
         
         public static void SetupSystemMethods(this Engine engine)
         {
-            engine.SetValue("melon_internal_xset", new Action<string, object>(XSetValue));
+            engine.SetValue("melon_internal_xset", new Action<string, object>(EngineWrapper.XSetValue));
 
-            static void XSetValue(string name, object value)
-            {
-                JintStatic.CurrentJintEngine?.SetValue(name, value);
-            }
-
-            engine.Execute(BindingReader.Get("Tools/ref"));
-            engine.Execute(BindingReader.Get("Tools/load"));
-            engine.Execute(BindingReader.Get("Tools/shift"));
+            engine.Execute(BindingManager.Get("Tools/ref"));
+            engine.Execute(BindingManager.Get("Tools/load"));
+            engine.Execute(BindingManager.Get("Tools/shift"));
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
 
@@ -39,8 +34,8 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
             engine.SetValue("melon_internal_convert", typeof(MelonConvert));
 
-            engine.Execute(BindingReader.Get("Tools/application"));
-            engine.Execute(BindingReader.Get("Tools/environment"));
+            engine.Execute(BindingManager.Get("Tools/application"));
+            engine.Execute(BindingManager.Get("Tools/environment"));
         }
 
         /// <summary>
@@ -64,7 +59,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_debug_set_stack_tracing", 
                 new Action<bool>((bool status) => container.EnableStackTracing = status));
 
-            engine.Execute(BindingReader.Get("Tools/debug"));
+            engine.Execute(BindingManager.Get("Tools/debug"));
         }
 
         /// <summary>
@@ -76,7 +71,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
             engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
 
-            engine.Execute(BindingReader.Get("Tools/console"));
+            engine.Execute(BindingManager.Get("Tools/console"));
         }
 
         /// <summary>
@@ -97,7 +92,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
             engine.SetValue("melon_internal_folder", typeof(MelonFolder));
 
-            engine.Execute(BindingReader.Get("Tools/fs"));
+            engine.Execute(BindingManager.Get("Tools/fs"));
         }
 
         /// <summary>
@@ -111,16 +106,16 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_ping_request", 
                 new Func<string, uint, MelonPingReply>(MelonHttp.Ping));
 
-            engine.Execute(BindingReader.Get("Tools/http"));
-            engine.Execute(BindingReader.Get("Constructors/Response"));
-            engine.Execute(BindingReader.Get("Constructors/PingResponse"));
+            engine.Execute(BindingManager.Get("Tools/http"));
+            engine.Execute(BindingManager.Get("Constructors/Response"));
+            engine.Execute(BindingManager.Get("Constructors/PingResponse"));
 
             engine.SetValue("melon_internal_http_application_run", 
                 new Action<string, int, string, string, bool>
                 (WebApplicationManager.ExecuteWebApplication));
 
-            engine.Execute(BindingReader.Get("Constructors/HttpRoute"));
-            engine.Execute(BindingReader.Get("Constructors/HttpApplication"));
+            engine.Execute(BindingManager.Get("Constructors/HttpRoute"));
+            engine.Execute(BindingManager.Get("Constructors/HttpApplication"));
         }
 
         /// <summary>
@@ -128,14 +123,14 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
-            engine.Execute(BindingReader.Get("Constructors/Errors/FileErrorConstants"));
-            engine.Execute(BindingReader.Get("Constructors/FileSystem/File"));
-            engine.Execute(BindingReader.Get("Constructors/FileSystem/Folder"));
-            engine.Execute(BindingReader.Get("Constructors/Set"));
-            engine.Execute(BindingReader.Get("Constructors/Map"));
-            engine.Execute(BindingReader.Get("Constructors/Queue"));
-            engine.Execute(BindingReader.Get("Constructors/Numbers/BigFloat"));
-            engine.Execute(BindingReader.Get("Constructors/Numbers/NumberPeriod"));
+            engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
+            engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
+            engine.Execute(BindingManager.Get("Constructors/FileSystem/Folder"));
+            engine.Execute(BindingManager.Get("Constructors/Set"));
+            engine.Execute(BindingManager.Get("Constructors/Map"));
+            engine.Execute(BindingManager.Get("Constructors/Queue"));
+            engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
+            engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
         }
     }
 }
