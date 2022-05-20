@@ -14,6 +14,7 @@ MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
 | Implement `Sci` constructor | | ⛔ | |
+| Implement Postgres/MySql/SqlServer pure sql adapters | | ⛔ | |
 | Implement data query builder + `Enumerable` constructor + `DataQuery` constructor | | ⛔ | |
 | Create official multiplatform installer | | ⛔ | |
 | TypeScript JIT runtime transpiling | | ⛔ | |
