@@ -5,6 +5,7 @@ using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
 using MelonJs.Models.Project;
 using MelonJs.Static.Jint;
+using MelonJs.Static.Tools.Scripting;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -84,24 +85,11 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="script">Script string</param>
         public void Execute(string script)
         {
-            var rep = script.Replace("\n", ";").Split(";");
-            rep = rep.Select(x =>
+            script = BindingManager.PreparseReferenceCommands(script, new()
             {
-                if(
-                    x.Contains(" r*(") 
-                    || x.Contains("=r*(") 
-                    || x.Contains("+r*(")
-                    || x.Contains("-r*(")
-                    || x.Contains("*r*(")
-                    )
-                {
-                    x = x.Replace("r*(", "ref('").Replace(")", "')");
-                }
-
-                return x;
-            }).ToArray();
-
-            script = string.Join("\n", rep);
+                { "r*", "reflect" },
+                { "c*", "deep_clone"}
+            });
 
             try
             {

@@ -1,4 +1,4 @@
-﻿function shift(value) {
+﻿const shift = (value) => {
     const internal = {
         option: (target, callback) => {
             switch (typeof target) {

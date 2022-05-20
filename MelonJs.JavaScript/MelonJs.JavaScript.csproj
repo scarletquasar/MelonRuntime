@@ -65,6 +65,9 @@
     <None Update="Bindings\Tools\debug.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\deep_clone.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\environment.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -77,7 +80,7 @@
     <None Update="Bindings\Tools\load.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Tools\ref.js">
+    <None Update="Bindings\Tools\reflect.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\shift.js">
