@@ -35,6 +35,9 @@
     <None Update="Bindings\Constructors\HttpRoute.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Constructors\IndexedArray.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Constructors\Numbers\BigFloat.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
