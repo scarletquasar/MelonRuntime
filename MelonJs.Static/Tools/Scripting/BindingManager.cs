@@ -25,7 +25,8 @@
                 rep = rep.Select(x =>
                 {
                     if (
-                        x.Contains($" {command.Key}(")
+                        x.StartsWith($"{command.Key}(")
+                        || x.Contains($" {command.Key}(")
                         || x.Contains($"={command.Key}(")
                         || x.Contains($"+{command.Key}(")
                         || x.Contains($"-{command.Key}(")
@@ -38,7 +39,7 @@
                     return x;
                 }).ToArray();
 
-                script = string.Join("\n", rep);
+                script = string.Join(";", rep);
             }
 
             return script;
