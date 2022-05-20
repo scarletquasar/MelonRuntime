@@ -2,6 +2,7 @@ debug.enableStackTracing(true)
 
 let value = 1;
 const valueRef = r*(value);
+valueRef.modificator = x => x + 10;
 
 value = 2;
 

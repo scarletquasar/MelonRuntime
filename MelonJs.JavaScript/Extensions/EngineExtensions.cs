@@ -22,7 +22,6 @@ namespace MelonJs.JavaScript.Extensions
             engine.SetValue("melon_internal_xset", new Action<string, object>(EngineWrapper.XSetValue));
 
             engine.Execute(BindingManager.Get("Tools/reflect"));
-            engine.Execute(BindingManager.Get("Tools/del"));
             engine.Execute(BindingManager.Get("Tools/load"));
             engine.Execute(BindingManager.Get("Tools/shift"));
 

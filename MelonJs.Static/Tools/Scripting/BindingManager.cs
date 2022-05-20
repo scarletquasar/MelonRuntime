@@ -1,4 +1,6 @@
-﻿namespace MelonJs.Static.Tools.Scripting
+﻿using MelonJs.Models.Extensions;
+
+namespace MelonJs.Static.Tools.Scripting
 {
     public static class BindingManager
     {
@@ -33,7 +35,7 @@
                         || x.Contains($"*{command.Key}(")
                         )
                     {
-                        x = x.Replace($"{command.Key}(", $"{command.Value}('").Replace(")", "')");
+                        x = x.Replace($"{command.Key}(", $"{command.Value}('").ReplaceLast(")", "')");
                     }
 
                     return x;

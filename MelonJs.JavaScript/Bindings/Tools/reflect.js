@@ -1,6 +1,8 @@
 ﻿const reflect = (target) => {
     this.name = target;
-    this.getValue = () => eval(`${this.name}`)
-
+    this.modificator = x => x;
+    
+    this.getValue = () => this.modificator(eval(`${this.name}`));
+    
     return this;
 }
