@@ -87,7 +87,8 @@ namespace MelonJs.JavaScript.Containers
         {
             script = BindingManager.PreparseReferenceCommands(script, new()
             {
-                { "r*", "reflect" }
+                { "r*", "reflect" },
+                { "c*", "deep_clone"}
             });
 
             try

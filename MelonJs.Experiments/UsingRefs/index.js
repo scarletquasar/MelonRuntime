@@ -24,3 +24,12 @@ console.log("Testing:")
 console.log("Literal value: " + value);
 console.log("Value reference: " + valueRef.getValue());
 console.log("");
+
+let obj = {a: 1};
+let objClone = c*(obj);
+
+console.log("Object clone:")
+console.log("Literal object: ");
+console.log(obj);
+console.log("Object clone: ");
+console.log(objClone);

@@ -65,6 +65,9 @@
     <None Update="Bindings\Tools\debug.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\deep_clone.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\environment.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
