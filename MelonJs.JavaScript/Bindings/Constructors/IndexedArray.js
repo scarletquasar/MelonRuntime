@@ -1,5 +1,5 @@
 ﻿class IndexedArray {
-    constructor(array = []) {
+    constructor(arg = []) {
         this.length = 0;
         this.dictionary = {};
 
@@ -29,8 +29,15 @@
             return result;
         }
 
-        if (Array.isArray(array)) {
-            array.forEach(x => this.push(x));
+        if (Array.isArray(arg)) {
+            arg.forEach(x => this.push(x));
+        }
+        else if (Boolean(Number(arg))) {
+            let index = Number(arg);
+            while (index > 0) {
+                this.push(empty);
+                index--;
+            }
         }
 
         this.writeIndex = (name, filter) => {
