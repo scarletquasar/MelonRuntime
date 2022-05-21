@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Bindings\Constructors\Empty.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Constructors\FileSystem\File.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

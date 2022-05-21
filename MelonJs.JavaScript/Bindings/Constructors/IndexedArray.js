@@ -1,7 +1,7 @@
 ﻿class IndexedArray {
     constructor(arg = []) {
         this.length = 0;
-        this.dictionary = {};
+        this.indexes = {};
 
         this.push = (value, index = 0) => {
             if (!this[index] && typeof this[index] !== "boolean") {
@@ -40,8 +40,9 @@
             }
         }
 
-        this.writeIndex = (name, filter) => {
-            this.dictionary[name] = this.asArray().filter(filter);
+        this.writeIndex = (name, filter, asIndexed = true) => {
+            const arr = this.asArray().filter(filter);
+            this.indexes[name] = asIndexed ? new IndexedArray(arr) : arr;
         }
     }
 }

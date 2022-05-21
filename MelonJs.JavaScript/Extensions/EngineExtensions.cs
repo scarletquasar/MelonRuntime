@@ -5,7 +5,6 @@ using MelonJs.Static.Tools.Web;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
-using MelonJs.Static.Jint;
 using MelonJs.Models.FileSystem;
 
 namespace MelonJs.JavaScript.Extensions
@@ -45,7 +44,6 @@ namespace MelonJs.JavaScript.Extensions
         /// <param name="engine">Jint engine</param>
         public static void SetupSystemVariables(this Engine engine)
         {
-            engine.Execute(BindingManager.Get("Tools/empty"));
             engine.SetValue("__basedir", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_environment_variables", new Dictionary<string, string>());
             engine.SetValue("melon_internal_engine", engine);
@@ -72,6 +70,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
             engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
+            engine.SetValue("melon_internal_conrole_readLine", new Func<string?>(Console.ReadLine));
 
             engine.Execute(BindingManager.Get("Tools/console"));
         }
@@ -125,6 +124,7 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
+            engine.Execute(BindingManager.Get("Constructors/Empty"));
             engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
             engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
             engine.Execute(BindingManager.Get("Constructors/FileSystem/Folder"));
