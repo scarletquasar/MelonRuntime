@@ -1,2 +1,2 @@
 ﻿class Empty extends String { }
-empty = new Empty();
+const empty = new Empty();
