@@ -24,19 +24,19 @@ const console = {
 
         if (Array.isArray(object)) {
             object.forEach(item => {
-                res.push("|" + item + "|");
+                res.push(`|${item}|`);
             })
         }
 
         switch (typeof object) {
             case "object":
                 Object.entries(object).forEach(entry => {
-                    res.push("|" + entry[0] + "|" + entry[1] + "|");
+                    res.push(`|${entry[0]}|${entry[1]}|`);
                 });
                 break;
 
             default:
-                result.push("|" + object + "|");
+                res.push(`|${object}|`);
                 break;
         }
 
