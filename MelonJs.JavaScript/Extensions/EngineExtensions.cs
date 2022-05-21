@@ -12,9 +12,10 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
+        //Includes external libraries
         public static void SetupPolyfills(this Engine engine)
         {
-            engine.Execute(BindingManager.Get("Polyfills/Number_isInteger"));
+            engine.Execute(BindingManager.Get("Libraries/esprima"));
         }
         
         public static void SetupSystemMethods(this Engine engine)
