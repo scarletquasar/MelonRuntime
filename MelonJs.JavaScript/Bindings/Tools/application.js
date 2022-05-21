@@ -11,7 +11,7 @@
         },
 
         delete: (key) => {
-            melon_internal_cache.Remove[key];
+            melon_internal_cache.Remove(key);
         },
 
         clear: () => {
