@@ -6,6 +6,7 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Models.Web;
 using MelonJs.WebApps;
 using MelonJs.Models.FileSystem;
+using MelonJs.Static;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -45,6 +46,7 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupSystemVariables(this Engine engine)
         {
             engine.SetValue("__basedir", Environment.CurrentDirectory);
+            engine.SetValue("melon_internal_cache", MelonCache.Dict);
             engine.SetValue("melon_internal_environment_variables", new Dictionary<string, string>());
             engine.SetValue("melon_internal_engine", engine);
         }
