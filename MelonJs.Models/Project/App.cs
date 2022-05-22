@@ -11,6 +11,7 @@ namespace MelonJs.Models.Project
             Author = "Victória Rose, Malu Rose";
             Version = "1.0.0.0";
             Website = "https://github.com/MelonRuntime/MelonJS";
+            EntryPoint = "index.js";
         }
 
         [JsonPropertyName("name")]

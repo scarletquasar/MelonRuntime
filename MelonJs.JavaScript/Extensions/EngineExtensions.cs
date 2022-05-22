@@ -7,6 +7,7 @@ using MelonJs.Models.Web;
 using MelonJs.WebApps;
 using MelonJs.Models.FileSystem;
 using MelonJs.Static;
+using MelonJs.Models.Project;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -46,9 +47,10 @@ namespace MelonJs.JavaScript.Extensions
         /// Setup the system variables for the current engine
         /// </summary>
         /// <param name="engine">Jint engine</param>
-        public static void SetupSystemVariables(this Engine engine)
+        public static void SetupSystemVariables(this Engine engine, App currentApp)
         {
             engine.SetValue("__basedir", Environment.CurrentDirectory);
+            engine.SetValue("melon_internal_application", currentApp);
             engine.SetValue("melon_internal_cache", MelonCache.Dict);
             engine.SetValue("melon_internal_environment_variables", new Dictionary<string, string>());
             engine.SetValue("melon_internal_engine", engine);

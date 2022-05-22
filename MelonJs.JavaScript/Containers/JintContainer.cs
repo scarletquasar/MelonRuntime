@@ -37,7 +37,7 @@ namespace MelonJs.JavaScript.Containers
 
             JintStatic.CurrentJintEngine = engine ?? new();
             JintStatic.CurrentJintEngine.SetupPolyfills();
-            JintStatic.CurrentJintEngine.SetupSystemVariables();
+            JintStatic.CurrentJintEngine.SetupSystemVariables(_currentApp);
             JintStatic.CurrentJintEngine.SetupDebugMethods(this);
 
             EnableStackTracing = enableStackTracing;
