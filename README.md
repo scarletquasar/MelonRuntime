@@ -1,5 +1,5 @@
 # 🍈 MelonJS
-MelonJS is a .NET based dynamic JavaScript runtime made in C# and based in [Jint](https://github.com/sebastienros/jint) and [CLI.NET](https://github.com/EternalQuasar0206/Cli.NET). Currently in development.
+MelonJS is a dynamic, easy-to-use JavaScript runtime focused in experiments and data handling. Currently in development.
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs).
 
