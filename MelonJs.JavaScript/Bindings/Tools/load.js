@@ -2,7 +2,7 @@
     const content = options.useHttpRequest ? http.request(path) : fs.read(path);
 
     if (options.useUnsafeInjectorLoader)
-        getUnsafeInjectorLoaderResponse(content);
+        return getUnsafeInjectorLoaderResponse(content);
 
     const parsed = esprima.parse(content).body;
     const result = [];

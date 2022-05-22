@@ -1,3 +1,5 @@
+debug.enableStackTracing(true)
+
 const loadOptions = {
     useUnsafeInjectorLoader: true,
     useHttpRequest: false

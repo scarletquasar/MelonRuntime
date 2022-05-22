@@ -85,12 +85,6 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="script">Script string</param>
         public void Execute(string script)
         {
-            script = BindingManager.PreparseReferenceCommands(script, new()
-            {
-                { "r*", "reflect" },
-                { "c*", "deep_clone"}
-            });
-
             try
             {
                 JintStatic.CurrentJintEngine?.Execute(script);
