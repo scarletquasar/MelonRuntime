@@ -1,6 +1,13 @@
-load(__basedir + "/routes/getEntriesRoute.js")
-load(__basedir + "/routes/writeEntryRoute.js")
-load(__basedir + "/routes/deleteEntryRoute.js")
+debug.enableStackTracing(true)
+
+const loadOptions = {
+    useUnsafeInjectorLoader: true,
+    useHttpRequest: false
+} 
+
+load(__basedir + "/routes/getEntriesRoute.js", loadOptions)
+load(__basedir + "/routes/writeEntryRoute.js", loadOptions)
+load(__basedir + "/routes/deleteEntryRoute.js", loadOptions)
 
 const app = http.app()
 

@@ -1,0 +1,8 @@
+{
+	"name": "",
+	"description": "Example application to show the load() method usage",
+	"author": "Victória Rose",
+	"version": "1.0.0",
+	"website": "https://github.com/MelonRuntime/MelonJS",
+	"entryPoint": "index.js"
+}

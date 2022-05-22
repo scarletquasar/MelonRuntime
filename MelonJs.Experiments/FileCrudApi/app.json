@@ -2,7 +2,7 @@
 	"name": "File Crud Rest API",
 	"description": "A simple MelonJS GET/POST/DELETE file crud api",
 	"author": "Malu Rose, Victória Rose",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"website": "https://github.com/MelonRuntime/MelonJS",
 	"entryPoint": "index.js"
 }

@@ -18,33 +18,5 @@ namespace MelonJs.Static.Tools.Scripting
 
             return content;
         }
-
-        public static string PreparseReferenceCommands(string script, Dictionary<string, string> commands)
-        {
-            foreach(var command in commands)
-            {
-                var rep = script.Replace("\n", ";").Split(";");
-                rep = rep.Select(x =>
-                {
-                    if (
-                        x.StartsWith($"{command.Key}(")
-                        || x.Contains($" {command.Key}(")
-                        || x.Contains($"={command.Key}(")
-                        || x.Contains($"+{command.Key}(")
-                        || x.Contains($"-{command.Key}(")
-                        || x.Contains($"*{command.Key}(")
-                        )
-                    {
-                        x = x.Replace($"{command.Key}(", $"{command.Value}('").ReplaceLast(")", "')");
-                    }
-
-                    return x;
-                }).ToArray();
-
-                script = string.Join(";", rep);
-            }
-
-            return script;
-        }
     }
 }
