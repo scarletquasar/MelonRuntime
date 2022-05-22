@@ -20,8 +20,6 @@
     const parsed = esprima.parse(content).body;
     const result = [];
 
-    console.log(parsed)
-
     const getDeclarationPatternValue = (input) => {
         let value;
         const name = input.id.name;
@@ -48,7 +46,7 @@
                 break;
 
             case "NewExpression":
-                value = eval(`new ${input.init.callee.name}(${input.init.arguments.toString()})`);
+                value = new ConstructorAssembler(input.init.callee.name, input.init.arguments);
                 break;
         }
 
