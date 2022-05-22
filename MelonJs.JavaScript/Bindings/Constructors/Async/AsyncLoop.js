@@ -1,5 +1,5 @@
 ﻿class AsyncLoop {
-    constructor(action, times, delay, errorAction = console.error) {
+    constructor(action, times = 1, delay = 0, errorAction = console.error) {
         this._stopped = false;
 
         this.stop = () => this._stopped = true;
@@ -8,21 +8,16 @@
 
         this._promise = new Promise(
             resolve => {
-                if (delay > 0)
-                    setTimeout(() => resolve(action()), delay)
+                let result = [];
 
-                resolve(action());
+                while (this.times > 0) {
+                    setTimeout(() => result.push(action()), delay);
+                    this.times--;
+                }
+
+                resolve(result);
             }, errorAction)
 
-        this.execute = () => {
-            Promise.resolve(this._promise)
-                .then(() => {
-                    if ((this.times > 0 || this.times < 0) && !this._stopped) {
-                        this.execute();
-                        this.times--;
-                    }
-                })
-                .catch(errorAction)
-        }
+        this.execute = () => Promise.resolve(this._promise);
     }
 }
