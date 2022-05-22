@@ -22,6 +22,7 @@
 
     const getDeclarationPatternValue = (input) => {
         let value;
+        const name = input.id.name;
 
         switch (input.init.type) {
             case "Literal":
@@ -36,16 +37,28 @@
                 });
                 break;
 
+            case "ObjectExpression":
+                value = {};
 
+                input.init.properties.forEach(property => {
+                    value[property.key.name] = getDeclarationPatternValue(property.value.value);
+                });
+                break;
 
+            case "NewExpression":
+                value = eval(`new ${input.init.callee.name}(${input.init.arguments.toString()})`);
+                break;
         }
 
-        return value;
+        return {
+            name,
+            value
+        };
     }
 
-    parsed.forEach(item => {
-        
-        item.declarations
-
+    parsed.forEach(item => { 
+        item.declarations.forEach(declaration => {
+            result.push(getDeclarationPatternValue(declaration));
+        });
     });
 }
