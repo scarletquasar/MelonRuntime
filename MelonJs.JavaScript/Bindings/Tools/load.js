@@ -1,4 +1,4 @@
-﻿const load = (path, useHttpRequest = true, useLocalInjectorLoader = true) => {
+﻿const load = (path, useHttpRequest = true, useLocalInjectorLoader = false) => {
     const content = useHttpRequest ? fs.read(path) : http.request(path);
 
     if (useLocalInjectorLoader) {
@@ -19,6 +19,8 @@
 
     const parsed = esprima.parse(content).body;
     const result = [];
+
+    console.log(parsed)
 
     const getDeclarationPatternValue = (input) => {
         let value;
@@ -61,4 +63,6 @@
             result.push(getDeclarationPatternValue(declaration));
         });
     });
+
+    return result;
 }
