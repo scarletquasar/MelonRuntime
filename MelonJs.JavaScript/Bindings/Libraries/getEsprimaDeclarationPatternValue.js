@@ -9,14 +9,14 @@
             value = [];
 
             input.init.elements.forEach(element => {
-                value.push(getDeclarationPatternValue(element.value));
+                value.push(getEsprimaDeclarationPatternValue(element.value));
             });
         },
         "ObjectExpression": () => {
             value = {};
 
             input.init.properties.forEach(property => {
-                value[property.key.name] = getDeclarationPatternValue(property.value.value);
+                value[property.key.name] = getEsprimaDeclarationPatternValue(property.value.value);
             });
         },
         "NewExpression": () => {

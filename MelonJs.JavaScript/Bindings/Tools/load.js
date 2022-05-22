@@ -8,7 +8,7 @@
 
     const result = parsed
         .flatMap((item) => item.declarations)
-        .map(getDeclarationPatternValue);
+        .map(getEsprimaDeclarationPatternValue);
 
     const declared = {};
 
