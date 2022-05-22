@@ -5,14 +5,12 @@
         return getUnsafeInjectorLoaderResponse(content);
 
     const parsed = esprima.parse(content).body;
-    const result = [];
-    const declared = {};
 
-    parsed.forEach(item => { 
-        item.declarations.forEach(declaration => {
-            result.push(getEsprimaDeclarationPatternValue(declaration));
-        });
-    });
+    const result = parsed
+        .flatMap((item) => item.declarations)
+        .map(getDeclarationPatternValue);
+
+    const declared = {};
 
     result.forEach(item => {
         let content;
