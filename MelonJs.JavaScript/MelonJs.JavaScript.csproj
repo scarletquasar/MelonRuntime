@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Bindings\Constructors\Async\AsyncTask.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Constructors\ConstructorAssembler.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

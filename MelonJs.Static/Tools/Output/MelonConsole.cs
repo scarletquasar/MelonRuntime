@@ -8,16 +8,24 @@ namespace MelonJs.Static.Tools.Output
     {
         public static void Write(object obj, int color)
         {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                WriteIndented = true
-            };
-
-            var serialized = JsonSerializer.Serialize(obj, options); 
-
             CLNConsole.Write("< ", ConsoleColor.Red);
-            CLNConsole.Write(serialized, color);
+
+            try
+            {
+                JsonSerializerOptions options = new()
+                {
+                    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                    WriteIndented = true
+                };
+
+                var serialized = JsonSerializer.Serialize(obj, options);
+                CLNConsole.Write(serialized, color);
+            }
+            catch (Exception)
+            {
+                CLNConsole.Write(obj.ToString() ?? "null", color);
+            }
+
             Console.WriteLine();
         }
     }

@@ -132,6 +132,7 @@ namespace MelonJs.JavaScript.Extensions
         public static void EnableDefaultConstructors(this Engine engine)
         {
             engine.Execute(BindingManager.Get("Constructors/Empty"));
+            engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
             engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
             engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
             engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
