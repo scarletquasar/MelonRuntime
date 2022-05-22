@@ -1,7 +1,7 @@
-﻿const load = (path, useHttpRequest = true, useLocalInjectorLoader = false) => {
-    const content = useHttpRequest ? fs.read(path) : http.request(path);
+﻿const load = (path, options = { useHttpRequest: true, useUnsafeInjectorLoader: false }) => {
+    const content = options.useHttpRequest ? fs.read(path) : http.request(path);
 
-    if (useLocalInjectorLoader) {
+    if (options.useUnsafeInjectorLoader) {
         try {
             melon_internal_script_injector(content);
 
@@ -19,6 +19,7 @@
 
     const parsed = esprima.parse(content).body;
     const result = [];
+    const declared = {};
 
     const getDeclarationPatternValue = (input) => {
         let value;
@@ -48,6 +49,8 @@
             case "NewExpression":
                 value = new ConstructorAssembler(input.init.callee.name, input.init.arguments);
                 break;
+
+            //TODO: ADD SUPPORT TO ArrowFunctionExpression AND FunctionExpression
         }
 
         return {
@@ -62,5 +65,21 @@
         });
     });
 
-    return result;
+    result.forEach(item => {
+        let content;
+
+        switch (item.value.constructor.name) {
+            case "ConstructorAssembler":
+                content = Object.assign({ "constructor": item.value.constructorName }, item.value.createInstance());
+                break;
+
+            default:
+                content = item.value;
+                break;
+        }
+
+        declared[item.name] = content;
+    });
+
+    return declared;
 }
