@@ -8,6 +8,9 @@ using MelonJs.WebApps;
 using MelonJs.Models.FileSystem;
 using MelonJs.Static;
 using MelonJs.Models.Project;
+using MelonJs.Static.Tools.FileSystem;
+using MelonJs.Static.Tools.EngineManagement;
+using MelonJs.Static.Jint;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -32,9 +35,7 @@ namespace MelonJs.JavaScript.Extensions
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
 
-            //Development note [for Vic or me (Malu)]: implement the new engine as a fresh copy of the old engine
-            engine.SetValue("melon_internal_reset_current_execution", 
-                new Action(() => _ = new JintContainer()));
+            engine.SetValue("melon_internal_reset_current_execution", new Action<Engine?>(EngineManager.ResetEngine)); 
 
             engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
             engine.SetValue("melon_internal_convert", typeof(MelonConvert));
@@ -51,8 +52,8 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("__basedir", Environment.CurrentDirectory);
             engine.SetValue("melon_internal_application", currentApp);
-            engine.SetValue("melon_internal_cache", MelonCache.Dict);
-            engine.SetValue("melon_internal_environment_variables", new Dictionary<string, string>());
+            engine.SetValue("melon_internal_cache", MelonCache.Internal);
+            engine.SetValue("melon_internal_environment_variables", MelonCache.Environment);
             engine.SetValue("melon_internal_engine", engine);
         }
 
@@ -89,12 +90,12 @@ namespace MelonJs.JavaScript.Extensions
         /// <param name="engine">Jint engine</param>
         public static void EnableFileSystem(this Engine engine)
         {
-            engine.SetValue("melon_internal_fs_read", new Func<string, string>(File.ReadAllText));
-            engine.SetValue("melon_internal_fs_write", new Action<string, string?>(File.WriteAllText));
-            engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(File.WriteAllBytes));
-            engine.SetValue("melon_internal_delete_file", new Action<string>(File.Delete));
-            engine.SetValue("melon_internal_copy_file", new Action<string, string>(File.Copy));
-            engine.SetValue("melon_internal_move_file", new Action<string, string>(File.Move));
+            engine.SetValue("melon_internal_fs_read", new Func<string, string>(MelonFileManager.ReadText));
+            engine.SetValue("melon_internal_fs_write", new Action<string, string>(MelonFileManager.WriteText));
+            engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(MelonFileManager.WriteBytes));
+            engine.SetValue("melon_internal_delete_file", new Action<string>(MelonFileManager.Delete));
+            engine.SetValue("melon_internal_copy_file", new Action<string, string>(MelonFileManager.Copy));
+            engine.SetValue("melon_internal_move_file", new Action<string, string>(MelonFileManager.Move));
             engine.SetValue("melon_internal_file", typeof(MelonFile));
 
             engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
