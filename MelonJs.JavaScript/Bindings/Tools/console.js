@@ -16,7 +16,7 @@ const console = {
     },
 
     read: () => {
-        return melon_internal_conrole_readLine();
+        return melon_internal_console_readLine();
     },
 
     table: (object) => {
