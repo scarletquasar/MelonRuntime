@@ -75,7 +75,7 @@ namespace MelonJs.JavaScript.Extensions
         {
             engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
             engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
-            engine.SetValue("melon_internal_conrole_readLine", new Func<string?>(Console.ReadLine));
+            engine.SetValue("melon_internal_console_readLine", new Func<string?>(Console.ReadLine));
 
             engine.Execute(BindingManager.Get("Tools/console"));
         }
