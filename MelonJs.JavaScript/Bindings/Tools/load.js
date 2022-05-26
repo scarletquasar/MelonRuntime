@@ -28,5 +28,8 @@
         declared[item.name] = content;
     });
 
+    if (declared.length = 1)
+        declared = declared[0];
+
     return declared;
 }

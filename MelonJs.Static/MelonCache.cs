@@ -2,6 +2,7 @@
 {
     public class MelonCache
     {
-        public static Dictionary<string, dynamic> Dict = new Dictionary<string, dynamic>();
+        public static Dictionary<string, dynamic> Environment = new();
+        public static Dictionary<string, dynamic> Internal = new();
     }
 }
