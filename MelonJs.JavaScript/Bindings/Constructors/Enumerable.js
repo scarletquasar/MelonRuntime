@@ -8,6 +8,9 @@
     this.first = () => this._elements[0]
     this.last = () => new Enumerable(_elements.reverse()).first()
     this.average = () => this._elements.reduce((partialSum, a) => partialSum + a) / this._elements.length
+    this.any = () => this._elements.length > 0
+    this.cast = (constructor) => new Enumerable(this._elements.map(x => new constructor(x)))
+
     this.all = (condition) => {
         const boolArray = this._elements.map(x => condition(x))
         return boolArray.every(true)
