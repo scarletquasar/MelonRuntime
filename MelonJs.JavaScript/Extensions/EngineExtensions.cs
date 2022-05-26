@@ -32,9 +32,9 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Tools/reflect"));
             engine.Execute(BindingManager.Get("Tools/load"));
             engine.Execute(BindingManager.Get("Tools/shift"));
+            engine.Execute(BindingManager.Get("Tools/compare"));
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
--
             engine.SetValue("melon_internal_reset_current_execution", new Action<Engine?>(EngineManager.ResetEngine)); 
 
             engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
@@ -132,7 +132,7 @@ namespace MelonJs.JavaScript.Extensions
         /// </summary>
         public static void EnableDefaultConstructors(this Engine engine)
         {
-            engine.Execute(BindingManager.Get("Constructors/Empty"));
+            engine.Execute(BindingManager.Get("Constructors/Empty"));            
             engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
             engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
             engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
@@ -142,6 +142,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Constructors/Map"));
             engine.Execute(BindingManager.Get("Constructors/Queue"));
             engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
+            engine.Execute(BindingManager.Get("Constructors/Enumerable"));
             engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
             engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
         }
