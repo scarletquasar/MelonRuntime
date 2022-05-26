@@ -34,7 +34,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Tools/shift"));
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
-
+-
             engine.SetValue("melon_internal_reset_current_execution", new Action<Engine?>(EngineManager.ResetEngine)); 
 
             engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
