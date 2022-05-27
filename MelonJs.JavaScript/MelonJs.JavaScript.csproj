@@ -80,6 +80,9 @@
     <None Update="Bindings\Tools\application.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\recursive.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\console.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
