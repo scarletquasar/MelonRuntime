@@ -16,5 +16,8 @@
         return boolArray.every(true)
     }
 
+    this.add = (element) => this._elements.add(element)
+    this.addRange = (elements) => Array.isArray(elements) ? this._elements = [this._elements, ...elements] : {}
+
     return this;
 }
