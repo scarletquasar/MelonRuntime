@@ -10,7 +10,6 @@ using MelonJs.Static;
 using MelonJs.Models.Project;
 using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
-using MelonJs.Static.Jint;
 
 namespace MelonJs.JavaScript.Extensions
 {
