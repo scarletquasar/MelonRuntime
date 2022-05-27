@@ -1,6 +1,6 @@
 ﻿function Enumerable(base) {
-    this._elements = Array.isArray(base) ? base : []
-    this.all = () => this.elements
+    this._elements = Array.isArray(base) && arguments < 2 ? base : [...arguments]
+    this.elements = () => this._elements
 
     this.where = (filter) => new Enumerable(this._elements).filter(filter)
     this.top = (quantity) => new Enumerable(this._elements.slice(0, quantity))
@@ -11,7 +11,7 @@
     this.any = () => this._elements.length > 0
     this.cast = (constructor) => new Enumerable(this._elements.map(x => new constructor(x)))
 
-    this.all = (condition) => {
+    this.all = (condition = x => x === x) => {
         const boolArray = this._elements.map(x => condition(x))
         return boolArray.every(true)
     }

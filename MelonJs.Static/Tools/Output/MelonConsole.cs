@@ -21,7 +21,7 @@ namespace MelonJs.Static.Tools.Output
                 var serialized = JsonSerializer.Serialize(obj, options);
                 CLNConsole.Write(serialized, color);
             }
-            catch (Exception)
+            catch
             {
                 CLNConsole.Write(obj.ToString() ?? "null", color);
             }
