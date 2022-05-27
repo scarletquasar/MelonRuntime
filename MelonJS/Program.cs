@@ -19,7 +19,8 @@ container.Register(new()
     { "clear", new ClearCommand() },
     { "info", new InfoCommand() },
     { "load", new LoadCommand(engineContainer) },
-    { "exec", new ExecCommand(engineContainer) }
+    { "exec", new ExecCommand(engineContainer) },
+    { "run", new RunCommand(engineContainer) }
 });
 
 container.ExecuteEnvironmentCommands();
