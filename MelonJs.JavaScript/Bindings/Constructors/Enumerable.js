@@ -20,7 +20,7 @@
     this.addRange = (elements) => Array.isArray(elements) ? this._elements = [this._elements, ...elements] : {}
     this.lookFor = (element) => recursive.find(element, this._elements)
     this.compare = (element, compFn = (a, b) => a === b) => recursive.compare(this._elements, element, compFn)
-    this.equals = (element) => this.compare(element)
+    this.equals = (element) => this.compare(this._elements, element)
 
     return this;
 }
