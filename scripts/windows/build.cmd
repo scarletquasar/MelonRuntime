@@ -3,7 +3,12 @@
 
 @echo off
 
-echo [Building MelonJS...]
+echo ######################
+echo.
+echo Building MelonJS...
+echo.
+echo ######################
 echo.
 
+cd .\projects\melon-runtime\
 dotnet build --configuration Release

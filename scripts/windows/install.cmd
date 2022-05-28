@@ -5,8 +5,14 @@
 
 @echo off
 
-echo [Installing MelonJS (command: melon)...]
+echo ######################
+echo.
+echo Installing MelonJS (command: melon)...
+echo.
+echo ######################
+echo.
 
+cd .\projects\melon-runtime\
 dotnet build --configuration Release -o %*\MelonRuntime\
 
 if exist "c:\Windows\System32\melon.cmd" del /F "c:\Windows\System32\melon.cmd"

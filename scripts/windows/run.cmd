@@ -5,7 +5,16 @@
 
 @echo off
 
-echo [Building and executing MelonJS...]
+echo ######################
+echo.
+echo Building and executing MelonJS...
+echo: Args [%*]
+echo.
+echo ######################
 echo.
 
+echo []
+echo.
+
+cd .\projects\melon-runtime\
 dotnet run --project MelonJS/MelonJS.csproj %*
