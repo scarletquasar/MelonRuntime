@@ -1,7 +1,7 @@
 @echo off
 
-echo --> For a better experience, execute that script with
-echo administrator privileges <--
+echo For a better experience, execute that script with
+echo administrator privileges
 echo.
 
 cd .\scripts\windows
