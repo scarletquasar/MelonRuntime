@@ -1,16 +1,28 @@
 const console = {
     log: (object) => {
-        _detailedDebugCheck(object)
+        this._detailedDebugCheck(object)
         melon_internal_console_log(object, 15)
     },
 
+    _detailedDebugCheck: (object) => {
+        if (debug.enableDetailedInformation) {
+            //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
+            if (typeof object === 'function') {
+                debug.log(`
+                    [MelonJS Debugger]: Currently, there is no support to log/stringify functions/classes
+                    See more information in: https://github.com/MelonRuntime/MelonJS/issues/16
+                `)
+            }
+        }
+    },
+
     error: (object) => {
-        _detailedDebugCheck(object)
+        console._detailedDebugCheck(object)
         melon_internal_console_log('[X] ' + object, 12)
     },
 
     warn: (object) => {
-        _detailedDebugCheck(object)
+        console._detailedDebugCheck(object)
         melon_internal_console_log('[!] ' + object, 14)
     },
 
@@ -44,17 +56,5 @@ const console = {
         }
 
         res.forEach(console.log)
-    },
-
-    _detailedDebugCheck: (object) => {
-        if (debug.enableDetailedInformation) {
-            //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
-            if (typeof object === 'function') {
-                debug.log(`
-                    [MelonJS Debugger]: Currently, there is no support to log/stringify functions/classes
-                    See more information in: https://github.com/MelonRuntime/MelonJS/issues/16
-                `)
-            }
-        }
     }
 };
