@@ -1,3 +1,5 @@
+:: Usage: .\com [command] [...arguments]
+
 @echo off
 
 echo For a better experience, execute that script with
