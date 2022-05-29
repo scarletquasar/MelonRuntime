@@ -15,7 +15,7 @@ npm i melon-runtime@latest -g
 npx melon [...commands]
 ```
 
-- Inside the cloned repository:
+- Inside the cloned repository (currently only windows):
 
 ```cpp
 //Windows
