@@ -2,6 +2,7 @@
   "name": "melon-runtime",
   "version": "1.0.0",
   "description": "MelonJS",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelonRuntime/MelonJS.git"

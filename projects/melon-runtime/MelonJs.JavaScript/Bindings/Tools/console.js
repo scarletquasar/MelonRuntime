@@ -1,9 +1,4 @@
 const console = {
-    log: (object) => {
-        this._detailedDebugCheck(object)
-        melon_internal_console_log(object, 15)
-    },
-
     _detailedDebugCheck: (object) => {
         if (debug.enableDetailedInformation) {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
@@ -14,6 +9,11 @@ const console = {
                 `)
             }
         }
+    },
+
+    log: (object) => {
+        console._detailedDebugCheck(object)
+        melon_internal_console_log(object, 15)
     },
 
     error: (object) => {

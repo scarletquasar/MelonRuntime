@@ -84,7 +84,8 @@ namespace Cli.NET.Tools
         /// </summary>
         public void ExecuteEnvironmentCommands()
         {
-            var commands = string.Join(" ", Environment.GetCommandLineArgs().Skip(1)).Split("&&");
+            var args = Environment.GetCommandLineArgs().SkipWhile(x => x.Contains("\\"));
+            var commands = string.Join(" ", args).Split("&&");
 
             foreach (var command in commands)
             {
