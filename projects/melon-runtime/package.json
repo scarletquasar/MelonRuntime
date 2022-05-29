@@ -2,9 +2,6 @@
   "name": "melon-runtime",
   "version": "1.0.0",
   "description": "MelonJS",
-  "scripts": {
-    "melon": "dotnet run --configuration Release --project ../../projects/melon-runtime/MelonJS/MelonJS.csproj"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelonRuntime/MelonJS.git"
@@ -14,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/MelonRuntime/MelonJS/issues"
   },
-  "homepage": "https://github.com/MelonRuntime/MelonJS#readme"
+  "homepage": "https://github.com/MelonRuntime/MelonJS#readme",
+  "bin": {
+    "melon": "commands/melon.js"
+  }
 }
