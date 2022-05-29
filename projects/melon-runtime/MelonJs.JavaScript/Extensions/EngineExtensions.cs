@@ -31,7 +31,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Tools/reflect"));
             engine.Execute(BindingManager.Get("Tools/load"));
             engine.Execute(BindingManager.Get("Tools/shift"));
-            engine.Execute(BindingManager.Get("Tools/compare"));
+            engine.Execute(BindingManager.Get("Tools/recursive"));
 
             engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
             engine.SetValue("melon_internal_reset_current_execution", new Action<Engine?>(EngineManager.ResetEngine)); 

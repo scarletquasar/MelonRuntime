@@ -4,7 +4,12 @@
 
 @echo off
 
-echo [Uninstalling MelonJS...]
+echo ######################
+echo.
+echo Uninstalling MelonJS...
+echo.
+echo ######################
+echo.
 
 del /F /Q %*\MelonRuntime\*.* 
 rmdir /s /q %*\MelonRuntime\
