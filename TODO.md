@@ -5,7 +5,7 @@
 
 | Name | Description | Status | Related PR's/Repos |
 | ---- | ----------- | ------ | ------- |
-| `getEsprimaDeclarationPatternValue`: ADD SUPPORT TO ArrowFunctionExpression AND FunctionExpression | | ⛔ | |
+| `getEsprimaDeclarationPatternValue`: ADD SUPPORT TO ArrowFunctionExpression AND FunctionExpression - [Reference](https://github.com/MelonRuntime/MelonJS/blob/main/projects/melon-runtime/MelonJs.JavaScript/Bindings/Libraries/getEsprimaDeclarationPatternValue.js) | | ⛔ | |
 | Implement `dotnet-install` automatic scripts in the package | | ⛔ | |
 | Implement `Sci` constructor | | ⛔ | |
 | Implement Postgres/MySql/SqlServer pure sql adapters | | ⛔ | |
