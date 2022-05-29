@@ -1,5 +1,5 @@
 ﻿const debug = {
-    _logs =[],
+    _logs: [],
     log: (message) => {
         console.warn(message)
         this._logs.push([Date.now(), message])
