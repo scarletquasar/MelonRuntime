@@ -13,7 +13,7 @@ echo ######################
 echo.
 
 cd .\projects\melon-runtime\
-dotnet build --configuration Release -o %*\MelonRuntime\
+dotnet build ..\..\projects\melon-runtime\ --configuration Release -o %*\MelonRuntime\
 
 if exist "c:\Windows\System32\melon.cmd" del /F "c:\Windows\System32\melon.cmd"
 
