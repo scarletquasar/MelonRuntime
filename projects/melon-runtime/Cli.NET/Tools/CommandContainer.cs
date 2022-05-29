@@ -84,8 +84,8 @@ namespace Cli.NET.Tools
         /// </summary>
         public void ExecuteEnvironmentCommands()
         {
-            var args = Environment.GetCommandLineArgs().SkipWhile(x => x.Contains("\\"));
-            var commands = string.Join(" ", args).Split("&&");
+            var args = Environment.GetCommandLineArgs().Skip(1);
+            var commands = string.Join("", args).Split("&&");
 
             foreach (var command in commands)
             {
@@ -101,7 +101,6 @@ namespace Cli.NET.Tools
         /// </summary>
         public void WaitForNextCommand(bool loop = true)
         {
-            CLNConsole.Write(_indicator, _indicatorColor);
             string[] input = CLNConsole.ReadText().Split(" ");
 
             CallCommandByName(input[0], input.Skip(1).ToArray());
