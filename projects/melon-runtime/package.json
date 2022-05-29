@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "MelonJS",
   "scripts": {
-    "melon": "dotnet run --project ../../projects/melon-runtime/MelonJS/MelonJS.csproj"
+    "melon": "dotnet run --configuration Release --project ../../projects/melon-runtime/MelonJS/MelonJS.csproj"
   },
   "repository": {
     "type": "git",
