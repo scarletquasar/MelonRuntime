@@ -1,10 +1,9 @@
 {
-  "name": "mjs-cli",
+  "name": "melon-runtime",
   "version": "1.0.0",
-  "description": "MelonJS command line interface",
-  "main": "index.js",
+  "description": "MelonJS",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "melon": "dotnet run --project ../../projects/melon-runtime/MelonJS/MelonJS.csproj"
   },
   "repository": {
     "type": "git",
