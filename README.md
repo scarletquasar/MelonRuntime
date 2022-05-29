@@ -27,3 +27,7 @@ npx melon [...commands]
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs)
 - Check our temporary [TODO list](https://github.com/MelonRuntime/MelonJS/blob/main/TODO.md)
+
+## Updates:
+
+- Fixed module loading in "npx melon" command

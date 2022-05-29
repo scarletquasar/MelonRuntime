@@ -1,22 +1,37 @@
 const console = {
+    _detailedDebugCheck: (object) => {
+        if (debug.enableDetailedInformation) {
+            //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
+            if (typeof object === 'function') {
+                debug.log(`
+                    [MelonJS Debugger]: Currently, there is no support to log/stringify functions/classes
+                    See more information in: https://github.com/MelonRuntime/MelonJS/issues/16
+                `)
+            }
+        }
+    },
+
     log: (object) => {
-        melon_internal_console_log(object, 15);
+        console._detailedDebugCheck(object)
+        melon_internal_console_log(object, 15)
     },
 
     error: (object) => {
-        melon_internal_console_log('[X] ' + object, 12);
+        console._detailedDebugCheck(object)
+        melon_internal_console_log('[X] ' + object, 12)
     },
 
     warn: (object) => {
-        melon_internal_console_log('[!] ' + object, 14);
+        console._detailedDebugCheck(object)
+        melon_internal_console_log('[!] ' + object, 14)
     },
 
     clear: () => {
-        melon_internal_console_clear();
+        melon_internal_console_clear()
     },
 
     read: () => {
-        return melon_internal_console_readLine();
+        return melon_internal_console_readLine()
     },
 
     table: (object) => {
@@ -24,22 +39,22 @@ const console = {
 
         if (Array.isArray(object)) {
             object.forEach(item => {
-                res.push(`|${item}|`);
+                res.push(`|${item}|`)
             })
         }
 
         switch (typeof object) {
             case "object":
                 Object.entries(object).forEach(entry => {
-                    res.push(`|${entry[0]}|${entry[1]}|`);
-                });
-                break;
+                    res.push(`|${entry[0]}|${entry[1]}|`)
+                })
+                break
 
             default:
-                res.push(`|${object}|`);
-                break;
+                res.push(`|${object}|`)
+                break
         }
 
-        res.forEach(console.log);
+        res.forEach(console.log)
     }
 };
