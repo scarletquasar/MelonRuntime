@@ -10,5 +10,4 @@ echo.
 echo ######################
 echo.
 
-cd .\projects\melon-runtime\
-dotnet build .\..\projects\melon-runtime\ --configuration Release
+dotnet build ..\..\projects\melon-runtime\ --configuration Release
