@@ -2,7 +2,7 @@
     if (debug.enableDetailedInformation) {
         //Reference case for https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript
         if (typeof object === 'function') {
-            console.warn(`
+            debug.log(`
                 [MelonJS Debugger]: deep_clone may be slow and cause data loss due to the usage of
                 JSON.parse() and JSON.stringify()
 
@@ -18,6 +18,7 @@
                   inf: Infinity,  // forced to 'null'
                   re: /.*/,  // lost
                 }
+
                 console.log(a);
                 console.log(typeof a.date);  // Date object
                 const clone = JSON.parse(JSON.stringify(a));
