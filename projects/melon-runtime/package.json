@@ -13,6 +13,8 @@
   },
   "homepage": "https://github.com/MelonRuntime/MelonJS#readme",
   "bin": {
+    "dotnet-install-win": "commands/dotnet-install-win.js",
+    "dotnet-install-bash": "commands/dotnet-install-bash.js",
     "melon": "commands/melon.js"
   }
 }
