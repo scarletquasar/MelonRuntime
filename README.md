@@ -23,6 +23,14 @@ npx melon [...commands]
 .\com run [...commands]
 ```
 
+```cpp
+//Windows
+
+.\com install [path]
+melon [...commands]
+```
+
+
 ## More
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs)
