@@ -5,7 +5,7 @@ MelonJS is a dynamic, easy-to-use JavaScript runtime focused in experiments and 
 
 Requires [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 
-- Via NPM:
+- Via NPM (any platform):
 
 ```bash
 npm i melon-runtime@latest -g
