@@ -6,26 +6,20 @@
 
     const parsed = esprima.parse(content).body;
 
-    const result = []
+    const result = {}
 
     parsed.forEach(item => {
-        const obj = {}
-
         let content = escodegen.generate(item)
         content = content.replaceAll("=>", "{funcArrow}")
         content = content.split("=").slice(1).join("")
         content = content.replaceAll("{funcArrow}", "=>")
 
         if (item.declarations) {
-            obj.name = item.declarations[0].id.name
+            result[item.declarations[0].id.name] = eval(content)
         }
         else {
-            obj.name = item.id.name
+            result[item.id.name] = eval(content)
         }
-
-        obj.value = eval(content)
-
-        result.push(obj)
     })
 
     return result;
