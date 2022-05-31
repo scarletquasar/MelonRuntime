@@ -10,15 +10,29 @@
 
     parsed.forEach(item => {
         let content = escodegen.generate(item)
+
+        console.log(content)
+
         content = content.replaceAll("=>", "{funcArrow}")
         content = content.split("=").slice(1).join("")
-        content = content.replaceAll("{funcArrow}", "=>")
+        content = content.replaceAll("{funcArrow}", "=>").replaceAll(";", "")
+
+        let parsedContent;
 
         if (item.declarations) {
-            result[item.declarations[0].id.name] = eval(content)
+            //Parse objects
+            try {
+                parsedContent = JSON.parse(content)
+            }
+            //Eval other items
+            catch {
+                parsedContent = eval(content)
+            }
+
+            result[item.declarations[0].id.name] = parsedContent
         }
         else {
-            result[item.id.name] = eval(content)
+            result[item.id.name] = parsedContent
         }
     })
 
