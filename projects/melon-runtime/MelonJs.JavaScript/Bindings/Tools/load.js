@@ -6,30 +6,27 @@
 
     const parsed = esprima.parse(content).body;
 
-    const result = parsed
-        .flatMap((item) => item.declarations)
-        .map(getEsprimaDeclarationPatternValue);
+    const result = []
 
-    const declared = {};
+    parsed.forEach(item => {
+        const obj = {}
 
-    result.forEach(item => {
-        let content;
+        let content = escodegen.generate(item)
+        content = content.replaceAll("=>", "{funcArrow}")
+        content = content.split("=").slice(1).join("")
+        content = content.replaceAll("{funcArrow}", "=>")
 
-        switch (item.value.constructor.name) {
-            case "ConstructorAssembler":
-                content = Object.assign({ "constructor": item.value.constructorName }, item.value.createInstance());
-                break;
-
-            default:
-                content = item.value;
-                break;
+        if (item.declarations) {
+            obj.name = item.declarations[0].id.name
+        }
+        else {
+            obj.name = item.id.name
         }
 
-        declared[item.name] = content;
-    });
+        obj.value = eval(content)
 
-    if (declared.length = 1)
-        declared = declared[0];
+        result.push(obj)
+    })
 
-    return declared;
+    return result;
 }

@@ -15,12 +15,12 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
-        //Includes external libraries
+        //Includes external libraries and polyfills
         public static void SetupPolyfills(this Engine engine)
         {
             engine.Execute(BindingManager.Get("Libraries/esprima"));
-            engine.Execute(BindingManager.Get("Libraries/getUnsafeInjectorLoaderResponse"));
-            engine.Execute(BindingManager.Get("Libraries/getEsprimaDeclarationPatternValue"));
+            engine.Execute(BindingManager.Get("Libraries/escodegen"));
+            engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
         }
         
         public static void SetupSystemMethods(this Engine engine)
