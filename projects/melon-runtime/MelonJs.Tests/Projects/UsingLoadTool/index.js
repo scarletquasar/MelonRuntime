@@ -11,3 +11,4 @@ eval(vars.log)
 log(1)
 
 vars.say("Hello!")
+console.log(vars.say.toString())

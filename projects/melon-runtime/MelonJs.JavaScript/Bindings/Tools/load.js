@@ -37,6 +37,11 @@
             //Eval other items
             catch {
                 parsedContent = eval(content)
+
+                //Workaround to get the base imported function as string 
+                if (parsedContent.constructor.name === "Function") {
+                    parsedContent.toString = () => content
+                }
             }
 
             result[item.declarations[0].id.name] = parsedContent
