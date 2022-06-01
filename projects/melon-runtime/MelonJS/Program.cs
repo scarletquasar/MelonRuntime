@@ -11,7 +11,6 @@ var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleCol
 var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
 CLNConsole.WriteLine(StaticData.ApplicationData(), ConsoleColor.Yellow);
-Console.WriteLine();
 
 container.Register(new()
 {
