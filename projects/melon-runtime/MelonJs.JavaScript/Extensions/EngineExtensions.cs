@@ -31,6 +31,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Tools/deep_clone"));
             engine.Execute(BindingManager.Get("Tools/reflect"));
             engine.Execute(BindingManager.Get("Tools/load"));
+            engine.Execute(BindingManager.Get("Tools/require"));
             engine.Execute(BindingManager.Get("Tools/shift"));
             engine.Execute(BindingManager.Get("Tools/recursive"));
 
