@@ -80,7 +80,10 @@
     <None Update="Bindings\Libraries\getEsprimaDeclarationPatternValue.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Libraries\getUnsafeInjectorLoaderResponse.js">
+    <None Update="Bindings\Polyfills\Function.prototype.asString.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Bindings\Polyfills\String.prototype.replaceAll.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\application.js">

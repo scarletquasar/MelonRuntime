@@ -19,8 +19,9 @@ namespace MelonJs.JavaScript.Extensions
         public static void SetupPolyfills(this Engine engine)
         {
             engine.Execute(BindingManager.Get("Libraries/esprima"));
-            engine.Execute(BindingManager.Get("Libraries/getUnsafeInjectorLoaderResponse"));
-            engine.Execute(BindingManager.Get("Libraries/getEsprimaDeclarationPatternValue"));
+            engine.Execute(BindingManager.Get("Libraries/escodegen"));
+            engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
+            engine.Execute(BindingManager.Get("Polyfills/Function.prototype.asString"));
         }
         
         public static void SetupSystemMethods(this Engine engine)
