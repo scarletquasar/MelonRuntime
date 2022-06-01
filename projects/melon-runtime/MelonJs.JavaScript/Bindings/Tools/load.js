@@ -11,13 +11,26 @@
     parsed.forEach(item => {
         let content = escodegen.generate(item)
 
-        console.log(content)
-
         content = content.replaceAll("=>", "{funcArrow}")
-        content = content.split("=").slice(1).join("")
+        content = content.split("=")
+
+        if (content.length > 1) {
+            content = content.slice(1).join("")
+        }
+        else {
+            content = content.join("")
+        }
+
         content = content.replaceAll("{funcArrow}", "=>").replaceAll(";", "")
 
         let parsedContent;
+
+        console.log(item.type)
+        console.log(content)
+
+        if (item.type === "FunctionDeclaration") {
+            parsedContent = content
+        }
 
         if (item.declarations) {
             //Parse objects
