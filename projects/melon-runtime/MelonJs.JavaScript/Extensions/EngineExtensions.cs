@@ -15,7 +15,7 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
-        //Includes external libraries
+        //Includes external libraries and polyfills
         public static void SetupPolyfills(this Engine engine)
         {
             engine.Execute(BindingManager.Get("Libraries/esprima"));

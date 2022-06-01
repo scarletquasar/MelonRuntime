@@ -74,10 +74,10 @@
     <None Update="Bindings\Constructors\Timer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Libraries\esprima.js">
+    <None Update="Bindings\Libraries\escodegen.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Libraries\getEsprimaDeclarationPatternValue.js">
+    <None Update="Bindings\Libraries\esprima.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Polyfills\Function.prototype.asString.js">

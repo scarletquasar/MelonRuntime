@@ -6,30 +6,50 @@
 
     const parsed = esprima.parse(content).body;
 
-    const result = parsed
-        .flatMap((item) => item.declarations)
-        .map(getEsprimaDeclarationPatternValue);
+    const result = {}
 
-    const declared = {};
+    parsed.forEach(item => {
+        let content = escodegen.generate(item)
 
-    result.forEach(item => {
-        let content;
+        content = content.replaceAll("=>", "{funcArrow}")
+        content = content.split("=")
 
-        switch (item.value.constructor.name) {
-            case "ConstructorAssembler":
-                content = Object.assign({ "constructor": item.value.constructorName }, item.value.createInstance());
-                break;
-
-            default:
-                content = item.value;
-                break;
+        if (content.length > 1) {
+            content = content.slice(1).join("")
+        }
+        else {
+            content = content.join("")
         }
 
-        declared[item.name] = content;
-    });
+        content = content.replaceAll("{funcArrow}", "=>").replaceAll(";", "")
 
-    if (declared.length = 1)
-        declared = declared[0];
+        let parsedContent
 
-    return declared;
+        if (item.type === "FunctionDeclaration") {
+            parsedContent = content
+        }
+
+        if (item.declarations) {
+            //Parse objects
+            try {
+                parsedContent = JSON.parse(content)
+            }
+            //Eval other items
+            catch {
+                parsedContent = eval(content)
+
+                //Workaround to get the base imported function as string 
+                if (parsedContent.constructor.name === "Function") {
+                    parsedContent.toString = () => content
+                }
+            }
+
+            result[item.declarations[0].id.name] = parsedContent
+        }
+        else {
+            result[item.id.name] = parsedContent
+        }
+    })
+
+    return result;
 }
