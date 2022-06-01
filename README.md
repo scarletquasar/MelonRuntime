@@ -35,3 +35,7 @@ melon [...commands]
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs)
 - Check our temporary [TODO list](https://github.com/MelonRuntime/MelonJS/blob/main/TODO.md)
+
+## Changes to be logged in the next release
+
+- Now `load` function can load standalone functions (currently as strings) and expression functions and will parse other values correctly.
