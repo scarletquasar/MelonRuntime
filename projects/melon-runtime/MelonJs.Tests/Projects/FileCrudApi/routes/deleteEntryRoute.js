@@ -1,4 +1,4 @@
-let deleteEntryRoute = (query) => {
+const deleteEntryRoute = (query) => {
     try {
         const entriesIndex = JSON.parse(fs.read(__basedir + "/files.json"));
 

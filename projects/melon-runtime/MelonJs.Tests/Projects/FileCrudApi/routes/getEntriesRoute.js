@@ -1,4 +1,4 @@
-let getEntriesRoute = (query) => {
+const getEntriesRoute = (query) => {
     try {
         const queryItems = JSON.parse(query);
         let entries = JSON.parse(fs.read(__basedir + "/files.json"));

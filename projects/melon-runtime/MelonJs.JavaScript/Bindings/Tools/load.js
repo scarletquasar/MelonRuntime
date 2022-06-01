@@ -1,4 +1,4 @@
-﻿const load = (path, options = { useHttpRequest: false, useUnsafeInjectorLoader: false }) => {
+﻿const load = (path, options = { loadFunctionLiteral: false, useHttpRequest: false, useUnsafeInjectorLoader: false }) => {
     const content = options.useHttpRequest ? http.request(path) : fs.read(path);
 
     if (options.useUnsafeInjectorLoader)
@@ -6,16 +6,15 @@
 
     const parsed = esprima.parse(content).body;
 
-    const result = {}
+    let result = {}
 
     parsed.forEach(item => {
         let content = escodegen.generate(item)
 
         content = content.replaceAll("=>", "{funcArrow}")
-        content = content.split("=")
 
         if (content.length > 1) {
-            content = content.slice(1).join("")
+            content = content.split("=").slice(1).join("=")
         }
         else {
             content = content.join("")
@@ -36,12 +35,7 @@
             }
             //Eval other items
             catch {
-                parsedContent = eval(content)
-
-                //Workaround to get the base imported function as string 
-                if (parsedContent.constructor.name === "Function") {
-                    parsedContent.toString = () => content
-                }
+                parsedContent = options.loadFunctionLiteral ? content : eval(content)
             }
 
             result[item.declarations[0].id.name] = parsedContent
@@ -50,6 +44,10 @@
             result[item.id.name] = parsedContent
         }
     })
+
+    if (Object.keys(result).length === 1) {
+        result = result[Object.keys(result)[0]]
+    }
 
     return result;
 }

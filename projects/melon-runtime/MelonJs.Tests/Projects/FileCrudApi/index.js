@@ -1,8 +1,12 @@
 debug.enableStackTracing(true)
 
-const getEntriesRoute = load(__basedir + "/routes/getEntriesRoute.js")
-const writeEntryRoute = load(__basedir + "/routes/writeEntryRoute.js")
-const deleteEntryRoute = load(__basedir + "/routes/deleteEntryRoute.js")
+const options = {
+    loadFunctionLiteral: true
+}
+
+const getEntriesRoute = load(__basedir + "/routes/getEntriesRoute.js", options)
+const writeEntryRoute = load(__basedir + "/routes/writeEntryRoute.js", options)
+const deleteEntryRoute = load(__basedir + "/routes/deleteEntryRoute.js", options)
 
 const app = http.app()
 

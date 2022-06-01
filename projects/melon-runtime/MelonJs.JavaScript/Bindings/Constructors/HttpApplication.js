@@ -8,28 +8,16 @@
     }
 
     get(route, callback) {
-        if (callback.constructor.name == "Function") {
-            callback = callback.asString
-        }
-
         const httpRoute = new HttpRoute(route, "GET", callback)
         this.routes.push(httpRoute)
     }
 
     post(route, callback) {
-        if (callback.constructor.name == "Function") {
-            callback = callback.asString
-        }
-
         const httpRoute = new HttpRoute(route, "POST", callback)
         this.routes.push(httpRoute)
     }
 
     delete(route, callback) {
-        if (callback.constructor.name == "Function") {
-            callback = callback.asString
-        }
-
         const httpRoute = new HttpRoute(route, "DELETE", callback)
         this.routes.push(httpRoute)
     }

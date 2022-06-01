@@ -1,4 +1,4 @@
-let writeEntryRoute = (body) => {
+const writeEntryRoute = (body) => {
     try {
         const bodyItems = JSON.parse(body);
 

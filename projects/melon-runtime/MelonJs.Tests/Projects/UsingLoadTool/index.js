@@ -10,5 +10,5 @@ eval(vars.log)
 
 log(1)
 
-vars.say("Hello!")
+vars.say.asFunction("Hello!")
 console.log(vars.say.toString())
