@@ -23,10 +23,7 @@
 
         content = content.replaceAll("{funcArrow}", "=>").replaceAll(";", "")
 
-        let parsedContent;
-
-        console.log(item.type)
-        console.log(content)
+        let parsedContent
 
         if (item.type === "FunctionDeclaration") {
             parsedContent = content

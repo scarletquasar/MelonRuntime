@@ -1,5 +1,6 @@
-const numberOne = 3
+const numberThree = 3
 const emptyArray = []
 const emptyObject = {}
 const emptyString = new String()
-function test() {}
+function log(a) { console.log(a) }
+const say = (a) => { console.log(a) }

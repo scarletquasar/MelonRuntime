@@ -1,11 +1,13 @@
 const vars = load(__basedir + "/vars.js")
 
-debug.enableStackTracing(true)
-
-console.log(vars)
-
-console.log(vars.numberOne)
+console.log(vars.numberThree)
 console.log(vars.emptyArray)
 console.log(vars.emptyObject)
 console.log(vars.emptyString)
-console.log(vars.test)
+console.log(vars.log)
+
+eval(vars.log)
+
+log(1)
+
+vars.say("Hello!")
