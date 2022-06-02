@@ -31,6 +31,7 @@ namespace MelonJs.JavaScript.Extensions
             engine.Execute(BindingManager.Get("Tools/deep_clone"));
             engine.Execute(BindingManager.Get("Tools/reflect"));
             engine.Execute(BindingManager.Get("Tools/load"));
+            engine.Execute(BindingManager.Get("Tools/require"));
             engine.Execute(BindingManager.Get("Tools/shift"));
             engine.Execute(BindingManager.Get("Tools/recursive"));
 
@@ -50,7 +51,7 @@ namespace MelonJs.JavaScript.Extensions
         /// <param name="engine">Jint engine</param>
         public static void SetupSystemVariables(this Engine engine, App currentApp)
         {
-            engine.SetValue("__basedir", Environment.CurrentDirectory);
+            engine.SetValue("__basedir", Environment.CurrentDirectory.Replace("\\", "/"));
             engine.SetValue("melon_internal_application", currentApp);
             engine.SetValue("melon_internal_cache", MelonCache.Internal);
             engine.SetValue("melon_internal_environment_variables", MelonCache.Environment);
