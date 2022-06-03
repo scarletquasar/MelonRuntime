@@ -18,10 +18,16 @@ namespace MelonJs.JavaScript.Extensions
     {
         public static void SetupAll(this Engine engine, App currentApp, JintContainer container)
         {
-            foreach(var i in Enum.GetNames(typeof(BuiltInJsModule)))
-            {
-                engine.SetupFor(Enum.Parse<BuiltInJsModule>(i), currentApp, container);
-            }
+            engine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.Engine, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.Application, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.Environment, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.InputOutput, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.UnsafeScripting, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.DataManagement, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.HttpOperations, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.Tools, currentApp, container);
+            engine.SetupFor(BuiltInJsModule.Debug, currentApp, container);
         }
 
         public static void SetupFor(this Engine engine, BuiltInJsModule module, App currentApp, JintContainer container)
@@ -33,6 +39,21 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Libraries/escodegen"));
                     engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
                     engine.Execute(BindingManager.Get("Polyfills/Function.prototype.asString"));
+                    break;
+
+                case BuiltInJsModule.Engine:
+                    engine.SetValue("__reset_current_execution__", new Action<Engine?>(EngineManager.ResetEngine));
+                    engine.Execute(BindingManager.Get("Constructors/Empty"));
+                    engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
+                    engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
+                    engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
+                    engine.Execute(BindingManager.Get("Constructors/Set"));
+                    engine.Execute(BindingManager.Get("Constructors/Map"));
+                    engine.Execute(BindingManager.Get("Constructors/Queue"));
+                    engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
+                    engine.Execute(BindingManager.Get("Constructors/Enumerable"));
+                    engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
+                    engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
                     break;
 
                 case BuiltInJsModule.Application:
@@ -75,21 +96,6 @@ namespace MelonJs.JavaScript.Extensions
 
                 case BuiltInJsModule.DataManagement:
                     engine.SetValue("__converter__", typeof(MelonConvert));
-                    break;
-
-                case BuiltInJsModule.Engine:
-                    engine.SetValue("__reset_current_execution__", new Action<Engine?>(EngineManager.ResetEngine));
-                    engine.Execute(BindingManager.Get("Constructors/Empty"));
-                    engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
-                    engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
-                    engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
-                    engine.Execute(BindingManager.Get("Constructors/Set"));
-                    engine.Execute(BindingManager.Get("Constructors/Map"));
-                    engine.Execute(BindingManager.Get("Constructors/Queue"));
-                    engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
-                    engine.Execute(BindingManager.Get("Constructors/Enumerable"));
-                    engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
-                    engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
                     break;
 
                 case BuiltInJsModule.Debug:
