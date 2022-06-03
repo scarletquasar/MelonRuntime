@@ -49,7 +49,7 @@ namespace MelonJs.JavaScript.Containers
 
                 var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
 
-                JintStatic.CurrentJintEngine?.SetValue("__basedir", (path + "\\").Replace("\\", "/"));
+                JintStatic.CurrentJintEngine?.SetValue("__basedir__", (path + "\\").Replace("\\", "/"));
 
                 Execute(entryPointScript);
             }
