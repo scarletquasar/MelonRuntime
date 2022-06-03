@@ -23,7 +23,7 @@
     }
 
     run() {
-        melon_internal_http_application_run(
+        __http_application_run__(
             this.host,
             this.port,
             JSON.stringify(this.routes),

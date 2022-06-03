@@ -3,7 +3,7 @@
         typeof headers === "object" ? headers = JSON.stringify(headers) : {};
         typeof body === "object" ? body = JSON.stringify(body) : {};
 
-        const rawResult = melon_internal_fetch_request(target, method, body, headers);
+        const rawResult = __fetch_request__(target, method, body, headers);
 
         //Calling "Response.js" binding constructor
         return new Response(
@@ -16,7 +16,7 @@
     },
 
     ping: (target, times = 1) => {
-        const rawResult = melon_internal_ping_request(target, times);
+        const rawResult = __ping_request__(target, times);
 
         //Calling "PingResponse.js" binding constructor
         return new PingResponse(

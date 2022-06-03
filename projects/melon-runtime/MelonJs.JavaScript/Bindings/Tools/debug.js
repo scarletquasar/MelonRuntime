@@ -4,6 +4,6 @@
         console.warn(message)
         this._logs.push([Date.now(), message])
     },
-    enableStackTracing: melon_internal_debug_set_stack_tracing,
+    enableStackTracing: __debug_set_stack_tracing__,
     enableDetailedInformation: false
 }

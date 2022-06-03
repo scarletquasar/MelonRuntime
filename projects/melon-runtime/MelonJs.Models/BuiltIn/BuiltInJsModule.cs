@@ -11,6 +11,7 @@
         LoadingExternalModules,
         UnsafeScripting,
         DataManagement,
-        Engine
+        Engine,
+        Debug
     }
 }
