@@ -1,11 +1,11 @@
 ﻿const environment = {
     getVariable: (name) => {
-        return melon_internal_environment.GetEnvironmentVariables()[name] ?? melon_internal_environment_variables[name];
+        return __environment__.GetEnvironmentVariables()[name] ?? __environment_vars__[name];
     },
 
-    getVariables: () => Object.assign(melon_internal_environment.GetEnvironmentVariables()[name], melon_internal_environment_variables),
+    getVariables: () => Object.assign(__environment__.GetEnvironmentVariables()[name], __environment_vars__),
 
     setVariable: (name, content) => {
-        melon_internal_environment_variables.Add(name, content);
+        __environment_vars__.Add(name, content);
     }
 }

@@ -13,25 +13,25 @@ const console = {
 
     log: (object) => {
         console._detailedDebugCheck(object)
-        melon_internal_console_log(object, 15)
+        __console_log__(object, 15)
     },
 
     error: (object) => {
         console._detailedDebugCheck(object)
-        melon_internal_console_log('[X] ' + object, 12)
+        __console_log__('[X] ' + object, 12)
     },
 
     warn: (object) => {
         console._detailedDebugCheck(object)
-        melon_internal_console_log('[!] ' + object, 14)
+        __console_log__('[!] ' + object, 14)
     },
 
     clear: () => {
-        melon_internal_console_clear()
+        __console_clear__()
     },
 
     read: () => {
-        return melon_internal_console_readLine()
+        return __console_readLine__()
     },
 
     table: (object) => {

@@ -1,8 +1,8 @@
 ﻿const fs = {
     read: (path) => {
-        return melon_internal_fs_read(path);
+        return __fs_read__(path);
     },
     write: (path, content) => {
-        melon_internal_fs_write(path, content);
+        __fs_write__(path, content);
     }
 };

@@ -3,26 +3,26 @@
 
     cache: {
         add: (key, value) => {
-            melon_internal_cache.Add(key, value);
+            __cache__.Add(key, value);
         },
 
         get: (key) => {
-            return melon_internal_cache[key];
+            return __cache__[key];
         },
 
         delete: (key) => {
-            melon_internal_cache.Remove(key);
+            __cache__.Remove(key);
         },
 
         clear: () => {
-            melon_internal_cache.Clear();
+            __cache__.Clear();
         }
     },
 
-    name: melon_internal_application.Name,
-    description: melon_internal_application.Description,
-    author: melon_internal_application.Author,
-    version: melon_internal_application.Version,
-    website: melon_internal_application.Website,
-    entryPoint: melon_internal_application.EntryPoint
+    name: __application__.Name,
+    description: __application__.Description,
+    author: __application__.Author,
+    version: __application__.Version,
+    website: __application__.Website,
+    entryPoint: __application__.EntryPoint
 }

@@ -35,7 +35,7 @@
     }
 
     save(path) {
-        melon_internal_create_folder(path ?? this.path);
+        __create_folder__(path ?? this.path);
         this.content.forEach(file => file.save(path + file.fileName));
     }
 
@@ -45,7 +45,7 @@
 }
 
 Folder.load = (path) => {
-    const loadedFolder = new melon_internal_folder(path);
+    const loadedFolder = new __folder__(path);
 
     return new Folder({
         name: loadedFolder.Name,
