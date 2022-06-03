@@ -113,6 +113,11 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/HttpRoute"));
                     engine.Execute(BindingManager.Get("Constructors/HttpApplication"));
                     break;
+
+                case BuiltInJsModule.Tools:
+                    engine.Execute(BindingManager.Get("Tools/data"));
+                    engine.Execute(BindingManager.Get("Tools/std"));
+                    break;
             }
         }
     }

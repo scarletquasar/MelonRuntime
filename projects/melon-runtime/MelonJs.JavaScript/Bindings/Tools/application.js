@@ -1,5 +1,5 @@
 ﻿const application = {
-    end: melon_internal_reset_current_execution,
+    end: __reset_current_execution__,
 
     cache: {
         add: (key, value) => {

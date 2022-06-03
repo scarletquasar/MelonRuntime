@@ -86,16 +86,13 @@
     <None Update="Bindings\Tools\application.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Tools\recursive.js">
+    <None Update="Bindings\Tools\data.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\console.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\debug.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Bindings\Tools\deep_clone.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\environment.js">
@@ -107,18 +104,19 @@
     <None Update="Bindings\Tools\http.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Tools\load.js">
+    <None Update="Bindings\Tools\std.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Tools\reflect.js">
+    <None Update="Bindings\Tools\load.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Tools\require.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Tools\shift.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bindings\Tools\Importable\" />
   </ItemGroup>
 
 </Project>

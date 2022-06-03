@@ -12,6 +12,7 @@
         UnsafeScripting,
         DataManagement,
         Engine,
-        Debug
+        Debug,
+        Tools
     }
 }

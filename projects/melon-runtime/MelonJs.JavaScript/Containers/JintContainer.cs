@@ -24,32 +24,12 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="initialScript">An initial script that will be executed after the setup</param>
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
-        public JintContainer(
-            Engine? engine = null,
-            string? initialScript = null,
-            bool enableStackTracing = false,
-            bool enableConsoleLogging = true,
-            bool enableFileSystem = true,
-            bool enableDefaultConstructors = true,
-            bool enableHttpOperations = true)
+        public JintContainer(Engine? engine = null)
         {
             _currentApp = new();
 
             JintStatic.CurrentJintEngine = engine ?? new();
-            JintStatic.CurrentJintEngine.SetupPolyfills();
-            JintStatic.CurrentJintEngine.SetupSystemVariables(_currentApp);
-            JintStatic.CurrentJintEngine.SetupDebugMethods(this);
-
-            EnableStackTracing = enableStackTracing;
-
-            if (enableFileSystem) JintStatic.CurrentJintEngine.EnableFileSystem();
-            if (enableConsoleLogging) JintStatic.CurrentJintEngine.EnableConsoleLogging();
-            if (enableDefaultConstructors) JintStatic.CurrentJintEngine.EnableDefaultConstructors();
-            if (enableHttpOperations) JintStatic.CurrentJintEngine.EnableHttpOperations();
-
-            JintStatic.CurrentJintEngine.SetupSystemMethods();
-
-            JintStatic.CurrentJintEngine.Execute(initialScript ?? "");
+            JintStatic.CurrentJintEngine.SetupAll(_currentApp, this);
         }
 
         private void HandleUnknownException(Exception e)
