@@ -101,6 +101,7 @@ namespace Cli.NET.Tools
         /// </summary>
         public void WaitForNextCommand(bool loop = true)
         {
+            CLNConsole.Write(_indicator, _indicatorColor);
             string[] input = CLNConsole.ReadText().Split(" ");
 
             CallCommandByName(input[0], input.Skip(1).ToArray());

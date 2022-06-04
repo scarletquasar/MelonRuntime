@@ -3,6 +3,7 @@ using Esprima;
 using Jint;
 using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
+using MelonJs.Models.BuiltIn;
 using MelonJs.Models.Project;
 using MelonJs.Static.Jint;
 using MelonJs.Static.Tools.Scripting;
@@ -24,32 +25,22 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="initialScript">An initial script that will be executed after the setup</param>
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
-        public JintContainer(
-            Engine? engine = null,
-            string? initialScript = null,
-            bool enableStackTracing = false,
-            bool enableConsoleLogging = true,
-            bool enableFileSystem = true,
-            bool enableDefaultConstructors = true,
-            bool enableHttpOperations = true)
+        public JintContainer(Engine? engine = null)
         {
             _currentApp = new();
 
             JintStatic.CurrentJintEngine = engine ?? new();
-            JintStatic.CurrentJintEngine.SetupPolyfills();
-            JintStatic.CurrentJintEngine.SetupSystemVariables(_currentApp);
-            JintStatic.CurrentJintEngine.SetupDebugMethods(this);
-
-            EnableStackTracing = enableStackTracing;
-
-            if (enableFileSystem) JintStatic.CurrentJintEngine.EnableFileSystem();
-            if (enableConsoleLogging) JintStatic.CurrentJintEngine.EnableConsoleLogging();
-            if (enableDefaultConstructors) JintStatic.CurrentJintEngine.EnableDefaultConstructors();
-            if (enableHttpOperations) JintStatic.CurrentJintEngine.EnableHttpOperations();
-
-            JintStatic.CurrentJintEngine.SetupSystemMethods();
-
-            JintStatic.CurrentJintEngine.Execute(initialScript ?? "");
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Engine, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Application, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Environment, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.InputOutput, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.UnsafeScripting, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.DataManagement, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.HttpOperations, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Tools, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Debug, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Database, _currentApp, this);
         }
 
         private void HandleUnknownException(Exception e)
@@ -69,7 +60,7 @@ namespace MelonJs.JavaScript.Containers
 
                 var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
 
-                JintStatic.CurrentJintEngine?.SetValue("__basedir", (path + "\\").Replace("\\", "/"));
+                JintStatic.CurrentJintEngine?.SetValue("__basedir__", (path + "\\").Replace("\\", "/"));
 
                 Execute(entryPointScript);
             }

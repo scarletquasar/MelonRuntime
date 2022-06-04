@@ -10,142 +10,112 @@ using MelonJs.Static;
 using MelonJs.Models.Project;
 using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
+using MelonJs.Models.BuiltIn;
+using MelonJs.Data;
 
 namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
-        //Includes external libraries and polyfills
-        public static void SetupPolyfills(this Engine engine)
+        public static void SetupFor(this Engine engine, BuiltInJsModule module, App currentApp, JintContainer container)
         {
-            engine.Execute(BindingManager.Get("Libraries/esprima"));
-            engine.Execute(BindingManager.Get("Libraries/escodegen"));
-            engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
-            engine.Execute(BindingManager.Get("Polyfills/Function.prototype.asString"));
-        }
-        
-        public static void SetupSystemMethods(this Engine engine)
-        {
-            engine.SetValue("melon_internal_xset", new Action<string, object>(EngineWrapper.XSetValue));
+            switch(module)
+            {
+                case BuiltInJsModule.Database:
+                    engine.SetValue("__pg_binding__", typeof(PgStatic));
+                    break;
 
-            engine.Execute(BindingManager.Get("Tools/deep_clone"));
-            engine.Execute(BindingManager.Get("Tools/reflect"));
-            engine.Execute(BindingManager.Get("Tools/load"));
-            engine.Execute(BindingManager.Get("Tools/require"));
-            engine.Execute(BindingManager.Get("Tools/shift"));
-            engine.Execute(BindingManager.Get("Tools/recursive"));
+                case BuiltInJsModule.LibrariesAndPolyfills:
+                    engine.Execute(BindingManager.Get("Libraries/esprima"));
+                    engine.Execute(BindingManager.Get("Libraries/escodegen"));
+                    engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
+                    engine.Execute(BindingManager.Get("Polyfills/Function.prototype.asString"));
+                    break;
 
-            engine.SetValue("melon_internal_script_injector", new Action<string>(EngineWrapper.ExecuteDirectly));
-            engine.SetValue("melon_internal_reset_current_execution", new Action<Engine?>(EngineManager.ResetEngine)); 
+                case BuiltInJsModule.Engine:
+                    engine.SetValue("__reset_current_execution__", new Action<Engine?>(EngineManager.ResetEngine));
+                    engine.Execute(BindingManager.Get("Constructors/Empty"));
+                    engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
+                    engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
+                    engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
+                    engine.Execute(BindingManager.Get("Constructors/Set"));
+                    engine.Execute(BindingManager.Get("Constructors/Map"));
+                    engine.Execute(BindingManager.Get("Constructors/Queue"));
+                    engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
+                    engine.Execute(BindingManager.Get("Constructors/Enumerable"));
+                    engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
+                    engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
+                    break;
 
-            engine.SetValue("melon_internal_environment", typeof(MelonEnvironment));
-            engine.SetValue("melon_internal_convert", typeof(MelonConvert));
+                case BuiltInJsModule.Application:
+                    engine.SetValue("__basedir__", Environment.CurrentDirectory.Replace("\\", "/"));
+                    engine.SetValue("__application__", currentApp);
+                    engine.SetValue("__cache__", MelonCache.Internal);
+                    engine.Execute(BindingManager.Get("Tools/application"));
+                    break;
 
-            engine.Execute(BindingManager.Get("Tools/application"));
-            engine.Execute(BindingManager.Get("Tools/environment"));
-        }
+                case BuiltInJsModule.Environment:
+                    engine.SetValue("__environment__", typeof(MelonEnvironment));
+                    engine.SetValue("__environment_vars__", MelonCache.Environment);
+                    engine.Execute(BindingManager.Get("Tools/environment"));
+                    break;
 
-        /// <summary>
-        /// Setup the system variables for the current engine
-        /// </summary>
-        /// <param name="engine">Jint engine</param>
-        public static void SetupSystemVariables(this Engine engine, App currentApp)
-        {
-            engine.SetValue("__basedir", Environment.CurrentDirectory.Replace("\\", "/"));
-            engine.SetValue("melon_internal_application", currentApp);
-            engine.SetValue("melon_internal_cache", MelonCache.Internal);
-            engine.SetValue("melon_internal_environment_variables", MelonCache.Environment);
-            engine.SetValue("melon_internal_engine", engine);
-        }
+                case BuiltInJsModule.InputOutput:
+                    /* console */
+                    engine.SetValue("__console_log__", new Action<object, int>(MelonConsole.Write));
+                    engine.SetValue("__console_clear__", new Action(Console.Clear));
+                    engine.SetValue("__console_readLine__", new Func<string?>(Console.ReadLine));
+                    engine.Execute(BindingManager.Get("Tools/console"));
+                    /* fs/files */
+                    engine.SetValue("__fs_read__", new Func<string, string>(MelonFileManager.ReadText));
+                    engine.SetValue("__fs_write__", new Action<string, string>(MelonFileManager.WriteText));
+                    engine.SetValue("__save_file__", new Action<string, byte[]>(MelonFileManager.WriteBytes));
+                    engine.SetValue("__delete_file__", new Action<string>(MelonFileManager.Delete));
+                    engine.SetValue("__copy_file__", new Action<string, string>(MelonFileManager.Copy));
+                    engine.SetValue("__move_file__", new Action<string, string>(MelonFileManager.Move));
+                    engine.SetValue("__file__", typeof(MelonFile));
+                    engine.SetValue("__create_folder__", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
+                    engine.SetValue("__folder__", typeof(MelonFolder));
+                    engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
+                    engine.Execute(BindingManager.Get("Constructors/FileSystem/Folder"));
+                    engine.Execute(BindingManager.Get("Tools/fs"));
+                    break;
 
-        /// <summary>
-        /// Setup the debug methods for the current execution (engine and container)
-        /// </summary>
-        /// <param name="engine">Jint engine</param>
-        /// <param name="container">JintContainer instance</param>
-        public static void SetupDebugMethods(this Engine engine, JintContainer container)
-        {
-            engine.SetValue("melon_internal_debug_set_stack_tracing", 
-                new Action<bool>((bool status) => container.EnableStackTracing = status));
+                case BuiltInJsModule.UnsafeScripting:
+                    engine.SetValue("__script_injector__", new Action<string>(EngineWrapper.ExecuteDirectly));
+                    break;
 
-            engine.Execute(BindingManager.Get("Tools/debug"));
-        }
+                case BuiltInJsModule.DataManagement:
+                    engine.SetValue("__converter__", typeof(MelonConvert));
+                    break;
 
-        /// <summary>
-        /// Enables console logging (binding with abstract Console.Write related
-        /// functions to show content in the screen).
-        /// </summary>
-        public static void EnableConsoleLogging(this Engine engine)
-        {
-            engine.SetValue("melon_internal_console_log", new Action<object, int>(MelonConsole.Write));
-            engine.SetValue("melon_internal_console_clear", new Action(Console.Clear));
-            engine.SetValue("melon_internal_console_readLine", new Func<string?>(Console.ReadLine));
+                case BuiltInJsModule.Debug:
+                    engine.SetValue("__debug_set_stack_tracing__",
+                        new Action<bool>((bool status) => container.EnableStackTracing = status));
+                    engine.Execute(BindingManager.Get("Tools/debug"));
+                    break;
 
-            engine.Execute(BindingManager.Get("Tools/console"));
-        }
+                case BuiltInJsModule.HttpOperations:
+                    engine.SetValue("__fetch_request__",
+                        new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
+                    engine.SetValue("__ping_request__",
+                        new Func<string, uint, MelonPingReply>(MelonHttp.Ping));
+                    engine.Execute(BindingManager.Get("Tools/http"));
+                    engine.Execute(BindingManager.Get("Constructors/Response"));
+                    engine.Execute(BindingManager.Get("Constructors/PingResponse"));
 
-        /// <summary>
-        /// Enables the "fs" module and file system management (binding with File related
-        /// functions to deal with files). 
-        /// </summary>
-        /// <param name="engine">Jint engine</param>
-        public static void EnableFileSystem(this Engine engine)
-        {
-            engine.SetValue("melon_internal_fs_read", new Func<string, string>(MelonFileManager.ReadText));
-            engine.SetValue("melon_internal_fs_write", new Action<string, string>(MelonFileManager.WriteText));
-            engine.SetValue("melon_internal_save_file", new Action<string, byte[]>(MelonFileManager.WriteBytes));
-            engine.SetValue("melon_internal_delete_file", new Action<string>(MelonFileManager.Delete));
-            engine.SetValue("melon_internal_copy_file", new Action<string, string>(MelonFileManager.Copy));
-            engine.SetValue("melon_internal_move_file", new Action<string, string>(MelonFileManager.Move));
-            engine.SetValue("melon_internal_file", typeof(MelonFile));
+                    engine.SetValue("__http_application_run__",
+                        new Action<string, int, string, string, bool>
+                        (WebApplicationManager.ExecuteWebApplication));
+                    engine.Execute(BindingManager.Get("Constructors/HttpRoute"));
+                    engine.Execute(BindingManager.Get("Constructors/HttpApplication"));
+                    break;
 
-            engine.SetValue("melon_internal_create_folder", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
-            engine.SetValue("melon_internal_folder", typeof(MelonFolder));
-
-            engine.Execute(BindingManager.Get("Tools/fs"));
-        }
-
-        /// <summary>
-        /// Enables Http operations and related constructors built-in with MelonJS.
-        /// </summary>
-        public static void EnableHttpOperations(this Engine engine)
-        {
-            engine.SetValue("melon_internal_fetch_request",
-                new Func<string, string, string, string, MelonHttpResponse>(MelonHttp.Request));
-
-            engine.SetValue("melon_internal_ping_request", 
-                new Func<string, uint, MelonPingReply>(MelonHttp.Ping));
-
-            engine.Execute(BindingManager.Get("Tools/http"));
-            engine.Execute(BindingManager.Get("Constructors/Response"));
-            engine.Execute(BindingManager.Get("Constructors/PingResponse"));
-
-            engine.SetValue("melon_internal_http_application_run", 
-                new Action<string, int, string, string, bool>
-                (WebApplicationManager.ExecuteWebApplication));
-
-            engine.Execute(BindingManager.Get("Constructors/HttpRoute"));
-            engine.Execute(BindingManager.Get("Constructors/HttpApplication"));
-        }
-
-        /// <summary>
-        /// Enables the JavaScript polyfilled default constructors built-in with MelonJS.
-        /// </summary>
-        public static void EnableDefaultConstructors(this Engine engine)
-        {
-            engine.Execute(BindingManager.Get("Constructors/Empty"));            
-            engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
-            engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
-            engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
-            engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
-            engine.Execute(BindingManager.Get("Constructors/FileSystem/Folder"));
-            engine.Execute(BindingManager.Get("Constructors/Set"));
-            engine.Execute(BindingManager.Get("Constructors/Map"));
-            engine.Execute(BindingManager.Get("Constructors/Queue"));
-            engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
-            engine.Execute(BindingManager.Get("Constructors/Enumerable"));
-            engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
-            engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
+                case BuiltInJsModule.Tools:
+                    engine.Execute(BindingManager.Get("Tools/data"));
+                    engine.Execute(BindingManager.Get("Tools/std"));
+                    break;
+            }
         }
     }
 }

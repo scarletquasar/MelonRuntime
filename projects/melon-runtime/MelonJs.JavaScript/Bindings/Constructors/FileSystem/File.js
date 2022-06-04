@@ -24,7 +24,7 @@
     }
 
     save(path) {
-        melon_internal_save_file(path, this.bytes);
+        __save_file__(path, this.bytes);
     }
 
     toString() {
@@ -37,7 +37,7 @@
 }
 
 File.load = (path) => {
-    const loadedFile = new melon_internal_file(path);
+    const loadedFile = new __file__(path);
 
     return new File({
         name: loadedFile.Name,
@@ -50,13 +50,13 @@ File.load = (path) => {
 }
 
 File.delete = (path) => {
-    melon_internal_delete_file(path);
+    __delete_file__(path);
 }
 
 File.copy = (from, to) => {
-    melon_internal_copy_file(from, to);
+    __copy_file__(from, to);
 }
 
 File.move = (from, to) => {
-    melon_internal_move_file(from, to);
+    __move_file__(from, to);
 }
