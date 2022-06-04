@@ -11,32 +11,18 @@ using MelonJs.Models.Project;
 using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
 using MelonJs.Models.BuiltIn;
-using MelonJs.Data.Postgres;
+using MelonJs.Data;
 
 namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
-        public static void SetupAll(this Engine engine, App currentApp, JintContainer container)
-        {
-            engine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.Engine, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.Application, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.Environment, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.InputOutput, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.UnsafeScripting, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.DataManagement, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.HttpOperations, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.Tools, currentApp, container);
-            engine.SetupFor(BuiltInJsModule.Debug, currentApp, container);
-        }
-
         public static void SetupFor(this Engine engine, BuiltInJsModule module, App currentApp, JintContainer container)
         {
             switch(module)
             {
                 case BuiltInJsModule.Database:
-                    engine.SetValue("__pg_binding__", typeof(PgBinding));
+                    engine.SetValue("__pg_binding__", typeof(PgStatic));
                     break;
 
                 case BuiltInJsModule.LibrariesAndPolyfills:

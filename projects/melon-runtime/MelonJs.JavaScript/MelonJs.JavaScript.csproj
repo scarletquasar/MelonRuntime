@@ -116,8 +116,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Bindings\Tools\Importable\" />
-  </ItemGroup>
-
 </Project>

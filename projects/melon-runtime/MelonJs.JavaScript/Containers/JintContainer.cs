@@ -3,6 +3,7 @@ using Esprima;
 using Jint;
 using Jint.Runtime;
 using MelonJs.JavaScript.Extensions;
+using MelonJs.Models.BuiltIn;
 using MelonJs.Models.Project;
 using MelonJs.Static.Jint;
 using MelonJs.Static.Tools.Scripting;
@@ -29,7 +30,17 @@ namespace MelonJs.JavaScript.Containers
             _currentApp = new();
 
             JintStatic.CurrentJintEngine = engine ?? new();
-            JintStatic.CurrentJintEngine.SetupAll(_currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Engine, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Application, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Environment, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.InputOutput, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.UnsafeScripting, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.DataManagement, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.HttpOperations, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Tools, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Debug, _currentApp, this);
+            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Database, _currentApp, this);
         }
 
         private void HandleUnknownException(Exception e)
