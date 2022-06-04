@@ -8,7 +8,7 @@
 echo ######################
 echo.
 echo Building and executing MelonJS...
-echo: Args [%*]
+echo Args [%*]
 echo.
 echo ######################
 echo.

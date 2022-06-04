@@ -7,7 +7,7 @@
 
 echo ######################
 echo.
-echo Installing MelonJS (command: melon)...
+echo Installing MelonJS from source (command: melon)...
 echo.
 echo ######################
 echo.
