@@ -1,4 +1,4 @@
-const client = data.PgClient("")
-const queryData = client.executeQuery("")
-
+client = data.PgClient("")
+queryData = client.executeQuery("")
+console.log(queryData)
 //Host can't be null

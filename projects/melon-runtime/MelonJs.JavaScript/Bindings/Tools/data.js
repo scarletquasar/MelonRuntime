@@ -151,7 +151,7 @@ data["find"] = (object, target, count = 0, found = false) => {
 data["PgClient"] = function (connectionString) {
     this._connectionString = connectionString
     this.executeNonQuery = (sql) => __pg_binding__.ExecuteNonQuery(sql, connectionString)
-    this.executeQuery = (sql) => __pg_binding__.ExecuteQuery(sql, connectionString)
+    this.executeQuery = (sql) => JSON.parse(__pg_binding__.ExecuteQuery(sql, connectionString))
 
     return this
 }
