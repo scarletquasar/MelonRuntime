@@ -41,3 +41,4 @@ melon [...commands]
 Current version (npm): `1.0.1-fixed3`
 
 - Now `load` function can load standalone functions (currently as strings) and expression functions and will parse other values correctly.
+- Implemented built-in `PgClient` to connect to Postgres databases using raw sql directly
