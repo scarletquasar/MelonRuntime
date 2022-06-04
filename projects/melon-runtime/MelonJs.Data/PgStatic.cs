@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 using System.Data;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace MelonJs.Data
 {
@@ -32,7 +32,7 @@ namespace MelonJs.Data
 
             connection.Close();
 
-            return JsonSerializer.Serialize(result);
+            return JsonConvert.SerializeObject(result);
         }
     }
 }
