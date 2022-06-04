@@ -148,3 +148,8 @@ data["find"] = (object, target, count = 0, found = false) => {
         found
     };
 }
+data["pgClient"] = function (connectionString, blockedExpressions = []) {
+    this._internal = new __pg_binding__(connectionString, blockedExpressions)
+    this.executeNonQuery = (sql) => this._internal.ExecuteNonQuery(sql)
+    this.executeQuery = (sql) => this._internal.ExecuteQuery(sql)
+}

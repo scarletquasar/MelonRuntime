@@ -13,6 +13,7 @@
         DataManagement,
         Engine,
         Debug,
-        Tools
+        Tools,
+        Database
     }
 }

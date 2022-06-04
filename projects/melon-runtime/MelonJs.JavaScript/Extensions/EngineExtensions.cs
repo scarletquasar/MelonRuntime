@@ -11,6 +11,7 @@ using MelonJs.Models.Project;
 using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
 using MelonJs.Models.BuiltIn;
+using MelonJs.Data.Postgres;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -34,6 +35,10 @@ namespace MelonJs.JavaScript.Extensions
         {
             switch(module)
             {
+                case BuiltInJsModule.Database:
+                    engine.SetValue("__pg_binding__", typeof(PgBinding));
+                    break;
+
                 case BuiltInJsModule.LibrariesAndPolyfills:
                     engine.Execute(BindingManager.Get("Libraries/esprima"));
                     engine.Execute(BindingManager.Get("Libraries/escodegen"));

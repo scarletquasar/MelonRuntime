@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
+    <ProjectReference Include="..\MelonJs.Data\MelonJs.Data.csproj" />
     <ProjectReference Include="..\MelonJs.Models\MelonJs.Models.csproj" />
     <ProjectReference Include="..\MelonJs.WebApps\MelonJs.WebApps.csproj" />
   </ItemGroup>
