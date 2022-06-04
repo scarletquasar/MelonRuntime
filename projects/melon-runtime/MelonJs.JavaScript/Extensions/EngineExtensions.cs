@@ -33,7 +33,22 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
-                    engine.SetValue("__reset_current_execution__", new Action<Engine?>(EngineManager.ResetEngine));
+                    engine.SetValue("__reset_current_execution__", new Action(() => {
+                        EngineManager.ResetEngine();
+                        engine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Engine, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Application, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Environment, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.InputOutput, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.UnsafeScripting, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.DataManagement, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.HttpOperations, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Tools, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Debug, currentApp, container);
+                        engine.SetupFor(BuiltInJsModule.Database, currentApp, container);
+                    }));
+
+
                     engine.Execute(BindingManager.Get("Constructors/Empty"));
                     engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
                     engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));

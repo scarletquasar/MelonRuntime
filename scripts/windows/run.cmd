@@ -13,8 +13,5 @@ echo.
 echo ######################
 echo.
 
-echo []
-echo.
-
 cd .\projects\melon-runtime\
 dotnet run --project ..\..\projects\melon-runtime\MelonJS\MelonJS.csproj %*
