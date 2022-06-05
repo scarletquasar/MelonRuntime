@@ -150,7 +150,7 @@ namespace MelonJs.WebApps {
                 204 => Results.NoContent(),
                 422 => Results.UnprocessableEntity(httpResult.Get("response").AsString()),
                 _ => Results.Problem(httpResult.Get("response").AsString(), 
-                     statusCode: Convert.ToInt32(httpResult.Get("status").AsNumber()))
+                    statusCode: Convert.ToInt32(httpResult.Get("status").AsNumber()))
             };
         }
     }

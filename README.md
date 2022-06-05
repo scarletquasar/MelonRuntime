@@ -8,7 +8,7 @@ Requires [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/
 - Via NPM (any platform):
 
 ```bash
-npm i melon-runtime@latest -g
+npm i melon-runtime@1.0.1-fixed3 -g
 ```
 
 ```bash
