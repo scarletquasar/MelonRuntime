@@ -1,2 +1,1 @@
-const a = std
-const b = application
+const a = debug

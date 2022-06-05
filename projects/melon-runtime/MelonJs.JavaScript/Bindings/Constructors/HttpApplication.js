@@ -34,7 +34,7 @@
 
     listen(port, host = this.host) {
         this.echoes.push({
-            host: this.host,
+            host,
             port: Number(port)
         })
     }

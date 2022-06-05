@@ -63,7 +63,7 @@
     <None Update="Bindings\Constructors\Queue.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Bindings\Constructors\Response.js">
+    <None Update="Bindings\Constructors\MResponse.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Bindings\Constructors\Map.js">

@@ -5,8 +5,8 @@
 
         const rawResult = __fetch_request__(target, method, body, headers);
 
-        //Calling "Response.js" binding constructor
-        return new Response(
+        //Calling "MResponse.js" binding constructor
+        return new MResponse(
             rawResult.Body ?? "",
             rawResult.Headers ?? {},
             rawResult.Latency ?? 0,
