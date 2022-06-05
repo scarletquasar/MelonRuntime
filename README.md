@@ -30,7 +30,6 @@ npx melon [...commands]
 melon [...commands]
 ```
 
-
 ## More
 
 - Check the [documentation](https://github.com/MelonRuntime/MelonJS.Docs)

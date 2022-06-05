@@ -6,11 +6,10 @@ using MelonJs.Models.Web.HttpApplication;
 using MelonJs.Static.Jint;
 using System.Text.Json;
 
-static void Main(string[] args) { }
-
 namespace MelonJs.WebApps {
     public static class WebApplicationManager
     {
+        static void Main(string[] args) {}
         public static void ExecuteWebApplication(
             string host,
             int port,
