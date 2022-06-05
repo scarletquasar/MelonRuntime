@@ -1,4 +1,4 @@
-declare type Enumerable<T> = {
+declare type Enumerable<T> = (...items: T[]) => {
     elements: () => T[],
     where: (filter: (this: T) => boolean) => Enumerable<T> ,
     top: (quantity: number) => Enumerable<T> ,
