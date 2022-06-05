@@ -1,5 +1,5 @@
-declare const std: {
-    shift: (value: any) => shift,
+type Std = {
+    shift: (value: any) => any,
     reflect: (target: any) => {
         name: string,
         modificator: Function,
@@ -10,3 +10,6 @@ declare const std: {
     },
     sleep: (ms: number) => Promise<any>
 }
+
+/** std contains generic system functions and utilities */
+declare const std: Std
