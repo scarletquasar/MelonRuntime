@@ -21,10 +21,11 @@ std["reflect"] = (target) => {
     this.name = target;
     this.modificator = x => x;
 
-    this.getValue = () => this.modificator(eval(`${this.name}`));
+    this.getValue = () => this.modificator(eval(`${this.name}`))
 
     return this;
 }
 std["system"] = {
     getBaseDirectory: () => __basedir
 }
+std["sleep"] = new Promise((resolve) => setTimeout(resolve, time))
