@@ -1,8 +1,0 @@
-{
-	"name": "IndexedArray examples",
-	"description": "",
-	"author": "Malu Rose",
-	"version": "1.0.0",
-	"website": "https://github.com/MelonRuntime/MelonJS",
-	"entryPoint": "index.js"
-}
