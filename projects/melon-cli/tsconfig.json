@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+      "typeRoots": [
+        "path/to/**/*.d.ts"
+      ]
+    }
+}
