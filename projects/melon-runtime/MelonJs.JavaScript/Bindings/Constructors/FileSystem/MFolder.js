@@ -1,4 +1,4 @@
-﻿class Folder {
+﻿class MFolder {
     constructor(folderInfo) {
         console.log(folderInfo)
 
