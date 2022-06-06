@@ -1,4 +1,4 @@
-﻿class Response {
+﻿class MResponse {
     constructor(body, headers, latency, statusCode, ok) {
         this.body = body;
         this.headers = headers;

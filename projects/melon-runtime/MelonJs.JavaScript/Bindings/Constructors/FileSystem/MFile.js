@@ -1,8 +1,5 @@
-﻿class File {
+﻿class MFile {
     constructor(fileInfo = { name: "", content: null, encoding: "utf8" }) {
-        //Path
-        this.path = null;
-
         //File Information
         this.fileName = fileInfo.name;
         this.lastWriteTime = fileInfo.lastWriteTime;
@@ -28,7 +25,7 @@
     }
 
     toString() {
-        return melon_internal_convert.FromByteArrayToString(this.bytes, this.encoding);
+        return __converter__.FromByteArrayToString(this.bytes, this.encoding);
     }
 
     lines() {
