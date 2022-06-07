@@ -138,8 +138,7 @@
     "melon-types": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "tsc": "latest"
+    "typescript": "latest"
   }
 }</value>
   </data>

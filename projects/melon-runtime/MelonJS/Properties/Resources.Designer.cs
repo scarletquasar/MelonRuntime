@@ -93,8 +93,7 @@ namespace MelonJS.Properties {
         ///    &quot;melon-types&quot;: &quot;latest&quot;
         ///  },
         ///  &quot;devDependencies&quot;: {
-        ///    &quot;typescript&quot;: &quot;latest&quot;,
-        ///    &quot;tsc&quot;: &quot;latest&quot;
+        ///    &quot;typescript&quot;: &quot;latest&quot;
         ///  }
         ///}.
         /// </summary>
