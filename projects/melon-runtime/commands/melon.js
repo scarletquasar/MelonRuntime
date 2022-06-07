@@ -1,6 +1,10 @@
 #! /usr/bin/env node
 import { spawn } from 'child_process'
-import { __dirname, __filename } from './directory'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const args = process.argv.slice(2).join(" ")
 
