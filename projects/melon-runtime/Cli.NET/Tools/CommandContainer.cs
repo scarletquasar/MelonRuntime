@@ -82,18 +82,21 @@ namespace Cli.NET.Tools
         /// <summary>
         /// Execute the commands provided by the environment startup.
         /// </summary>
-        public void ExecuteEnvironmentCommands()
+        public bool ExecuteEnvironmentCommand()
         {
-            var args = Environment.GetCommandLineArgs().Skip(1);
-            var commands = string.Join("", args).Split("&&");
-
-            foreach (var command in commands)
+            var args = Environment.GetCommandLineArgs().Skip(1).ToList();
+            switch(args.Count) 
             {
-                var input = command.Split(" ").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-                
-                if(input.Length > 1 && !string.IsNullOrWhiteSpace(input[0]))
-                    CallCommandByName(input[0], input.Skip(1).ToArray());
+                case 1:
+                    CallCommandByName(args[0]);
+                    break;
+
+                case 2:
+                    CallCommandByName(args[0], args[1]);
+                    break;
             }
+
+            return args.Count > 0;
         }
 
         /// <summary>
