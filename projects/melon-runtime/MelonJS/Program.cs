@@ -20,7 +20,8 @@ container.Register(new()
     { "load", new LoadCommand(engineContainer) },
     { "exec", new ExecCommand(engineContainer) },
     { "run", new RunCommand(engineContainer) },
-    { "exit", new MelonJS.Commands.ExitCommand() }
+    { "exit", new MelonJS.Commands.ExitCommand() },
+    { "new", new NewCommand() }
 });
 
 if(!container.ExecuteEnvironmentCommand())
