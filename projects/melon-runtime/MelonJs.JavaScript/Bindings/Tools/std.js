@@ -28,4 +28,3 @@ std["reflect"] = (target) => {
 std["system"] = {
     getBaseDirectory: () => __basedir
 }
-std["sleep"] = new Promise((resolve) => setTimeout(resolve, time))
