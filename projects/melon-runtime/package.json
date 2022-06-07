@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "1.1.0-rc5",
+  "version": "1.1.0-rc6",
   "description": "MelonJS",
   "type": "module",
   "repository": {
