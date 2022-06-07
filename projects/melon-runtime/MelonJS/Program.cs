@@ -22,6 +22,7 @@ container.Register(new()
     { "run", new RunCommand(engineContainer) }
 });
 
-
-container.ExecuteEnvironmentCommands();
-container.WaitForNextCommand();
+if(!container.ExecuteEnvironmentCommand())
+{
+    container.WaitForNextCommand();
+}
