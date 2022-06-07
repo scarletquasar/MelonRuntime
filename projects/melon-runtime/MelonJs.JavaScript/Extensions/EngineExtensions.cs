@@ -48,7 +48,6 @@ namespace MelonJs.JavaScript.Extensions
                         engine.SetupFor(BuiltInJsModule.Database, currentApp, container);
                     }));
 
-
                     engine.Execute(BindingManager.Get("Constructors/Empty"));
                     engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
                     engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
@@ -60,6 +59,8 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/Enumerable"));
                     engine.Execute(BindingManager.Get("Constructors/Numbers/BigFloat"));
                     engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
+                    engine.Execute(BindingManager.Get("Tools/load"));
+                    engine.Execute(BindingManager.Get("Tools/require"));
                     break;
 
                 case BuiltInJsModule.Application:
