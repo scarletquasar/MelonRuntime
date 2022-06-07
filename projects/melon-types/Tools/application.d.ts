@@ -14,6 +14,4 @@ type Application = {
     entryPoint: string
 }
 
-/** application contains functionality related to the current application 
- * that is currently running as well as application cache management */
 declare const application: Application
