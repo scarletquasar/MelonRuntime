@@ -1,9 +1,8 @@
 {
   "name": "melon-runtime",
-  "version": "1.1.0-rc4",
+  "version": "1.1.0-rc5",
   "description": "MelonJS",
   "type": "module",
-  "types": "./lib/types/main.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelonRuntime/MelonJS.git"
