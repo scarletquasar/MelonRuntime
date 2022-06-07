@@ -1,0 +1,16 @@
+{
+  "name": "melon-types",
+  "version": "1.0.0",
+  "description": "Typescript types for melon-runtime 1.1.0-rc4+",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelonRuntime/MelonJS.git"
+  },
+  "author": "Victória Rose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MelonRuntime/MelonJS/issues"
+  },
+  "homepage": "https://github.com/MelonRuntime/MelonJS#readme"
+}
