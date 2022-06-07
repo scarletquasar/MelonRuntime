@@ -10,7 +10,7 @@ JintStatic.CurrentJintEngine = new();
 var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
-CLNConsole.WriteLine(StaticData.ApplicationData(), ConsoleColor.Yellow);
+CLNConsole.WriteLine(StaticData.ApplicationData() + " [RC4]", ConsoleColor.Yellow);
 
 container.Register(new()
 {
@@ -19,7 +19,8 @@ container.Register(new()
     { "info", new InfoCommand() },
     { "load", new LoadCommand(engineContainer) },
     { "exec", new ExecCommand(engineContainer) },
-    { "run", new RunCommand(engineContainer) }
+    { "run", new RunCommand(engineContainer) },
+    { "exit", new MelonJS.Commands.ExitCommand() }
 });
 
 if(!container.ExecuteEnvironmentCommand())
