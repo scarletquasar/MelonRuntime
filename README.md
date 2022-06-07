@@ -7,10 +7,17 @@ Requires [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/
 
 - Via NPM (any platform):
 
+Latest Install:
+```bash
+npm i melon-runtime@latest -g
+```
+
+Stable Install:
 ```bash
 npm i melon-runtime@1.0.1-fixed3 -g
 ```
 
+Command:
 ```bash
 npx melon [...commands]
 ```
