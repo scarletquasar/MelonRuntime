@@ -10,7 +10,7 @@ JintStatic.CurrentJintEngine = new();
 var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
-CLNConsole.WriteLine(StaticData.ApplicationData() + " [RC6]", ConsoleColor.Yellow);
+CLNConsole.WriteLine(StaticData.ApplicationData() + " [RC7]", ConsoleColor.Yellow);
 
 container.Register(new()
 {
