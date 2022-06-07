@@ -98,6 +98,21 @@ namespace MelonJS.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a ## 🍈 MelonJS Project
+        ///
+        ///| Command | Description |
+        ///| ------- | ----------- |
+        ///| `nm i melon-runtime -g` | Installs MelonJS (requires .NET 6 SDK and Runtime) |
+        ///| `npm install` | (Only TypeScript) - Installs the required MelonJS types |
+        ///| `npx melon run .` | Run the project |.
+        /// </summary>
+        internal static string NewProjectReadme {
+            get {
+                return ResourceManager.GetString("NewProjectReadme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;compilerOptions&quot;: {
         ///        &quot;types&quot;: [

@@ -53,6 +53,13 @@ namespace MelonJS.Commands
 
                 File.WriteAllText(currentPath + "/tsconfig.json", Resources.NewProjectTsconfig);
             }
+
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write("README.md", ConsoleColor.Cyan);
+            Console.WriteLine();
+
+            File.WriteAllText(currentPath + "/README.md", Resources.NewProjectReadme);
         }
     }
 }

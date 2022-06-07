@@ -136,6 +136,15 @@
   }
 }</value>
   </data>
+  <data name="NewProjectReadme" xml:space="preserve">
+    <value>## 🍈 MelonJS Project
+
+| Command | Description |
+| ------- | ----------- |
+| `nm i melon-runtime -g` | Installs MelonJS (requires .NET 6 SDK and Runtime) |
+| `npm install` | (Only TypeScript) - Installs the required MelonJS types |
+| `npx melon run .` | Run the project |</value>
+  </data>
   <data name="NewProjectTsconfig" xml:space="preserve">
     <value>{
     "compilerOptions": {
