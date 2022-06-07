@@ -6,7 +6,7 @@ import path from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const args = process.argv.slice(2).join(" ")
+const args = process.argv.slice(2)
 
 console.log("Executing MelonJS with args: " + args)
 
