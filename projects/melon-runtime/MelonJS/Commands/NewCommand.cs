@@ -1,4 +1,5 @@
 ﻿using Cli.NET.Abstractions.Actions;
+using Cli.NET.Tools;
 using MelonJS.Properties;
 
 namespace MelonJS.Commands
@@ -22,12 +23,34 @@ namespace MelonJS.Commands
                 }
             }
 
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write("index." + baseType, ConsoleColor.Cyan);
+            Console.WriteLine();
+
             File.WriteAllText(currentPath + "/index." + baseType, Resources.NewProjectEntryPoint);
+
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write("melon.json", ConsoleColor.Cyan);
+            Console.WriteLine();
+
             File.WriteAllText(currentPath + "/melon.json", Resources.NewProjectMelonInfo);
 
             if(types)
             {
+                CLNConsole.Write("> ", ConsoleColor.DarkRed);
+                CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+                CLNConsole.Write("package.json", ConsoleColor.Cyan);
+                Console.WriteLine();
+
                 File.WriteAllText(currentPath + "/package.json", Resources.NewProjectPackageInfo);
+
+                CLNConsole.Write("> ", ConsoleColor.DarkRed);
+                CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+                CLNConsole.Write("tsconfig.json", ConsoleColor.Cyan);
+                Console.WriteLine();
+
                 File.WriteAllText(currentPath + "/tsconfig.json", Resources.NewProjectTsconfig);
             }
         }
