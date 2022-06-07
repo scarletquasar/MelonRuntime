@@ -75,7 +75,7 @@ namespace MelonJS.Properties {
         ///    &quot;description&quot;: &quot;&quot;,
         ///    &quot;version&quot;: &quot;1.0.0&quot;,
         ///    &quot;website&quot;: &quot;&quot;,
-        ///    &quot;entryPoint&quot;: &quot;index.js&quot;
+        ///    &quot;entryPoint&quot;: &quot;build/index.js&quot;
         ///}.
         /// </summary>
         internal static string NewProjectMelonInfo {
@@ -86,8 +86,15 @@ namespace MelonJS.Properties {
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
+        ///  &quot;scripts&quot;: {
+        ///    &quot;go&quot;: &quot;npx tsc &amp;&amp; npx melon load .&quot;
+        ///  },
         ///  &quot;dependencies&quot;: {
         ///    &quot;melon-types&quot;: &quot;latest&quot;
+        ///  },
+        ///  &quot;devDependencies&quot;: {
+        ///    &quot;typescript&quot;: &quot;latest&quot;,
+        ///    &quot;tsc&quot;: &quot;latest&quot;
         ///  }
         ///}.
         /// </summary>
@@ -104,7 +111,7 @@ namespace MelonJS.Properties {
         ///| ------- | ----------- |
         ///| `nm i melon-runtime -g` | Installs MelonJS (requires .NET 6 SDK and Runtime) |
         ///| `npm install` | (Only TypeScript) - Installs the required MelonJS types |
-        ///| `npx melon run .` | Run the project |.
+        ///| `npm run go` | Run the project |.
         /// </summary>
         internal static string NewProjectReadme {
             get {
@@ -115,6 +122,7 @@ namespace MelonJS.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;compilerOptions&quot;: {
+        ///      &quot;outDir&quot;: &quot;build&quot;,
         ///        &quot;types&quot;: [
         ///          &quot;melon-types&quot;
         ///        ]

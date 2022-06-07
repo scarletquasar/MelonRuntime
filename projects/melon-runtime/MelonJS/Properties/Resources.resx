@@ -126,13 +126,20 @@
     "description": "",
     "version": "1.0.0",
     "website": "",
-    "entryPoint": "index.js"
+    "entryPoint": "build/index.js"
 }</value>
   </data>
   <data name="NewProjectPackageInfo" xml:space="preserve">
     <value>{
+  "scripts": {
+    "go": "npx tsc &amp;&amp; npx melon load ."
+  },
   "dependencies": {
     "melon-types": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "tsc": "latest"
   }
 }</value>
   </data>
@@ -143,11 +150,12 @@
 | ------- | ----------- |
 | `nm i melon-runtime -g` | Installs MelonJS (requires .NET 6 SDK and Runtime) |
 | `npm install` | (Only TypeScript) - Installs the required MelonJS types |
-| `npx melon run .` | Run the project |</value>
+| `npm run go` | Run the project |</value>
   </data>
   <data name="NewProjectTsconfig" xml:space="preserve">
     <value>{
     "compilerOptions": {
+      "outDir": "build",
         "types": [
           "melon-types"
         ]
