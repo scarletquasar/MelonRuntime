@@ -55,7 +55,7 @@ namespace MelonJs.JavaScript.Containers
         {
             try
             {
-                var content = File.ReadAllText($"{path}\\app.json");
+                var content = File.ReadAllText($"{path}\\melon.json");
                 _currentApp = JsonSerializer.Deserialize<App>(content) ?? new();
 
                 var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
