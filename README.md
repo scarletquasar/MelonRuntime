@@ -1,5 +1,5 @@
 # 🍈 MelonJS
-MelonJS is a dynamic, easy-to-use JavaScript runtime focused in experiments and data handling. Currently in development.
+MelonJS is a dynamic, easy-to-use JavaScript runtime focused in experiments and data handling. Based in [Jint](https://github.com/sebastienros/jint), [Esprima](https://esprima.org/) and [escodegen](https://github.com/estools/escodegen). Currently in development.
 
 ## Installation and usage:
 
