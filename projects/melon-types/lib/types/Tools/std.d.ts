@@ -11,7 +11,6 @@ type Std = {
     path: {
         getFolderPath: (fullPath: string) => string
     }
-    sleep: (ms: number) => Promise<any>
 }
 
 /** std contains generic system functions and utilities */
