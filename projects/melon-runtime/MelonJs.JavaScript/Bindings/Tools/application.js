@@ -19,7 +19,8 @@
         }
     },
 
-    baseDir: __basedir__,
+    currentDir: () => __currentdir__,
+    baseDir: () => __basedir__,
     name: __application__.Name,
     description: __application__.Description,
     author: __application__.Author,
