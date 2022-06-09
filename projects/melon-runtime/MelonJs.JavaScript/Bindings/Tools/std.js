@@ -26,5 +26,8 @@ std["reflect"] = (target) => {
     return this;
 }
 std["system"] = {
-    getBaseDirectory: () => __basedir
+    getBaseFolder: () => __basedir
+}
+std["path"] = {
+    getFolderPath: (fullPath) => __getfolderpath__(fullPath)
 }

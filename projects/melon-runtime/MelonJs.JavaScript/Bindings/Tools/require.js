@@ -1,4 +1,7 @@
 function require(module) {
+    module = module.replace("./", application.currentDir())
+    __currentdir__ = std.path.getFolderPath(module)
+
     const parts = module.split(":")
 
     if(!(parts[0].endsWith(".js"))) {

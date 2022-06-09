@@ -78,6 +78,8 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.InputOutput:
+                    /* paths */
+                    engine.SetValue("__getfolderpath__", new Func<string, string?>(Path.GetDirectoryName));
                     /* console */
                     engine.SetValue("__console_log__", new Action<object, int>(MelonConsole.Write));
                     engine.SetValue("__console_clear__", new Action(Console.Clear));

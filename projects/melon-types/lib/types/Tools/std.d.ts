@@ -6,8 +6,11 @@ type Std = {
         getValue: () => any,
     },
     system: {
-        getBaseDirectory: () => string
+        getBaseFolder: () => string
     },
+    path: {
+        getFolderPath: (fullPath: string) => string
+    }
     sleep: (ms: number) => Promise<any>
 }
 
