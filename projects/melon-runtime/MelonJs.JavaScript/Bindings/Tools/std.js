@@ -31,3 +31,13 @@ std["system"] = {
 std["path"] = {
     getFolderPath: (fullPath) => __getfolderpath__(fullPath)
 }
+std["workers"] = {
+    add: (name, script) => {
+        __workers_add__(name, script)
+
+        std.workers[name] = {
+            result: null,
+            start: () => __workers_start__(name)
+        }
+    }
+}

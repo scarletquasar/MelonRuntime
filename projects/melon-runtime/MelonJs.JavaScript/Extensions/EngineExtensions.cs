@@ -12,6 +12,7 @@ using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
 using MelonJs.Models.BuiltIn;
 using MelonJs.Data;
+using MelonJs.Static.Tools.Multitasking;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -33,6 +34,9 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
+                    engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
+                    engine.SetValue("__workers_start_", new Action<string>(Workers.Start));
+
                     engine.SetValue("__reset_current_execution__", new Action(() => {
                         EngineManager.ResetEngine();
                         engine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, currentApp, container);
