@@ -1,5 +1,6 @@
 function require(module) {
-    module = module.replace("./", application.currentDir())
+    console.log(module)
+
     __currentdir__ = std.path.getFolderPath(module)
 
     const parts = module.split(":")
@@ -8,7 +9,11 @@ function require(module) {
         parts[0] = parts[0] += ".js"
     }
 
-    const loaded = load(__basedir__ + parts[0])
+    const path = parts[0].replace("./", application.currentDir())
+
+    console.log(path)
+
+    const loaded = load(__basedir__ + path)
 
     if(parts[1]) {
         return loaded[parts[1]]

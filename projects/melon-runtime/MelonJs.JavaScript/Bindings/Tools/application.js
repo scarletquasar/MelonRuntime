@@ -19,7 +19,7 @@
         }
     },
 
-    currentDir: () => __currentdir__,
+    currentDir: () => __currentdir__ + "/",
     baseDir: () => __basedir__,
     name: __application__.Name,
     description: __application__.Description,
