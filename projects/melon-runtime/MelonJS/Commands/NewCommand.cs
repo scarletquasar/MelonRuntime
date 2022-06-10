@@ -10,25 +10,12 @@ namespace MelonJS.Commands
         {
             var currentPath = Environment.CurrentDirectory;
 
-            var baseType = "js";
-            var types = false;
-
-            if(arguments.Length > 0)
-            {
-                baseType = arguments[0];
-
-                if(arguments[0] == "ts")
-                {
-                    types = true;
-                }
-            }
-
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
-            CLNConsole.Write("index." + baseType, ConsoleColor.Cyan);
+            CLNConsole.Write("index.ts", ConsoleColor.Cyan);
             Console.WriteLine();
 
-            File.WriteAllText(currentPath + "/index." + baseType, Resources.NewProjectEntryPoint);
+            File.WriteAllText(currentPath + "/index.ts", Resources.NewProjectEntryPoint);
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
@@ -37,22 +24,26 @@ namespace MelonJS.Commands
 
             File.WriteAllText(currentPath + "/melon.json", Resources.NewProjectMelonInfo);
 
-            if(types)
-            {
-                CLNConsole.Write("> ", ConsoleColor.DarkRed);
-                CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
-                CLNConsole.Write("package.json", ConsoleColor.Cyan);
-                Console.WriteLine();
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write(".babelrc", ConsoleColor.Cyan);
+            Console.WriteLine();
 
-                File.WriteAllText(currentPath + "/package.json", Resources.NewProjectPackageInfo);
+            File.WriteAllText(currentPath + "/.babelrc", Resources.NewProjectBabelrc);
 
-                CLNConsole.Write("> ", ConsoleColor.DarkRed);
-                CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
-                CLNConsole.Write("tsconfig.json", ConsoleColor.Cyan);
-                Console.WriteLine();
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write("package.json", ConsoleColor.Cyan);
+            Console.WriteLine();
 
-                File.WriteAllText(currentPath + "/tsconfig.json", Resources.NewProjectTsconfig);
-            }
+            File.WriteAllText(currentPath + "/package.json", Resources.NewProjectPackageInfo);
+
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write("tsconfig.json", ConsoleColor.Cyan);
+            Console.WriteLine();
+
+            File.WriteAllText(currentPath + "/tsconfig.json", Resources.NewProjectTsconfig);
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);

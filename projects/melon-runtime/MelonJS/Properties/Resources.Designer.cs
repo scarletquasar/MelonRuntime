@@ -61,6 +61,17 @@ namespace MelonJS.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a {
+        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;]
+        ///}.
+        /// </summary>
+        internal static string NewProjectBabelrc {
+            get {
+                return ResourceManager.GetString("NewProjectBabelrc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world!&quot;).
         /// </summary>
         internal static string NewProjectEntryPoint {
@@ -87,13 +98,15 @@ namespace MelonJS.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///  &quot;scripts&quot;: {
-        ///    &quot;go&quot;: &quot;npx tsc &amp;&amp; npx melon load .&quot;
+        ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./build &amp;&amp; npx melon load .&quot;
         ///  },
         ///  &quot;dependencies&quot;: {
         ///    &quot;melon-types&quot;: &quot;latest&quot;
         ///  },
         ///  &quot;devDependencies&quot;: {
-        ///    &quot;typescript&quot;: &quot;latest&quot;
+        ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
+        ///    &quot;@babel/core&quot;: &quot;latest&quot;,
+        ///    &quot;@babel/preset-typescript&quot;: &quot;latest&quot;
         ///  }
         ///}.
         /// </summary>
