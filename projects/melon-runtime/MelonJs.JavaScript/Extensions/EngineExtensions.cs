@@ -64,7 +64,6 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Application:
-                    engine.SetValue("__currentdir__", Environment.CurrentDirectory.Replace("\\", "/"));
                     engine.SetValue("__basedir__", Environment.CurrentDirectory.Replace("\\", "/"));
                     engine.SetValue("__application__", currentApp);
                     engine.SetValue("__cache__", MelonCache.Internal);
