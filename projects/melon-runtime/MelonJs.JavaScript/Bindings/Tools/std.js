@@ -26,5 +26,26 @@ std["reflect"] = (target) => {
     return this;
 }
 std["system"] = {
-    getBaseDirectory: () => __basedir
+    getBaseFolder: () => __basedir
+}
+std["path"] = {
+    getFolderPath: (fullPath) => __getfolderpath__(fullPath)
+}
+std["_workers"] = {},
+std["workers"] = {
+    add: (name, script, callback) => {
+        __workers_add__(name, script)
+
+        std._workers[name] = {
+            result: null,
+            callback,
+            start: () => __workers_start__(name)
+        }
+    },
+    get: (name) => std._workers[name],
+    remove: (name) => {
+        __workers_remove__(name)
+        std._workers[name] = null
+    },
+    clear: () => __workers_clear__()
 }

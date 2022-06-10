@@ -117,6 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NewProjectBabelrc" xml:space="preserve">
+    <value>{
+    "presets": ["@babel/preset-typescript"]
+}</value>
+  </data>
   <data name="NewProjectEntryPoint" xml:space="preserve">
     <value>console.log("Hello world!")</value>
   </data>
@@ -132,13 +137,15 @@
   <data name="NewProjectPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "go": "npx tsc &amp;&amp; npx melon load ."
+    "go": "babel --extensions .ts ./src/ --out-dir ./build &amp;&amp; npx melon load ."
   },
   "dependencies": {
     "melon-types": "latest"
   },
   "devDependencies": {
-    "typescript": "latest"
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-typescript": "latest"
   }
 }</value>
   </data>

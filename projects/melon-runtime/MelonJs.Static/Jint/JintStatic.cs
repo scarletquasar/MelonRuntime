@@ -4,6 +4,6 @@ namespace MelonJs.Static.Jint
 {
     public static class JintStatic
     {
-        public static Engine? CurrentJintEngine = null;
+        public static Engine? CurrentJintEngine;
     }
 }

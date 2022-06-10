@@ -6,6 +6,8 @@ type Application = {
         delete: (key: string) => void,
         clear: () => void
     },
+    currentDir: () => string,
+    baseDir: () => string,
     name: string,
     description: string,
     author: string,

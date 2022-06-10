@@ -12,6 +12,7 @@ using MelonJs.Static.Tools.FileSystem;
 using MelonJs.Static.Tools.EngineManagement;
 using MelonJs.Models.BuiltIn;
 using MelonJs.Data;
+using MelonJs.Static.Tools.Multitasking;
 
 namespace MelonJs.JavaScript.Extensions
 {
@@ -33,6 +34,11 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
+                    engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
+                    engine.SetValue("__workers_remove__", new Action<string>(Workers.Remove));
+                    engine.SetValue("__workers_start__", new Action<string>(Workers.Start));
+                    engine.SetValue("__workers_clear__", new Action(Workers.Clear));
+
                     engine.SetValue("__reset_current_execution__", new Action(() => {
                         EngineManager.ResetEngine();
                         engine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, currentApp, container);
@@ -64,6 +70,7 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Application:
+                    engine.SetValue("__arguments__", Environment.GetCommandLineArgs());
                     engine.SetValue("__basedir__", Environment.CurrentDirectory.Replace("\\", "/"));
                     engine.SetValue("__application__", currentApp);
                     engine.SetValue("__cache__", MelonCache.Internal);
@@ -77,6 +84,8 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.InputOutput:
+                    /* paths */
+                    engine.SetValue("__getfolderpath__", new Func<string, string?>(Path.GetDirectoryName));
                     /* console */
                     engine.SetValue("__console_log__", new Action<object, int>(MelonConsole.Write));
                     engine.SetValue("__console_clear__", new Action(Console.Clear));
