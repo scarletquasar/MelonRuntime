@@ -11,10 +11,20 @@ namespace MelonJs.Static.Tools.Multitasking
         {
             _workers.Add(name, new(name, script));
         }
-        
+
+        public static void Remove(string name)
+        {
+            _workers.Remove(name);
+        }
+
         public static void Start(string name)
         {
             _workers[name].Start();
+        }
+
+        public static void Clear()
+        {
+            _workers.Clear();
         }
     }
 
@@ -38,6 +48,5 @@ namespace MelonJs.Static.Tools.Multitasking
                 JintStatic.CurrentJintEngine?.Execute($"(std._workers.{_name}.callback)('{result}')");
             });
         }
-
     }
 }

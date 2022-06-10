@@ -42,5 +42,10 @@ std["workers"] = {
             start: () => __workers_start__(name)
         }
     },
-    get: (name) => std._workers[name]
+    get: (name) => std._workers[name],
+    remove: (name) => {
+        __workers_remove__(name)
+        std._workers[name] = null
+    },
+    clear: () => __workers_clear__()
 }

@@ -35,7 +35,9 @@ namespace MelonJs.JavaScript.Extensions
 
                 case BuiltInJsModule.Engine:
                     engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
+                    engine.SetValue("__workers_remove__", new Action<string>(Workers.Remove));
                     engine.SetValue("__workers_start__", new Action<string>(Workers.Start));
+                    engine.SetValue("__workers_clear__", new Action(Workers.Clear));
 
                     engine.SetValue("__reset_current_execution__", new Action(() => {
                         EngineManager.ResetEngine();
