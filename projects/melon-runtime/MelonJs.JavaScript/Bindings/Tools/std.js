@@ -33,11 +33,12 @@ std["path"] = {
 }
 std["_workers"] = {},
 std["workers"] = {
-    add: (name, script) => {
+    add: (name, script, callback) => {
         __workers_add__(name, script)
 
         std._workers[name] = {
             result: null,
+            callback,
             start: () => __workers_start__(name)
         }
     },

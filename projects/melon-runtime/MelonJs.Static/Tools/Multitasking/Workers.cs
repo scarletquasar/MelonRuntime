@@ -35,6 +35,7 @@ namespace MelonJs.Static.Tools.Multitasking
                 var engine = new Engine();
                 var result = engine.Evaluate(_script).AsString();
                 JintStatic.CurrentJintEngine?.Execute($"std._workers.{_name}.result = '{result}'");
+                JintStatic.CurrentJintEngine?.Execute($"(std._workers.{_name}.callback)('{result}')");
             });
         }
 
