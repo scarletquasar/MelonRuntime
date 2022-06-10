@@ -16,7 +16,7 @@ namespace MelonJS.Commands
             Console.WriteLine();
 
             Directory.CreateDirectory(currentPath + "/src/");
-            File.WriteAllText(currentPath + "src/index.ts", Resources.NewProjectEntryPoint);
+            File.WriteAllText(currentPath + "/src/index.ts", Resources.NewProjectEntryPoint);
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
