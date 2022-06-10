@@ -12,10 +12,11 @@ namespace MelonJS.Commands
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
-            CLNConsole.Write("index.ts", ConsoleColor.Cyan);
+            CLNConsole.Write("src/index.ts", ConsoleColor.Cyan);
             Console.WriteLine();
 
-            File.WriteAllText(currentPath + "/index.ts", Resources.NewProjectEntryPoint);
+            Directory.CreateDirectory(currentPath + "/src/");
+            File.WriteAllText(currentPath + "src/index.ts", Resources.NewProjectEntryPoint);
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
