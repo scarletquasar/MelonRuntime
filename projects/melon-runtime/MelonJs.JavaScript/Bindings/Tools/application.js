@@ -1,5 +1,8 @@
 ﻿const application = {
-    end: __reset_current_execution__,
+    end: () => {
+        application.cache.clear()
+        __reset_current_execution__()
+    },
 
     cache: {
         add: (key, value) => {
@@ -21,8 +24,8 @@
 
     arguments: () => __arguments__,
     baseDir: () => __basedir__,
-    name: __application__.Name,
 
+    name: __application__.Name,
     description: __application__.Description,
     author: __application__.Author,
     version: __application__.Version,
