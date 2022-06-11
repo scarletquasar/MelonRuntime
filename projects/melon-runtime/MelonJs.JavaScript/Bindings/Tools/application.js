@@ -24,8 +24,8 @@
 
     arguments: () => __arguments__,
     baseDir: () => __basedir__,
-    name: __application__.Name,
 
+    name: __application__.Name,
     description: __application__.Description,
     author: __application__.Author,
     version: __application__.Version,
