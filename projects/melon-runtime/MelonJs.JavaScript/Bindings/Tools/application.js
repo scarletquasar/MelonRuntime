@@ -1,5 +1,8 @@
 ﻿const application = {
-    end: __reset_current_execution__,
+    end: () => {
+        application.cache.clear()
+        __reset_current_execution__()
+    },
 
     cache: {
         add: (key, value) => {
