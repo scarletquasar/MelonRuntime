@@ -6,3 +6,5 @@ declare interface MFolder {
     add: (file: MFile) => void,
     save: (path: string) => void 
 }
+
+declare const MFolder: (folderInfo: FolderInfo) => MFolder

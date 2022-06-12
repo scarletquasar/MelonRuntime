@@ -15,3 +15,5 @@ declare interface Enumerable<T> {
     compare: (element: T, compFn: (this: T) => boolean) => boolean,
     equals: (target: any) => boolean
 }
+
+declare function Enumerable<T>(args: T[]): Enumerable<T>
