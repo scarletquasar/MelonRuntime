@@ -19,6 +19,7 @@
         application.website = '';
         application.entryPoint = '';
 
+        __basedir__ = '';
         __reset_current_execution__();
     },
     /*
@@ -43,9 +44,15 @@
             return __cache__.Count();
         }
     },
-
+    /*
+     * application.baseDir
+     * Returns the base directory of the current loaded application
+     * */
     baseDir: () => __basedir__,
-
+    /*
+     * application.[name|description|author|version|website|entryPoint]
+     * The currently loaded application information from "melon.js"
+     * */
     name: __application__.Name,
     description: __application__.Description,
     author: __application__.Author,
