@@ -3,10 +3,9 @@ const console = {
         if (debug.enableDetailedInformation) {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
             if (typeof object === 'function') {
-                debug.log(`
-                    [MelonJS Debugger]: Currently, there is no support to log/stringify functions/classes
-                    See more information in: https://github.com/MelonRuntime/MelonJS/issues/16
-                `)
+                debug.log
+                    ("[Debug]: Currently, there is no support to log/stringify functions/classes. " +
+                     "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
             }
         }
     },
@@ -18,12 +17,12 @@ const console = {
 
     error: (object) => {
         console._detailedDebugCheck(object)
-        __console_log__('[X] ' + object, 12)
+        __console_log__(object, 12)
     },
 
     warn: (object) => {
         console._detailedDebugCheck(object)
-        __console_log__('[!] ' + object, 14)
+        __console_log__(object, 14)
     },
 
     clear: () => {
