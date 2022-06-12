@@ -1,4 +1,4 @@
-declare type HttpRoute = (route: string, method: string, callback: string) => {
+declare interface HttpRoute {
     route: string,
     method: string,
     callback: string

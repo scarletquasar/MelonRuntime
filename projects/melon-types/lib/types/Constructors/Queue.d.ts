@@ -1,3 +1,3 @@
-declare type Queue = (callbackArray: Function[]) => {
+declare interface Queue {
     run: (condition: any) => boolean
 }

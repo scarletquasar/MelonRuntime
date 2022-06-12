@@ -1,4 +1,4 @@
-declare type MFile = (fileInfo: FileInfo) => {
+declare interface MFile {
     path: string,
     fileName: string,
     lastWriteTime: string,

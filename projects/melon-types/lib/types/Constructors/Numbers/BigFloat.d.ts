@@ -1,4 +1,4 @@
-declare type BigFloat = (number: number) => {
+declare interface BigFloat {
     value: number,
     getAsFloat: () => number,
     addRaw: (number: number) => void,

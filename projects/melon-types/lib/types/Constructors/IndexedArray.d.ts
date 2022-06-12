@@ -1,4 +1,4 @@
-declare type IndexedArray<T> = () => {
+declare interface IndexedArray<T> {
     length: number,
     indexes: Record<string, T[] | IndexedArray<T>>,
     push: (item: T) => void,

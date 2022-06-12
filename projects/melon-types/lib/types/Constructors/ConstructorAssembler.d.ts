@@ -1,4 +1,4 @@
-declare type ConstructorAssembler = (constructorName: string, constructorArguments: any[]) => {
+declare interface ConstructorAssembler {
     constructorName: string,
     constructorArguments: any[],
     createInstance: () => any

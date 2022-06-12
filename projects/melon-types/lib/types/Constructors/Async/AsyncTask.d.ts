@@ -1,4 +1,4 @@
-declare type AsyncTask = (action: Function, args?: any[], delay?: number, errorAction?: Function) => {
+declare interface AsyncTask {
     stop: () => void,
     times: number,
     execute: () => Promise<any>
