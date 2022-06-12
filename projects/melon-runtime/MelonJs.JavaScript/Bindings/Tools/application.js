@@ -1,28 +1,49 @@
 ﻿const application = {
+    /*
+     * application.end()
+     * Function to call the termination of the current loaded application, it also cleans 
+     * the internal cache and restarts the engine that is currently running (info: the 
+     * functionality causes total loss of running data)
+     * */
     end: () => {
-        application.cache.clear()
-        __reset_current_execution__()
-    },
+        application.cache.clear();
 
+        if (application.cache.length() > 0) {
+            throw new Error("An error has occurred trying to clear the application cache.")
+        }
+
+        application.name = '';
+        application.description =  '';
+        application.author = '';
+        application.version = '';
+        application.website = '';
+        application.entryPoint = '';
+
+        __reset_current_execution__();
+    },
+    /*
+     * application.cache.*
+     * Offers options for managing the application's internal cache, as well as queries 
+     * via [Key|Value], cleaning tools and verifications
+     * */
     cache: {
         add: (key, value) => {
             __cache__.Add(key, value);
         },
-
         get: (key) => {
             return __cache__[key];
         },
-
         delete: (key) => {
             __cache__.Remove(key);
         },
-
         clear: () => {
             __cache__.Clear();
+        },
+        length: () => {
+            return __cache__.Count();
         }
     },
 
-    arguments: () => __arguments__,
     baseDir: () => __basedir__,
 
     name: __application__.Name,
