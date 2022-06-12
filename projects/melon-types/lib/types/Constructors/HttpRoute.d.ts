@@ -4,4 +4,4 @@ declare interface HttpRoute {
     callback: string
 }
 
-declare const HttpRoute: (route: string, method: string, callback: string) => HttpApplication
+declare const HttpRoute: (route: string, method: string, callback: string) => void

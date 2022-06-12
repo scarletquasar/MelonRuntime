@@ -4,4 +4,4 @@ declare interface AsyncLoop {
     execute: () => Promise<any>
 }
 
-declare const AsyncLoop: (action: Function, times: number, delay: number, errorAction: Function) => AsyncLoop
+declare const AsyncLoop: (action: Function, times: number, delay: number, errorAction: Function) => void

@@ -7,4 +7,4 @@ declare interface MFolder {
     save: (path: string) => void 
 }
 
-declare const MFolder: (folderInfo: FolderInfo) => MFolder
+declare const MFolder: (folderInfo: FolderInfo) => void

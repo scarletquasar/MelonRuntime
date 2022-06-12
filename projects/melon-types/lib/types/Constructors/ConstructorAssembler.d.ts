@@ -4,4 +4,4 @@ declare interface ConstructorAssembler {
     createInstance: () => any
 }
 
-declare const ConstructorAssembler: (constructorName: string, constructorArguments: any[]) => ConstructorAssembler
+declare const ConstructorAssembler: (constructorName: string, constructorArguments: any[]) => void

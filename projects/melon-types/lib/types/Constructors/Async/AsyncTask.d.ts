@@ -4,4 +4,4 @@ declare interface AsyncTask {
     execute: () => Promise<any>
 }
 
-declare const AsyncTask: (action: Function, args: any[], delay: number, errorAction: Function) => AsyncTask
+declare const AsyncTask: (action: Function, args: any[], delay: number, errorAction: Function) => void
