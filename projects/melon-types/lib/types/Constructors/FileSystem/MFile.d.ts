@@ -10,4 +10,4 @@ declare interface MFile {
     lines: () => string[]
 }
 
-declare const MFile: (fileInfo: FileInfo) => MFile
+declare const MFile: (fileInfo: FileInfo) => void

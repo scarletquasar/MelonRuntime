@@ -3,4 +3,4 @@ declare interface NumberPeriod {
     setLimit: (unitLimit: number) => void
 }
 
-declare const NumberPeriod: (unitLimit: number) => NumberPeriod
+declare const NumberPeriod: (unitLimit: number) => void

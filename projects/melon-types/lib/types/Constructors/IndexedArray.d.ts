@@ -6,4 +6,4 @@ declare interface IndexedArray<T> {
     writeIndex: (name: string, filter: (this: T) => boolean, asIndexed: boolean) => void
 }
 
-declare function IndexedArray<T>(args: T[]): T
+declare function IndexedArray<T>(args: T[]): void

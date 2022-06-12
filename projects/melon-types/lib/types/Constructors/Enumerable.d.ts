@@ -16,4 +16,4 @@ declare interface Enumerable<T> {
     equals: (target: any) => boolean
 }
 
-declare function Enumerable<T>(args: T[]): Enumerable<T>
+declare function Enumerable<T>(args: T[]): void

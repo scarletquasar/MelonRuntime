@@ -5,4 +5,4 @@ declare interface BigFloat {
     add: (number: number) => void
 }
 
-declare const BigFloat: (number: number) => BigFloat
+declare const BigFloat: (number: number) => void
