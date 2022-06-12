@@ -5,3 +5,5 @@ declare interface HttpApplication {
     run: () => void,
     listen: (port: string, host?: string) => void
 }
+
+declare const HttpApplication: (host: string, port: string, enableHttps: boolean) => HttpApplication

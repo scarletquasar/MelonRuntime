@@ -1,6 +1,6 @@
 {
   "name": "melon-types",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Typescript types for melon-runtime 1.1.0+",
   "types": "./lib/types/main.d.ts",
   "type": "module",

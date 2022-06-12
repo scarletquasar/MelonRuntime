@@ -9,3 +9,5 @@ declare interface MFile {
     toString: () => string,
     lines: () => string[]
 }
+
+declare const MFile: (fileInfo: FileInfo) => MFile

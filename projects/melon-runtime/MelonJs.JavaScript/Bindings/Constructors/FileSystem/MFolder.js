@@ -1,7 +1,5 @@
 ﻿class MFolder {
     constructor(folderInfo) {
-        console.log(folderInfo)
-
         this.folderName = folderInfo.name ?? "";
         this.path = folderInfo.path ?? "";
         this.content = folderInfo.content ?? [];
