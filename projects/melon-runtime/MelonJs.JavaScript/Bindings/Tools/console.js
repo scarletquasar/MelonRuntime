@@ -16,7 +16,8 @@ const console = {
      * return the raw name of the object (in C#) or System.ExpandObject
      * */
     log: function () {
-        arguments.forEach(object => {
+        __console_log__(arguments, 15);
+        Array.from(arguments).forEach(object => {
             console._detailedDebugCheck(object);
             __console_log__(object, 15);
         })
@@ -26,7 +27,7 @@ const console = {
      * console.log with a red color to indicate an error
      * */
     error: function () {
-        arguments.forEach(object => {
+        Array.from(arguments).forEach(object => {
             console._detailedDebugCheck(object);
             __console_log__(object, 12);
         })
@@ -36,7 +37,7 @@ const console = {
      * console.log with a yellow color to indicate a warning
      * */
     error: function () {
-        arguments.forEach(object => {
+        Array.from(arguments).forEach(object => {
             console._detailedDebugCheck(object);
             __console_log__(object, 14);
         })
@@ -56,9 +57,8 @@ const console = {
      * console.table()
      * Displays tabular data as a table
      * */
-    table: function () {
+    table: function (object) {
         let res = [];
-        const object = [...arguments];
 
         if (Array.isArray(object)) {
             object.forEach(item => {
@@ -66,17 +66,18 @@ const console = {
             })
             return
         }
+        else {
+            switch (typeof object) {
+                case "object":
+                    Object.entries(object).forEach(entry => {
+                        res.push(`|${entry[0]}|${entry[1]}|`)
+                    })
+                    break
 
-        switch (typeof object) {
-            case "object":
-                Object.entries(object).forEach(entry => {
-                    res.push(`|${entry[0]}|${entry[1]}|`)
-                })
-                break
-
-            default:
-                res.push(`|${object}|`)
-                break
+                default:
+                    res.push(`|${object}|`)
+                    break
+                }
         }
 
         res.forEach(console.log)
