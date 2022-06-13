@@ -61,8 +61,8 @@
      * Offers option for worker management, asynchronous binding with .NET asynchronous tasks for 
      * parallel data resolution/callback/population
      * */
-    _workers = {},
-    workers = {
+    _workers: {},
+    workers: {
         add: (name, script, callback) => {
             __workers_add__(name, script);
 
