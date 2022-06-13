@@ -16,7 +16,6 @@ const console = {
      * return the raw name of the object (in C#) or System.ExpandObject
      * */
     log: function () {
-        __console_log__(arguments, 15);
         Array.from(arguments).forEach(object => {
             console._detailedDebugCheck(object);
             __console_log__(object, 15);
