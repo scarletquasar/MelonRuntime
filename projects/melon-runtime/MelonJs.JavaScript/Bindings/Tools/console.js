@@ -35,7 +35,7 @@ const console = {
      * console.warn(object)
      * console.log with a yellow color to indicate a warning
      * */
-    error: function () {
+    warn: function () {
         Array.from(arguments).forEach(object => {
             console._detailedDebugCheck(object)
             __console_log__(object, 14)
@@ -78,7 +78,6 @@ const console = {
                     break
                 }
         }
-
         res.forEach(console.log)
     }
 }

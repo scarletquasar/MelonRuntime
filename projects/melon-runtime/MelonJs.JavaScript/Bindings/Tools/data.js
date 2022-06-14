@@ -12,11 +12,11 @@
                  "JSON.parse() and JSON.stringify()")
         }
 
-        if (typeof object === 'function') {
+        if (typeof target === 'function') {
             debug.log
                 ("[Debug]: Cloning functions is actually a workaround and may not work as intended")
 
-            return function () { target(...arguments) }
+            return function () { target(...arguments ?? '') }
         }
 
         return JSON.parse(JSON.stringify(eval(target)))
