@@ -17,8 +17,8 @@ const console = {
      * */
     log: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
-            __console_log__(object, 15);
+            console._detailedDebugCheck(object)
+            __console_log__(object, 15)
         })
     },
     /*
@@ -27,8 +27,8 @@ const console = {
      * */
     error: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
-            __console_log__(object, 12);
+            console._detailedDebugCheck(object)
+            __console_log__(object, 12)
         })
     },
     /*
@@ -37,8 +37,8 @@ const console = {
      * */
     error: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
-            __console_log__(object, 14);
+            console._detailedDebugCheck(object)
+            __console_log__(object, 14)
         })
     },
     /*
@@ -57,7 +57,7 @@ const console = {
      * Displays tabular data as a table
      * */
     table: function (object) {
-        let res = [];
+        let res = []
 
         if (Array.isArray(object)) {
             object.forEach(item => {
@@ -81,4 +81,4 @@ const console = {
 
         res.forEach(console.log)
     }
-};
+}

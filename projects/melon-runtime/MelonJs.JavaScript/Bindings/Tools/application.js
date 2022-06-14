@@ -6,21 +6,21 @@
      * functionality causes total loss of running data)
      * */
     end: () => {
-        application.cache.clear();
+        application.cache.clear()
 
         if (application.cache.length() > 0) {
             throw new Error("An error has occurred trying to clear the application cache.")
         }
 
-        application.name = '';
-        application.description =  '';
-        application.author = '';
-        application.version = '';
-        application.website = '';
-        application.entryPoint = '';
+        application.name = ''
+        application.description =  ''
+        application.author = ''
+        application.version = ''
+        application.website = ''
+        application.entryPoint = ''
 
-        __basedir__ = '';
-        __reset_current_execution__();
+        __basedir__ = ''
+        __reset_current_execution__()
     },
     /*
      * application.cache.*
@@ -29,19 +29,19 @@
      * */
     cache: {
         add: (key, value) => {
-            __cache__.Add(key, value);
+            __cache__.Add(key, value)
         },
         get: (key) => {
-            return __cache__[key];
+            return __cache__[key]
         },
         delete: (key) => {
-            __cache__.Remove(key);
+            __cache__.Remove(key)
         },
         clear: () => {
-            __cache__.Clear();
+            __cache__.Clear()
         },
         length: () => {
-            return __cache__.Count();
+            return __cache__.Count()
         }
     },
     /*

@@ -17,7 +17,7 @@
                         value === target && callback(target)
                         break
                 }
-                return shift(value);
+                return shift(value)
             }
         }
         return internal
@@ -31,14 +31,14 @@
     reflect: (target) => {
         if (enableDetailedInformation) {
             console.log
-                ("[Debug] This method should not be actively used as it may not work in specific cases like complex objects");
+                ("[Debug] This method should not be actively used as it may not work in specific cases like complex objects")
         }
 
-        this.name = target;
-        this.modificator = x => x;
+        this.name = target
+        this.modificator = x => x
         this.getValue = () => this.modificator(eval(`${this.name}`))
 
-        return this;
+        return this
     },
     /*
      * std.system.*
@@ -47,14 +47,14 @@
      * specific actively used as it may not work in cases like complex objects
      * */
     system: {
-        getBaseFolder: () => __basedir__;
+        getBaseFolder: () => __basedir__
     },
     /*
      * std.path.*
      * Offers options related to managing directory paths, initially created for internal use-
      * */
     path: {
-        getFolderPath: (fullPath) => __getfolderpath__(fullPath);
+        getFolderPath: (fullPath) => __getfolderpath__(fullPath)
     },
     /*
      * std.workers
@@ -64,18 +64,18 @@
     _workers: {},
     workers: {
         add: (name, script, callback) => {
-            __workers_add__(name, script);
+            __workers_add__(name, script)
 
             std._workers[name] = {
                 result: null,
                 callback,
                 start: () => __workers_start__(name)
-            };
+            }
         },
         get: (name) => std._workers[name],
         remove: (name) => {
-            __workers_remove__(name);
-            std._workers[name] = null;
+            __workers_remove__(name)
+            std._workers[name] = null
         },
         clear: () => __workers_clear__()
     },
