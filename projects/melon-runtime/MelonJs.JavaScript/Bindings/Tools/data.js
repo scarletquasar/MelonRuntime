@@ -146,12 +146,16 @@
             count,
             found
         };
+    },
+    /*
+     * data.PgClient(host, port, database, username, password)
+     * Constructor to a PostgreSQL Binding Client
+     * */
+    PgClient: function (host, port, database, username, password) {
+        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
+        this.executeNonQuery = (sql) => __pg_binding__.ExecuteNonQuery(sql, this._connectionString)
+        this.executeQuery = (sql) => JSON.parse(__pg_binding__.ExecuteQuery(sql, this._connectionString))
+    
+        return this
     }
-}
-data["PgClient"] = function (connectionString) {
-    this._connectionString = connectionString
-    this.executeNonQuery = (sql) => __pg_binding__.ExecuteNonQuery(sql, connectionString)
-    this.executeQuery = (sql) => JSON.parse(__pg_binding__.ExecuteQuery(sql, connectionString))
-
-    return this
 }
