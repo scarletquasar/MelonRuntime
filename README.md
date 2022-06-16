@@ -1,5 +1,5 @@
 # 🍈 MelonRuntime
-MelonRuntime is a dynamic, easy-to-use JavaScript runtime focused in experiments and data handling. Based in [Jint](https://github.com/sebastienros/jint), [Esprima](https://esprima.org/) and [escodegen](https://github.com/estools/escodegen). Currently in development (not production ready).
+MelonRuntime is a dynamic, easy-to-use JavaScript runtime focused in automation and data management. Based in [Jint](https://github.com/sebastienros/jint), [Esprima](https://esprima.org/) and [escodegen](https://github.com/estools/escodegen). Currently in development (not production ready).
 
 ## Installation and usage:
 
