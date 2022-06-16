@@ -1,5 +1,6 @@
 ﻿using Esprima.Ast;
 using Newtonsoft.Json;
+using MelonJs.Models.BuiltIn;
 
 namespace MelonJs.Static.Tools.Functions
 {
@@ -23,17 +24,35 @@ namespace MelonJs.Static.Tools.Functions
 
         public static string ToAstString(ArrowFunctionExpression? function)
         {
-            return JsonConvert.SerializeObject(function?.Body.DescendantNodes());
+            JsFunction target = new()
+            {
+                Parameters = function?.Params.Count() ?? 0,
+                Body = function?.Body.DescendantNodes()
+            };
+
+            return JsonConvert.SerializeObject(target);
         }
 
         public static string ToAstString(FunctionDeclaration? function)
         {
-            return JsonConvert.SerializeObject(function?.Body.DescendantNodes());
+            JsFunction target = new()
+            {
+                Parameters = function?.Params.Count() ?? 0,
+                Body = function?.Body.DescendantNodes()
+            };
+
+            return JsonConvert.SerializeObject(target);
         }
 
         public static string ToAstString(FunctionExpression? function)
         {
-            return JsonConvert.SerializeObject(function?.Body.DescendantNodes());
+            JsFunction target = new()
+            {
+                Parameters = function?.Params.Count() ?? 0,
+                Body = function?.Body.DescendantNodes()
+            };
+
+            return JsonConvert.SerializeObject(target);
         }
     }
 }
