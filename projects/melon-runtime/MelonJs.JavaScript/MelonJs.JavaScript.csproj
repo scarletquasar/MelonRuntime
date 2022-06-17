@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cli.NET" Version="2.1.1" />
     <PackageReference Include="Jint" Version="3.0.0-beta-2038" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cli.NET\Cli.NET.csproj" />
     <ProjectReference Include="..\MelonJs.Data\MelonJs.Data.csproj" />
     <ProjectReference Include="..\MelonJs.Models\MelonJs.Models.csproj" />
     <ProjectReference Include="..\MelonJs.WebApps\MelonJs.WebApps.csproj" />
