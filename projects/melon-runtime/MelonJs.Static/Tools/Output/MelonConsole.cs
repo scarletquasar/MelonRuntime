@@ -9,7 +9,7 @@ namespace MelonJs.Static.Tools.Output
         public static void Write(object obj, int color)
         {
             CLNConsole.Write("< ", ConsoleColor.Red);
-
+            
             try
             {
                 JsonSerializerOptions options = new()
