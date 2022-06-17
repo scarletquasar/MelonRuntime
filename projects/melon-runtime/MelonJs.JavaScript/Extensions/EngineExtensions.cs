@@ -86,8 +86,6 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.InputOutput:
-                    /* stringify */
-                    engine.SetValue("__ast_from_function__", new Func<dynamic, string>(FunctionStringifier.ToAstString));
                     /* paths */
                     engine.SetValue("__getfolderpath__", new Func<string, string?>(Path.GetDirectoryName));
                     /* console */

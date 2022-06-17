@@ -83,23 +83,5 @@
      * std.arguments
      * The command line arguments passed to MelonRuntime
      * */
-    arguments: () => __arguments__,
-    stringifyFunction: (func) => {
-        const ast = JSON.parse(__ast_from_function__(func))
-        let result = ""
-
-        console.log(ast)
-
-        //ast.forEach(item => {
-        //    console.log(item)
-        //    if (item.Object) {
-        //        result += item.Object.Name
-        //    }
-        //    if (item.Property) {
-        //        result += item.Property.Name
-        //    }
-        //})
-
-       return result
-    }
+    arguments: () => __arguments__
 }
