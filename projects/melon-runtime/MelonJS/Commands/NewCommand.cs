@@ -1,4 +1,4 @@
-﻿using Cli.NET.Abstractions.Actions;
+﻿using Cli.NET.Interfaces.Actions;
 using Cli.NET.Tools;
 using MelonJS.Properties;
 

@@ -1,4 +1,4 @@
-﻿using Cli.NET.Abstractions.Actions;
+﻿using Cli.NET.Interfaces.Actions;
 
 namespace MelonJS.Commands
 {

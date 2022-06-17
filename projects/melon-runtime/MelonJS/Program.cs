@@ -1,5 +1,6 @@
 ﻿using Cli.NET.Actions;
 using Cli.NET.Tools;
+using Cli.NET.Models;
 using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS;
@@ -12,7 +13,7 @@ var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
 CLNConsole.WriteLine(StaticData.ApplicationData(), ConsoleColor.Yellow);
 
-container.Register(new()
+container.Register(new CommandList()
 {
     { "cls", new ClearCommand() },
     { "clear", new ClearCommand() },
@@ -20,11 +21,11 @@ container.Register(new()
     { "load", new LoadCommand(engineContainer) },
     { "exec", new ExecCommand(engineContainer) },
     { "run", new RunCommand(engineContainer) },
-    { "exit", new MelonJS.Commands.ExitCommand() },
-    { "new", new NewCommand() }
+    { "new", new NewCommand() },
+    { "exit", new MelonJS.Commands.ExitCommand() }
 });
 
-if(!container.ExecuteEnvironmentCommand())
+if(!container.ExecuteEnvironmentCommands())
 {
     container.WaitForNextCommand();
 }

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
+  </ItemGroup>
+
 </Project>
