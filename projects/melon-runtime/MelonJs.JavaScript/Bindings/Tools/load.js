@@ -1,10 +1,10 @@
 ﻿const load = (path, options = { loadFunctionLiteral: false, useHttpRequest: false, useUnsafeInjectorLoader: false }) => {
-    const content = options.useHttpRequest ? http.request(path) : fs.read(path);
+    const content = options.useHttpRequest ? http.request(path) : fs.read(path)
 
     if (options.useUnsafeInjectorLoader)
-        return getUnsafeInjectorLoaderResponse(content);
+        return getUnsafeInjectorLoaderResponse(content)
 
-    const parsed = esprima.parse(content).body;
+    const parsed = esprima.parse(content).body
 
     let result = {}
 
@@ -20,7 +20,7 @@
             content = content.join("")
         }
 
-        content = content.replaceAll("{funcArrow}", "=>").replaceAll(";", "")
+        content = content.replaceAll("{funcArrow}", "=>").replaceAll("", "")
 
         let parsedContent
 
@@ -49,5 +49,5 @@
         result = result[Object.keys(result)[0]]
     }
 
-    return result;
+    return result
 }

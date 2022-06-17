@@ -4,9 +4,9 @@ type Application = {
         add: (key: string, value: any) => void,
         get: (key: string) => any,
         delete: (key: string) => void,
-        clear: () => void
+        clear: () => void,
+        length: () => number
     },
-    arguments: string[],
     baseDir: () => string,
     name: string,
     description: string,

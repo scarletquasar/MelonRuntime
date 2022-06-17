@@ -22,7 +22,8 @@ type Std = {
         get: (name: string) => MWorker,
         remove: (name: string) => void,
         clear: () => void
-    }
+    },
+    arguments: string[]
 }
 
 /** std contains generic system functions and utilities */
