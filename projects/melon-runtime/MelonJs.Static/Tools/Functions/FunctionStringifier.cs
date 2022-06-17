@@ -27,7 +27,7 @@ namespace MelonJs.Static.Tools.Functions
             JsFunction target = new()
             {
                 Parameters = function?.Params.Count() ?? 0,
-                Body = function?.Body.DescendantNodes()
+                Body = function?.Body.ChildNodes
             };
 
             return JsonConvert.SerializeObject(target);
@@ -38,7 +38,7 @@ namespace MelonJs.Static.Tools.Functions
             JsFunction target = new()
             {
                 Parameters = function?.Params.Count() ?? 0,
-                Body = function?.Body.DescendantNodes()
+                Body = function?.Body.ChildNodes
             };
 
             return JsonConvert.SerializeObject(target);
@@ -49,7 +49,7 @@ namespace MelonJs.Static.Tools.Functions
             JsFunction target = new()
             {
                 Parameters = function?.Params.Count() ?? 0,
-                Body = function?.Body.DescendantNodes()
+                Body = function?.Body.ChildNodes
             };
 
             return JsonConvert.SerializeObject(target);
