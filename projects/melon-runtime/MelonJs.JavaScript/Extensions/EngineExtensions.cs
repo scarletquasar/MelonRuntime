@@ -13,8 +13,6 @@ using MelonJs.Static.Tools.EngineManagement;
 using MelonJs.Models.BuiltIn;
 using MelonJs.Data;
 using MelonJs.Static.Tools.Multitasking;
-using MelonJs.Static.Tools.Functions;
-using Esprima.Ast;
 
 namespace MelonJs.JavaScript.Extensions
 {
