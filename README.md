@@ -14,7 +14,7 @@ npm i melon-runtime@latest -g -f
 
 Stable Install:
 ```bash
-npm i melon-runtime@1.0.1-fixed3 -g
+npm i melon-runtime@1.1.0 -g
 ```
 
 Command:
