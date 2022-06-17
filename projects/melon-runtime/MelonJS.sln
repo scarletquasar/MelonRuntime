@@ -19,6 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.Static", "MelonJs.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonJs.Data", "MelonJs.Data\MelonJs.Data.csproj", "{24AAC8A1-1344-4D18-8E7E-617DB9D8644C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{66F7535B-CC00-457A-A822-3837A5BF9023}"
+	ProjectSection(SolutionItems) = preProject
+		commands\melon.js = commands\melon.js
+		package.json = package.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
