@@ -131,7 +131,7 @@
     "description": "",
     "version": "1.0.0",
     "website": "",
-    "entryPoint": "build/index.js"
+    "entryPoint": "dist/main.js"
 }</value>
   </data>
   <data name="NewProjectPackageInfo" xml:space="preserve">

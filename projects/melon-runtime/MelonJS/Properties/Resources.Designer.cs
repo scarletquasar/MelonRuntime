@@ -86,7 +86,7 @@ namespace MelonJS.Properties {
         ///    &quot;description&quot;: &quot;&quot;,
         ///    &quot;version&quot;: &quot;1.0.0&quot;,
         ///    &quot;website&quot;: &quot;&quot;,
-        ///    &quot;entryPoint&quot;: &quot;build/index.js&quot;
+        ///    &quot;entryPoint&quot;: &quot;dist/main.js&quot;
         ///}.
         /// </summary>
         internal static string NewProjectMelonInfo {
