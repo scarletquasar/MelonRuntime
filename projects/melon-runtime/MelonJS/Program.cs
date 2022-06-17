@@ -25,7 +25,7 @@ container.Register(new CommandList()
     { "exit", new MelonJS.Commands.ExitCommand() }
 });
 
-if(!container.ExecuteEnvironmentCommands())
+if(!container.ExecuteEnvironmentCommand())
 {
     container.WaitForNextCommand();
 }

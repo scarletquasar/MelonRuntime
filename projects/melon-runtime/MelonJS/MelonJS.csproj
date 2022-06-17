@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
+    <PackageReference Include="Cli.NET" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
