@@ -137,15 +137,16 @@
   <data name="NewProjectPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "go": "babel --extensions .ts ./src/ --out-dir ./build &amp;&amp; npx melon load ."
+    "go": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load ."
   },
   "dependencies": {
-    "melon-types": "latest"
   },
   "devDependencies": {
     "@babel/cli": "latest",
     "@babel/core": "latest",
-    "@babel/preset-typescript": "latest"
+    "@babel/preset-typescript": "latest",
+    "melon-types": "latest",
+    "webpack-cli": "latest"
   }
 }</value>
   </data>

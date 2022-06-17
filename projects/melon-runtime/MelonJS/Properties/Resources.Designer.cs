@@ -98,15 +98,16 @@ namespace MelonJS.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///  &quot;scripts&quot;: {
-        ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./build &amp;&amp; npx melon load .&quot;
+        ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load .&quot;
         ///  },
         ///  &quot;dependencies&quot;: {
-        ///    &quot;melon-types&quot;: &quot;latest&quot;
         ///  },
         ///  &quot;devDependencies&quot;: {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
-        ///    &quot;@babel/preset-typescript&quot;: &quot;latest&quot;
+        ///    &quot;@babel/preset-typescript&quot;: &quot;latest&quot;,
+        ///    &quot;melon-types&quot;: &quot;latest&quot;,
+        ///    &quot;webpack-cli&quot;: &quot;latest&quot;
         ///  }
         ///}.
         /// </summary>
