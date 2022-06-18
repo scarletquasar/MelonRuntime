@@ -7,7 +7,7 @@
             if(path != null && File.Exists(path))
             {
                 FilePath = path;
-                Encoding = "ascii";
+                Encoding = "utf-8";
                 Bytes = File.ReadAllBytes(path);
                 Name = Path.GetFileName(path);
                 CreationTime = File.GetCreationTime(path);
