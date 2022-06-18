@@ -157,5 +157,27 @@
         this.executeQuery = (sql) => JSON.parse(__pg_binding__.ExecuteQuery(sql, this._connectionString))
     
         return this
+    },
+    /*
+     * data.MySQLClient(host, port, database, username, password)
+     * Constructor to a MySQL Binding Client
+     * */
+    MySQLClient: function (host, port, database, username, password) {
+        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
+        this.executeNonQuery = (sql) => __mysql_binding__.ExecuteNonQuery(sql, this._connectionString)
+        this.executeQuery = (sql) => JSON.parse(__mysql_binding__.ExecuteQuery(sql, this._connectionString))
+
+        return this
+    },
+    /*
+     * data.SqlServerClient(host, port, database, username, password)
+     * Constructor to a MS Sql Server Binding Client
+     * */
+    SqlServerClient: function (host, port, database, username, password) {
+        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
+        this.executeNonQuery = (sql) => __sqlserver_binding__.ExecuteNonQuery(sql, this._connectionString)
+        this.executeQuery = (sql) => JSON.parse(__sqlserver_binding__.ExecuteQuery(sql, this._connectionString))
+
+        return this
     }
 }
