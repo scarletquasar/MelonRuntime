@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Cli.NET" Version="2.1.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
     <PackageReference Include="Npgsql" Version="6.0.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
