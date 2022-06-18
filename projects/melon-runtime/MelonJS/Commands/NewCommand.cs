@@ -52,6 +52,13 @@ namespace MelonJS.Commands
             Console.WriteLine();
 
             File.WriteAllText(currentPath + "/README.md", Resources.NewProjectReadme);
+
+            CLNConsole.Write("> ", ConsoleColor.DarkRed);
+            CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);
+            CLNConsole.Write(".gitignore", ConsoleColor.Cyan);
+            Console.WriteLine();
+
+            File.WriteAllText(currentPath + "/.gitignore", Resources.NewProjectGitIgnore);
         }
     }
 }
