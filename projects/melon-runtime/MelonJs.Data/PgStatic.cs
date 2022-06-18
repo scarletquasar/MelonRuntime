@@ -9,6 +9,7 @@ namespace MelonJs.Data
         public static int ExecuteNonQuery(string sql, string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
+
             connection.Open();
 
             var command = new NpgsqlCommand(sql, connection);
@@ -22,6 +23,7 @@ namespace MelonJs.Data
         public static string ExecuteQuery(string sql, string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
+
             connection.Open();
 
             var command = new NpgsqlCommand(sql, connection);

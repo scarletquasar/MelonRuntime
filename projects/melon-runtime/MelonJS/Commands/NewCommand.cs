@@ -8,7 +8,7 @@ namespace MelonJS.Commands
     {
         public void Execute(string[] arguments)
         {
-            var currentPath = Environment.CurrentDirectory;
+            var currentPath = Environment.CurrentDirectory + (arguments.Length > 0 ? string.Join("", arguments) : "");
 
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
             CLNConsole.Write("Creating project item ", ConsoleColor.Yellow);

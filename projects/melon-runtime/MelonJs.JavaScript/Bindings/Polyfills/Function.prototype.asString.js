@@ -1,1 +1,0 @@
-﻿Function.prototype.asString = "function () { [native code] }"

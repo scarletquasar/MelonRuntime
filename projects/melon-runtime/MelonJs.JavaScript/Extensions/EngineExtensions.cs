@@ -29,8 +29,6 @@ namespace MelonJs.JavaScript.Extensions
                 case BuiltInJsModule.LibrariesAndPolyfills:
                     engine.Execute(BindingManager.Get("Libraries/esprima"));
                     engine.Execute(BindingManager.Get("Libraries/escodegen"));
-                    engine.Execute(BindingManager.Get("Polyfills/String.prototype.replaceAll"));
-                    engine.Execute(BindingManager.Get("Polyfills/Function.prototype.asString"));
                     break;
 
                 case BuiltInJsModule.Engine:
