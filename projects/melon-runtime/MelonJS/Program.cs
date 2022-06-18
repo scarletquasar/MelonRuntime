@@ -11,7 +11,7 @@ JintStatic.CurrentJintEngine = new();
 var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
-CLNConsole.WriteLine(StaticData.ApplicationData(), ConsoleColor.Yellow);
+CLNConsole.WriteLine(StaticData.ApplicationInfo(), ConsoleColor.Yellow);
 
 container.Register(new CommandList()
 {

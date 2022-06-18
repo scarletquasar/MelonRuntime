@@ -4,6 +4,9 @@ namespace MelonJS
 {
     public static class StaticData
     {
-        public static string ApplicationData() => $"MelonRuntime v{Assembly.GetExecutingAssembly().GetName().Version}";
+        public static string ApplicationInfo()
+        {
+            return $"MelonRuntime v{Assembly.GetExecutingAssembly().GetName().Version}";
+        }
     }
 }
