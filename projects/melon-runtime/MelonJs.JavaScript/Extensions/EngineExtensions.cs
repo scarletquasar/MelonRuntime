@@ -24,6 +24,8 @@ namespace MelonJs.JavaScript.Extensions
             {
                 case BuiltInJsModule.Database:
                     engine.SetValue("__pg_binding__", typeof(PgStatic));
+                    engine.SetValue("__mysql_binding__", typeof(MySqlStatic));
+                    engine.SetValue("__sqlserver_binding__", typeof(SqlServerStatic));
                     break;
 
                 case BuiltInJsModule.LibrariesAndPolyfills:
