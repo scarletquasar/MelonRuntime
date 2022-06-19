@@ -87,6 +87,7 @@ namespace MelonJs.JavaScript.Extensions
                     /* paths */
                     engine.SetValue("__getfolderpath__", new Func<string, string?>(Path.GetDirectoryName));
                     /* console */
+                    engine.SetValue("__console_details__", new Action<object>(MelonConsole.WriteDetails));
                     engine.SetValue("__console_log__", new Action<object, int>(MelonConsole.Write));
                     engine.SetValue("__console_clear__", new Action(Console.Clear));
                     engine.SetValue("__console_readLine__", new Func<string?>(Console.ReadLine));

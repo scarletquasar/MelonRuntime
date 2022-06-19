@@ -10,6 +10,15 @@ const console = {
         }
     },
     /*
+     * console.details(object)
+     * */
+    details: function () {
+        Array.from(arguments).forEach(object => {
+            console._detailedDebugCheck(object)
+            __console_details__(object, 15)
+        })
+    },
+    /*
      * console.log(object)
      * Serializes the object passed as an argument and brings its representation in JSON notation, 
      * currently it does not have the ability to serialize Function and Class values and will 
