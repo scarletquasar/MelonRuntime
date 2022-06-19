@@ -4,7 +4,7 @@ const console = {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
             if (typeof object === "function") {
                 debug.log
-                    ("[Debug]: Currently, there is no support to log/stringify functions/classes. " +
+                    ("[Debug] Currently, there is no support to log/stringify functions/classes. " +
                      "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
             }
         }
