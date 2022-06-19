@@ -8,14 +8,11 @@ const __dirname = path.dirname(__filename)
 
 const args = process.argv.slice(2)
 
-console.log("Executing MelonJS with args: " + args)
-
 const dotnetArguments = ['run', '--configuration', 'Release', '--project']
 const projectDirectory = __dirname.replace('commands', '/MelonJS/MelonJS.csproj')
 const spawnOptions = { stdio: "inherit" }
 
 const melon = spawn('dotnet', [...dotnetArguments, projectDirectory, ...args], spawnOptions)
 
-melon.stdout.on('data', console.log)
-melon.stderr.on('data', console.log)
-melon.on('exit', console.log)
+melon.on('stdout', console.log)
+melon.on('stderr', console.log)
