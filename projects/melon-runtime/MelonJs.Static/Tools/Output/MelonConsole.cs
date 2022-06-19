@@ -1,4 +1,5 @@
 ﻿using Cli.NET.Tools;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -8,8 +9,6 @@ namespace MelonJs.Static.Tools.Output
     {
         public static void Write(object obj, int color)
         {
-            CLNConsole.Write("< ", ConsoleColor.Red);
-            
             try
             {
                 JsonSerializerOptions options = new()
@@ -23,10 +22,45 @@ namespace MelonJs.Static.Tools.Output
             }
             catch
             {
-                CLNConsole.Write(obj.ToString() ?? "null", color);
+                CLNConsole.Write(obj.GetType().ToString(), color);
             }
 
             Console.WriteLine();
+        }
+
+        public static void WriteDetails(object obj)
+        {
+            CLNConsole.WriteLine(new string('-', 20), ConsoleColor.Cyan);
+
+            JsonSerializerOptions options = new()
+            {
+                WriteIndented = true
+            };
+
+            object info = new 
+            {
+                type = new
+                {
+                    name = obj.GetType().FullName,
+                    assemblyName = obj.GetType().Assembly.GetName().Name,
+                    baseType = obj.GetType().BaseType?.FullName
+                },
+                sizeInBytes = GetObjectSize(obj),
+                isSafe = obj.GetType().IsSecuritySafeCritical
+            };
+
+            CLNConsole.WriteLine(JsonSerializer.Serialize(info, options));
+            CLNConsole.WriteLine(new string('-', 20), ConsoleColor.Cyan);
+        }
+
+        private static long GetObjectSize(object obj)
+        {
+            BinaryFormatter bf = new();
+            MemoryStream ms = new();
+            byte[] Array;
+            bf.Serialize(ms, obj);
+            Array = ms.ToArray();
+            return Array.Length;
         }
     }
 }
