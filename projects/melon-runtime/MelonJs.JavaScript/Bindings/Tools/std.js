@@ -30,7 +30,7 @@
      * */
     reflect: (target) => {
         if (enableDetailedInformation) {
-            console.log
+            debug.log
                 ("[Debug] This method should not be actively used as it may not work in specific cases like complex objects")
         }
 
