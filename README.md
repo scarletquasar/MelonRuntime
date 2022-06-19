@@ -23,8 +23,8 @@
 
 | Version | Type |
 | ------- | ---- |
-| [v1.3.0](https://www.npmjs.com/package/melon-runtime/v/1.3.0) | Stable |
-| [v1.3.0](https://www.npmjs.com/package/melon-runtime/v/1.3.0) | Development |
+| [1.3.0](https://www.npmjs.com/package/melon-runtime/v/1.3.0) | Stable |
+| [1.3.0](https://www.npmjs.com/package/melon-runtime/v/1.3.0) | Development |
 
 ## Generating and executing a project
 
