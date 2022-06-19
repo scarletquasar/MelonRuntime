@@ -17,7 +17,7 @@
 
 ## Installation and usage:
 
-- Install [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already. Tip: [How to install .NET 6 Runtime and SDK](https://www.youtube.com/watch?v=AC5UWby16sg)
+- Install [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already. Tip: How to install .NET 6 Runtime and SDK ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
 - Install the `melon-runtime` package globally using the command: `npm i melon-runtime@[version] -g -f`. Check the version table below to know the current melon stable and development versions
 
 | Version | Type |
