@@ -10,7 +10,8 @@ const console = {
         }
     },
     /*
-     * console.details(object)
+     * console.details(...arguments)
+     * Displays information about the target objects, focused in debug
      * */
     details: function () {
         Array.from(arguments).forEach(object => {
@@ -19,7 +20,7 @@ const console = {
         })
     },
     /*
-     * console.log(object)
+     * console.log(...arguments)
      * Serializes the object passed as an argument and brings its representation in JSON notation, 
      * currently it does not have the ability to serialize Function and Class values and will 
      * return the raw name of the object (in C#) or System.ExpandObject
@@ -31,7 +32,7 @@ const console = {
         })
     },
     /*
-     * console.error(object)
+     * console.error(...arguments)
      * console.log with a red color to indicate an error
      * */
     error: function () {
@@ -41,7 +42,7 @@ const console = {
         })
     },
     /*
-     * console.warn(object)
+     * console.warn(...arguments)
      * console.log with a yellow color to indicate a warning
      * */
     warn: function () {
@@ -62,7 +63,7 @@ const console = {
      * */
     read: () => __console_readLine__(),
     /*
-     * console.table()
+     * console.table(tabularData)
      * Displays tabular data as a table
      * */
     table: function (data, columns) {
