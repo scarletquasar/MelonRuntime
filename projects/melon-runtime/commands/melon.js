@@ -16,6 +16,5 @@ const spawnOptions = { stdio: "inherit" }
 
 const melon = spawn('dotnet', [...dotnetArguments, projectDirectory, ...args], spawnOptions)
 
-melon.stdout.on('data', console.log)
-melon.stderr.on('data', console.log)
-melon.on('exit', console.log)
+melon.on('stdout', console.log)
+melon.on('stderr', console.log)
