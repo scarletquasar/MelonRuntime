@@ -87,6 +87,7 @@
     object: (target) => {
         return {
             isTruthy: () => Boolean(target),
+            isFalsy: () => !Boolean(target),
             isEnumerable: () => {
                 const constructors = [
                     Array,
@@ -98,6 +99,21 @@
                 ]
 
                 return constructors.includes(target.constructor)
+            },
+            string: {
+                putAt: (expression, index) => {
+                    let result = ""
+
+                    target.split("").forEach((char, i) => {
+                        if (i === index) {
+                            result += expression
+                        }
+
+                        result += char
+                    })
+
+                    return result
+                }
             }
         }
     }
