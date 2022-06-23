@@ -80,6 +80,7 @@ namespace MelonJs.JavaScript.Extensions
                 case BuiltInJsModule.Environment:
                     engine.SetValue("__environment__", typeof(MelonEnvironment));
                     engine.SetValue("__environment_vars__", MelonCache.Environment);
+                    engine.SetValue("__environment_proccess__", typeof(MelonProcess));
                     engine.Execute(BindingManager.Get("Tools/environment"));
                     break;
 
@@ -87,6 +88,7 @@ namespace MelonJs.JavaScript.Extensions
                     /* paths */
                     engine.SetValue("__getfolderpath__", new Func<string, string?>(Path.GetDirectoryName));
                     /* console */
+                    engine.SetValue("__console_details__", new Action<object>(MelonConsole.WriteDetails));
                     engine.SetValue("__console_log__", new Action<object, int>(MelonConsole.Write));
                     engine.SetValue("__console_clear__", new Action(Console.Clear));
                     engine.SetValue("__console_readLine__", new Func<string?>(Console.ReadLine));

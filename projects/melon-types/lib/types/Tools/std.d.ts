@@ -23,7 +23,15 @@ type Std = {
         remove: (name: string) => void,
         clear: () => void
     },
-    arguments: string[]
+    arguments: string[],
+    object: (target: any) => {
+        isTruthy(): boolean,
+        isFalsy(): boolean,
+        isEnumerable(): boolean,
+        string: {
+            putAt(expression: string, index: number): string 
+        }
+    }
 }
 
 /** std contains generic system functions and utilities */
