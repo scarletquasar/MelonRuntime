@@ -80,6 +80,7 @@ namespace MelonJs.JavaScript.Extensions
                 case BuiltInJsModule.Environment:
                     engine.SetValue("__environment__", typeof(MelonEnvironment));
                     engine.SetValue("__environment_vars__", MelonCache.Environment);
+                    engine.SetValue("__environment_proccess__", typeof(MelonProcess));
                     engine.Execute(BindingManager.Get("Tools/environment"));
                     break;
 
