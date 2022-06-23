@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "1.4.2-rc3",
+  "version": "1.4.2-rc4",
   "description": "MelonJS",
   "type": "module",
   "keywords": ["runtime", "javascript", "typescript", "data", "dotnet", "fast"],
