@@ -5,11 +5,12 @@
 Several useful and reliable libraries present in NPM may have full or partial compatibility with MelonRuntime, below is a list of 
 libraries whose compatibility has been confirmed at some level:
 
-## 📄 Data
+## 📄 Data/Utility
 
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
-| faker-js | Generate massive amounts of fake (but realistic) data for testing and development. | 7.3.0 | https://github.com/faker-js | High |
+| faker-js | Generate massive amounts of fake (but realistic) data for testing and development. | 7.3.0 | https://github.com/faker-js/faker |
+| lodash | A modern JavaScript utility library delivering modularity, performance & extras. | 4.17.15 | https://github.com/lodash/lodash |
 
 ## 📊 Math
 
