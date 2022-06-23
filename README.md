@@ -33,3 +33,7 @@
 - Run `npm run go` to initialize the project
 
 > Tip: A bundle file containing all installed NPM packages and your project will be created in `/dist/main.js`
+
+## Extra
+
+- [Check the MelonRuntime-compatible verified NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
