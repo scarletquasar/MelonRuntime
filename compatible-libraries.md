@@ -16,7 +16,7 @@ libraries whose compatibility has been confirmed at some level:
 
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
-| expr-eval | Parses and evaluates mathematical expressions. It's a safer and more math-oriented alternative to using JavaScript’s eval function for mathematical expressions. | 2.0.2 | https://github.com/silentmatt/expr-eval |
+| expr-eval | Parses and evaluates mathematical expressions. | 2.0.2 | https://github.com/silentmatt/expr-eval |
 
 ## ⏱ Date/Time
 
