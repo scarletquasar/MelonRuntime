@@ -3,7 +3,7 @@
 </div>
 <hr>
 
-**MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**.
+**MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**. (Not production-ready yet)
 
 <hr>
 
