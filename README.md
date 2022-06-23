@@ -12,6 +12,7 @@
 **MelonRuntime** is built using the power, practicality and performance of the [.NET environment](https://dotnet.microsoft.com/en-us/), so it has extended capabilities to **JavaScript** and **TypeScript** in addition to the following advantages:
 
 - Easy to use, **zero configuration** required to build and execute projects
+- **TypeScript** by default: MelonRuntime generated projects use static typing security and reliability
 - Based in NPM, so can leverage NPM package manager for quick library and tool management
 - Wide range of built-in libraries bringing ease to the development of scalable and maintainable applications
 
