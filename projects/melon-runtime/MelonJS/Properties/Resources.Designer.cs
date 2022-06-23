@@ -62,7 +62,7 @@ namespace MelonJS.Properties {
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
-        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;]
+        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;, &quot;@babel/preset-env&quot;]
         ///}.
         /// </summary>
         internal static string NewProjectBabelrc {
@@ -142,6 +142,7 @@ namespace MelonJS.Properties {
         ///  &quot;devDependencies&quot;: {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
+        ///    &quot;@babel/preset-env&quot;: &quot;latest&quot;,
         ///    &quot;@babel/preset-typescript&quot;: &quot;latest&quot;,
         ///    &quot;melon-types&quot;: &quot;latest&quot;,
         ///    &quot;webpack-cli&quot;: &quot;latest&quot;
@@ -173,9 +174,10 @@ namespace MelonJS.Properties {
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;compilerOptions&quot;: {
         ///      &quot;outDir&quot;: &quot;build&quot;,
-        ///        &quot;types&quot;: [
-        ///          &quot;melon-types&quot;
-        ///        ]
+        ///      &quot;types&quot;: [
+        ///        &quot;melon-types&quot;
+        ///      ],
+        ///      &quot;lib&quot;: [ &quot;es2015&quot;, &quot;DOM&quot; ]
         ///    }
         ///}.
         /// </summary>
