@@ -12,8 +12,6 @@ const dotnetArguments = ['run', '--configuration', 'Release', '--project']
 const projectDirectory = __dirname.replace('commands', 'MelonJS\\MelonJS.csproj')
 const spawnOptions = { stdio: "inherit" }
 
-console.log([...dotnetArguments, projectDirectory, ...args])
-
 const melon = spawn('dotnet', [...dotnetArguments, projectDirectory, ...args], spawnOptions)
 
 melon.on('stdout', console.log)
