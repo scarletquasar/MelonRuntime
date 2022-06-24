@@ -39,4 +39,5 @@
 
 ## Extra
 
+- [MelonRuntime docker integration example](https://github.com/EternalQuasar0206/docker-api-melon)
 - [Check the MelonRuntime-compatible verified NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
