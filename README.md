@@ -24,10 +24,10 @@
 
 | Version | Type |
 | ------- | ---- |
+| [1.5.0](https://www.npmjs.com/package/melon-runtime/v/1.5.0) | **Last Stable** |
 | [1.4.2-rc3](https://www.npmjs.com/package/melon-runtime/v/1.4.2-rc3) | Development |
 | [1.4.2-rc2](https://www.npmjs.com/package/melon-runtime/v/1.4.2-rc2) | Development |
 | [1.4.2-rc1](https://www.npmjs.com/package/melon-runtime/v/1.4.2-rc1) | Development |
-| [1.4.1](https://www.npmjs.com/package/melon-runtime/v/1.4.1) | **Last Stable** |
 
 ## Generating and executing a project
 
