@@ -9,8 +9,5 @@ namespace MelonJs.Models.Web.HttpApplication
 
         [JsonPropertyName("route")]
         public string? Route { get; set; }
-
-        [JsonPropertyName("callback")]
-        public string? Callback { get; set; }
     }
 }

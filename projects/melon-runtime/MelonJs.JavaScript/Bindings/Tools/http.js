@@ -1,4 +1,6 @@
 ﻿const http = {
+    _apps: {},
+
     request: (target, method = "GET", body = "{}", headers = "{}") => {
         typeof headers === "object" ? headers = JSON.stringify(headers) : {}
         typeof body === "object" ? body = JSON.stringify(body) : {}
@@ -28,7 +30,15 @@
     },
 
     //Calling "HttpApplication.js" binding constructor to make an alias
-    app: (host = "localhost", port = "3000", enableHttps = true) => new HttpApplication(host, port, enableHttps),
+    app: (options) => {
+        const name = options.name
+        const host = options.host
+        const port = options.port
+        const enableHttps = options.enableHttps ?? false
+
+        http._apps[name] = new HttpApplication(name, host, port, enableHttps)
+        return http._apps[name]
+    },
 
     result: (statusCode, response = {}) => {
         return {

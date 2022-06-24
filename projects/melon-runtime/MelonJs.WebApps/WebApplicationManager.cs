@@ -11,6 +11,7 @@ namespace MelonJs.WebApps {
     {
         static void Main(string[] args) {}
         public static void ExecuteWebApplication(
+            string name,
             string host,
             int port,
             string routes,
@@ -20,7 +21,7 @@ namespace MelonJs.WebApps {
             var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(routes);
             var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(echoes);
 
-            var app = new MelonHttpApplication(host, port, parsedRoutes ?? new(), parsedEchoes ?? new(), enableHttps);
+            var app = new MelonHttpApplication(name, host, port, parsedRoutes ?? new(), parsedEchoes ?? new(), enableHttps);
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
 
             var engine = JintStatic.CurrentJintEngine;
@@ -54,7 +55,7 @@ namespace MelonJs.WebApps {
                             var serializedHeaders = JsonSerializer.Serialize(headers);
 
                             var result = engine?
-                                .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedHeaders}')");
+                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'GET' && x.route === '{route.Route}')[0].callback)('{serializedQuery}', '{serializedHeaders}')");
 
                             if (result.IsString())
                                 return Results.Ok(result.AsString());
@@ -84,7 +85,7 @@ namespace MelonJs.WebApps {
                             var serializedHeaders = JsonSerializer.Serialize(headers);
 
                             var result = engine?
-                                .Evaluate($"({route.Callback})('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
+                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'POST' && x.route === '{route.Route}')[0].callback)('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
 
                             if (result.IsString())
                                 return Results.Ok(result.AsString());
@@ -114,7 +115,7 @@ namespace MelonJs.WebApps {
                             var serializedHeaders = JsonSerializer.Serialize(headers);
 
                             var result = engine?
-                                .Evaluate($"({route.Callback})('{serializedQuery}', '{serializedBody}', '{serializedHeaders}')");
+                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'DELETE' && x.route === '{route.Route}')[0].callback)('{serializedQuery}', '{serializedBody}', '{serializedHeaders}')");
 
                             if (result.IsString())
                                 return Results.Ok(result.AsString());

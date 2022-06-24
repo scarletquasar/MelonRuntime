@@ -1,7 +1,7 @@
 declare interface HttpApplication {
-    get: (route: string, callback: string) => void,
-    post: (route: string, callback: string) => void,
-    delete: (route: string, callback: string) => void,
+    get: (route: string, callback: Function) => void,
+    post: (route: string, callback: Function) => void,
+    delete: (route: string, callback: Function) => void,
     run: () => void,
     listen: (port: string, host?: string) => void
 }
