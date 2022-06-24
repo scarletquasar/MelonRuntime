@@ -3,9 +3,11 @@
 </div>
 <hr>
 
-**MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**. (Not production-ready yet)
+**MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**.
 
 <hr>
+
+- [Documentation (in development)](https://zippy-sunflower-e51862.netlify.app/)
 
 ## Why Melon?
 
