@@ -7,11 +7,14 @@
 
 <hr>
 
+- [Documentation (in development)](https://zippy-sunflower-e51862.netlify.app/)
+
 ## Why Melon?
 
 **MelonRuntime** is built using the power, practicality and performance of the [.NET environment](https://dotnet.microsoft.com/en-us/), so it has extended capabilities to **JavaScript** and **TypeScript** in addition to the following advantages:
 
 - Easy to use, **zero configuration** required to build and execute projects
+- **TypeScript** by default: MelonRuntime generated projects use static typing security and reliability
 - Based in NPM, so can leverage NPM package manager for quick library and tool management
 - Wide range of built-in libraries bringing ease to the development of scalable and maintainable applications
 
@@ -23,8 +26,8 @@
 
 | Version | Type |
 | ------- | ---- |
-| [1.3.0](https://www.npmjs.com/package/melon-runtime/v/1.3.0) | Stable |
-| [1.4.0-rc1](https://www.npmjs.com/package/melon-runtime/v/1.4.0-rc1) | Development |
+| [1.5.0](https://www.npmjs.com/package/melon-runtime/v/1.5.0) | **Last Stable** |
+| [1.4.2-rc8](https://www.npmjs.com/package/melon-runtime/v/1.4.2-rc8) | Development |
 
 ## Generating and executing a project
 
@@ -33,3 +36,12 @@
 - Run `npm run go` to initialize the project
 
 > Tip: A bundle file containing all installed NPM packages and your project will be created in `/dist/main.js`
+
+## Docker
+
+- [Docker + MelonRuntime integration Dockerfile model](https://github.com/MelonRuntime/MelonRuntime/blob/main/projects/melon-docker/Dockerfile)
+- [MelonRuntime docker integration example](https://github.com/EternalQuasar0206/docker-api-melon)
+
+## Extra
+
+- [Check the MelonRuntime-compatible verified useful NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)

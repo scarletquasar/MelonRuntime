@@ -16,6 +16,7 @@
 /// <reference path="./Constructors/HttpApplication.d.ts" />
 /// <reference path="./Constructors/Enumerable.d.ts" />
 /// <reference path="./Constructors/Empty.d.ts" />
+/// <reference path="./Constructors/Promise.d.ts" />
 /// <reference path="./Constructors/ConstructorAssembler.d.ts" />
 /// <reference path="./Constructors/Numbers/BigFloat.d.ts" />
 /// <reference path="./Constructors/Numbers/NumberPeriod.d.ts" />
