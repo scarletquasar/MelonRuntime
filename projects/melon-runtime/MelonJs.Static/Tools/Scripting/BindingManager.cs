@@ -7,8 +7,7 @@ namespace MelonJs.Static.Tools.Scripting
         public static string Get(string fragmentPath)
         {
             var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
-            var path = classlibPath + "\\Bindings\\" + fragmentPath + ".js";
-
+            var path = classlibPath + "/Bindings/" + fragmentPath + ".js";
             var content = string.Empty;
 
             if(File.Exists(path))
