@@ -55,10 +55,14 @@ namespace MelonJs.JavaScript.Containers
         {
             try
             {
-                var content = File.ReadAllText($"{path}\\melon.json");
+                if(path.EndsWith("/") || path.EndsWith("\\"))
+                {
+                    path = path.Remove(path.Length - 1);
+                }
+                var content = File.ReadAllText($"{path}/melon.json");
                 _currentApp = JsonSerializer.Deserialize<App>(content) ?? new();
 
-                var entryPointScript = File.ReadAllText($"{path}\\{_currentApp.EntryPoint}");
+                var entryPointScript = File.ReadAllText($"{path}/{_currentApp.EntryPoint}");
 
                 JintStatic.CurrentJintEngine?.SetValue("__basedir__", (path + "\\").Replace("\\", "/"));
 
