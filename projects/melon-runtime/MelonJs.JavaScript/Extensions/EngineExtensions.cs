@@ -132,7 +132,7 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/PingResponse"));
 
                     engine.SetValue("__http_application_run__",
-                        new Action<string, int, string, string, bool>
+                        new Action<string, string, int, string, string, bool>
                         (WebApplicationManager.ExecuteWebApplication));
                     engine.Execute(BindingManager.Get("Constructors/HttpRoute"));
                     engine.Execute(BindingManager.Get("Constructors/HttpApplication"));

@@ -1,5 +1,6 @@
 ﻿class HttpApplication {
-    constructor(host, port, enableHttps = true) {
+    constructor(name, host, port, enableHttps = true) {
+        this.name = name
         this.host = host
         this.port = port
         this.enableHttps = enableHttps
@@ -24,6 +25,7 @@
 
     run() {
         __http_application_run__(
+            this.name,
             this.host,
             this.port,
             JSON.stringify(this.routes),
