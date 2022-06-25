@@ -1,3 +1,5 @@
+# Base Dockerfile compatible with MelonRuntime v1.5.0+
+
 # Will use .NET 6
 # Change to a specific version if required
 FROM mcr.microsoft.com/dotnet/sdk:6.0
@@ -21,4 +23,4 @@ RUN npx babel --extensions .ts ./src/ --out-dir ./babel
 RUN npx webpack ./babel/index.js
 
 # Execution script that will be in package.json
-ENTRYPOINT ["npm", "your-execution-script"]
+ENTRYPOINT ["npm", "run", "go"]
