@@ -37,3 +37,9 @@ SqlServerClient: function (host, port, database, username, password) {
 }
 ```
 
+### [v1.2.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.2.0)
+`06/17/2022`
+
+- Now using CLI.NET nuget package instead of implementing the project directly inside the solution
+- Implemented Webpack and Babel into project generator presets
+- General code quality implementations and refactor
