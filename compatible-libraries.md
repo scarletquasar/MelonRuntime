@@ -12,11 +12,13 @@ libraries whose compatibility has been confirmed at some level:
 | faker-js | Generate massive amounts of fake (but realistic) data for testing and development. | 7.3.0 | https://github.com/faker-js/faker |
 | lodash | A modern JavaScript utility library delivering modularity, performance & extras. | 4.17.15 | https://github.com/lodash/lodash |
 
-## 📊 Math
+## 📊 Math/Money
 
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
 | expr-eval | Parses and evaluates mathematical expressions. | 2.0.2 | https://github.com/silentmatt/expr-eval |
+| currency.js | A small, lightweight javascript library for working with currency values. | 2.0.4 | https://github.com/scurker/currency.js |
+
 
 ## ⏱ Date/Time
 
