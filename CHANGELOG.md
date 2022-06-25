@@ -1,5 +1,7 @@
 ## Changelog
 
+For complete information about all releases, such as release candidates, pull requests and more details, visit the [official release list](https://github.com/MelonRuntime/MelonRuntime/releases).
+
 ### [v1.5.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.5.0)
 `06/24/2022`
 
