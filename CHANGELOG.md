@@ -21,3 +21,19 @@ For complete information about all releases, such as release candidates, pull re
 - Implemented `environment.process` module with the functions `getMemoryUsage`, `getPlatform`, `setTitle` and `getCurrentTime`
 - Implemented function `debug.details`
 
+### [v1.3.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.3.0)
+`06/18/2022`
+
+> Database update
+
+- Implemented `data` MySQL and SQLServer raw providers (with methods `executeNonQuery` and `executeQuery`):
+
+```ts
+MySQLClient: function (host, port, database, username, password) {
+  //...
+},
+SqlServerClient: function (host, port, database, username, password) {
+  //...
+}
+```
+
