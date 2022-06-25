@@ -43,3 +43,15 @@ SqlServerClient: function (host, port, database, username, password) {
 - Now using CLI.NET nuget package instead of implementing the project directly inside the solution
 - Implemented Webpack and Babel into project generator presets
 - General code quality implementations and refactor
+
+### [v1.1.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.1.0)
+`06/11/2022`
+
+- Implemented `application.baseDir()` function and types
+- Fixed cache clear in `application.end()`
+- Fixed default value app serialization issues from `app.json`
+- Featuring Workers (documentation pendent)
+- Now `load` function can load standalone functions (currently as strings) and expression functions and will parse other values correctly.
+- Implemented built-in `PgClient` to connect to Postgres databases using raw sql directly
+- Implemented `npx melon new` to generate MelonJS projects in the current folder + README
+- Removed `std.sleep(ms: number)`
