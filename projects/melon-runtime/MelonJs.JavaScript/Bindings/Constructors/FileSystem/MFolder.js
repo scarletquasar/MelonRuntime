@@ -42,7 +42,7 @@
     }
 }
 
-Folder.load = (path) => {
+MFolder.load = (path) => {
     const loadedFolder = new __folder__(path);
 
     return new Folder({

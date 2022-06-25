@@ -33,7 +33,7 @@
     }
 }
 
-File.load = (path) => {
+MFile.load = (path) => {
     const loadedFile = new __file__(path);
 
     return new File({
@@ -46,14 +46,14 @@ File.load = (path) => {
     });
 }
 
-File.delete = (path) => {
+MFile.delete = (path) => {
     __delete_file__(path);
 }
 
-File.copy = (from, to) => {
+MFile.copy = (from, to) => {
     __copy_file__(from, to);
 }
 
-File.move = (from, to) => {
+MFile.move = (from, to) => {
     __move_file__(from, to);
 }
