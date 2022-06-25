@@ -27,7 +27,7 @@
 
 | Version | Type |
 | ------- | ---- |
-| [1.6.0-rc1](https://www.npmjs.com/package/melon-runtime/v/1.6.0-rc1) | Development |
+| [1.6.0-rc2](https://www.npmjs.com/package/melon-runtime/v/1.6.0-rc2) | Development |
 | [1.5.0](https://www.npmjs.com/package/melon-runtime/v/1.5.0) | **Last Stable** |
 | [1.4.2-rc8](https://www.npmjs.com/package/melon-runtime/v/1.4.2-rc8) | Development |
 
