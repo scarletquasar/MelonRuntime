@@ -8,6 +8,7 @@
 <hr>
 
 - [Documentation (in development)](https://zippy-sunflower-e51862.netlify.app/)
+- [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 
 ## Why Melon?
 
