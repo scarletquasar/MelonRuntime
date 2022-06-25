@@ -6,7 +6,7 @@ namespace MelonJS
     {
         public static string ApplicationInfo()
         {
-            return $"MelonRuntime v{Assembly.GetExecutingAssembly().GetName().Version}";
+            return $"MelonRuntime v{Assembly.GetExecutingAssembly().GetName().Version} [RC1]";
         }
     }
 }
