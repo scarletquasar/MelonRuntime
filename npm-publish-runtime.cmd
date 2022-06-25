@@ -1,2 +1,1 @@
-.\publish-runtime
-npm publish .\projects\melon-types
+npm publish .\projects\melon-runtime
