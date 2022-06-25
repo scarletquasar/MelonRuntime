@@ -8,10 +8,9 @@ const __dirname = path.dirname(__filename)
 
 const args = process.argv.slice(2)
 
-const dotnetArguments = ['run', '--configuration', 'Release', '--project']
-const projectDirectory = __dirname.replace('commands', 'MelonJS/MelonJS.csproj')
+const outputDirectory = __dirname.replace('Commands', 'Output')
 const spawnOptions = { stdio: "inherit" }
 
-const melon = spawn('dotnet', [...dotnetArguments, projectDirectory, ...args], spawnOptions)
+const melon = spawn('dotnet', ["exec", outputDirectory + "/MelonJS.dll", ...args], spawnOptions)
 
 melon.on('data', console.log)

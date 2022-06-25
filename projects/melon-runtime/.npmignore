@@ -1,4 +1,9 @@
-*/bin
-*/obj
-*/*.csproj.user
 .vs
+*/MelonJS
+*/MelonJs.Data
+*/MelonJs.JavaScript
+*/MelonJs.Models
+*/MelonJs.Static
+*/MelonJs.WebApps
+*/*.csproj.user
+*.sln
