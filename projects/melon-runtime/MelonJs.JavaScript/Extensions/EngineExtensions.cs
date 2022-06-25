@@ -60,6 +60,7 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
                     engine.Execute(BindingManager.Get("Constructors/Set"));
                     engine.Execute(BindingManager.Get("Constructors/Map"));
+                    engine.Execute(BindingManager.Get("Constructors/MPromise"));
                     engine.Execute(BindingManager.Get("Constructors/Queue"));
                     engine.Execute(BindingManager.Get("Constructors/IndexedArray"));
                     engine.Execute(BindingManager.Get("Constructors/Enumerable"));

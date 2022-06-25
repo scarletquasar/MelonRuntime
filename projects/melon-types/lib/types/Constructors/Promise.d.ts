@@ -53,4 +53,4 @@ declare interface PromiseConstructor {
   resolve<T>(value: T | PromiseLike<T>): Promise<T>;
 }
 
-declare function Promise<T>(resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void): PromiseConstructor;
+declare function MPromise<T>(resolve: Function, reject?: Function): void;
