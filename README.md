@@ -41,7 +41,7 @@
 
 ## Docker
 
-- [Dockerfile models](https://github.com/MelonRuntime/MelonRuntime/tree/main/utils/dockerfiles/1.5.0%2B)
+- [Dockerfile models](https://github.com/MelonRuntime/MelonRuntime/tree/main/utils/dockerfiles/)
 - [MelonRuntime docker integration example](https://github.com/EternalQuasar0206/docker-api-melon)
 
 ## Extra
