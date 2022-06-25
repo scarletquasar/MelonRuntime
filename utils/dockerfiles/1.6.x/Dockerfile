@@ -1,8 +1,8 @@
-# Base Dockerfile compatible with MelonRuntime v1.5.0+
+# Base Dockerfile compatible with MelonRuntime v1.6.0+
 
 # Will use .NET 6
 # Change to a specific version if required
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 
 # Will use Node.js v18.x.x
 # Change to a specific version if required

@@ -1,9 +1,9 @@
 {
   "name": "melon-runtime",
-  "version": "1.6.0-rc3",
+  "version": "1.6.0",
   "description": "MelonJS",
   "type": "module",
-  "keywords": ["runtime", "javascript", "typescript", "data", "dotnet", "fast"],
+  "keywords": ["runtime", "javascript", "typescript", "data", "dotnet", "fast", "docker", "mit", "windows", "macos", "linux"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelonRuntime/MelonJS.git"
@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/MelonRuntime/MelonJS#readme",
   "bin": {
-    "melon": "commands/melon.js"
+    "melon": "Commands/melon.js"
   }
 }
