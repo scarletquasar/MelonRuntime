@@ -17,8 +17,7 @@ libraries whose compatibility has been confirmed at some level:
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
 | expr-eval | Parses and evaluates mathematical expressions. | 2.0.2 | https://github.com/silentmatt/expr-eval |
-| currency.js | A small, lightweight javascript library for working with currency values. | 2.0.4 | https://github.com/scurker/currency.js |
-
+| currency.js | A small, lightweight javascript library for working with currency values. | 2.0.4 [#87](https://github.com/MelonRuntime/MelonRuntime/issues/87) | https://github.com/scurker/currency.js |
 
 ## ⏱ Date/Time
 
