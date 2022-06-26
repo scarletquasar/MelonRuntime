@@ -2,6 +2,17 @@
 
 For complete information about all releases, such as release candidates, pull requests and more details, visit the [official release list](https://github.com/MelonRuntime/MelonRuntime/releases).
 
+### [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
+`06/25/2022`
+
+> Optimization update
+
+- **[core]** Now, the package core will be pre-built and will be just executed instead of built by .NET SDK [Important: Now, MelonRuntime will now require .NET Runtime, no more SDK]
+- **[core]** Fixed `MFile` and `MFolder` static implementations and type references
+- **[core]** Implemented `MPromise` + types as workaround to using Melon-based promises as wrapper to usual promises
+- **[scripts]** All the repository internal scripts were reworked
+- **[docker]** Implemented `1.6.x` dockerfile
+- 
 ### [v1.5.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.5.0)
 `06/24/2022`
 
