@@ -20,9 +20,9 @@
 - Wide range of built-in libraries bringing ease to the development of scalable and maintainable applications
 
 ## Installation and usage:
-> Tip: How to install .NET 6 Runtime and SDK ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
+> Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
 
-- Install [.NET 6.0 runtime and sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already
+- Install [ASP.NET 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already
 - Install the `melon-runtime` package globally using the command: `npm i melon-runtime@[version] -g -f`. Check the version table below to know the current melon stable and development versions
 
 | Version | Type |
