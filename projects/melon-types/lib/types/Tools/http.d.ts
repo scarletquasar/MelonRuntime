@@ -7,7 +7,13 @@ type Http = {
     ping: (target: string, times: number) => PingResponse,
     app: (options: {name: string, host: string, port: string, enableHttps?: boolean}) => HttpApplication,
     result: (statusCode: number, response?: any) => {
-        statusCode: number,
+        type: string,
+        status: number,
+        response: string
+    }
+    static: (response?: string) => {
+        type: string,
+        status: number,
         response: string
     }
 }
