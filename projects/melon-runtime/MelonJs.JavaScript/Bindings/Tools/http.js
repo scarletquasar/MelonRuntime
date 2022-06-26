@@ -1,6 +1,5 @@
 ﻿const http = {
     _apps: {},
-
     request: (target, method = "GET", body = "{}", headers = "{}") => {
         typeof headers === "object" ? headers = JSON.stringify(headers) : {}
         typeof body === "object" ? body = JSON.stringify(body) : {}
@@ -16,7 +15,6 @@
             rawResult.Ok ?? false
         )
     },
-
     ping: (target, times = 1) => {
         const rawResult = __ping_request__(target, times)
 
@@ -28,7 +26,6 @@
             rawResult.AverageLatency ?? 0
         )
     },
-
     //Calling "HttpApplication.js" binding constructor to make an alias
     app: (options) => {
         const name = options.name
@@ -39,11 +36,18 @@
         http._apps[name] = new HttpApplication(name, host, port, enableHttps)
         return http._apps[name]
     },
-
     result: (statusCode, response = {}) => {
         return {
+            type: "application/json",
             status: statusCode,
             response: JSON.stringify(response)
+        }
+    },
+    static: (response = "<b>Hello World!</b>") => {
+        return {
+            type: "text/html",
+            status: 200,
+            response
         }
     }
 }

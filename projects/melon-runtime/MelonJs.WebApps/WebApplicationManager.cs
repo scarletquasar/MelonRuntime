@@ -10,13 +10,8 @@ namespace MelonJs.WebApps {
     public static class WebApplicationManager
     {
         static void Main(string[] args) {}
-        public static void ExecuteWebApplication(
-            string name,
-            string host,
-            int port,
-            string routes,
-            string echoes,
-            bool enableHttps = false)
+        public static void ExecuteWebApplication
+            (string name, string host, int port, string routes, string echoes, bool enableHttps = false)
         {
             var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(routes);
             var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(echoes);
@@ -29,6 +24,10 @@ namespace MelonJs.WebApps {
 
             var webApp = builder.Build();
 
+            /*
+             * Enable HTTPS redirection for the internally created web application
+             * Obs: Will require a valid HTTPS certificate to work in a server
+             */
             if (app.EnableHttps)
                 webApp.UseHttpsRedirection();
 
@@ -37,14 +36,58 @@ namespace MelonJs.WebApps {
             if (app.Echoes.Any())
                 app.Echoes.ForEach(x => webApp.Urls.Add($"http{httpsCondition}://{x.Host}:{x.Port}"));
 
-            foreach (var route in app.Routes)
+            webApp.SetupRoutes(name, app.Routes, engine);
+
+            Console.WriteLine();
+            CLNConsole.Write("[MelonRuntime ASP.NET host] ", ConsoleColor.DarkYellow);
+            CLNConsole.Write("Starting web application with default: ", ConsoleColor.Green);
+            CLNConsole.Write(webApp.Urls.ElementAt(0), ConsoleColor.Blue);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            webApp.Run();
+        }
+
+        private static IResult GetHttpResult(JsValue obj)
+        {
+            var httpResult = obj.AsObject();
+
+            return (double)httpResult.Get("status").AsNumber() switch
+            {
+                200 => GetSpecificResult(httpResult),
+                404 => Results.NotFound(httpResult.Get("response").AsString()),
+                401 => Results.Unauthorized(),
+                400 => Results.BadRequest(httpResult.Get("response").AsString()),
+                409 => Results.Conflict(httpResult.Get("response").AsString()),
+                204 => Results.NoContent(),
+                422 => Results.UnprocessableEntity(httpResult.Get("response").AsString()),
+                _ => Results.Problem(httpResult.Get("response").AsString(), 
+                    statusCode: Convert.ToInt32(httpResult.Get("status").AsNumber()))
+            };
+        }
+
+        private static IResult GetSpecificResult(JsValue httpResult)
+        {
+            var type = httpResult.Get("type").AsString();
+            var response = httpResult.Get("response").AsString();
+            return type switch
+            {
+                "text/plain" => Results.Content(response, type),
+                "application/json" => Results.Ok(response),
+                _ => Results.Content(response, type),
+            };
+        }
+
+        private static void SetupRoutes(this WebApplication webApp, string name, List<HttpRoute> routes, Engine? engine)
+        {
+            foreach (var route in routes)
             {
                 switch (route.Method)
                 {
                     case "GET":
                         webApp.MapGet(route.Route ?? "/", (HttpRequest req) =>
                         {
-                            Dictionary<string, string> query = 
+                            Dictionary<string, string> query =
                                 req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
                             var serializedQuery = JsonSerializer.Serialize(query);
@@ -79,7 +122,7 @@ namespace MelonJs.WebApps {
 
                             var serializedQuery = JsonSerializer.Serialize(query);
 
-                            Dictionary<string,  string> headers =
+                            Dictionary<string, string> headers =
                                 req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
                             var serializedHeaders = JsonSerializer.Serialize(headers);
@@ -126,33 +169,6 @@ namespace MelonJs.WebApps {
                         break;
                 }
             }
-
-            Console.WriteLine();
-            CLNConsole.Write("[MelonJS ASP.NET host] ", ConsoleColor.DarkYellow);
-            CLNConsole.Write("Starting web application with default: ", ConsoleColor.Green);
-            CLNConsole.Write(webApp.Urls.ElementAt(0), ConsoleColor.Blue);
-            Console.WriteLine();
-            Console.WriteLine();
-
-            webApp.Run();
-        }
-
-        private static IResult GetHttpResult(JsValue obj)
-        {
-            var httpResult = obj.AsObject();
-
-            return (double)httpResult.Get("status").AsNumber() switch
-            {
-                200 => Results.Ok(httpResult.Get("response").AsString()),
-                404 => Results.NotFound(httpResult.Get("response").AsString()),
-                401 => Results.Unauthorized(),
-                400 => Results.BadRequest(httpResult.Get("response").AsString()),
-                409 => Results.Conflict(httpResult.Get("response").AsString()),
-                204 => Results.NoContent(),
-                422 => Results.UnprocessableEntity(httpResult.Get("response").AsString()),
-                _ => Results.Problem(httpResult.Get("response").AsString(), 
-                    statusCode: Convert.ToInt32(httpResult.Get("status").AsNumber()))
-            };
         }
     }
 }
