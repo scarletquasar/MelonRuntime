@@ -29,4 +29,4 @@ libraries whose compatibility has been confirmed at some level:
 
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
-| brain.js | GPU accelerated Neural networks in JavaScript. | 2.0.0-beta.15 | https://github.com/BrainJS/brain.js |
+| brain.js | GPU accelerated Neural networks in JavaScript. | 2.0.0-beta.15 | https://github.com/BrainJS/brain.js | 
