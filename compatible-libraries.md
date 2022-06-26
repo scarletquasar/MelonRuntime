@@ -24,3 +24,9 @@ libraries whose compatibility has been confirmed at some level:
 | Package | Description | Confirmed Version | Github |
 | ------- | ----------- | ----------------- | ------ |
 | moment | Parse, validate, manipulate, and display dates in javascript. | 2.29.3 | https://github.com/moment/moment/ |
+
+## 🧠 Machine Learning
+
+| Package | Description | Confirmed Version | Github |
+| ------- | ----------- | ----------------- | ------ |
+| brain.js | GPU accelerated Neural networks in JavaScript. | 2.0.0-beta.15 | https://github.com/BrainJS/brain.js |
