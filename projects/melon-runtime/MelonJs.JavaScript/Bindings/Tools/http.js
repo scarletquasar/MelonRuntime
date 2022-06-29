@@ -55,5 +55,6 @@
         return http.static(response, `image/${extension}`)
     },
     audio: (response, extension) => http.static(response, `audio/${extension}`),
+    video: (response, extension) => http.static(response, `video/${extension}`),
     pdf: (response) => http.static(response, 'application/pdf'),
 }

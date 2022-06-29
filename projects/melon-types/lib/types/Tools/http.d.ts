@@ -2,10 +2,11 @@
 /// <reference path="../Constructors/MResponse.d.ts" />
 /// <reference path="../Constructors/HttpApplication.d.ts" />
 
-type ImageMimeType = "png" | "gif" | "jpeg" | "jpg" | "png" | "svg+xml" | "webp"
-type AudioMimeType = "wave" | "wav" | "x-wav" | "x-pn-wav" | "webm" | "ogg"
+type ImageExtension = "png" | "gif" | "jpeg" | "jpg" | "png" | "svg+xml" | "webp"
+type AudioExtension = "wave" | "wav" | "x-wav" | "x-pn-wav" | "webm" | "ogg"
+type VideoExtension = "x-flv" | "mp4" | "x-msvideo" | "mpeg" | "ogg" | "webm" | "mp2t" | "3gpp" | "3ggp2"
 
-type HttpResult<R, MT extends number> = {
+type MSimpleResponse<R, MT extends string> = {
     type: MT,
     status: number,
     response: R
@@ -20,9 +21,11 @@ type Http = {
         status: number,
         response: string
     }
-    static: <R, MT>(response: R, type: string) => HttpResult<R, MT>
-    image: <R, EX extends ImageMimeType>(response: R, extension: EX) => HttpResult<R, `image/${EX}`>
-    pdf: <R>(response: R) => HttpResult<R, 'application/pdf'>
+    static: <R, MT>(response: R, type: string) => MSimpleResponse<R, MT>
+    image: <R, EX extends ImageExtension>(response: R, extension: EX) => MSimpleResponse<R, `image/${EX}`>
+    audio: <R, EX extends AudioExtension>(response: R, extension: EX) => MSimpleResponse<R, `audio/${EX}`>
+    video: <R, EX extends ImageExtension>(response: R, extension: EX) => MSimpleResponse<R, `video/${EX}`>
+    pdf: <R>(response: R) => MSimpleResponse<R, 'application/pdf'>
 }
 
 declare const http: Http
