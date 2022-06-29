@@ -37,7 +37,7 @@
 
 | Version | Type |
 | ------- | ---- |
-| [1.7.0-next.2](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.2) | Last development |
+| [1.7.0-next.3](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.3) | Last development |
 | [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
 
 ## Generating and executing a project
@@ -59,22 +59,13 @@
 
 ## Contributors 
 
-<div align="left">
-
 | [Victória Rose](https://github.com/EternalQuasar0206) |
 | -------------- |
 | <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> |
 
-</div>
-
-<div align="left">
-
 | [Gabriel Grubba](https://github.com/Grubba27) |
 | -------------- |
 | <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> |
-
-</div>
-
 
 ## Sponsors 
 
