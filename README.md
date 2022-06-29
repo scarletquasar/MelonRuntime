@@ -57,6 +57,25 @@
 
 - [Check the MelonRuntime-compatible verified useful NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
 
+## Contributors 
+
+<div align="left">
+
+| [Victória Rose](https://github.com/EternalQuasar0206) |
+| -------------- |
+| <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> |
+
+</div>
+
+<div align="left">
+
+| [Gabriel Grubba](https://github.com/Grubba27) |
+| -------------- |
+| <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> |
+
+</div>
+
+
 ## Sponsors 
 
 | [@LucasRufo](https://github.com/LucasRufo) |
