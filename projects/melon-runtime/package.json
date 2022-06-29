@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "1.7.0-next.1",
+  "version": "1.7.0-next.2",
   "description": "MelonJS",
   "type": "module",
   "keywords": [
@@ -18,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MelonRuntime/MelonJS.git"
+    "url": "git+https://github.com/MelonRuntime/Melon.git"
   },
   "author": "Victória Rose, Malu Rose",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MelonRuntime/MelonJS/issues"
+    "url": "https://github.com/MelonRuntime/Melon/issues"
   },
-  "homepage": "https://github.com/MelonRuntime/MelonJS#readme",
+  "homepage": "https://github.com/MelonRuntime/Melon#readme",
   "bin": {
     "melon": "Commands/melon.js"
   }

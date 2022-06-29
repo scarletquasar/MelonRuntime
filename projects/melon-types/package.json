@@ -1,17 +1,17 @@
 {
   "name": "melon-types",
-  "version": "1.9.0-next.0",
-  "description": "Typescript types for melon-runtime 1.6.0+",
+  "version": "1.9.0-next.1",
+  "description": "Typescript types for melon-runtime 1.7.0-next.2+",
   "types": "./lib/types/main.d.ts",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MelonRuntime/MelonJS.git"
+    "url": "git+https://github.com/MelonRuntime/Melon.git"
   },
   "author": "Victória Rose",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MelonRuntime/MelonJS/issues"
+    "url": "https://github.com/MelonRuntime/Melon/issues"
   },
-  "homepage": "https://github.com/MelonRuntime/MelonJS#readme"
+  "homepage": "https://github.com/MelonRuntime/Melon#readme"
 }
