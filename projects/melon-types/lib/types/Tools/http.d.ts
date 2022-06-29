@@ -21,11 +21,12 @@ type Http = {
         status: number,
         response: string
     }
-    static: <R, MT>(response: R, type: string) => MSimpleResponse<R, MT>
+    static: <R, MT>(response: R, type: MT) => MSimpleResponse<R, MT>
     image: <R, EX extends ImageExtension>(response: R, extension: EX) => MSimpleResponse<R, `image/${EX}`>
     audio: <R, EX extends AudioExtension>(response: R, extension: EX) => MSimpleResponse<R, `audio/${EX}`>
     video: <R, EX extends ImageExtension>(response: R, extension: EX) => MSimpleResponse<R, `video/${EX}`>
     pdf: <R>(response: R) => MSimpleResponse<R, 'application/pdf'>
+    html: <R>(response: R) => MSimpleResponse<R, 'text/html'>
 }
 
 declare const http: Http
