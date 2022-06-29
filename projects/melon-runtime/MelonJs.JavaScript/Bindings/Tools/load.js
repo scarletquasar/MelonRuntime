@@ -20,7 +20,7 @@
             content = content.join("")
         }
 
-        content = content.replaceAll("{funcArrow}", "=>").replaceAll("", "")
+        content = content.replaceAll("{funcArrow}", "=>")
 
         let parsedContent
 
