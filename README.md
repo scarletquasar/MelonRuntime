@@ -23,10 +23,11 @@
 > Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
 
 - Install [ASP.NET 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already
-- Install the `melon-runtime` package globally using the command: `npm i melon-runtime@[version] -g -f`. Check the version table below to know the current melon stable and development versions
+- Install the `melon-runtime` package globally using the command: `npm i melon-runtime@1.6.0 -g -f` or select a version from the table below:
 
 | Version | Type |
 | ------- | ---- |
+| [1.7.0-next.1](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.1) | Last development |
 | [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
 
 ## Generating and executing a project
