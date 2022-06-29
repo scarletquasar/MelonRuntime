@@ -56,3 +56,9 @@
 ## Extra
 
 - [Check the MelonRuntime-compatible verified useful NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
+
+## Sponsors 
+
+| [@LucasRufo](https://github.com/LucasRufo) |
+| -------------- |
+| <img src="https://avatars.githubusercontent.com/u/60830097?v=4" width="75"> |
