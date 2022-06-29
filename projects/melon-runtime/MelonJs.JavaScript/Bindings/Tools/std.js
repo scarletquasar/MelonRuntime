@@ -23,24 +23,6 @@
         return internal
     },
     /*
-     * std.reflect(targetNameAsString)
-     * The reflect function is a sugar that promotes a direct reflection to a value denoted 
-     * by its name in the form of a string inside the global code, this method should not be 
-     * specific actively used as it may not work in cases like complex objects
-     * */
-    reflect: (target) => {
-        if (enableDetailedInformation) {
-            debug.log
-                ("[Debug] This method should not be actively used as it may not work in specific cases like complex objects")
-        }
-
-        this.name = target
-        this.modificator = x => x
-        this.getValue = () => this.modificator(eval(`${this.name}`))
-
-        return this
-    },
-    /*
      * std.system.*
      * The reflect function is a sugar that promotes a direct reflection to a value denoted
      * by its name in the form of a string inside the global code, this method should not be
