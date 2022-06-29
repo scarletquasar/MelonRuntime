@@ -59,13 +59,9 @@
 
 ## Contributors 
 
-| [Victória Rose](https://github.com/EternalQuasar0206) |
-| -------------- |
-| <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> |
-
-| [Gabriel Grubba](https://github.com/Grubba27) |
-| -------------- |
-| <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> |
+| [Victória Rose](https://github.com/EternalQuasar0206) | [Gabriel Grubba](https://github.com/Grubba27) |
+| -------------- | -------------- |
+| <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> | <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> |
 
 ## Sponsors 
 
