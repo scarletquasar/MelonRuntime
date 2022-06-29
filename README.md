@@ -1,6 +1,16 @@
 <div align="center">
   <img align="center" width="225" src="https://i.imgur.com/guuToyf.png">
 </div>
+
+<br>
+
+<div align="center">
+
+  [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime)
+  [![npm downloads](https://badgen.net/npm/dm/melon-runtime)](https://www.npmjs.com/package/melon-runtime)
+  
+</div>
+
 <hr>
 
 **MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**.
@@ -27,7 +37,7 @@
 
 | Version | Type |
 | ------- | ---- |
-| [1.7.0-next.1](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.1) | Last development |
+| [1.7.0-next.2](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.2) | Last development |
 | [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
 
 ## Generating and executing a project
@@ -46,3 +56,9 @@
 ## Extra
 
 - [Check the MelonRuntime-compatible verified useful NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
+
+## Sponsors 
+
+| [@LucasRufo](https://github.com/LucasRufo) |
+| -------------- |
+| <div align="center"><img src="https://avatars.githubusercontent.com/u/60830097?v=4" width="60"></div> |
