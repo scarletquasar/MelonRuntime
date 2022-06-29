@@ -43,11 +43,17 @@
             response: JSON.stringify(response)
         }
     },
-    static: (response = "<b>Hello World!</b>") => {
+    static: (response, type) => {
         return {
-            type: "text/html",
+            type,
             status: 200,
             response
         }
-    }
+    },
+    image: (response, extension) => {
+        extension = extension === "jpg" ? "jpeg" : extension
+        return http.static(response, `image/${extension}`)
+    },
+    audio: (response, extension) => http.static(response, `audio/${extension}`),
+    pdf: (response) => http.static(response, 'application/pdf'),
 }
