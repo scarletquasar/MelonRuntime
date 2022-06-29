@@ -61,4 +61,4 @@
 
 | [@LucasRufo](https://github.com/LucasRufo) |
 | -------------- |
-| <img src="https://avatars.githubusercontent.com/u/60830097?v=4" width="75"> |
+| <div align="center"><img src="https://avatars.githubusercontent.com/u/60830097?v=4" width="60"></div> |
