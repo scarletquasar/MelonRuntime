@@ -34,6 +34,7 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
+                    engine.SetValue("__dotnet__", typeof(MelonDotnet));
                     engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
                     engine.SetValue("__workers_remove__", new Action<string>(Workers.Remove));
                     engine.SetValue("__workers_start__", new Action<string>(Workers.Start));
