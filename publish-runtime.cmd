@@ -1,1 +1,0 @@
-dotnet publish projects/melon-runtime -o projects/melon-runtime/Output
