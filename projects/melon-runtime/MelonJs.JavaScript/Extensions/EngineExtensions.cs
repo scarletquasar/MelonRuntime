@@ -69,6 +69,8 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
                     engine.Execute(BindingManager.Get("Tools/load"));
                     engine.Execute(BindingManager.Get("Tools/require"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/xrequire"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/__xrequire_dotnet__"));
                     break;
 
                 case BuiltInJsModule.Application:

@@ -4,7 +4,7 @@ namespace MelonJs.Static
 {
     public static class MelonDotnet
     {
-        public static void CallMethod(string nSpace, string search, string methodName, object[] parameters)
+        public static dynamic? CallMethod(string nSpace, string search, string methodName, object[] parameters)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -21,10 +21,27 @@ namespace MelonJs.Static
                 .Where(x => x.Name == methodName)
                 .FirstOrDefault();
 
-            method?.Invoke(parameters[0], parameters.Skip(1).ToArray());
+            return method?.Invoke(parameters[0], parameters.Skip(1).ToArray());
         }
 
+        public static dynamic? GetField(string nSpace, string search, string fieldName)
+        {
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-        //run __dotnet__.CallMethod("System", "Console", "WriteLine", ['', '', ''])
+            var type =
+                assemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.FullName!.Contains(search))
+                .First();
+
+            var field = type
+                .GetFields()
+                .Where(x => x.Name == fieldName)
+                .FirstOrDefault();
+
+            return field;
+        }
     }
 }
