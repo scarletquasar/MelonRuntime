@@ -12,7 +12,10 @@
                 Name = Path.GetFileName(path);
                 CreationTime = File.GetCreationTime(path);
                 LastWriteTime = File.GetLastWriteTime(path);
+                return;
             }
+
+            throw new Exception($"Invalid path \"${path}\"");
         }
 
         public string? Name { get; set; }

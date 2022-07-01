@@ -13,7 +13,14 @@
                         }
                     }
                 },
-                getField: (field) => __dotnet__.GetField(namespace, type, field)
+                getField: (field) => __dotnet__.GetField(namespace, type, field),
+                createInstance: (parameters) => {
+                    if (!Array.isArray(parameters)) {
+                        parameters = [parameters];
+                    }
+
+                    return __dotnet__.CreateInstanceOfType(namespace, type, parameters);
+                }
             }
         }
     }

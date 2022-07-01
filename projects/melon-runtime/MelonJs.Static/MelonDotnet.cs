@@ -43,5 +43,20 @@ namespace MelonJs.Static
 
             return field;
         }
+
+        public static dynamic CreateInstanceOfType(string nSpace, string search, object[] parameters)
+        {
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            var type =
+                assemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.FullName!.Contains(search))
+                .First();
+
+            return Activator.CreateInstance(type!, parameters, null)!;
+        }
     }
 }
