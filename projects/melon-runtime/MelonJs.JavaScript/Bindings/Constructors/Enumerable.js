@@ -1,4 +1,47 @@
-﻿function Enumerable(base) {
+﻿function Enumerable(base = []) {
+    this.count = 0;
+    /* Define add */
+    this.add = (value, index = 0) => {
+        if (!this[index] && typeof this[index] !== "boolean") {
+            this[index] = value;
+            this.count++;
+            return;
+        }
+
+        index++;
+        this.add(value, index)
+    }
+
+    /* Setup array-based structure */
+    if (Array.isArray(base)) {
+        arg.forEach(x => this.push(x));
+    }
+    else if (Boolean(Number(arg))) {
+        let index = Number(arg);
+        while (index > 0) {
+            this.push(empty);
+            index--;
+        }
+    }
+
+    /* Define toArray */
+    this.toArray = () => {
+        let index = 0;
+        const result = [];
+
+        while (index < this.length) {
+            if (this[index] || typeof this[index] === "boolean") {
+                result.push(this[index]);
+            }
+
+            index++;
+        }
+
+        return result;
+    }
+}
+
+function Enumerable(base) {
     this._elements = Array.isArray(base) && arguments < 2 ? base : [...arguments]
     this.elements = () => this._elements
 

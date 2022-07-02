@@ -1,19 +1,21 @@
-declare interface Enumerable<T> extends Iterable<T> {
-    elements: () => T[],
-    where: (filter: (this: T) => boolean) => Enumerable<T> ,
-    top: (quantity: number) => Enumerable<T> ,
-    bottom: (quantity: number) => Enumerable<T>,
-    first: () => T,
-    last: () => T,
-    average: () => T,
-    any: () => boolean,
-    cast: (constructor: any) => Enumerable<any>,
-    all: (condition: (this: T) => boolean) => boolean,
-    add: (item: T) => void,
-    addRange: (items: Iterable<T>) => void,
-    lookFor: (element: T) => any,
-    compare: (element: T, compFn: (this: T) => boolean) => boolean,
-    equals: (target: any) => boolean
+declare class Enumerable<T> extends Array<T> {
+    constructor(args: Iterable<T>, capacity?: number);
+    count: number;
+    toArray: () => T[];
+    toEnumerable: () => T[];
+    take: (quantity: number) => Enumerable<T>;
+    skip: (quantity: number) => Enumerable<T>;
+    where: (filter: (target: T) => boolean) => Enumerable<T>;
+    firstOrDefault: () => T | null;
+    lastOrDefault: () => T | null;
+    first: () => T;
+    last: () => T;
+    any: () => boolean;
+    all: (condition: (target: T) => boolean) => boolean;
+    average: () => T;
+    cast: <T>(constructor: any) => Enumerable<T>;
+    equals: (target: any) => boolean;
+    add: (item: T) => void;
+    addRange: (items: Iterable<T>) => void;
+    clear: () => void;
 }
-
-declare function Enumerable<T>(args: Iterable<T>): void
