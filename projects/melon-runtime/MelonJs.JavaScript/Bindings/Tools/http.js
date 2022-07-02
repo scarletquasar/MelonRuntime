@@ -6,7 +6,6 @@
 
         const rawResult = __fetch_request__(target, method, body, headers)
 
-        //Calling "MResponse.js" binding constructor
         return new MResponse(
             rawResult.Body ?? "",
             rawResult.Headers ?? {},
@@ -18,7 +17,6 @@
     ping: (target, times = 1) => {
         const rawResult = __ping_request__(target, times)
 
-        //Calling "PingResponse.js" binding constructor
         return new PingResponse(
             rawResult.Results ?? [],
             rawResult.MaxLatency ?? 0,
@@ -26,7 +24,6 @@
             rawResult.AverageLatency ?? 0
         )
     },
-    //Calling "HttpApplication.js" binding constructor to make an alias
     app: (options = { name: "1", host: "localhost", post: "80", enableHttps: false }) => {
         const name = options.name
         const host = options.host
