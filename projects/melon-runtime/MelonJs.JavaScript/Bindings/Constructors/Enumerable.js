@@ -14,10 +14,10 @@
 
     /* Setup array-based structure */
     if (Array.isArray(base)) {
-        arg.forEach(x => this.push(x));
+        base.forEach(x => this.push(x));
     }
-    else if (Boolean(Number(arg))) {
-        let index = Number(arg);
+    else if (Boolean(Number(base))) {
+        let index = Number(base);
         while (index > 0) {
             this.push(empty);
             index--;
