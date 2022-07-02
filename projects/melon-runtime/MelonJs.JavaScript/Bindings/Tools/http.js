@@ -27,7 +27,7 @@
         )
     },
     //Calling "HttpApplication.js" binding constructor to make an alias
-    app: (options) => {
+    app: (options = { name: "1", host: "localhost", post: "80", enableHttps: false }) => {
         const name = options.name
         const host = options.host
         const port = options.port
