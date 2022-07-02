@@ -78,6 +78,36 @@ namespace MelonJs.WebApps {
             };
         }
 
+        private static string GetCallbackCaller(
+            string appIdentifier, 
+            string method, 
+            string route, 
+            string? serializedQuery = null, 
+            string? serializedHeaders = null, 
+            string? serializedBody = null)
+        {
+            var result = $"(http._apps['{appIdentifier}']";
+            result += $".routes.filter(x => x.method === '{method}'";
+            result += $" && x.route === '{route}')[0].callback)";
+            
+            switch(method)
+            {
+                case "GET":
+                    result += $"('{serializedQuery}', '{serializedHeaders}')";
+                    break;
+
+                case "POST":
+                    result += $"('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')";
+                    break;
+
+                case "DELETE":
+                    result += $"('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')";
+                    break;
+            }
+
+            return result;
+        }
+
         private static void SetupRoutes(this WebApplication webApp, string name, List<HttpRoute> routes, Engine? engine)
         {
             foreach (var route in routes)
@@ -85,25 +115,24 @@ namespace MelonJs.WebApps {
                 switch (route.Method)
                 {
                     case "GET":
-                        webApp.MapGet(route.Route ?? "/", (HttpRequest req) =>
+                        webApp.MapGet(route.Route!, (HttpRequest req) =>
                         {
-                            Dictionary<string, string> query =
-                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var query = req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var headers = req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
-                            var serializedQuery = JsonSerializer.Serialize(query);
+                            var stringQuery = JsonSerializer.Serialize(query);
+                            var stringHeaders = JsonSerializer.Serialize(headers);
 
-                            Dictionary<string, string> headers =
-                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var callbackCaller = GetCallbackCaller(name, "GET", route.Route!, stringQuery, stringHeaders);
 
-                            var serializedHeaders = JsonSerializer.Serialize(headers);
+                            var result = engine?.Evaluate(callbackCaller);
 
-                            var result = engine?
-                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'GET' && x.route === '{route.Route}')[0].callback)('{serializedQuery}', '{serializedHeaders}')");
-
-                            if (result.IsString())
-                                return Results.Ok(result.AsString());
-
-                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
+                            if(result is null)
+                            {
+                                return Results.StatusCode(500);
+                            }
+ 
+                            return result.IsString() ? Results.Ok(result.AsString()) : GetHttpResult(result);
                         });
                         break;
 
@@ -112,28 +141,24 @@ namespace MelonJs.WebApps {
                         {
                             StreamReader bodyReader = new(req.Body);
                             string body = bodyReader.ReadToEndAsync().Result;
+                            var query = req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var headers = req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
-                            var serializedBody = JsonSerializer.Serialize(body)
-                                                 .ReplaceFirst("\"{", "{")
-                                                 .Replace("}\"", "}");
+                            var stringBody = JsonSerializer.Serialize(body).ReplaceFirst("\"{", "{").Replace("}\"", "}");
+                            var stringQuery = JsonSerializer.Serialize(query);
+                            var stringHeaders = JsonSerializer.Serialize(headers);
 
-                            Dictionary<string, string> query =
-                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var callbackCaller = 
+                                GetCallbackCaller(name, "POST", route.Route!, stringQuery, stringHeaders, stringBody);
 
-                            var serializedQuery = JsonSerializer.Serialize(query);
+                            var result = engine?.Evaluate(callbackCaller);
 
-                            Dictionary<string, string> headers =
-                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            if (result is null)
+                            {
+                                return Results.StatusCode(500);
+                            }
 
-                            var serializedHeaders = JsonSerializer.Serialize(headers);
-
-                            var result = engine?
-                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'POST' && x.route === '{route.Route}')[0].callback)('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')");
-
-                            if (result.IsString())
-                                return Results.Ok(result.AsString());
-
-                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
+                            return result.IsString() ? Results.Ok(result.AsString()) : GetHttpResult(result);
                         });
                         break;
 
@@ -142,28 +167,24 @@ namespace MelonJs.WebApps {
                         {
                             StreamReader bodyReader = new(req.Body);
                             string body = bodyReader.ReadToEndAsync().Result;
+                            var query = req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var headers = req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
 
-                            var serializedBody = JsonSerializer.Serialize(body)
-                                                 .ReplaceFirst("\"{", "{")
-                                                 .Replace("}\"", "}");
+                            var stringBody = JsonSerializer.Serialize(body).ReplaceFirst("\"{", "{").Replace("}\"", "}");
+                            var stringQuery = JsonSerializer.Serialize(query);
+                            var stringHeaders = JsonSerializer.Serialize(headers);
 
-                            Dictionary<string, string> query =
-                                req.Query.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            var callbackCaller =
+                                GetCallbackCaller(name, "DELETE", route.Route!, stringQuery, stringHeaders, stringBody);
 
-                            var serializedQuery = JsonSerializer.Serialize(query);
+                            var result = engine?.Evaluate(callbackCaller);
 
-                            Dictionary<string, string> headers =
-                                req.Headers.ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                            if (result is null)
+                            {
+                                return Results.StatusCode(500);
+                            }
 
-                            var serializedHeaders = JsonSerializer.Serialize(headers);
-
-                            var result = engine?
-                                .Evaluate($"(http._apps['{name}'].routes.filter(x => x.method === 'DELETE' && x.route === '{route.Route}')[0].callback)('{serializedQuery}', '{serializedBody}', '{serializedHeaders}')");
-
-                            if (result.IsString())
-                                return Results.Ok(result.AsString());
-
-                            return result != null ? GetHttpResult(result) : Results.StatusCode(500);
+                            return result.IsString() ? Results.Ok(result.AsString()) : GetHttpResult(result);
                         });
 
                         break;
