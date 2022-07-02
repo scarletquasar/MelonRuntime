@@ -302,7 +302,7 @@ babel/
       "types": [
         "melon-types"
       ],
-      "lib": [ "es2015" ]
+      "lib": [ "es2022" ]
     }
 }</value>
   </data>
