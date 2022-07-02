@@ -3,7 +3,7 @@ type MConsole = {
     error(...data: any[]): void,
     warn(...data: any[]): void,
     clear(): void,
-    read(): void,
+    read(): string,
     table(tabularData?: any, properties?: string[]): void
 }
 
