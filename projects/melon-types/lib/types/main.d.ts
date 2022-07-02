@@ -8,6 +8,7 @@
 /// <reference path="./Tools/data.d.ts" />
 /// <reference path="./Tools/data.d.ts" />
 /// <reference path="./Tools/application.d.ts" />
+/// <reference path="./Tools/xrequire.d.ts" />
 /// <reference path="./Constructors/Queue.d.ts" />
 /// <reference path="./Constructors/PingResponse.d.ts" />
 /// <reference path="./Constructors/MResponse.d.ts" />
