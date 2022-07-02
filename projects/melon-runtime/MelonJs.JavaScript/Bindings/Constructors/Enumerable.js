@@ -29,7 +29,7 @@
         let index = 0;
         const result = [];
 
-        while (index < this.length) {
+        while (index < this.count) {
             if (this[index] || typeof this[index] === "boolean") {
                 result.push(this[index]);
             }
