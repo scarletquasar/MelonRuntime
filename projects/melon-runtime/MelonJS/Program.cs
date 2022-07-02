@@ -5,9 +5,11 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS.Commands;
 using System.Reflection;
+using Jint;
 
 /* Generates a new JintContainer and a new Jint engine for execution - no arguments */
 JintStatic.CurrentJintEngine = new();
+
 var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 

@@ -25,11 +25,11 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="initialScript">An initial script that will be executed after the setup</param>
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
-        public JintContainer(Engine? engine = null)
+        public JintContainer(Engine engine)
         {
             _currentApp = new();
 
-            JintStatic.CurrentJintEngine = engine ?? new();
+            JintStatic.CurrentJintEngine = engine;
             JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, _currentApp, this);
             JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Engine, _currentApp, this);
             JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Application, _currentApp, this);
