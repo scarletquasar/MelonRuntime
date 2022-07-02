@@ -34,6 +34,7 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
+                    engine.SetValue("__dotnet__", typeof(MelonDotnet));
                     engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
                     engine.SetValue("__workers_remove__", new Action<string>(Workers.Remove));
                     engine.SetValue("__workers_start__", new Action<string>(Workers.Start));
@@ -68,6 +69,8 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/Numbers/NumberPeriod"));
                     engine.Execute(BindingManager.Get("Tools/load"));
                     engine.Execute(BindingManager.Get("Tools/require"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/xrequire"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/__xrequire_dotnet__"));
                     break;
 
                 case BuiltInJsModule.Application:

@@ -111,6 +111,12 @@
     <None Update="Bindings\Tools\require.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Tools\xrequire\xrequire.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Bindings\Tools\xrequire\__xrequire_dotnet__.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Types\Constructors\Async\AsyncLoop.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
