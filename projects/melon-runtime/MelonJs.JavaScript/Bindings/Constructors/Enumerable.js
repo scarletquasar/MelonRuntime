@@ -1,7 +1,12 @@
-﻿function Enumerable(base = []) {
+﻿function Enumerable(base = [], capacity = -1) {
     this.count = 0;
+    this._errorCapacity = "Error: Exceeded limit capacity for this Enumerable";
     /* Define add */
     this.add = (value, index = 0) => {
+        if(capacity != -1 && base.length + 1 > capacity) {
+            throw new Error(this._errorCapacity);
+        }
+
         if (!this[index] && typeof this[index] !== "boolean") {
             this[index] = value;
             this.count++;
@@ -14,6 +19,10 @@
 
     /* Setup array-based structure */
     if (Array.isArray(base)) {
+        if(capacity != -1 && base.length > capacity) {
+            throw new Error(this._errorCapacity);
+        }
+
         base.forEach(x => this.add(x));
     }
     else if (Boolean(Number(base))) {
