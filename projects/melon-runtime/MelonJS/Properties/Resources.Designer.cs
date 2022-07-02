@@ -62,7 +62,8 @@ namespace MelonJS.Properties {
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
-        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;, &quot;@babel/preset-env&quot;]
+        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;, &quot;@babel/preset-env&quot;],
+        ///    &quot;plugins&quot;: [&quot;tailcall-optimization&quot;]
         ///}.
         /// </summary>
         internal static string NewProjectBabelrc {
@@ -137,15 +138,14 @@ namespace MelonJS.Properties {
         ///  &quot;scripts&quot;: {
         ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load .&quot;
         ///  },
-        ///  &quot;dependencies&quot;: {
-        ///  },
         ///  &quot;devDependencies&quot;: {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
         ///    &quot;@babel/preset-env&quot;: &quot;latest&quot;,
         ///    &quot;@babel/preset-typescript&quot;: &quot;latest&quot;,
         ///    &quot;melon-types&quot;: &quot;latest&quot;,
-        ///    &quot;webpack-cli&quot;: &quot;latest&quot;
+        ///    &quot;webpack-cli&quot;: &quot;latest&quot;,
+        ///    &quot;babel-plugin-tailcall-optimization&quot;: &quot;^2.0.0&quot;
         ///  }
         ///}.
         /// </summary>
@@ -177,7 +177,7 @@ namespace MelonJS.Properties {
         ///      &quot;types&quot;: [
         ///        &quot;melon-types&quot;
         ///      ],
-        ///      &quot;lib&quot;: [ &quot;es2015&quot;, &quot;DOM&quot; ]
+        ///      &quot;lib&quot;: [ &quot;es2022&quot; ]
         ///    }
         ///}.
         /// </summary>
