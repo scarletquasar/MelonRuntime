@@ -3,9 +3,8 @@ const console = {
         if (debug.enableDetailedInformation) {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
             if (typeof object === "function") {
-                debug.log
-                    ("[Debug] Currently, there is no support to log/stringify functions/classes. " +
-                     "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
+                debug.log("[Debug] Currently, there is no support to log/stringify functions/classes. " +
+                    "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
             }
         }
     },
@@ -17,8 +16,8 @@ const console = {
      * */
     log: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object)
-            __console_log__(object, 15)
+            console._detailedDebugCheck(object);
+            __console_log__(object, 15);
         })
     },
     /*
@@ -27,8 +26,8 @@ const console = {
      * */
     error: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object)
-            __console_log__(object, 12)
+            console._detailedDebugCheck(object);
+            __console_log__(object, 12);
         })
     },
     /*
@@ -37,8 +36,8 @@ const console = {
      * */
     warn: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object)
-            __console_log__(object, 14)
+            console._detailedDebugCheck(object);
+            __console_log__(object, 14);
         })
     },
     /*
@@ -73,7 +72,8 @@ const console = {
                 }
                 console.log(header);
 
-            } else if (typeof columns !== 'object') {
+            }
+            else if (typeof columns !== 'object') {
                 var columns = [];
                 for (var index in data) {
                     for (var prop in data[index]) {
@@ -82,7 +82,8 @@ const console = {
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 var header = '(index)';
                 for (var p in columns) {
                     header += ' | ';
@@ -101,7 +102,8 @@ const console = {
                 console.log(entryStr);
             }
 
-        } else if (data.constructor === Array) {
+        }
+        else if (data.constructor === Array) {
             if (!columns) {
                 var columns = [];
                 for (var prop in data[0]) {
@@ -117,7 +119,8 @@ const console = {
                 }
                 console.log(header);
 
-            } else if (typeof columns !== 'object') {
+            }
+            else if (typeof columns !== 'object') {
                 var columns = [];
                 for (var index in data) {
                     for (var prop in data[index]) {
@@ -126,7 +129,8 @@ const console = {
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 var header = '(index)';
                 for (var p in columns) {
                     header += ' | ';
