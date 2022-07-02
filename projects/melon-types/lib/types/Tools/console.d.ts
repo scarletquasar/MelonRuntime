@@ -1,5 +1,5 @@
 type MConsole = {
-    group(...data: any[]): void,
+    log(...data: any): void,
     error(...data: any[]): void,
     warn(...data: any[]): void,
     clear(): void,
