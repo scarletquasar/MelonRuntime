@@ -37,7 +37,7 @@
 
 | Version | Type |
 | ------- | ---- |
-| [1.7.0-next.3](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.3) | Last development |
+| [1.7.0-next.5](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.5) | Last development |
 | [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
 
 ## Generating and executing a project
