@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 namespace MelonJs.Static
 {
-    public static class MelonDotnet
+    public static class MelonDotnetInternal
     {
         private static Tuple<string, List<Type>> _cachedMethodSearchTypes = new("", new());
         private static Tuple<string, List<Type>> _cachedFieldSearchTypes = new("", new());
@@ -88,11 +88,11 @@ namespace MelonJs.Static
             if (_cachedInstanceCreationTypes.Item1 != search)
             {
                 types =
-                assemblies
-                .Select(assembly => assembly.GetTypes())
-                .SelectMany(x => x)
-                .Where(x => x.Namespace == nSpace)
-                .Where(x => x.FullName != null && x.FullName.Contains(search));
+                    assemblies
+                    .Select(assembly => assembly.GetTypes())
+                    .SelectMany(x => x)
+                    .Where(x => x.Namespace == nSpace)
+                    .Where(x => x.FullName != null && x.FullName.Contains(search));
 
                 lock (_cachedInstanceCreationTypes!)
                 {

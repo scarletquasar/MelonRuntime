@@ -1,4 +1,4 @@
-﻿const __xrequire_dotnet__ = (namespace) => {
+﻿const __xrequire_dotnet_internal__ = (namespace) => {
     return {
         getType: (type) => {
             return {
