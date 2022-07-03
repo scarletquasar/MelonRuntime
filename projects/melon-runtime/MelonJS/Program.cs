@@ -14,7 +14,7 @@ var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-var melonNextVersion = "[next.4]";
+var melonNextVersion = "[next.5]";
 
 CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
 
