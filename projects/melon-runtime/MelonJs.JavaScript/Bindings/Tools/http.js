@@ -1,24 +1,24 @@
 ﻿const http = {
     _apps: {},
-    request: (target, method = "GET", body = "{}", headers = "{}") => {
-        typeof headers === "object" ? headers = JSON.stringify(headers) : {}
-        typeof body === "object" ? body = JSON.stringify(body) : {}
+    request: function (target, method = "GET", body = "{}", headers = "{}") {
+        return new AsyncTask((target, method, body, headers) => {
+            typeof headers === "object" ? headers = JSON.stringify(headers) : {}
+            typeof body === "object" ? body = JSON.stringify(body) : {}
 
-        const rawResult = __fetch_request__(target, method, body, headers)
+            const rawResult = __fetch_request__(target, method, body, headers)
 
-        //Calling "MResponse.js" binding constructor
-        return new MResponse(
-            rawResult.Body ?? "",
-            rawResult.Headers ?? {},
-            rawResult.Latency ?? 0,
-            rawResult.StatusCode ?? 599,
-            rawResult.Ok ?? false
-        )
+            return new MResponse(
+                rawResult.Body ?? "",
+                rawResult.Headers ?? {},
+                rawResult.Latency ?? 0,
+                rawResult.StatusCode ?? 599,
+                rawResult.Ok ?? false
+            )
+        }, [target, method, body, headers], 0).execute()
     },
     ping: (target, times = 1) => {
         const rawResult = __ping_request__(target, times)
 
-        //Calling "PingResponse.js" binding constructor
         return new PingResponse(
             rawResult.Results ?? [],
             rawResult.MaxLatency ?? 0,
@@ -26,8 +26,7 @@
             rawResult.AverageLatency ?? 0
         )
     },
-    //Calling "HttpApplication.js" binding constructor to make an alias
-    app: (options) => {
+    app: (options = { name: "1", host: "localhost", post: "80", enableHttps: false }) => {
         const name = options.name
         const host = options.host
         const port = options.port

@@ -119,7 +119,8 @@
   </resheader>
   <data name="NewProjectBabelrc" xml:space="preserve">
     <value>{
-    "presets": ["@babel/preset-typescript", "@babel/preset-env"]
+    "presets": ["@babel/preset-typescript", "@babel/preset-env"],
+    "plugins": ["tailcall-optimization"]
 }</value>
   </data>
   <data name="NewProjectEntryPoint" xml:space="preserve">
@@ -274,15 +275,14 @@ babel/
   "scripts": {
     "go": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load ."
   },
-  "dependencies": {
-  },
   "devDependencies": {
     "@babel/cli": "latest",
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-typescript": "latest",
     "melon-types": "latest",
-    "webpack-cli": "latest"
+    "webpack-cli": "latest",
+    "babel-plugin-tailcall-optimization": "^2.0.0"
   }
 }</value>
   </data>

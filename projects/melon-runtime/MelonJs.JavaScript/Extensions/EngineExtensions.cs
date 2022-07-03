@@ -34,7 +34,8 @@ namespace MelonJs.JavaScript.Extensions
                     break;
 
                 case BuiltInJsModule.Engine:
-                    engine.SetValue("__dotnet__", typeof(MelonDotnet));
+                    engine.SetValue("__dotnet_internal__", typeof(MelonDotnetInternal));
+                    engine.SetValue("__dotnet_external__", typeof(MelonDotnetExternal));
                     engine.SetValue("__workers_add__", new Action<string, string>(Workers.Add));
                     engine.SetValue("__workers_remove__", new Action<string>(Workers.Remove));
                     engine.SetValue("__workers_start__", new Action<string>(Workers.Start));
@@ -70,7 +71,8 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Tools/load"));
                     engine.Execute(BindingManager.Get("Tools/require"));
                     engine.Execute(BindingManager.Get("Tools/xrequire/xrequire"));
-                    engine.Execute(BindingManager.Get("Tools/xrequire/__xrequire_dotnet__"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/__xrequire_dotnet_internal__"));
+                    engine.Execute(BindingManager.Get("Tools/xrequire/__xrequire_dotnet_external__"));
                     break;
 
                 case BuiltInJsModule.Application:
@@ -132,7 +134,7 @@ namespace MelonJs.JavaScript.Extensions
                     engine.SetValue("__ping_request__",
                         new Func<string, uint, MelonPingReply>(MelonHttp.Ping));
                     engine.Execute(BindingManager.Get("Tools/http"));
-                    engine.Execute(BindingManager.Get("Constructors/Response"));
+                    engine.Execute(BindingManager.Get("Constructors/MResponse"));
                     engine.Execute(BindingManager.Get("Constructors/PingResponse"));
 
                     engine.SetValue("__http_application_run__",

@@ -1,4 +1,4 @@
-﻿const __xrequire_dotnet__ = (namespace) => {
+﻿const __xrequire_dotnet_internal__ = (namespace) => {
     return {
         getType: (type) => {
             return {
@@ -9,7 +9,7 @@
                                 parameters = [parameters];
                             }
 
-                            return __dotnet__.CallMethod(namespace, type, method, [targetObject, ...parameters]);
+                            return __dotnet_internal__.CallMethod(namespace, type, method, [targetObject, ...parameters]);
                         }
                     }
                 },
@@ -19,7 +19,7 @@
                         parameters = [parameters];
                     }
 
-                    return __dotnet__.CreateInstanceOfType(namespace, type, parameters);
+                    return __dotnet_internal__.CreateInstanceOfType(namespace, type, parameters);
                 }
             }
         }

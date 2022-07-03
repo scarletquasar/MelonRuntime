@@ -65,38 +65,5 @@
      * std.arguments
      * The command line arguments passed to MelonRuntime
      * */
-    arguments: () => __arguments__,
-    object: (target) => {
-        return {
-            isTruthy: () => Boolean(target),
-            isFalsy: () => !Boolean(target),
-            isEnumerable: () => {
-                const constructors = [
-                    Array,
-                    IndexedArray,
-                    Enumerable,
-                    Object,
-                    Map,
-                    Set
-                ]
-
-                return constructors.includes(target.constructor)
-            },
-            string: {
-                putAt: (expression, index) => {
-                    let result = ""
-
-                    target.split("").forEach((char, i) => {
-                        if (i === index) {
-                            result += expression
-                        }
-
-                        result += char
-                    })
-
-                    return result
-                }
-            }
-        }
-    }
+    arguments: () => __arguments__
 }

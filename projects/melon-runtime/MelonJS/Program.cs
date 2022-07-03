@@ -5,7 +5,6 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS.Commands;
 using System.Reflection;
-using Jint;
 
 /* Generates a new JintContainer and a new Jint engine for execution - no arguments */
 JintStatic.CurrentJintEngine = new();
@@ -15,7 +14,7 @@ var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
 
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-var melonNextVersion = "[next.4]";
+var melonNextVersion = "[next.5]";
 
 CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
 
