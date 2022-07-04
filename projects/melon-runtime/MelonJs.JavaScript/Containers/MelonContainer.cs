@@ -6,13 +6,12 @@ using MelonJs.JavaScript.Extensions;
 using MelonJs.Models.BuiltIn;
 using MelonJs.Models.Project;
 using MelonJs.Static.Jint;
-using MelonJs.Static.Tools.Scripting;
+using System.Diagnostics;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace MelonJs.JavaScript.Containers
 {
-    public class JintContainer
+    public class MelonContainer
     {
         private App _currentApp;
         public bool EnableStackTracing;
@@ -25,22 +24,64 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="initialScript">An initial script that will be executed after the setup</param>
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
-        public JintContainer(Engine engine)
+        public MelonContainer(Engine engine, string melonVersion, string melonNextVersion, bool silent)
         {
+            CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
+            Console.WriteLine();
+
             _currentApp = new();
 
+            List<BuiltInJsModule> modules = new()
+            {
+                BuiltInJsModule.LibrariesAndPolyfills,
+                BuiltInJsModule.Engine,
+                BuiltInJsModule.Application,
+                BuiltInJsModule.Environment,
+                BuiltInJsModule.InputOutput,
+                BuiltInJsModule.UnsafeScripting,
+                BuiltInJsModule.DataManagement,
+                BuiltInJsModule.HttpOperations,
+                BuiltInJsModule.Tools,
+                BuiltInJsModule.Debug,
+                BuiltInJsModule.Database
+            };
+
             JintStatic.CurrentJintEngine = engine;
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.LibrariesAndPolyfills, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Engine, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Application, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Environment, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.InputOutput, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.UnsafeScripting, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.DataManagement, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.HttpOperations, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Tools, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Debug, _currentApp, this);
-            JintStatic.CurrentJintEngine.SetupFor(BuiltInJsModule.Database, _currentApp, this);
+
+            try
+            {
+                foreach (var module in modules)
+                {
+                    var watch = new Stopwatch();
+                    watch.Start();
+                    JintStatic.CurrentJintEngine.SetupFor(module, _currentApp, this);
+                    watch.Stop();
+
+                    if (!silent)
+                    {
+                        CLNConsole.Write("[info] ", ConsoleColor.DarkMagenta);
+                        CLNConsole.Write($"({DateTime.Now}) ", ConsoleColor.Cyan);
+                        CLNConsole.Write("Loaded module ", ConsoleColor.White);
+                        CLNConsole.Write($"{module} ", ConsoleColor.Yellow);
+                        CLNConsole.Write("successfully ", ConsoleColor.Green);
+                        CLNConsole.Write("in ", ConsoleColor.White);
+
+                        var timeColor = watch.ElapsedMilliseconds < 500 ? ConsoleColor.Green : ConsoleColor.Red;
+                        CLNConsole.Write($"{watch.ElapsedMilliseconds}ms ", timeColor);
+                        Console.WriteLine();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!silent)
+                {
+                    CLNConsole.Write($"[error] ({DateTime.Now}) ", ConsoleColor.Red);
+                    CLNConsole.Write(ex.ToString(), ConsoleColor.White);
+                }
+            }
+
+            Console.WriteLine();
         }
 
         private void HandleUnknownException(Exception e)

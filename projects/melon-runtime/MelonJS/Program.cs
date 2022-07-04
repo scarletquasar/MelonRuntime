@@ -6,32 +6,51 @@ using MelonJs.Static.Jint;
 using MelonJS.Commands;
 using System.Reflection;
 
-/* Generates a new JintContainer and a new Jint engine for execution - no arguments */
-JintStatic.CurrentJintEngine = new();
-
-var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
-var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
+/* Getting flags */
+var argFlags = Environment.GetCommandLineArgs().Skip(2).Where(com => !com.StartsWith("--")).ToList();
+var silent = argFlags.Any(x => x is "--silent");
 
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
 var melonNextVersion = "[next.5]";
 
-CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
+/* Generates a new JintContainer and a new Jint engine for execution - no arguments */
+JintStatic.CurrentJintEngine = new();
 
-container.Register(new CommandList()
+var commands = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
+var melon = new MelonContainer(JintStatic.CurrentJintEngine, melonVersion, melonNextVersion, silent);
+
+commands.Register(new CommandList()
 {
+    { "info", new InfoCommand($"v{melonVersion} {melonNextVersion}") },
     { "cls", new ClearCommand() },
     { "clear", new ClearCommand() },
-    { "info", new InfoCommand($"v{melonVersion} {melonNextVersion}") },
-    { "load", new LoadCommand(engineContainer) },
-    { "exec", new ExecCommand(engineContainer) },
-    { "run", new RunCommand(engineContainer) },
+    { "load", new LoadCommand(melon) },
+    { "exec", new ExecCommand(melon) },
+    { "run", new RunCommand(melon) },
     { "new", new NewCommand() },
-    { "exit", new MelonJS.Commands.ExitCommand() }
+    { "exit", new ExitCommand() }
 });
 
 /* Executing the passed command line argument, will be converted in an Melon internal command */
-if(!container.ExecuteEnvironmentCommand())
+var argCommands = Environment.GetCommandLineArgs().Skip(2).Where(com => !com.StartsWith("--")).ToList();
+
+bool ExecuteEnvironmentCommand()
 {
-    container.WaitForNextCommand();
+    switch (argCommands!.Count)
+    {
+        case 1:
+            commands!.CallCommandByName(argCommands[0]);
+            break;
+        case 2:
+            commands!.CallCommandByName(argCommands[0], argCommands[1]);
+            break;
+    }
+
+    return argCommands!.Count > 0;
+}
+
+if (!ExecuteEnvironmentCommand())
+{
+    commands.WaitForNextCommand();
 }
