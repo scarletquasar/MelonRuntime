@@ -54,7 +54,7 @@ commands.Register(new CommandList()
 });
 
 /* Executing the passed command line argument, will be converted in an Melon internal command */
-var argCommands = Environment.GetCommandLineArgs().Skip(2).Where(com => !com.StartsWith("--")).ToList();
+var argCommands = Environment.GetCommandLineArgs().Where(com => !com.StartsWith("--")).Skip(1).ToList();
 
 bool ExecuteEnvironmentCommand()
 {
