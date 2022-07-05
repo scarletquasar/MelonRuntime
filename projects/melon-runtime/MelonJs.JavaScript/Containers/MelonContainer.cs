@@ -91,6 +91,11 @@ namespace MelonJs.JavaScript.Containers
                 }
             }
 
+            disabledInternals.ForEach(inter => {
+                Console.WriteLine(inter);
+                engine.SetValue(inter, "undefined");
+            });
+
             Console.WriteLine();
         }
 

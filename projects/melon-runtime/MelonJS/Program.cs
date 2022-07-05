@@ -24,6 +24,7 @@ argFlags.ForEach(flag =>
     if(flag.StartsWith("--disable-internal"))
     {
         var parts = flag.Split("[");
+        Console.WriteLine(parts[1].Replace("]", ""));
         disabledInternals.Add(parts[1].Replace("]", ""));
     }
 });
@@ -31,6 +32,7 @@ argFlags.ForEach(flag =>
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
 var melonNextVersion = "[next.5]";
+Console.Title = $"Melon {melonVersion} {melonNextVersion}";
 
 /* Generates a new JintContainer and a new Jint engine for execution - no arguments */
 JintStatic.CurrentJintEngine = new();
