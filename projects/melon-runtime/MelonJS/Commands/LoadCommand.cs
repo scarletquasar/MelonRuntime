@@ -5,9 +5,9 @@ namespace MelonJS.Commands
 {
     public class LoadCommand : ICommand
     {
-        private readonly JintContainer _container;
+        private readonly MelonContainer _container;
 
-        public LoadCommand(JintContainer container)
+        public LoadCommand(MelonContainer container)
         {
             _container = container;
         }

@@ -5,9 +5,9 @@ namespace MelonJS.Commands
 {
     public class RunCommand : ICommand
     {
-        private readonly JintContainer _container;
+        private readonly MelonContainer _container;
 
-        public RunCommand(JintContainer container)
+        public RunCommand(MelonContainer container)
         {
             _container = container;
         }

@@ -18,7 +18,7 @@ namespace MelonJs.JavaScript.Extensions
 {
     public static class EngineExtensions
     {
-        public static void SetupFor(this Engine engine, BuiltInJsModule module, App currentApp, JintContainer container)
+        public static void SetupFor(this Engine engine, BuiltInJsModule module, App currentApp, MelonContainer container)
         {
             switch(module)
             {

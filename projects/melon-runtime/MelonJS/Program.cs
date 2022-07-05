@@ -5,33 +5,73 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS.Commands;
 using System.Reflection;
+using MelonJs.Models.BuiltIn;
+
+var argFlags = Environment.GetCommandLineArgs().Where(com => com.StartsWith("--")).ToList();
+
+var silent = argFlags.Any(x => x is "--silent");
+var disabledModules = new List<BuiltInJsModule>();
+var disabledInternals = new List<string>();
+
+argFlags.ForEach(flag =>
+{
+    if(flag.StartsWith("--disable-module"))
+    {
+        var parts = flag.Split("[");
+        disabledModules.Add(Enum.Parse<BuiltInJsModule>(parts[1].Replace("]", "")));
+    }
+
+    if(flag.StartsWith("--disable-internal"))
+    {
+        var parts = flag.Split("[");
+        Console.WriteLine(parts[1].Replace("]", ""));
+        disabledInternals.Add(parts[1].Replace("]", ""));
+    }
+});
+
+/* Getting the project version information and next version data */
+var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
+var melonNextVersion = "[next.6]";
+Console.Title = $"Melon {melonVersion} {melonNextVersion}";
 
 /* Generates a new JintContainer and a new Jint engine for execution - no arguments */
 JintStatic.CurrentJintEngine = new();
 
-var container = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
-var engineContainer = new JintContainer(JintStatic.CurrentJintEngine);
+var commands = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
+var melon = 
+    new MelonContainer(JintStatic.CurrentJintEngine, melonVersion, melonNextVersion, silent, disabledModules, disabledInternals);
 
-/* Getting the project version information and next version data */
-var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-var melonNextVersion = "[next.5]";
-
-CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
-
-container.Register(new CommandList()
+commands.Register(new CommandList()
 {
+    { "info", new InfoCommand($"v{melonVersion} {melonNextVersion}") },
     { "cls", new ClearCommand() },
     { "clear", new ClearCommand() },
-    { "info", new InfoCommand($"v{melonVersion} {melonNextVersion}") },
-    { "load", new LoadCommand(engineContainer) },
-    { "exec", new ExecCommand(engineContainer) },
-    { "run", new RunCommand(engineContainer) },
+    { "load", new LoadCommand(melon) },
+    { "exec", new ExecCommand(melon) },
+    { "run", new RunCommand(melon) },
     { "new", new NewCommand() },
-    { "exit", new MelonJS.Commands.ExitCommand() }
+    { "exit", new ExitCommand() }
 });
 
 /* Executing the passed command line argument, will be converted in an Melon internal command */
-if(!container.ExecuteEnvironmentCommand())
+var argCommands = Environment.GetCommandLineArgs().Where(com => !com.StartsWith("--")).Skip(1).ToList();
+
+bool ExecuteEnvironmentCommand()
 {
-    container.WaitForNextCommand();
+    switch (argCommands!.Count)
+    {
+        case 1:
+            commands!.CallCommandByName(argCommands[0]);
+            break;
+        case 2:
+            commands!.CallCommandByName(argCommands[0], argCommands[1]);
+            break;
+    }
+
+    return argCommands!.Count > 0;
+}
+
+if (!ExecuteEnvironmentCommand())
+{
+    commands.WaitForNextCommand();
 }
