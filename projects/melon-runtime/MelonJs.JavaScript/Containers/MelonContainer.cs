@@ -24,7 +24,13 @@ namespace MelonJs.JavaScript.Containers
         /// <param name="initialScript">An initial script that will be executed after the setup</param>
         /// <param name="enableConsoleLogging">Enables the console logging related functions</param>
         /// <param name="enableFileSystem">Enables the file system related functions</param>
-        public MelonContainer(Engine engine, string melonVersion, string melonNextVersion, bool silent)
+        public MelonContainer(
+            Engine engine, 
+            string melonVersion, 
+            string melonNextVersion, 
+            bool silent,
+            List<BuiltInJsModule> disabledModules,
+            List<string> disabledInternals)
         {
             CLNConsole.WriteLine($"Melon v{melonVersion} {melonNextVersion}", ConsoleColor.Yellow);
             Console.WriteLine();
@@ -45,6 +51,10 @@ namespace MelonJs.JavaScript.Containers
                 BuiltInJsModule.Debug,
                 BuiltInJsModule.Database
             };
+
+            disabledModules.ForEach(module => {
+                modules.Remove(module);
+            });
 
             JintStatic.CurrentJintEngine = engine;
 
@@ -86,7 +96,7 @@ namespace MelonJs.JavaScript.Containers
 
         private void HandleUnknownException(Exception e)
         {
-            CLNConsole.WriteLine($"> [Unknown Internal Exception] {e.Message} ", ConsoleColor.Red);
+            CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
 
             if (EnableStackTracing)
                 CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);

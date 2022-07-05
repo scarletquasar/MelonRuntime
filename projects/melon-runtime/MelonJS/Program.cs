@@ -5,10 +5,28 @@ using MelonJs.JavaScript.Containers;
 using MelonJs.Static.Jint;
 using MelonJS.Commands;
 using System.Reflection;
+using MelonJs.Models.BuiltIn;
 
-/* Getting flags */
-var argFlags = Environment.GetCommandLineArgs().Skip(2).Where(com => !com.StartsWith("--")).ToList();
+var argFlags = Environment.GetCommandLineArgs().Where(com => com.StartsWith("--")).ToList();
+
 var silent = argFlags.Any(x => x is "--silent");
+var disabledModules = new List<BuiltInJsModule>();
+var disabledInternals = new List<string>();
+
+argFlags.ForEach(flag =>
+{
+    if(flag.StartsWith("--disable-module"))
+    {
+        var parts = flag.Split("[");
+        disabledModules.Add(Enum.Parse<BuiltInJsModule>(parts[1].Replace("]", "")));
+    }
+
+    if(flag.StartsWith("--disable-internal"))
+    {
+        var parts = flag.Split("[");
+        disabledInternals.Add(parts[1].Replace("]", ""));
+    }
+});
 
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
@@ -18,7 +36,8 @@ var melonNextVersion = "[next.5]";
 JintStatic.CurrentJintEngine = new();
 
 var commands = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
-var melon = new MelonContainer(JintStatic.CurrentJintEngine, melonVersion, melonNextVersion, silent);
+var melon = 
+    new MelonContainer(JintStatic.CurrentJintEngine, melonVersion, melonNextVersion, silent, disabledModules, disabledInternals);
 
 commands.Register(new CommandList()
 {

@@ -1,12 +1,11 @@
 {
     "scripts": {
-        "dotnet:publish-runtime": "dotnet publish projects/melon-runtime -o projects/melon-runtime/Output",
-        "dotnet:run-runtime": "dotnet projects/melon-runtime/Output/MelonJS.dll",
-        "npm:publish-runtime": "npm publish projects/melon-runtime",
-        "npm:publish-types": "npm publish projects/melon-types",
-        "all:publish-runtime": "npm run dotnet:publish-runtime && npm:publish-runtime",
-        "all:publish": "npm run all:publish-runtime && npm:publish-types",
-        "local:install-runtime": "npm i ./projects/melon-runtime -g -f"
+        "build-runtime": "dotnet publish projects/melon-runtime -o projects/melon-runtime/Output",
+        "run-runtime": "dotnet projects/melon-runtime/Output/MelonJS.dll",
+        "dev": "npm run build-runtime && npm run run-runtime",
+        "publish-runtime": "npm publish projects/melon-runtime",
+        "publish-types": "npm publish projects/melon-types",
+        "install-runtime": "npm i ./projects/melon-runtime -g -f"
     },
     "devDependencies": {
         "yarn": "latest"
