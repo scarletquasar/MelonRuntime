@@ -1,4 +1,4 @@
-﻿const load = (path, options = { loadFunctionLiteral: false, useHttpRequest: false, useUnsafeInjectorLoader: false }) => {
+﻿Melon.load = (path, options = { loadFunctionLiteral: false, useHttpRequest: false, useUnsafeInjectorLoader: false }) => {
     const content = options.useHttpRequest ? http.request(path) : fs.read(path)
 
     if (options.useUnsafeInjectorLoader)

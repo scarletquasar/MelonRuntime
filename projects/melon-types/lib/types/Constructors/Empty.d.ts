@@ -1,2 +1,1 @@
-declare type Empty = String
-declare const empty: Empty
+declare class EmptyConstructorInternal extends String {}

@@ -1,2 +1,2 @@
-﻿class Empty extends String { }
-const empty = new Empty();
+﻿Melon.Empty = class extends String { }
+Melon.empty = new Melon.Empty();

@@ -1,4 +1,4 @@
-declare interface NumberPeriod {
+declare interface NumberPeriodConstructorInternal {
     getValue: (value: number) => number,
     setLimit: (unitLimit: number) => void
 }

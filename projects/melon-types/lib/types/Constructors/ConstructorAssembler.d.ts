@@ -1,7 +1,6 @@
-declare interface ConstructorAssembler {
-    constructorName: string,
-    constructorArguments: any[],
-    createInstance: () => any
+declare class ConstructorAssemblerConstructorInternal {
+    constructor(constructorName: string, constructorArguments: any[]);
+    constructorName: string;
+    constructorArguments: any[];
+    createInstance: () => any;
 }
-
-declare const ConstructorAssembler: (constructorName: string, constructorArguments: any[]) => void

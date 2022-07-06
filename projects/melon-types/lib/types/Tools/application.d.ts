@@ -15,5 +15,3 @@ type Application = {
     website: string,
     entryPoint: string
 }
-
-declare const application: Application

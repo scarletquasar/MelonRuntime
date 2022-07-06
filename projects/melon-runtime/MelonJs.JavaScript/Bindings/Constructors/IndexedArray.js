@@ -1,4 +1,4 @@
-﻿class IndexedArray {
+﻿Melon.IndexedArray = class {
     constructor(arg = []) {
         this.length = 0;
         this.indexes = {};

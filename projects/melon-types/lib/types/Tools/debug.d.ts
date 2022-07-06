@@ -5,5 +5,3 @@ type Debug = {
     enableStackTracing: (enable: boolean) => void,
     enableDetailedInformation: boolean
 }
-
-declare const debug: Debug

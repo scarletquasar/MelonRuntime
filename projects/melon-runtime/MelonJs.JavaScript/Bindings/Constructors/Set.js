@@ -1,4 +1,4 @@
-﻿class Set {
+﻿Melon.Set = class {
     constructor(baseEntries) {
         this._entries = [];
         this.size = 0;

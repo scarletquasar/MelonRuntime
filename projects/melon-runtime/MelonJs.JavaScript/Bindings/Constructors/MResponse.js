@@ -1,4 +1,4 @@
-﻿class MResponse {
+﻿Melon.MResponse = class {
     constructor(body, headers, latency, statusCode, ok) {
         this.body = body;
         this.headers = headers;

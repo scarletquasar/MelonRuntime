@@ -2,6 +2,7 @@
 {
     public enum BuiltInJsModule
     {
+        Base,
         LibrariesAndPolyfills,
         Application,
         Environment,

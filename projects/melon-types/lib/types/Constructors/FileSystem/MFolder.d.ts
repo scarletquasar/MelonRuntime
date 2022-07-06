@@ -1,15 +1,12 @@
-declare interface MFolder {
-    path: string,
-    folderName: string,
-    content: MFile[],
-    folders: string[],
-    add: (file: MFile) => void,
-    save: (path: string) => void 
+declare class MFolderConstructorInternal {
+    path: string;
+    folderName: string;
+    content: MFileConstructorInternal[];
+    folders: string[];
+    add: (file: MFileConstructorInternal) => void;
+    save: (path: string) => void;
+    static load: (path: string) => MFileConstructorInternal;
+    static delete: (path: string) => void;
+    static copy: (from: string, to: string) => void;
+    static move: (from: string, to: string) => void;
 }
-
-declare const MFolder : {
-    load: (path: string) => MFile
-    delete: (path: string) => void
-    copy: (from: string, to: string) => void
-    move: (from: string, to: string) => void
-} | ((folderInfo: FolderInfo) => void)

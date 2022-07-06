@@ -1,9 +1,9 @@
-const console = {
+Melon.console = {
     _detailedDebugCheck: (object) => {
-        if (debug.enableDetailedInformation) {
+        if (Melon.debug.enableDetailedInformation) {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
             if (typeof object === "function") {
-                debug.log("[Debug] Currently, there is no support to log/stringify functions/classes. " +
+                Melon.debug.log("[Debug] Currently, there is no support to log/stringify functions/classes. " +
                     "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
             }
         }
@@ -16,7 +16,7 @@ const console = {
      * */
     log: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
+            Melon.console._detailedDebugCheck(object);
             __console_log__(object, 15);
         })
     },
@@ -26,7 +26,7 @@ const console = {
      * */
     error: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
+            Melon.console._detailedDebugCheck(object);
             __console_log__(object, 12);
         })
     },
@@ -36,7 +36,7 @@ const console = {
      * */
     warn: function () {
         Array.from(arguments).forEach(object => {
-            console._detailedDebugCheck(object);
+            Melon.console._detailedDebugCheck(object);
             __console_log__(object, 14);
         })
     },
@@ -56,27 +56,27 @@ const console = {
      * Displays tabular data as a table
      * */
     table: function (data, columns) {
-        if (data.constructor === Object) {
+        if (Melon.data.constructor === Object) {
             if (!columns) {
-                var columns = [];
-                for (var prop in data[0]) {
+                let columns = [];
+                for (let prop in data[0]) {
                     if (columns.indexOf(prop) === -1) {
                         columns.push(prop);
                     }
                 }
 
-                var header = '(index)';
-                for (var p in columns) {
+                let header = '(index)';
+                for (let p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                console.log(header);
+                Melon.console.log(header);
 
             }
             else if (typeof columns !== 'object') {
-                var columns = [];
-                for (var index in data) {
-                    for (var prop in data[index]) {
+                let columns = [];
+                for (let index in data) {
+                    for (let prop in data[index]) {
                         if (columns.indexOf(prop) === -1) {
                             columns.push(prop);
                         }
@@ -84,46 +84,46 @@ const console = {
                 }
             }
             else {
-                var header = '(index)';
-                for (var p in columns) {
+                let header = '(index)';
+                for (let p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                console.log(header);
+                Melon.console.log(header);
             }
 
-            for (var obj in data) {
-                var entry = data[obj];
-                var entryStr = obj + '';
-                for (var j = 0; j < columns.length; j++) {
+            for (let obj in data) {
+                let entry = data[obj];
+                let entryStr = obj + '';
+                for (let j = 0; j < columns.length; j++) {
                     entryStr += ' | ';
                     entryStr += entry[columns[j]];
                 }
-                console.log(entryStr);
+                Melon.console.log(entryStr);
             }
 
         }
-        else if (data.constructor === Array) {
+        else if (Melon.data.constructor === Array) {
             if (!columns) {
-                var columns = [];
-                for (var prop in data[0]) {
+                let columns = [];
+                for (let prop in data[0]) {
                     if (columns.indexOf(prop) === -1) {
                         columns.push(prop);
                     }
                 }
 
-                var header = '(index)';
-                for (var p in columns) {
+                let header = '(index)';
+                for (let p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                console.log(header);
 
+                Melon.console.log(header);
             }
             else if (typeof columns !== 'object') {
-                var columns = [];
-                for (var index in data) {
-                    for (var prop in data[index]) {
+                let columns = [];
+                for (let index in data) {
+                    for (let prop in data[index]) {
                         if (columns.indexOf(prop) === -1) {
                             columns.push(prop);
                         }
@@ -131,22 +131,24 @@ const console = {
                 }
             }
             else {
-                var header = '(index)';
-                for (var p in columns) {
+                let header = '(index)';
+                for (let p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                console.log(header);
+                Melon.console.log(header);
             }
 
-            for (var i = 0; i < data.length; i++) {
-                var entry = data[i];
-                var entryStr = i + '';
+            for (let i = 0; i < data.length; i++) {
+                let entry = data[i];
+                let entryStr = i + '';
+
                 for (var j = 0; j < columns.length; j++) {
                     entryStr += ' | ';
                     entryStr += entry[columns[j]];
                 }
-                console.log(entryStr);
+                
+                Melon.console.log(entryStr);
             }
         }
     }

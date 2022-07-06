@@ -1,4 +1,4 @@
-﻿class ConstructorAssembler {
+﻿Melon.ConstructorAssembler = class {
     constructor(constructorName, constructorArguments) {
         this.constructorName = String(constructorName);
         this.constructorArguments = Array.from(constructorArguments);

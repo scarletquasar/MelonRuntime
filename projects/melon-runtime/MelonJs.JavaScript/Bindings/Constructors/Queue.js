@@ -1,4 +1,4 @@
-﻿class Queue {
+﻿Melon.Queue = class {
     constructor(callbackArray) {
         this._queue = Array.from(callbackArray);
     }

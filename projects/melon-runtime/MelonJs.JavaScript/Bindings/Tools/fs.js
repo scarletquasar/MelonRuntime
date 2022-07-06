@@ -1,4 +1,4 @@
-﻿const fs = {
+﻿Melon.fs = {
     readAllTextSync: (path) => {
         return __fs_read__(path);
     },
