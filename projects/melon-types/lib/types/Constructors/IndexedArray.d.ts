@@ -1,9 +1,8 @@
-declare interface IndexedArray<T> extends Iterable<T> {
-    length: number,
-    indexes: Record<string, T[] | IndexedArray<T>>,
-    push: (item: T) => void,
-    asArray: () => T[],
-    writeIndex: (name: string, filter: (this: T) => boolean, asIndexed: boolean) => void
+declare class IndexedArrayConstructorInternal<T> implements Iterable<T> {
+    [Symbol.iterator](): Iterator<T, any, undefined>;
+    length: number;
+    indexes: Record<string, T[] | IndexedArrayConstructorInternal<T>>;
+    push: (item: T) => void;
+    asArray: () => T[];
+    writeIndex: (name: string, filter: (this: T) => boolean, asIndexed: boolean) => void;
 }
-
-declare function IndexedArray<T>(args: Iterable<T>): void
