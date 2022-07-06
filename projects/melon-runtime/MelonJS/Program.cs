@@ -31,7 +31,7 @@ argFlags.ForEach(flag =>
 
 /* Getting the project version information and next version data */
 var melonVersion = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-var melonNextVersion = "[next.6]";
+var melonNextVersion = "[next.8]";
 Console.Title = $"Melon {melonVersion} {melonNextVersion}";
 
 /* Generates a new JintContainer and a new Jint engine for execution - no arguments */
