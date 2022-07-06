@@ -1,4 +1,4 @@
-﻿Melon.environment = {
+﻿const environment = {
     getVariable: (name) => {
         return __environment__.GetEnvironmentVariables()[name] ?? __environment_vars__[name]
     },

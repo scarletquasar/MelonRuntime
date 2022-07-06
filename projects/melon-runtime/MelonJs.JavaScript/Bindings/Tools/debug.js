@@ -1,8 +1,8 @@
-﻿Melon.debug = {
+﻿const debug = {
     logs: [],
     log: (message) => {
-        Melon.console.warn(message);
-        Melon.debug.logs.push([Date.now(), message]);
+        console.warn(message)
+        debug.logs.push([Date.now(), message])
     },
     /*
      * debug.details(...arguments)
@@ -10,8 +10,8 @@
      * */
     details: function () {
         Array.from(arguments).forEach(object => {
-            Melon.console._detailedDebugCheck(object);
-            __console_details__(object, 15);
+            console._detailedDebugCheck(object)
+            __console_details__(object, 15)
         })
     },
     enableStackTracing: __debug_set_stack_tracing__,

@@ -1,8 +1,8 @@
 {
     "scripts": {
-        "dev": "npm run build-runtime && npm run run-runtime",
         "build-runtime": "dotnet publish projects/melon-runtime -o projects/melon-runtime/Output",
         "run-runtime": "dotnet projects/melon-runtime/Output/MelonJS.dll",
+        "dev": "npm run build-runtime && npm run run-runtime",
         "install-runtime": "npm i ./projects/melon-runtime -g -f"
     },
     "devDependencies": {

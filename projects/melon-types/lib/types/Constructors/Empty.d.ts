@@ -1,1 +1,2 @@
-declare class EmptyConstructorInternal extends String {}
+declare type Empty = String
+declare const empty: Empty

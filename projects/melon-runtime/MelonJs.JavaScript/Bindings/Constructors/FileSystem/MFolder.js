@@ -1,4 +1,4 @@
-﻿Melon.MFolder = class {
+﻿class MFolder {
     constructor(folderInfo) {
         this.folderName = folderInfo.name ?? "";
         this.path = folderInfo.path ?? "";
@@ -6,25 +6,25 @@
         this.folders = folderInfo.folders ?? [];
 
         folderInfo.content.forEach(file => {
-            if (!(file instanceof Melon.MFile)) {
+            if (!(file instanceof File)) {
                 this._errValidFiles();
             }
         });
 
         folderInfo.folders.forEach(file => {
-            if (!(file instanceof Melon.MFolder)) {
+            if (!(file instanceof Folder)) {
                 this._errValidFiles();
             }
         });
     }
 
     add(target) {
-        if (file instanceof Melon.MFile) {
+        if (file instanceof File) {
             this.content.push(target);
             return;
         }
 
-        if (file instanceof Melon.MFolder) {
+        if (file instanceof Folder) {
             this.folders.push(target.folderPath);
             return;
         }
@@ -42,10 +42,10 @@
     }
 }
 
-Melon.MFolder.load = (path) => {
+MFolder.load = (path) => {
     const loadedFolder = new __folder__(path);
 
-    return new Melon.MFolder({
+    return new Folder({
         name: loadedFolder.Name,
         path: loadedFolder.FolderPath,
         content: loadedFolder.Content

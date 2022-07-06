@@ -1,5 +1,5 @@
-declare class FolderInfoConstructorInternal { 
-    path: string;
-    content: MFile[];
-    folders: string[];
+declare interface FolderInfo { 
+    path: string, 
+    content: MFile[], 
+    folders: string[]
 }

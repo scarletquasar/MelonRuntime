@@ -20,3 +20,6 @@ type Std = {
     },
     arguments: string[]
 }
+
+/** std contains generic system functions and utilities */
+declare const std: Std

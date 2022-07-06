@@ -1,4 +1,4 @@
-﻿Melon.MFile = class {
+﻿class MFile {
     constructor(fileInfo = { name: "", content: null, encoding: "utf8" }) {
         //File Information
         this.fileName = fileInfo.name;
@@ -8,9 +8,10 @@
 
         //Operations
         this.path = fileInfo.path;
-        
-        const bytes = 
-            !!fileInfo.content ? __converter__.FromStringToByteArray(fileInfo.content, fileInfo.encoding) : fileInfo.bytes;
+
+        const bytes = fileInfo.content != null
+            ? melon_internal_convert.FromStringToByteArray(fileInfo.content, fileInfo.encoding)
+            : fileInfo.bytes;
 
         const size = (bytes?.length / 1024);
 
@@ -32,7 +33,7 @@
     }
 }
 
-Melon.MFile.load = (path) => {
+MFile.load = (path) => {
     const loadedFile = new __file__(path);
 
     return new File({
@@ -45,14 +46,14 @@ Melon.MFile.load = (path) => {
     });
 }
 
-Melon.MFile.delete = (path) => {
+MFile.delete = (path) => {
     __delete_file__(path);
 }
 
-Melon.MFile.copy = (from, to) => {
+MFile.copy = (from, to) => {
     __copy_file__(from, to);
 }
 
-Melon.MFile.move = (from, to) => {
+MFile.move = (from, to) => {
     __move_file__(from, to);
 }

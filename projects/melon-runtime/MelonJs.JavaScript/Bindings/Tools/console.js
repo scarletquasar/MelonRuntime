@@ -1,9 +1,9 @@
-Melon.console = {
+const console = {
     _detailedDebugCheck: (object) => {
-        if (Melon.debug.enableDetailedInformation) {
+        if (debug.enableDetailedInformation) {
             //Reference case for https://github.com/MelonRuntime/MelonJS/issues/16
             if (typeof object === "function") {
-                Melon.debug.log("[Debug] Currently, there is no support to log/stringify functions/classes. " +
+                debug.log("[Debug] Currently, there is no support to log/stringify functions/classes. " +
                     "See more information in: https://github.com/MelonRuntime/MelonJS/issues/16")
             }
         }
@@ -16,7 +16,7 @@ Melon.console = {
      * */
     log: function () {
         Array.from(arguments).forEach(object => {
-            Melon.console._detailedDebugCheck(object);
+            console._detailedDebugCheck(object);
             __console_log__(object, 15);
         })
     },
@@ -26,7 +26,7 @@ Melon.console = {
      * */
     error: function () {
         Array.from(arguments).forEach(object => {
-            Melon.console._detailedDebugCheck(object);
+            console._detailedDebugCheck(object);
             __console_log__(object, 12);
         })
     },
@@ -36,7 +36,7 @@ Melon.console = {
      * */
     warn: function () {
         Array.from(arguments).forEach(object => {
-            Melon.console._detailedDebugCheck(object);
+            console._detailedDebugCheck(object);
             __console_log__(object, 14);
         })
     },
@@ -56,27 +56,27 @@ Melon.console = {
      * Displays tabular data as a table
      * */
     table: function (data, columns) {
-        if (Melon.data.constructor === Object) {
+        if (data.constructor === Object) {
             if (!columns) {
-                let columns = [];
-                for (let prop in data[0]) {
+                var columns = [];
+                for (var prop in data[0]) {
                     if (columns.indexOf(prop) === -1) {
                         columns.push(prop);
                     }
                 }
 
-                let header = '(index)';
-                for (let p in columns) {
+                var header = '(index)';
+                for (var p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                Melon.console.log(header);
+                console.log(header);
 
             }
             else if (typeof columns !== 'object') {
-                let columns = [];
-                for (let index in data) {
-                    for (let prop in data[index]) {
+                var columns = [];
+                for (var index in data) {
+                    for (var prop in data[index]) {
                         if (columns.indexOf(prop) === -1) {
                             columns.push(prop);
                         }
@@ -84,71 +84,69 @@ Melon.console = {
                 }
             }
             else {
-                let header = '(index)';
-                for (let p in columns) {
+                var header = '(index)';
+                for (var p in columns) {
                     header += ' | ';
                     header += columns[p];
                 }
-                Melon.console.log(header);
+                console.log(header);
             }
 
-            for (let obj in data) {
-                let entry = data[obj];
-                let entryStr = obj + '';
-                for (let j = 0; j < columns.length; j++) {
-                    entryStr += ' | ';
-                    entryStr += entry[columns[j]];
-                }
-                Melon.console.log(entryStr);
-            }
-
-        }
-        else if (Melon.data.constructor === Array) {
-            if (!columns) {
-                let columns = [];
-                for (let prop in data[0]) {
-                    if (columns.indexOf(prop) === -1) {
-                        columns.push(prop);
-                    }
-                }
-
-                let header = '(index)';
-                for (let p in columns) {
-                    header += ' | ';
-                    header += columns[p];
-                }
-
-                Melon.console.log(header);
-            }
-            else if (typeof columns !== 'object') {
-                let columns = [];
-                for (let index in data) {
-                    for (let prop in data[index]) {
-                        if (columns.indexOf(prop) === -1) {
-                            columns.push(prop);
-                        }
-                    }
-                }
-            }
-            else {
-                let header = '(index)';
-                for (let p in columns) {
-                    header += ' | ';
-                    header += columns[p];
-                }
-                Melon.console.log(header);
-            }
-
-            for (let i = 0; i < data.length; i++) {
-                let entry = data[i];
-                let entryStr = i + '';
-
+            for (var obj in data) {
+                var entry = data[obj];
+                var entryStr = obj + '';
                 for (var j = 0; j < columns.length; j++) {
                     entryStr += ' | ';
                     entryStr += entry[columns[j]];
                 }
-                
-                Melon.console.log(entryStr);
+                console.log(entryStr);
+            }
+
+        }
+        else if (data.constructor === Array) {
+            if (!columns) {
+                var columns = [];
+                for (var prop in data[0]) {
+                    if (columns.indexOf(prop) === -1) {
+                        columns.push(prop);
+                    }
+                }
+
+                var header = '(index)';
+                for (var p in columns) {
+                    header += ' | ';
+                    header += columns[p];
+                }
+                console.log(header);
+
+            }
+            else if (typeof columns !== 'object') {
+                var columns = [];
+                for (var index in data) {
+                    for (var prop in data[index]) {
+                        if (columns.indexOf(prop) === -1) {
+                            columns.push(prop);
+                        }
+                    }
+                }
+            }
+            else {
+                var header = '(index)';
+                for (var p in columns) {
+                    header += ' | ';
+                    header += columns[p];
+                }
+                console.log(header);
+            }
+
+            for (var i = 0; i < data.length; i++) {
+                var entry = data[i];
+                var entryStr = i + '';
+                for (var j = 0; j < columns.length; j++) {
+                    entryStr += ' | ';
+                    entryStr += entry[columns[j]];
+                }
+                console.log(entryStr);
             }
         }
     }

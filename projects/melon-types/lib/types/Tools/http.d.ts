@@ -1,5 +1,5 @@
 /// <reference path="../Constructors/PingResponse.d.ts" />
-/// <reference path="../Constructors/Response.d.ts" />
+/// <reference path="../Constructors/MResponse.d.ts" />
 /// <reference path="../Constructors/HttpApplication.d.ts" />
 
 type ImageExtension = "png" | "gif" | "jpeg" | "jpg" | "png" | "svg+xml" | "webp" | "bmp" | "avif" | "tiff"
@@ -14,7 +14,7 @@ type MSimpleResponse<R, MT extends string> = {
 }
 
 type Http = {
-    request: (target: string, method: string, body: string, headers: string) => Promise<Response>,
+    request: (target: string, method: string, body: string, headers: string) => Promise<MResponse>,
     ping: (target: string, times: number) => PingResponse,
     app: (options: {name: string, host: string, port: string, enableHttps?: boolean}) => HttpApplication,
     result: (statusCode: number, response?: any) => {
@@ -29,3 +29,5 @@ type Http = {
     pdf: <R>(response: R) => MSimpleResponse<R, 'application/pdf'>
     html: <R>(response: R) => MSimpleResponse<R, 'text/html'>
 }
+
+declare const http: Http

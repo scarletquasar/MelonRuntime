@@ -16,3 +16,5 @@ declare type DatabaseClient = {
     executeNonQuery: (sql: string) => number,
     executeQuery: (sql: string) => any
 }
+
+declare const data: Data

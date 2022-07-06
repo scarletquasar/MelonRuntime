@@ -1,4 +1,4 @@
-﻿Melon.xrequire = (target) => {
+﻿const xrequire = (target) => {
     const attributes = target.split(":");
 
     switch (attributes[0]) {

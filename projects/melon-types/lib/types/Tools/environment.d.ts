@@ -10,3 +10,5 @@ type Environment = {
         kill: (name: string) => void,
     }
 }
+
+declare const environment: Environment

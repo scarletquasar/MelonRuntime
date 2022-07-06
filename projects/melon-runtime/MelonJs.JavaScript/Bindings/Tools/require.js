@@ -1,4 +1,4 @@
-Melon.require = function(module) {
+function require(module) {
     const parts = module.split(":")
 
     if(!(parts[0].endsWith(".js"))) {

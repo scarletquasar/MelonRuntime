@@ -1,4 +1,4 @@
-﻿Melon.PingResponse = {
+﻿class PingResponse {
     constructor(results, max, min, average) {
         this.results = results;
         this.max = max;

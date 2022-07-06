@@ -1,4 +1,4 @@
-﻿Melon.Map = class {
+﻿class Map {
     constructor(baseEntries) {
         this._entries = {};
         this.size = 0;

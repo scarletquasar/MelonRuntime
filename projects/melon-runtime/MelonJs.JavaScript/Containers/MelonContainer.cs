@@ -39,7 +39,6 @@ namespace MelonJs.JavaScript.Containers
 
             List<BuiltInJsModule> modules = new()
             {
-                BuiltInJsModule.Base,
                 BuiltInJsModule.LibrariesAndPolyfills,
                 BuiltInJsModule.Engine,
                 BuiltInJsModule.Application,

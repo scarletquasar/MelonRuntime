@@ -6,3 +6,5 @@ type MConsole = {
     read(): string,
     table(tabularData?: any, properties?: string[]): void
 }
+
+declare const console: MConsole

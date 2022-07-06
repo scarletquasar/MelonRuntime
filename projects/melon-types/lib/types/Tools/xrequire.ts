@@ -9,5 +9,7 @@ declare type DotnetHandler = {
     }
 }
 
-declare type DotnetAssignable = `dotnet:${string}`;
-declare type DotnetExternalAssignable = `dotnet-external:${string}`;
+declare type DotnetAssignable = `dotnet:${string}`
+declare type DotnetExternalAssignable = `dotnet-external:${string}`
+declare function xrequire(target: DotnetAssignable): DotnetHandler
+declare function xrequire(target: DotnetExternalAssignable): DotnetHandler

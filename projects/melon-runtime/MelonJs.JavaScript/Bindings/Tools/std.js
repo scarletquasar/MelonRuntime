@@ -1,4 +1,4 @@
-﻿Melon.std = {
+﻿const std = {
     /*
      * std.shift(valueToBeTurnedIntoOption)
      * The shift function provides an endless chain of callback options that can 

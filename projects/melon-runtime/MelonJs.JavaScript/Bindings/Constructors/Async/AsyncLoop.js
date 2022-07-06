@@ -1,4 +1,4 @@
-﻿Melon.AsyncLoop = class {
+﻿class AsyncLoop {
     constructor(action, times = 1, delay = 0, errorAction = console.error) {
         this._stopped = false;
 
@@ -6,7 +6,7 @@
 
         this.times = times;
 
-        this._promise = new MPromise(
+        this._promise = new Promise(
             resolve => {
                 let result = [];
 
@@ -18,6 +18,6 @@
                 resolve(result);
             }, errorAction)
 
-        this.execute = () => MPromise.resolve(this._promise);
+        this.execute = () => Promise.resolve(this._promise);
     }
 }
