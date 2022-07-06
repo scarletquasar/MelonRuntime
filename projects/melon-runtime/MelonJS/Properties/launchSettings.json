@@ -1,8 +1,7 @@
 {
   "profiles": {
     "MelonJS": {
-      "commandName": "Project",
-      "commandLineArgs": "info"
+      "commandName": "Project"
     }
   }
 }

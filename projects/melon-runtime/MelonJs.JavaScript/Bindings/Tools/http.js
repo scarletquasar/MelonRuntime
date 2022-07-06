@@ -1,4 +1,4 @@
-﻿const http = {
+﻿Melon.http = {
     _apps: {},
     request: function (target, method = "GET", body = "{}", headers = "{}") {
         return new AsyncTask((target, method, body, headers) => {

@@ -1,1 +1,1 @@
-const MPromise = Promise;
+Melon.MPromise = Promise;

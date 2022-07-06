@@ -1,6 +1,4 @@
-﻿using MelonJs.Models.Extensions;
-
-namespace MelonJs.Static.Tools.Scripting
+﻿namespace MelonJs.Static.Tools.Scripting
 {
     public static class BindingManager
     {
@@ -8,12 +6,7 @@ namespace MelonJs.Static.Tools.Scripting
         {
             var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
             var path = classlibPath + "/Bindings/" + fragmentPath + ".js";
-            var content = string.Empty;
-
-            if(File.Exists(path))
-            {
-                content = File.ReadAllText(path);
-            }
+            var content = File.ReadAllText(path);
 
             return content;
         }

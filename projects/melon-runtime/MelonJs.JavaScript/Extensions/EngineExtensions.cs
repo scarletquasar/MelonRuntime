@@ -22,6 +22,10 @@ namespace MelonJs.JavaScript.Extensions
         {
             switch(module)
             {
+                case BuiltInJsModule.Base:
+                    engine.Execute(BindingManager.Get("Melon"));
+                    break;
+
                 case BuiltInJsModule.Database:
                     engine.SetValue("__pg_binding__", typeof(PgStatic));
                     engine.SetValue("__mysql_binding__", typeof(MySqlStatic));
@@ -59,7 +63,6 @@ namespace MelonJs.JavaScript.Extensions
                     engine.Execute(BindingManager.Get("Constructors/Empty"));
                     engine.Execute(BindingManager.Get("Constructors/Async/AsyncTask"));
                     engine.Execute(BindingManager.Get("Constructors/ConstructorAssembler"));
-                    engine.Execute(BindingManager.Get("Constructors/Errors/FileErrorConstants"));
                     engine.Execute(BindingManager.Get("Constructors/Set"));
                     engine.Execute(BindingManager.Get("Constructors/Map"));
                     engine.Execute(BindingManager.Get("Constructors/MPromise"));
@@ -109,8 +112,8 @@ namespace MelonJs.JavaScript.Extensions
                     engine.SetValue("__file__", typeof(MelonFile));
                     engine.SetValue("__create_folder__", new Func<string, DirectoryInfo>(Directory.CreateDirectory));
                     engine.SetValue("__folder__", typeof(MelonFolder));
-                    engine.Execute(BindingManager.Get("Constructors/FileSystem/File"));
-                    engine.Execute(BindingManager.Get("Constructors/FileSystem/Folder"));
+                    engine.Execute(BindingManager.Get("Constructors/FileSystem/MFile"));
+                    engine.Execute(BindingManager.Get("Constructors/FileSystem/MFolder"));
                     engine.Execute(BindingManager.Get("Tools/fs"));
                     break;
 

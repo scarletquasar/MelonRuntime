@@ -81,6 +81,9 @@
     <None Update="Bindings\Libraries\esprima.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Bindings\Melon.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bindings\Tools\application.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

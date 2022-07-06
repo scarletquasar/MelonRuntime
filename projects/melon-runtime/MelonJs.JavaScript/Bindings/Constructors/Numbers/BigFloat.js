@@ -1,4 +1,4 @@
-﻿class BigFloat {
+﻿Melon.BigFloat = class {
     constructor(number) {
         this._level = 0;
 

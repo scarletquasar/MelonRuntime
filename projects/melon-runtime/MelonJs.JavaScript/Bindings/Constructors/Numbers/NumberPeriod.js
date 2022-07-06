@@ -1,4 +1,4 @@
-﻿class NumberPeriod {
+﻿Melon.NumberPeriod = class {
     constructor(unitLimit = 100) {
         this._limit = Number(unitLimit);
     }
