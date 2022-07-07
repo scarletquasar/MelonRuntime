@@ -14,3 +14,9 @@
 
 - Go to the official .NET 6.0 download page;
 - Go to `ASP.NET Core Runtime` > `Linux` > `Package manager instructions` and follow the command line instructions
+
+## Installing on macOS
+
+- Go to the official .NET 6.0 download page
+- Search for `ASP.NET Runtime` > `macOS` and click in the link
+- Two executable installation files will be downloaded, install them
