@@ -17,9 +17,9 @@ npx melon [command] [...arguments?]
 
 - `npx melon info` - Shows information about MelonRuntime
 
-<details>
+**Output example:**
 
-Output example:
+<details>
 
 ```bash
 > Melon v1.7.0 [next.5]
