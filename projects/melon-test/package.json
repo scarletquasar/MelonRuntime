@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "go": "babel --extensions .ts ./src/ --out-dir ./babel && webpack ./babel/index.js && npx melon load ."
+  },
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-typescript": "latest",
+    "melon-types": "latest",
+    "webpack-cli": "latest",
+    "babel-plugin-tailcall-optimization": "^2.0.0"
+  }
+}

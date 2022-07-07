@@ -1,0 +1,7 @@
+{
+    "name": "",
+    "description": "",
+    "version": "1.0.0",
+    "website": "",
+    "entryPoint": "dist/main.js"
+}
