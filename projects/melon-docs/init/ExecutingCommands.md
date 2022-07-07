@@ -17,6 +17,8 @@ npx melon [command] [...arguments?]
 
 - `npx melon info` - Shows information about MelonRuntime
 
+<details>
+
 Output example:
 
 ```bash
@@ -24,6 +26,8 @@ Output example:
 > Github repository: https://github.com/MelonRuntime/Melon
 > npm page: https://www.npmjs.com/package/melon-runtime
 ```
+
+</details>
 
 - `npx melon [clear|cls]` - Clear the console screen
 - `npx melon load [path]` - Load a project with a valid melon.json
