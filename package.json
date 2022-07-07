@@ -7,8 +7,5 @@
     },
     "devDependencies": {
         "yarn": "latest"
-    },
-    "dependencies": {
-        "melon-test": "^0.0.1"
     }
 }
