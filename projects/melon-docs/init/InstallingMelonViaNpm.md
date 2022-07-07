@@ -6,6 +6,6 @@
 
 To install, use the following command:
 
-```console
+```properties
 npm install melon-runtime@1.7.0-next.8 -g
 ```
