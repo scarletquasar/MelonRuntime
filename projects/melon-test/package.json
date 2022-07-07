@@ -1,0 +1,23 @@
+{
+  "name": "melon-test",
+  "version": "0.0.1",
+  "author": "Victória Rose",
+  "license": "MIT",
+  "description": "Base api kit to tests in Melon",
+  "tags": [
+    "test",
+    "api",
+    "runtime",
+    "melon", 
+    "melonruntime"
+  ],
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "melon-types": "latest",
+    "typescript": "latest"
+  },
+  "main": "build/index.js",
+  "types": "build/index.d.ts"
+}
