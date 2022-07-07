@@ -9,4 +9,4 @@
   - Executing code in Melon
 
 - Projects
-  - Melon Project Tree
+  - [Melon Project Tree](https://github.com/MelonRuntime/Melon/blob/feat/docs/projects/melon-docs/projects/MelonProjectTree.md)
