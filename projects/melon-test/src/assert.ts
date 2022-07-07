@@ -11,4 +11,6 @@ const assert = {
     objectIsNotEmpty: (target: Record<any, any>) => Object.keys(target).length > 0,
     equals: (target1: any, target2: any) => data.compare(target1, target2, (x: any, y: any) => x === y),
     notEquals: (target1: any, target2: any) => data.compare(target1, target2, (x: any, y: any) => x !== y),
+    toBeInside: (target1: any, target2: any) => data.find(target1, target2, 0, false),
+    toNotBeInside: (target1: any, target2: any) => !data.find(target1, target2, 0, false)
 }
