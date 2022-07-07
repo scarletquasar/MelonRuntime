@@ -1,3 +1,7 @@
+const CliDotNet = xrequire("dotnet:Cli.NET.Tools");
+const CLNConsole = CliDotNet.getType("CLNConsole");
+const Write = CLNConsole.getMethod("Write");
+ 
 class Test {
     description: string;
     private _assertions: boolean[];
@@ -12,7 +16,9 @@ class Test {
             const passed = Promise.resolve(this._assertions.every((assertion) => assertion === true));
            
             if(log) {
-                console.log(`${passed ? "[Ok]" : "[Failed]"} ${this.description}`);
+                console.log('');
+                passed ? Write.invoke(["", "[Ok]", 2]) : Write.invoke(["", "[Failed]", 4]);
+                Write.invoke(["", this.description]);
             }
 
             return passed;
