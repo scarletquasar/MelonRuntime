@@ -17,6 +17,11 @@
 
 ## Installing on macOS
 
-- Go to the official .NET 6.0 download page
-- Search for `ASP.NET Runtime` > `macOS` and click in the link
+- Go to the official .NET 6.0 download page;
+- Search for `ASP.NET Runtime` > `macOS` and click in the link;
 - Two executable installation files will be downloaded, install them
+
+```
+🎯 Tip: 🛑 [Supported OS versions information](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md)
+```
+
