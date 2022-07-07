@@ -1,4 +1,5 @@
 # Melon Docs
+`v1.7.0-next.8`
 
 - Getting Started
   - [Installing .NET](https://github.com/MelonRuntime/Melon/blob/feat/docs/projects/melon-docs/getting-started/InstallingDotnetRuntime.md)
