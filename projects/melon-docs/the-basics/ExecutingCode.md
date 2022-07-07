@@ -23,6 +23,9 @@ Inline commands can be executed directly via command in MelonRuntime quickly and
 - Run `npm install` to install the required melon types and start working with TypeScript
 - Run `npm run go` to initialize the project
 
-> 🎯 Tip: A bundle file containing all installed NPM packages and your project will be created in /dist/main.js
-
-> 🎯 Tip: If you experience issues with webpack, try executing the command npm i webpack-cli -g
+```
+🎯 Tip: A bundle file containing all installed NPM packages and your project will be created in /dist/main.js
+```
+```
+🎯 Tip: If you experience issues with webpack, try executing the command npm i webpack-cli -g
+```
