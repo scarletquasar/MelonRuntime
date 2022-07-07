@@ -1,4 +1,4 @@
-# 🧱 MelonRuntime project tree
+# 🧱 Melon project tree
 
 Once generated, a melon project must contain the following files (this is a standard convention, <br> all files can be adapted and changed, it contains everything needed to bundle packages and adapt <br> the code to be executed by MelonRuntime):
 
