@@ -1,4 +1,4 @@
-const assert = {
+const Assert = {
     true: (target: boolean) => target,
     false: (target: boolean) => !target,
     truthy: (target: any) => Boolean(target),
@@ -10,9 +10,7 @@ const assert = {
     objectIsEmpty: (target: Record<any, any>) => Object.keys(target).length === 0,
     objectIsNotEmpty: (target: Record<any, any>) => Object.keys(target).length > 0,
     equals: (target1: any, target2: any) => data.compare(target1, target2, (x: any, y: any) => x === y),
-    notEquals: (target1: any, target2: any) => data.compare(target1, target2, (x: any, y: any) => x !== y),
-    toBeInside: (target1: any, target2: any) => data.find(target1, target2, 0, false),
-    toNotBeInside: (target1: any, target2: any) => !data.find(target1, target2, 0, false)
+    notEquals: (target1: any, target2: any) => !data.compare(target1, target2, (x: any, y: any) => x !== y),
 }
 
-export { assert }
+export { Assert }

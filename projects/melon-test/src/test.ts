@@ -1,24 +1,23 @@
-const CliDotNet = xrequire("dotnet:Cli.NET.Tools");
-const CLNConsole = CliDotNet.getType("CLNConsole");
-const Write = CLNConsole.getMethod("Write");
- 
 class Test {
     description: string;
     private _assertions: boolean[];
-    add: (value: boolean) => void;
+    add: (value: boolean) => Test;
     result: (log?: boolean) => Promise<boolean>;
 
     constructor(description: string) {
         this._assertions = [];
         this.description = description;
-        this.add = (value: boolean) => void this._assertions.push(value);
+
+        this.add = (value: boolean) => {
+            this._assertions.push(value);
+            return this;
+        };
+
         this.result = async (log = false) => {
             const passed = Promise.resolve(this._assertions.every((assertion) => assertion === true));
            
             if(log) {
-                console.log('');
-                passed ? Write.invoke(["", "[Ok]", 2]) : Write.invoke(["", "[Failed]", 4]);
-                Write.invoke(["", this.description]);
+                console.log(`${await passed ? "[Ok]" : "[Failed]"} ${this.description}`);
             }
 
             return passed;
@@ -26,3 +25,5 @@ class Test {
         return this;
     }
 }
+
+export { Test }
