@@ -12,7 +12,19 @@ npx melon [command] [...arguments?]
 ## Commands
 
 - `npx melon` - Run in local console mode
+
+> Console mode is a running style that allows you to execute any command separately
+
 - `npx melon info` - Shows information about MelonRuntime
+
+Output example:
+
+```bash
+> Melon v1.7.0 [next.5]
+> Github repository: https://github.com/MelonRuntime/Melon
+> npm page: https://www.npmjs.com/package/melon-runtime
+```
+
 - `npx melon [clear|cls]` - Clear the console screen
 - `npx melon load [path]` - Load a project with a valid melon.json
 - `npx melon exec [path]` - Run a standalone JavaScript file
