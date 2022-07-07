@@ -14,3 +14,5 @@ const assert = {
     toBeInside: (target1: any, target2: any) => data.find(target1, target2, 0, false),
     toNotBeInside: (target1: any, target2: any) => !data.find(target1, target2, 0, false)
 }
+
+export { assert }
