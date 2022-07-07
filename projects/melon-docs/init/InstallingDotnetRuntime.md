@@ -1,7 +1,7 @@
 # ✨ Installing .NET Runtime
 
 ```
-⛔ MelonRuntime requires ASP.NET Runtime version 6.0 or higher to run in any environment
+⛔ Melon requires ASP.NET Runtime version 6.0 or higher to run in any environment
 ```
 
 ## Installing on Windows
@@ -22,4 +22,3 @@
 - Two executable installation files will be downloaded, install them
 
 > **🎯 Tip: [Supported OS versions information](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md)**
-
