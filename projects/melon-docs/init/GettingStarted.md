@@ -12,6 +12,6 @@
 
 ## Installing on Linux
 
-- `⛔ Info | Know issues with Linux MelonRuntime execution`
+- **⛔ Info | Know issues with Linux MelonRuntime execution**
 - Go to the official .NET 6.0 download page
 - Go to `ASP.NET Core Runtime` > `Linux` > `Package manager instructions` and follow the command line instructions
