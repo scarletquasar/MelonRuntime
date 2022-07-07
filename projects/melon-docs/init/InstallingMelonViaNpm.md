@@ -22,4 +22,4 @@ npm install melon-runtime@1.7.0-next.8 -g
 
 ## About
 
-- For more information about MelonRuntime installation, check the [official README](https://github.com/MelonRuntime/Melon#readme).
+- For more information about **Melon** installation, check the [official README](https://github.com/MelonRuntime/Melon#readme).
