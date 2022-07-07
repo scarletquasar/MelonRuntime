@@ -12,13 +12,14 @@ npm install melon-runtime@1.7.0-next.8 -g
 
 ## Last Versions
 
-| |
-| - |
-| 1.7.0.next.8 (Last Development) |
-| 1.6.0 **(Last Stable)** |
+| Version | Status |
+| ------- | ------ |
+| [1.7.0.next.8](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.8) | Last Development |
+| [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
 
-Full version list
+[Full version list](https://www.npmjs.com/package/melon-runtime)
 
 
-About
-For more information about MelonRuntime installation, check the official READM
+## About
+
+- For more information about MelonRuntime installation, check the [official README](https://github.com/MelonRuntime/Melon#readme).
