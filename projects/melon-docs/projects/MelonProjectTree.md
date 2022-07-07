@@ -2,8 +2,11 @@
 
 Once generated, a melon project must contain the following files (this is a standard convention, <br> all files can be adapted and changed, it contains everything needed to bundle packages and adapt <br> the code to be executed by MelonRuntime):
 
+<code>
+
 <div class="code-block">- src/<br>-- <b>index.ts</b><br>- <b>melon.json</b><br>- <b>package.json</b><br>- <b>tsconfig.json</b><br>- <b>.babelrc</b><br>- <b>.gitignore</b><br>- <b>README.md</b></div>
 
+</code>
 
 ## Understanding Layers
 
