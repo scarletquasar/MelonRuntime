@@ -36,3 +36,7 @@ npx melon [command] [...arguments?]
 - `npx melon new [path]` - Create a new TypeScript Melon project
 
 ## Flags
+
+- `--silent` - Block Melon from showing startup logs
+- `--disable-module[name]` - Block Melon from loading a specific startup module
+- `--disable-internal[identifier]` - Block Melon from loading anything
