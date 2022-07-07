@@ -17,7 +17,7 @@
 
 <hr>
 
-- [Documentation (in development)](https://zippy-sunflower-e51862.netlify.app/)
+- [Documentation (in development)](https://github.com/MelonRuntime/Melon/blob/main/projects/melon-docs/Index.md)
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 
 ## Why Melon?
