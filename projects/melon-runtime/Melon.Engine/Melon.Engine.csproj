@@ -14,4 +14,8 @@
     <Folder Include="Modules\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Melon.Library\Melon.Library.csproj" />
+  </ItemGroup>
+
 </Project>
