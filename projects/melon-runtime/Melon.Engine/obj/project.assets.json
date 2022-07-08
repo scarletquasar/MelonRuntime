@@ -1,0 +1,153 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Esprima/2.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Esprima.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Esprima.dll": {}
+        }
+      },
+      "Jint/3.0.0-beta-2038": {
+        "type": "package",
+        "dependencies": {
+          "Esprima": "2.1.2"
+        },
+        "compile": {
+          "lib/netstandard2.1/Jint.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Jint.dll": {}
+        }
+      },
+      "Melon.Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Melon.Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Melon.Library.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Esprima/2.1.2": {
+      "sha512": "JAiCTRsb90Rt7Yhk39mfS9KF7Eb7CxMMJ6/n9H4LRBfYlAmq9FI3oxmb0iNxtME4EhV6oQx1F/IsvDtGYwOHqg==",
+      "type": "package",
+      "path": "esprima/2.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "esprima.2.1.2.nupkg.sha512",
+        "esprima.nuspec",
+        "lib/net461/Esprima.dll",
+        "lib/net461/Esprima.xml",
+        "lib/netstandard2.0/Esprima.dll",
+        "lib/netstandard2.0/Esprima.xml",
+        "lib/netstandard2.1/Esprima.dll",
+        "lib/netstandard2.1/Esprima.xml"
+      ]
+    },
+    "Jint/3.0.0-beta-2038": {
+      "sha512": "RNCrRzThi4nTum4EQ/v8deKyZwySv5vt0HEzGjI7Nru2b+gppDx0UsU7p5RN75P2EQjl7lwxmXtW1zVN04aT3A==",
+      "type": "package",
+      "path": "jint/3.0.0-beta-2038",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jint.3.0.0-beta-2038.nupkg.sha512",
+        "jint.nuspec",
+        "lib/net461/Jint.dll",
+        "lib/netstandard2.0/Jint.dll",
+        "lib/netstandard2.1/Jint.dll"
+      ]
+    },
+    "Melon.Library/1.0.0": {
+      "type": "project",
+      "path": "../Melon.Library/Melon.Library.csproj",
+      "msbuildProject": "../Melon.Library/Melon.Library.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Jint >= 3.0.0-beta-2038",
+      "Melon.Library >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Usuário\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Usuário\\Documents\\GitHub\\MelonJS\\projects\\melon-runtime\\Melon.Engine\\Melon.Engine.csproj",
+      "projectName": "Melon.Engine",
+      "projectPath": "C:\\Users\\Usuário\\Documents\\GitHub\\MelonJS\\projects\\melon-runtime\\Melon.Engine\\Melon.Engine.csproj",
+      "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuário\\Documents\\GitHub\\MelonJS\\projects\\melon-runtime\\Melon.Engine\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\Usuário\\Documents\\GitHub\\MelonJS\\projects\\melon-runtime\\Melon.Library\\Melon.Library.csproj": {
+              "projectPath": "C:\\Users\\Usuário\\Documents\\GitHub\\MelonJS\\projects\\melon-runtime\\Melon.Library\\Melon.Library.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Jint": {
+            "target": "Package",
+            "version": "[3.0.0-beta-2038, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

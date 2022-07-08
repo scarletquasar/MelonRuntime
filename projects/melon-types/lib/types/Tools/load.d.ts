@@ -1,1 +1,0 @@
-declare const load: (path: string, options?: Record<string, boolean>) => Record<string, any> | Record<string, any>[]
