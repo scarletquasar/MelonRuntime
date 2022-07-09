@@ -153,7 +153,6 @@
 
         return this;
     },
-
     MySQLClient: function (host, port, database, username, password) {
         this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`;
         this.executeNonQuery = (sql) => _$internalBinding["MySqlBindingNonQuery"](sql, this._connectionString);
