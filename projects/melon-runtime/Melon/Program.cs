@@ -1,6 +1,8 @@
 ﻿using Cli.NET.Tools;
 using System.Reflection;
 using Autofac;
+using Esprima;
+using Jint.Runtime;
 
 namespace Melon
 {
@@ -29,12 +31,31 @@ namespace Melon
             Console.WriteLine();
             CLNConsole.Write("> ", ConsoleColor.Red);
 
-            var script = Console.ReadLine();
+            var script = Console.ReadLine() ?? "";
             var engine = Container.Scope?.Resolve<Jint.Engine>();
 
-            engine?.Execute(script);
+            Execute(script, engine);
 
             WaitForScript();
+        }
+
+        public static void Execute(string script, Jint.Engine? engine)
+        {
+            try
+            {
+                engine?.Execute(script);
+            }
+            catch (Exception e) when (e is ParserException || e is JavaScriptException)
+            {
+                dynamic ex = e;
+                CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
+                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+            }
+            catch (Exception e)
+            {
+                CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
+                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+            }
         }
     }
 }

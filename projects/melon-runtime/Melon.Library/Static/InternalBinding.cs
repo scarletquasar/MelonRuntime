@@ -19,6 +19,7 @@ namespace Melon.Library.Static
 
             //Module - [InputOutput]
             { "ConsoleLog", new Action<object, int>(InputOutput.Console.Log) },
+            { "ConsoleClear", new Action(Console.Clear) },
 
             //Module - [FileSystem]
             { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
