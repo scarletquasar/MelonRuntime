@@ -8,19 +8,33 @@ namespace Melon
         private static IContainer? _container;
         public static ILifetimeScope? Scope;
 
-        public static void Setup()
+        public static void Setup(List<string> disallowedList)
         {
             var containerBuilder = new ContainerBuilder();
             var engineBuilder = new EngineBuilder();
 
-            var engine = engineBuilder
-              .Load("Standard/std")
-              .Load("Standard/console")
-              .Load("FileSystem/fs")
-              .Load("Data/Set")
-              .Load("Data/Map")
-              .Load("Data/data")
-              .Build();
+            var loadList = new List<string>()
+            {
+                "Standard/std",
+                "Standard/console",
+                "FileSystem/fs",
+                "Data/Set",
+                "Data/Map",
+                "Data/data",
+                "Operations/AsyncLoop",
+                "Operations/AsyncTask",
+                "Operations/Queue"
+            };
+
+            loadList.ForEach(item =>
+            {
+                if (!disallowedList.Contains(item))
+                {
+                    engineBuilder.Load(item);
+                }
+            });
+
+            var engine = engineBuilder.Build();
 
             containerBuilder.RegisterInstance(engine).As<Jint.Engine>();
 
