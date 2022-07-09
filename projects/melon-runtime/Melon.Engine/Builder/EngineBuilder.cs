@@ -9,10 +9,10 @@ namespace Melon.Engine.Builder
 
         public EngineBuilder()
         {
-            var internalBinding = new Func<string, dynamic>(InternalBinding.Get);
+            var internalBinding = InternalBinding.Dictionary;
 
             _engine = new();
-            _engine.SetValue("internalBinding", internalBinding);
+            _engine.SetValue("_$internalBinding", internalBinding);
         }
 
         public async Task Load(string identifier)
@@ -23,7 +23,6 @@ namespace Melon.Engine.Builder
 
         public Jint.Engine Build()
         {
-            _engine.SetValue("internalBinding", JsValue.Undefined);
             return _engine;
         }
     }

@@ -17,7 +17,32 @@
         return internal;
     },
     system: {
-        baseDirectory: internalBinding("BaseDirectory"),
-        osInformation: internalBinding("OsInformation")
+        osInformation: _$internalBinding["OsInformation"]
+    },
+    environment: {
+        currentDirectory: _$internalBinding["CurrentDirectory"],
+        baseDirectory: _$internalBinding["BaseDirectory"],
+
+        getEnvironmentVariables: () => {
+            const localEnv = _$internalBinding["LocalEnvironmentVariables"];
+            const processEnv = _$internalBinding["ProcessEnvironmentVariables"];
+
+            return Object.assign(localEnv, processEnv);
+        },
+
+        setEnvironmentVariable: (key, value) => {
+            _$internalBinding["LocalEnvironmentVariables"][key] = value;
+            std.process.env[key] = value;
+        },
+
+        clearLocalEnvironmentVariables: () => {
+            _$internalBinding["LocalEnvironmentVariables"].Clear();
+            std.process.env = _$internalBinding["ProcessEnvironmentVariables"];
+        }
+    },
+    process: {
+        argv: _$internalBinding["ArgumentsVector"],
+        exit: _$internalBinding["ProcessExit"],
+        env: Object.assign(localEnv, processEnv)
     }
 }

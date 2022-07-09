@@ -4,19 +4,23 @@ namespace Melon.Library.Static
 {
     public static class InternalBinding
     {
-        public static dynamic Get(string target)
+        public static Dictionary<string, dynamic> LocalEnvironmentVariables = new() { };
+        public static Dictionary<string, dynamic> Dictionary = new()
         {
-            switch(target)
-            {
-                case "BaseDirectory":
-                    return Environment.CurrentDirectory;
+            //Module - [Standard]
+            { "CurrentDirectory", new Func<string>(() => Environment.CurrentDirectory) },
+            { "BaseDirectory", Dictionary["CurrentDirectory"]() },
+            { "OsInformation", new Func<dynamic>(() => OSBinding.GetOSInformation()) },
+            { "ArgumentsVector", Environment.GetCommandLineArgs() },
+            { "ProcessExit", new Action<int>(Environment.Exit)},
+            { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
+            { "ProcessEnvironmentVariables", Environment.GetEnvironmentVariables() },
 
-                case "OsInformation":
-                    return OSBinding.GetOSInformation();
 
-                default:
-                    throw new ArgumentException($"{target} not found.");
-            }
-        }
+            //Module - [FileSystem]
+            { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
+            { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) }
+        };
+        
     }
 }
