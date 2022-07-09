@@ -8,9 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Cli.NET" Version="2.1.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="6.0.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\data.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="FileSystem\fs.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

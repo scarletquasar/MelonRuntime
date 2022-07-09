@@ -17,6 +17,7 @@ namespace Melon
               .Load("Standard/std")
               .Load("Standard/console")
               .Load("FileSystem/fs")
+              .Load("Data/data")
               .Build();
 
             containerBuilder.RegisterInstance(engine).As<Jint.Engine>();

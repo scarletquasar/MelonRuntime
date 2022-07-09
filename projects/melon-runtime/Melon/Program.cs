@@ -22,7 +22,6 @@ namespace Melon
         public static void WaitForScript()
         {
             Console.WriteLine();
-            Console.WriteLine();
             CLNConsole.Write("> ", ConsoleColor.Red);
 
             var script = Console.ReadLine();

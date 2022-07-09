@@ -1,4 +1,5 @@
-﻿using Melon.Library.Static.OS;
+﻿using Melon.Library.Static.Database;
+using Melon.Library.Static.OS;
 
 namespace Melon.Library.Static
 {
@@ -21,7 +22,15 @@ namespace Melon.Library.Static
 
             //Module - [FileSystem]
             { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
-            { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) }
+            { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) },
+
+            //Module - [Database]
+            { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
+            { "PostgreSQLBindingNonQuery", new Func<string, string, int>(PgStatic.ExecuteNonQuery) },
+            { "MySqlBindingQuery", new Func<string, string, dynamic>(MySqlStatic.ExecuteQuery) },
+            { "MySqlBindingNonQuery", new Func<string, string, int>(MySqlStatic.ExecuteNonQuery) },
+            { "SqlServerBindingQuery", new Func<string, string, dynamic>(SqlServerStatic.ExecuteQuery) },
+            { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
         };
         
     }
