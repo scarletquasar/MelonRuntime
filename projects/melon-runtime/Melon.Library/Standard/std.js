@@ -21,7 +21,7 @@
     },
     environment: {
         currentDirectory: _$internalBinding["CurrentDirectory"],
-        baseDirectory: _$internalBinding["BaseDirectory"],
+        baseDirectory: () => _$internalBinding["BaseDirectory"](),
 
         getEnvironmentVariables: () => {
             const localEnv = _$internalBinding["LocalEnvironmentVariables"];
@@ -43,6 +43,6 @@
     process: {
         argv: _$internalBinding["ArgumentsVector"],
         exit: _$internalBinding["ProcessExit"],
-        env: Object.assign(localEnv, processEnv)
+        env: Object.assign(_$internalBinding["LocalEnvironmentVariables"], _$internalBinding["ProcessEnvironmentVariables"])
     }
 }

@@ -1,5 +1,4 @@
-﻿using Jint.Native;
-using Melon.Library.Static;
+﻿using Melon.Library.Static;
 
 namespace Melon.Engine.Builder
 {
@@ -15,10 +14,12 @@ namespace Melon.Engine.Builder
             _engine.SetValue("_$internalBinding", internalBinding);
         }
 
-        public async Task Load(string identifier)
+        public EngineBuilder Load(string identifier)
         {
-            var content = await LibraryLoader.ByIdentifier(identifier);
+            var content = LibraryLoader.ByIdentifier(identifier);
             _engine.Execute(content);
+
+            return this;
         }
 
         public Jint.Engine Build()
