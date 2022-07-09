@@ -13,7 +13,6 @@ namespace Melon
             CLNConsole.Write("》 Melon ", ConsoleColor.Yellow);
             CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
-            Console.WriteLine();
 
             Container.Setup();
 
@@ -22,6 +21,8 @@ namespace Melon
 
         public static void WaitForScript()
         {
+            Console.WriteLine();
+            Console.WriteLine();
             CLNConsole.Write("> ", ConsoleColor.Red);
 
             var script = Console.ReadLine();

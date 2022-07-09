@@ -25,9 +25,6 @@ namespace Melon.Library.Static.InputOutput
             {
                 CLNConsole.Write(obj.GetType().ToString(), color);
             }
-
-            System.Console.WriteLine();
-            System.Console.WriteLine();
         }
     }
 }
