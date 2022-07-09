@@ -1,6 +1,6 @@
 ﻿const data = {
     clone: function (target) {
-        if (typeof target === 'function') {
+        if (typeof target === "function") {
             return function () { target(...arguments ?? ''); }
         }
 
@@ -81,7 +81,7 @@
         return true;
     },
     find: (object, target, count = 0, found = false) => {
-        if (typeof target == 'object') {
+        if (typeof target == "object") {
             if (data.compare(object, target)) {
                 found = true;
                 count++;
@@ -154,7 +154,7 @@
         return this;
     },
 
-    MySQLClient: function (host, port, database, username, password) {;
+    MySQLClient: function (host, port, database, username, password) {
         this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`;
         this.executeNonQuery = (sql) => _$internalBinding["MySqlBindingNonQuery"](sql, this._connectionString);
         this.executeQuery = (sql) => JSON.parse(_$internalBinding["MySqlBindingQuery"](sql, this._connectionString));
