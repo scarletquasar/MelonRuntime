@@ -24,6 +24,12 @@
     <None Update="Standard\console.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Standard\Map.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Standard\Set.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Standard\std.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

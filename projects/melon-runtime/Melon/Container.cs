@@ -18,6 +18,7 @@ namespace Melon
               .Load("Standard/console")
               .Load("FileSystem/fs")
               .Load("Data/Set")
+              .Load("Data/Map")
               .Load("Data/data")
               .Build();
 
