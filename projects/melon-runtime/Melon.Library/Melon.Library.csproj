@@ -21,6 +21,15 @@
     <None Update="FileSystem\fs.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Operations\AsyncLoop.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Operations\AsyncTask.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Operations\Queue.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Standard\console.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

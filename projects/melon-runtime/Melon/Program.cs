@@ -14,7 +14,12 @@ namespace Melon
             CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
 
-            Container.Setup();
+            var disallowed = args
+                .Where(x => x.StartsWith("--disallow["))
+                .Select(x => x.Split("[")[1].Replace("]", ""))
+                .ToList();
+
+            Container.Setup(disallowed);
 
             WaitForScript();
         }

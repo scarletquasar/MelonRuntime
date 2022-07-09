@@ -15,11 +15,11 @@ namespace Melon
 
             var loadList = new List<string>()
             {
+                "Standard/Set",
+                "Standard/Map",
                 "Standard/std",
                 "Standard/console",
                 "FileSystem/fs",
-                "Data/Set",
-                "Data/Map",
                 "Data/data",
                 "Operations/AsyncLoop",
                 "Operations/AsyncTask",
