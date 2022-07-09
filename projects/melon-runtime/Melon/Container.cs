@@ -20,6 +20,8 @@ namespace Melon
                 "Standard/std",
                 "Standard/console",
                 "FileSystem/fs",
+                "Data/Enumerable",
+                "Data/IndexedArray",
                 "Data/data",
                 "Operations/AsyncLoop",
                 "Operations/AsyncTask",

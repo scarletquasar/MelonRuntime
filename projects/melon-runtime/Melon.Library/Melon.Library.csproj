@@ -18,6 +18,12 @@
     <None Update="Data\data.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Enumerable.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\IndexedArray.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="FileSystem\fs.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
