@@ -14,8 +14,7 @@
             _$internalBinding["ConsoleLog"](object, 14);
         })
     },
-    clear: () => __console_clear__(),
-    read: () => __console_readLine__(),
+    clear: _$internalBinding["ConsoleClear"],
     table: function (data, columns) {
         if (data.constructor === Object) {
             if (!columns) {
