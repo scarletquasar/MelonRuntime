@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Melon.Engine\Melon.Engine.csproj" />
+    <ProjectReference Include="..\Melon.Static\Melon.Static.csproj" />
   </ItemGroup>
 
 </Project>

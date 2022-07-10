@@ -1,8 +1,9 @@
 ﻿using Cli.NET.Tools;
 using System.Reflection;
-using Autofac;
 using Esprima;
 using Jint.Runtime;
+using Melon.Engine.Builder;
+using Melon.Static.Runtime;
 
 namespace Melon
 {
@@ -21,7 +22,32 @@ namespace Melon
                 .Select(x => x.Split("[")[1].Replace("]", ""))
                 .ToList();
 
-            Container.Setup(disallowed);
+            var engineBuilder = new EngineBuilder();
+
+            var loadList = new List<string>()
+            {
+                "Standard/Set",
+                "Standard/Map",
+                "Standard/std",
+                "Standard/console",
+                "FileSystem/fs",
+                "Data/Enumerable",
+                "Data/IndexedArray",
+                "Data/data",
+                "Operations/AsyncLoop",
+                "Operations/AsyncTask",
+                "Operations/Queue"
+            };
+
+            loadList.ForEach(item =>
+            {
+                if (!disallowed.Contains(item))
+                {
+                    engineBuilder.Load(item);
+                }
+            });
+
+            Runtime.Engine = engineBuilder.Build();
 
             WaitForScript();
         }
@@ -32,7 +58,7 @@ namespace Melon
             CLNConsole.Write("> ", ConsoleColor.Red);
 
             var script = Console.ReadLine() ?? "";
-            var engine = Container.Scope?.Resolve<Jint.Engine>();
+            var engine = Runtime.Engine;
 
             Execute(script, engine);
 
