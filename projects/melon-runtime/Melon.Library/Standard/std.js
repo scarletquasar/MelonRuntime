@@ -1,4 +1,30 @@
 ﻿const std = {
+    Promise: Promise,
+    Response: class {
+        constructor(body, headers, latency, statusCode, ok) {
+            this.body = body;
+            this.headers = headers;
+            this.latency = latency;
+            this.statusCode = statusCode;
+            this.ok = ok;
+        }
+
+        json() {
+            return JSON.parse(this.body);
+        }
+
+        text() {
+            return this.body;
+        }
+    },
+    PingResponse: class {
+        constructor(results, max, min, average) {
+            this.results = results;
+            this.max = max;
+            this.min = min;
+            this.average = average;
+        }
+    },
     shift: (value) => {
         const internal = {
             option: (target, callback) => {
