@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Melon.Engine", "Melon.Engin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Melon.Static", "Melon.Static\Melon.Static.csproj", "{D279B870-6F8B-4E09-86B9-8EEC2563EF10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Melon.Web", "Melon.Web\Melon.Web.csproj", "{B19F09B9-C101-49CF-8B74-C6FB918DF44B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D279B870-6F8B-4E09-86B9-8EEC2563EF10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D279B870-6F8B-4E09-86B9-8EEC2563EF10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D279B870-6F8B-4E09-86B9-8EEC2563EF10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B19F09B9-C101-49CF-8B74-C6FB918DF44B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19F09B9-C101-49CF-8B74-C6FB918DF44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B19F09B9-C101-49CF-8B74-C6FB918DF44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B19F09B9-C101-49CF-8B74-C6FB918DF44B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
