@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Melon.Web\Melon.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\data.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -25,6 +29,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="FileSystem\fs.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Http\http.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Operations\AsyncLoop.js">

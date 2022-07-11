@@ -1,5 +1,6 @@
 ﻿using Melon.Library.Static.Database;
 using Melon.Library.Static.OS;
+using Melon.Web;
 
 namespace Melon.Library.Static
 {
@@ -13,7 +14,7 @@ namespace Melon.Library.Static
             { "BaseDirectory", new Func<string?>(() => Dictionary?["CurrentDirectory"]()) },
             { "OsInformation", new Func<dynamic>(() => OSBinding.GetOSInformation()) },
             { "ArgumentsVector", Environment.GetCommandLineArgs() },
-            { "ProcessExit", new Action<int>(Environment.Exit)},
+            { "ProcessExit", new Action<int>(Environment.Exit) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
             { "ProcessEnvironmentVariables", Environment.GetEnvironmentVariables() },
 
@@ -32,6 +33,10 @@ namespace Melon.Library.Static
             { "MySqlBindingNonQuery", new Func<string, string, int>(MySqlStatic.ExecuteNonQuery) },
             { "SqlServerBindingQuery", new Func<string, string, dynamic>(SqlServerStatic.ExecuteQuery) },
             { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
+
+            //Module - [Http]
+            { "SetupWebApplication", 
+                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) }
         };
         
     }
