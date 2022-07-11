@@ -22,6 +22,8 @@ namespace Melon
                 .Select(x => x.Split("[")[1].Replace("]", ""))
                 .ToList();
 
+            var silent = args.Where(x => x == "--silent").Any();
+
             var engineBuilder = new EngineBuilder();
 
             var loadList = new List<string>()
@@ -43,9 +45,21 @@ namespace Melon
             {
                 if (!disallowed.Contains(item))
                 {
+                    if(!silent)
+                    {
+                        Console.WriteLine();
+                        CLNConsole.Write("[load] ", ConsoleColor.DarkYellow);
+                        CLNConsole.Write(item, ConsoleColor.DarkMagenta);
+                    }
+
                     engineBuilder.Load(item);
                 }
             });
+
+            if(!silent)
+            {
+                Console.WriteLine();
+            }
 
             Runtime.Engine = engineBuilder.Build();
 
