@@ -12,7 +12,7 @@ For complete information about all releases pull requests and more details, visi
 - **[core]** Implemented `MPromise` + types as workaround to using Melon-based promises as wrapper to usual promises
 - **[scripts]** All the repository internal scripts were reworked
 - **[docker]** Implemented `1.6.x` dockerfile
-- 
+
 ### [v1.5.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.5.0)
 `06/24/2022`
 
