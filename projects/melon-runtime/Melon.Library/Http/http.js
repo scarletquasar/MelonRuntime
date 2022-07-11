@@ -1,8 +1,7 @@
 ﻿const http = {
     _apps: [],
     HttpApplication: class {
-        constructor(name, host, port, enableHttps = true) {
-            this.name = name;
+        constructor(host, port, enableHttps = true) {
             this.host = host;
             this.port = port;
             this.enableHttps = enableHttps;
@@ -26,7 +25,7 @@
         }
 
         run() {
-            __http_application_run__(
+            _$internalBinding["SetupWebApplication"](
                 this.name,
                 this.host,
                 this.port,
@@ -43,9 +42,8 @@
             })
         }
     },
-    app: (options = { host: "localhost", post: 80, enableHttps: false }) => {
+    app: (options = { host: "localhost", port: 80, enableHttps: false }) => {
         const { HttpApplication } = http;
-        const name = options.name;
         const host = options.host;
         const port = options.port;
         const enableHttps = options.enableHttps ?? false;

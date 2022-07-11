@@ -38,7 +38,8 @@ namespace Melon
                 "Data/data",
                 "Operations/AsyncLoop",
                 "Operations/AsyncTask",
-                "Operations/Queue"
+                "Operations/Queue",
+                "Http/http"
             };
 
             loadList.ForEach(item =>
