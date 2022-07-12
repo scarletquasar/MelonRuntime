@@ -9,4 +9,11 @@ type Std = {
             servicePack: string
         }
     },
+    environment: {
+        currentDirectory: string
+        baseDirectory: () => string
+        getEnvironmentVariables: () => Record<string, any>
+        setEnvironmentVariable: (key: string, value: any) => void
+        clearLocalEnvironmentVariables: () => void
+    }
 }
