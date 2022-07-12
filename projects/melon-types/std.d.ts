@@ -15,5 +15,10 @@ type Std = {
         getEnvironmentVariables: () => Record<string, any>
         setEnvironmentVariable: (key: string, value: any) => void
         clearLocalEnvironmentVariables: () => void
+    },
+    process: {
+        argv: string[]
+        exit: () => void
+        env: Record<string, any>
     }
 }
