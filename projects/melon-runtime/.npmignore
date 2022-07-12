@@ -1,0 +1,9 @@
+.vs
+*/Melon
+*/Melon.Container
+*/Melon.Engine
+*/Melon.Library
+*/Melon.Static
+*/Melon.Web
+*/*.csproj.user
+*.sln
