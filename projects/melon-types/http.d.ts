@@ -51,3 +51,5 @@ type Http = {
     pdf: <R>(response: R) => MSimpleResponse<R, 'application/pdf'>
     html: <R>(response: R) => MSimpleResponse<R, 'text/html'>
 }
+
+declare const http: Http;
