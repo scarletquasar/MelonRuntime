@@ -76,7 +76,8 @@ namespace Melon
 
             commands.Register(new CommandList()
             {
-                { "load", new LoadCommand() }
+                { "load", new LoadCommand() },
+                { "new", new NewCommand() }
             });
 
             var commandArgs = args.Where(x => !x.StartsWith("--")).ToList();
