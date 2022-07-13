@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.4.0" />
-    <PackageReference Include="Cli.NET" Version="2.1.1" />
+    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
     <PackageReference Include="Jint" Version="3.0.0-beta-2038" />
   </ItemGroup>
 

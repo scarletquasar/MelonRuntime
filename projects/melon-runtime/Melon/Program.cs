@@ -4,6 +4,8 @@ using Esprima;
 using Jint.Runtime;
 using Melon.Engine.Builder;
 using Melon.Static.Runtime;
+using Melon.Commands;
+using Cli.NET.Models;
 
 namespace Melon
 {
@@ -64,27 +66,27 @@ namespace Melon
 
             Runtime.Engine = engineBuilder.Build();
 
-            WaitForScript();
-        }
+            var commands = new CommandContainer(indicator: "> ", indicatorColor: ConsoleColor.Green);
 
-        public static void WaitForScript()
-        {
-            Console.WriteLine();
-            CLNConsole.Write("> ", ConsoleColor.Red);
+            commands.Register(new LambdaCommandList()
+            {
+                { "exit", (string[] args) => Environment.Exit(1) },
+                { "run", (string[] args) => Runtime.Engine.Execute(string.Join(" ", args)) }
+            });
 
-            var script = Console.ReadLine() ?? "";
-            var engine = Runtime.Engine;
+            commands.Register(new CommandList()
+            {
+                { "load", new LoadCommand() }
+            });
 
-            Execute(script, engine);
+            var commandArgs = args.Where(x => !x.StartsWith("--")).ToList();
 
-            WaitForScript();
-        }
-
-        public static void Execute(string script, Jint.Engine? engine)
-        {
             try
             {
-                engine?.Execute(script);
+                if(!ExecuteEnvironmentCommand())
+                {
+                    WaitForScript();
+                }
             }
             catch (Exception e) when (e is ParserException || e is JavaScriptException)
             {
@@ -97,6 +99,35 @@ namespace Melon
                 CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
                 CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
+
+            bool ExecuteEnvironmentCommand()
+            {
+                switch (commandArgs!.Count)
+                {
+                    case 1:
+                        Console.WriteLine(" ");
+                        commands!.CallCommandByName(commandArgs[0]);
+                        break;
+                    case 2:
+                        Console.WriteLine(" ");
+                        commands!.CallCommandByName(commandArgs[0], commandArgs[1]);
+                        break;
+                }
+
+                return commandArgs!.Count > 0;
+            }
+        }
+
+        public static void WaitForScript()
+        {
+            Console.WriteLine();
+            CLNConsole.Write("> ", ConsoleColor.Red);
+
+            var script = Console.ReadLine() ?? "";
+            var engine = Runtime.Engine;
+
+            engine!.Execute(script);
+            WaitForScript();
         }
     }
 }
