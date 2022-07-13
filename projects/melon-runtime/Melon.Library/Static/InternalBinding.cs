@@ -1,5 +1,7 @@
-﻿using Melon.Library.Static.Database;
+﻿using Melon.Library.Models;
+using Melon.Library.Static.Database;
 using Melon.Library.Static.OS;
+using Melon.Library.Static.Web;
 using Melon.Web;
 
 namespace Melon.Library.Static
@@ -36,7 +38,9 @@ namespace Melon.Library.Static
 
             //Module - [Http]
             { "SetupWebApplication", 
-                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) }
+                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) },
+            { "FetchRequest",
+                new Func<string, string, string, string, HttpResponse>(Http.Request) }
         };
         
     }
