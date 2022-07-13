@@ -6,5 +6,3 @@ declare class IndexedArray<T> {
     toArray: () => T[];
     writeIndex: (name: string, filter: (this: T) => boolean, asIndexed: boolean) => void;
 }
-
-declare function IndexedArray<T>(args: T[]): void;

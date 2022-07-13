@@ -1,7 +1,7 @@
 {
     "name": "melon-runtime",
-    "version": "1.7.0-next.9",
-    "description": "Melon is a dynamic, easy-to-use TypeScript/JavaScript runtime focused in automation, data management and dedicated web applications",
+    "version": "1.7.0",
+    "description": "Dynamic, easy-to-use .NET JavaScript Runtime",
     "type": "module",
     "scripts": {
         "prepublish": "dotnet publish Melon -o Output",
