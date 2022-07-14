@@ -1,0 +1,338 @@
+﻿++Solução 'MelonJS' ‎(7 de 7 projetos)
+i:{00000000-0000-0000-0000-000000000000}:MelonJS.sln
+++Console
+i:{00000000-0000-0000-0000-000000000000}:Console
+++MelonJS
+i:{09fe1c0b-c7f7-4951-9256-f4b8af7c7a18}:MelonJS
+++Dependências
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:>3407
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:>2891
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:>2764
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:>4061
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:>4262
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:>3566
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:>4539
+++Commands
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\commands\
+++ExecCommand.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\commands\execcommand.cs
+++InfoCommand.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\commands\infocommand.cs
+++LoadCommand.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\commands\loadcommand.cs
+++RunCommand.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\commands\runcommand.cs
+++Program.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\program.cs
+++README.md
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\readme.md
+++StaticData.cs
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\staticdata.cs
+++Analisadores
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:analisadores
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:analisadores
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:analisadores
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:analisadores
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:analisadores
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:analisadores
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:analisadores
+++Estruturas
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:estruturas
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:estruturas
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:estruturas
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:estruturas
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:estruturas
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:estruturas
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:estruturas
+++Projetos
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:projetos
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:projetos
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:projetos
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:projetos
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:projetos
+++Microsoft.AspNetCore.App.Analyzers
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++System.Text.Json.SourceGeneration
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.NETCore.App
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs\microsoft.netcore.app
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\users\usuário\documents\github\melonjs\cli.net.abstractions\microsoft.netcore.app
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\microsoft.netcore.app
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\microsoft.netcore.app
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\microsoft.netcore.app
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\microsoft.netcore.app
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\microsoft.netcore.app
+++Cli.NET
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\cli.net\bin\release\net6.0\cli.net.dll
+i:{be206c08-19d3-4edf-90f7-f49852b0c780}:Cli.NET
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\cli.net\bin\release\net6.0\cli.net.dll
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\cli.net\bin\release\net6.0\cli.net.dll
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\cli.net\bin\release\net6.0\cli.net.dll
+++Cli.NET.Abstractions
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\cli.net.abstractions\bin\release\net6.0\cli.net.abstractions.dll
+i:{be206c08-19d3-4edf-90f7-f49852b0c780}:Cli.NET.Abstractions
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net.abstractions\bin\release\net6.0\cli.net.abstractions.dll
+++MelonJs.JavaScript
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bin\release\net6.0\melonjs.javascript.dll
+i:{69b6ac33-d81c-47b3-a3c2-0c06aa75d47d}:MelonJs.JavaScript
+++MelonJs.Static
+i:{ecaca7b4-edcf-4325-9f3b-d5f4ddab6af4}:c:\users\usuário\documents\github\melonjs\melonjs.static\bin\release\net6.0\melonjs.static.dll
+i:{69b6ac33-d81c-47b3-a3c2-0c06aa75d47d}:MelonJs.Static
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.static\bin\release\net6.0\melonjs.static.dll
+++External
+i:{00000000-0000-0000-0000-000000000000}:External
+++Actions
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\users\usuário\documents\github\melonjs\cli.net.abstractions\actions\
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\actions\
+++ICommand.cs
+i:{0634b048-3efb-4eff-9f87-ba3dea564e32}:c:\users\usuário\documents\github\melonjs\cli.net.abstractions\actions\icommand.cs
+++Extensions
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\extensions\
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\extensions\
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\extensions\
+++Models
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\
+++Tools
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\tools\
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\
+++ClearCommand.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\actions\clearcommand.cs
+++EchoCommand.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\actions\echocommand.cs
+++ExitCommand.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\actions\exitcommand.cs
+++SumCommand.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\actions\sumcommand.cs
+++ParameterExtensions.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\extensions\parameterextensions.cs
+++Output
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\output\
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\output\
+++CommandList.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\commandlist.cs
+++OutputList.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\outputlist.cs
+++CLNConsole.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\tools\clnconsole.cs
+++CommandContainer.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\tools\commandcontainer.cs
+++OutputProvider.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\tools\outputprovider.cs
+++Output.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\output\output.cs
+++OutputType.cs
+i:{084c9a1f-648c-4da6-8490-54f9c6521055}:c:\users\usuário\documents\github\melonjs\cli.net\models\output\outputtype.cs
+++Core
+i:{00000000-0000-0000-0000-000000000000}:Core
+++Bindings
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\
+++Constructors
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\
+++Async
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\async\
+++FileSystem
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\filesystem\
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\filesystem\
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\filesystem\
+++Numbers
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\numbers\
+++ConstructorAssembler.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\constructorassembler.js
+++Empty.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\empty.js
+++Enumerable.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\enumerable.js
+++HttpApplication.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\httpapplication.js
+++HttpRoute.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\httproute.js
+++IndexedArray.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\indexedarray.js
+++Map.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\map.js
+++PingResponse.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\pingresponse.js
+++Queue.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\queue.js
+++Response.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\response.js
+++Set.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\set.js
+++Timer.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\timer.js
+++Libraries
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\libraries\
+++application.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\application.js
+++console.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\console.js
+++debug.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\debug.js
+++deep_clone.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\deep_clone.js
+++environment.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\environment.js
+++fs.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\fs.js
+++http.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\http.js
+++load.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\load.js
+++recursive.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\recursive.js
+++reflect.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\reflect.js
+++shift.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\tools\shift.js
+++Containers
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\containers\
+++Pacotes
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:pacotes
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:pacotes
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:pacotes
+++AsyncLoop.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\async\asyncloop.js
+++AsyncTask.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\async\asynctask.js
+++File.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\filesystem\file.js
+++Folder.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\filesystem\folder.js
+++BigFloat.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\numbers\bigfloat.js
+++NumberPeriod.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\constructors\numbers\numberperiod.js
+++esprima.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\libraries\esprima.js
+++getEsprimaDeclarationPatternValue.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\libraries\getesprimadeclarationpatternvalue.js
+++getUnsafeInjectorLoaderResponse.js
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\bindings\libraries\getunsafeinjectorloaderresponse.js
+++JintContainer.cs
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\containers\jintcontainer.cs
+++EngineExtensions.cs
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.javascript\extensions\engineextensions.cs
+++Jint (3.0.0-beta-2037)
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:>4573
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:>4603
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:>4618
+++MelonJs.Models
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.models\bin\release\net6.0\melonjs.models.dll
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.models\bin\release\net6.0\melonjs.models.dll
+i:{69b6ac33-d81c-47b3-a3c2-0c06aa75d47d}:MelonJs.Models
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.models\bin\release\net6.0\melonjs.models.dll
+++MelonJs.WebApps
+i:{9197a455-e38d-44f8-9077-bd8b1555ebc2}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\bin\release\net6.0\melonjs.webapps.dll
+i:{69b6ac33-d81c-47b3-a3c2-0c06aa75d47d}:MelonJs.WebApps
+++Jint
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\jint\
+++MelonCache.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\meloncache.cs
+++JintStatic.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\jint\jintstatic.cs
+++EngineManagement
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\enginemanagement\
+++MelonConsole.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\output\melonconsole.cs
+++MelonConvert.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\output\melonconvert.cs
+++Scripting
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\scripting\
+++Web
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\web\
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\
+++EngineManager.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\enginemanagement\enginemanager.cs
+++MelonFileManager.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\filesystem\melonfilemanager.cs
+++BindingManager.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\scripting\bindingmanager.cs
+++EngineWrapper.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\scripting\enginewrapper.cs
+++MelonEnvironment.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\scripting\melonenvironment.cs
+++MelonHttp.cs
+i:{e38234bc-4e49-44fd-b2a4-6af5323d1e18}:c:\users\usuário\documents\github\melonjs\melonjs.static\tools\web\melonhttp.cs
+++Project
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\project\
+++StringExtensions.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\extensions\stringextensions.cs
+++MelonFile.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\filesystem\melonfile.cs
+++MelonFolder.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\filesystem\melonfolder.cs
+++App.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\project\app.cs
+++HttpApplication
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\httpapplication\
+++MelonHttpResponse.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\melonhttpresponse.cs
+++MelonPingReply.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\melonpingreply.cs
+++HttpEcho.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\httpapplication\httpecho.cs
+++HttpRoute.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\httpapplication\httproute.cs
+++MelonHttpApplication.cs
+i:{235ac530-7d8b-428b-aaa4-60e8bb749173}:c:\users\usuário\documents\github\melonjs\melonjs.models\web\httpapplication\melonhttpapplication.cs
+++Connected Services 
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:>4540
+++Properties
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\properties\
+++appsettings.json
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\appsettings.json
+++WebApplicationManager.cs
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\webapplicationmanager.cs
+++Nenhuma dependência de serviço descoberta
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:>4541
+++launchSettings.json
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\properties\launchsettings.json
+++appsettings.Development.json
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++Microsoft.AspNetCore.App
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:c:\users\usuário\documents\github\melonjs\melonjs.webapps\microsoft.aspnetcore.app
+++Swashbuckle.AspNetCore (6.3.1)
+i:{2a68ff72-5869-492d-9990-262689f23bf7}:>4619

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Jint" Version="3.0.0-beta-2038" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Melon.Library\Melon.Library.csproj" />
+  </ItemGroup>
+
+</Project>
