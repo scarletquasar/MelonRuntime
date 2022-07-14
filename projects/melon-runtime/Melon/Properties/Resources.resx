@@ -264,7 +264,7 @@ babel/
   <data name="NewProjectPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "go": "babel --extensions .ts ./src/ --out-dir ./babel &amp;amp;&amp;amp; webpack ./babel/index.js &amp;amp;&amp;amp; npx melon load ./dist/main.js"
+    "go": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load ./dist/main.js"
   },
   "devDependencies": {
     "@babel/cli": "latest",

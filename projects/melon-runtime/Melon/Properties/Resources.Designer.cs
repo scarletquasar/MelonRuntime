@@ -121,7 +121,7 @@ namespace Melon.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///  &quot;scripts&quot;: {
-        ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./babel &amp;amp;&amp;amp; webpack ./babel/index.js &amp;amp;&amp;amp; npx melon load ./dist/main.js&quot;
+        ///    &quot;go&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load ./dist/main.js&quot;
         ///  },
         ///  &quot;devDependencies&quot;: {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
