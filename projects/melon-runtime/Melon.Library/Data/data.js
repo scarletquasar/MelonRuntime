@@ -4,7 +4,7 @@
             return function () { target(...arguments ?? ''); }
         }
 
-        return JSON.parse(JSON.stringify(eval(target)));
+        return JSON.parse(JSON.stringify(target));
     },
     compare: (value1, value2, cmpFn) => {
         if (cmpFn === void 0) { cmpFn = function (a, b) { return a === b } };
