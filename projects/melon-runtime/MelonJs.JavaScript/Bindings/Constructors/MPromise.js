@@ -1,1 +1,0 @@
-const MPromise = Promise;
