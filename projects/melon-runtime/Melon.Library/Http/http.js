@@ -1,5 +1,12 @@
 ﻿const http = {
     _apps: [],
+    HttpRoute: class {
+        constructor(route, method, callback) {
+            this.route = route
+            this.method = method
+            this.callback = callback
+        }
+    },
     HttpApplication: class {
         constructor(host, port, enableHttps = true) {
             this.host = host;
@@ -10,17 +17,17 @@
         }
 
         get(route, callback) {
-            const httpRoute = new HttpRoute(route, "GET", callback);
+            const httpRoute = new http.HttpRoute(route, "GET", callback);
             this.routes.push(httpRoute);
         }
 
         post(route, callback) {
-            const httpRoute = new HttpRoute(route, "POST", callback);
+            const httpRoute = new http.HttpRoute(route, "POST", callback);
             this.routes.push(httpRoute);
         }
 
         delete(route, callback) {
-            const httpRoute = new HttpRoute(route, "DELETE", callback);
+            const httpRoute = new http.HttpRoute(route, "DELETE", callback);
             this.routes.push(httpRoute);
         }
 
