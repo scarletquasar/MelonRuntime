@@ -1,5 +1,5 @@
 ﻿const http = {
-    _apps: [],
+    _apps: {},
     HttpRoute: class {
         constructor(route, method, callback) {
             this.route = route
@@ -74,8 +74,8 @@
         const port = options.port;
         const enableHttps = options.enableHttps ?? false;
 
-        http._apps.push(new HttpApplication(name, host, port, enableHttps));
-        return http._apps[http._apps.length - 1];
+        http._apps[name] = (new HttpApplication(name, host, port, enableHttps));
+        return http._apps[name];
     },
     request: function (target, method = "GET", body = "{}", headers = "{}") {
         return new AsyncTask((target, method, body, headers) => {
