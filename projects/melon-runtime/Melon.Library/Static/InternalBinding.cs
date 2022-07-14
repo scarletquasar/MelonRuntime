@@ -2,6 +2,7 @@
 using Melon.Library.Static.Database;
 using Melon.Library.Static.OS;
 using Melon.Library.Static.Web;
+using Melon.Library.Static.XRequire;
 using Melon.Web;
 
 namespace Melon.Library.Static
@@ -37,10 +38,39 @@ namespace Melon.Library.Static
             { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
 
             //Module - [Http]
-            { "SetupWebApplication", 
-                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) },
-            { "FetchRequest",
-                new Func<string, string, string, string, HttpResponse>(Http.Request) }
+            { 
+                "SetupWebApplication", 
+                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) 
+            },
+            { 
+                "FetchRequest",
+                new Func<string, string, string, string, HttpResponse>(Http.Request) 
+            },
+
+            //Module - [Interop]
+            {
+                "InteropInternalCallMethod",
+                new Func<string, string, string, int, object[], dynamic?>(XRequireDotnetInternal.CallMethod) },
+            {
+                "InteropInternalGetField",
+                new Func<string, string, string, dynamic?>(XRequireDotnetInternal.GetField)
+            },
+            {
+                "InteropInternalCreateInstanceOfType",
+                new Func<string, string, object[], dynamic?>(XRequireDotnetInternal.CreateInstanceOfType)
+            },
+            {
+                "InteropExternalCallMethodDirectlyFromAssembly",
+                new Func<string, string, string, string, object[], dynamic?>(XRequireStaticExternal.CallMethodDirectlyFromAssembly)
+            },
+            {
+                "InteropExternalCallFieldDirectlyFromAssembly",
+                new Func<string, string, string, string, dynamic?>(XRequireStaticExternal.CallFieldDirectlyFromAssembly)
+            },
+            {
+                "InteropExternalCreateInstanceDirectlyFromAssembly",
+                new Func<string, string, string, object[], dynamic?>(XRequireStaticExternal.CreateInstanceDirectlyFromAssembly)
+            }
         };
         
     }
