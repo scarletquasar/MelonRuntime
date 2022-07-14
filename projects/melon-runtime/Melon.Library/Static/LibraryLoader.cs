@@ -1,7 +1,10 @@
-﻿namespace Melon.Library.Static
+﻿using System.Security;
+
+namespace Melon.Library.Static
 {
     public static class LibraryLoader
     {
+        [SecurityCritical]
         public static string ByIdentifier(string identifier)
         {
             var classlibPath = AppDomain.CurrentDomain.BaseDirectory;

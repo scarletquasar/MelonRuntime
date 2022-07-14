@@ -5,6 +5,7 @@ namespace Melon.Engine.Builder
     public class EngineBuilder
     {
         private readonly Jint.Engine _engine;
+        private readonly HashSet<string> _loadedScripts;
 
         public EngineBuilder()
         {
@@ -12,18 +13,24 @@ namespace Melon.Engine.Builder
 
             _engine = new();
             _engine.SetValue("_$internalBinding", internalBinding);
+            _loadedScripts = new HashSet<string>();
         }
 
         public EngineBuilder Load(string identifier)
         {
             var content = LibraryLoader.ByIdentifier(identifier);
-            _engine.Execute(content);
+            _loadedScripts.Add(content);
 
             return this;
         }
 
         public Jint.Engine Build()
         {
+            for (short index = 0; index < _loadedScripts.Count; index++)
+            {
+                _engine.Execute(_loadedScripts.ElementAt(index));
+            }
+
             return _engine;
         }
     }
