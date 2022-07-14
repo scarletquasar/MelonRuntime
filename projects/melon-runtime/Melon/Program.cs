@@ -33,6 +33,7 @@ namespace Melon
                 "Standard/Set",
                 "Standard/Map",
                 "Standard/std",
+                "Standard/xrequire",
                 "Standard/console",
                 "FileSystem/fs",
                 "Data/Enumerable",
@@ -100,6 +101,8 @@ namespace Melon
                 CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
                 CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
+
+            WaitForScript();
 
             bool ExecuteEnvironmentCommand()
             {
