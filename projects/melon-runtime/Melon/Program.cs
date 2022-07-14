@@ -16,7 +16,7 @@ namespace Melon
             var version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
 
             CLNConsole.Write("》 Melon ", ConsoleColor.Yellow);
-            CLNConsole.Write(version + " [alpha]", ConsoleColor.Cyan);
+            CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
 
             var disallowed = args

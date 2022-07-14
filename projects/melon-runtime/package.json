@@ -1,6 +1,6 @@
 {
     "name": "melon-runtime",
-    "version": "1.7.0-alpha",
+    "version": "1.7.0",
     "description": "Declarative modern .NET JavaScript runtime",
     "type": "module",
     "scripts": {
