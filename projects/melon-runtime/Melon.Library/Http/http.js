@@ -8,7 +8,8 @@
         }
     },
     HttpApplication: class {
-        constructor(host, port, enableHttps = true) {
+        constructor(name, host, port, enableHttps = true) {
+            this.name = name;
             this.host = host;
             this.port = port;
             this.enableHttps = enableHttps;
@@ -66,13 +67,14 @@
             return this.body;
         }
     },
-    app: (options = { host: "localhost", port: 80, enableHttps: false }) => {
+    app: (options = { name: "webapp", host: "localhost", port: 80, enableHttps: false }) => {
         const { HttpApplication } = http;
+        const name = options.name;
         const host = options.host;
         const port = options.port;
         const enableHttps = options.enableHttps ?? false;
 
-        http._apps.push(new HttpApplication(host, port, enableHttps));
+        http._apps.push(new HttpApplication(name, host, port, enableHttps));
         return http._apps[http._apps.length - 1];
     },
     request: function (target, method = "GET", body = "{}", headers = "{}") {
