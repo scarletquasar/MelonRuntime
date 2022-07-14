@@ -82,10 +82,11 @@ namespace Melon
             });
 
             var commandArgs = args.Where(x => !x.StartsWith("--")).ToList();
+            var commandExecution = ExecuteEnvironmentCommand();
 
             try
             {
-                if(!ExecuteEnvironmentCommand())
+                if(!commandExecution)
                 {
                     WaitForScript();
                 }
@@ -102,7 +103,10 @@ namespace Melon
                 CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
 
-            WaitForScript();
+            if (!commandExecution)
+            {
+                WaitForScript();
+            }
 
             bool ExecuteEnvironmentCommand()
             {
