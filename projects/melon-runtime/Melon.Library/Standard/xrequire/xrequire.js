@@ -15,7 +15,7 @@ const __xrequire_dotnet_internal__ = (namespace) => {
     return {
         getType: (type) => {
             return {
-                getMethod: (method) => {
+                getMethod: (method, index = 0) => {
                     return {
                         invoke: (parameters, targetObject = null) => {
                             if (!Array.isArray(parameters)) {
@@ -23,7 +23,7 @@ const __xrequire_dotnet_internal__ = (namespace) => {
                             }
 
                             return _$internalBinding["InteropInternalCallMethod"]
-                                (namespace, type, method, [targetObject, ...parameters]);
+                                (namespace, type, method, index, [targetObject, ...parameters]);
                         }
                     }
                 },
@@ -44,7 +44,7 @@ const __xrequire_dotnet_external__ = (fileName) => {
     return {
         getType: (type) => {
             return {
-                getMethod: (method) => {
+                getMethod: (method, index = 0) => {
                     return {
                         invoke: (parameters, targetObject = null) => {
                             if (!Array.isArray(parameters)) {
@@ -52,7 +52,7 @@ const __xrequire_dotnet_external__ = (fileName) => {
                             }
 
                             return _$internalBinding["InteropExternalCallMethodDirectlyFromAssembly"]
-                                (fileName, namespace, type, method, [targetObject, ...parameters]);
+                                (fileName, namespace, type, method, index, [targetObject, ...parameters]);
                         }
                     }
                 },
