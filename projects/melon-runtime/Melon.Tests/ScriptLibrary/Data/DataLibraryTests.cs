@@ -5,11 +5,11 @@ using Xunit;
 
 namespace Melon.Tests.ScriptLibrary.Data
 {
-    public class DataConstructorTests
+    public class DataLibraryTests
     {
         private readonly Jint.Engine _engine;
 
-        public DataConstructorTests()
+        public DataLibraryTests()
         {
             var builder = new EngineBuilder();
 
