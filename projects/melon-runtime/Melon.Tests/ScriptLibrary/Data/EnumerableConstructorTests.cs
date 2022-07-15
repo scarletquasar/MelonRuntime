@@ -1,7 +1,6 @@
 ﻿using Jint;
 using Jint.Runtime;
 using Melon.Engine.Builder;
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -18,7 +17,6 @@ namespace Melon.Tests.Library.Data
             var loadList = new List<string>()
             {
                 "Data/Enumerable",
-                "Data/IndexedArray",
                 "Data/data"
             };
 
