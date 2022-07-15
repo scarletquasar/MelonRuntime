@@ -1,10 +1,10 @@
 ﻿using Jint;
+using Xunit;
 using Jint.Runtime;
 using Melon.Engine.Builder;
 using System.Collections.Generic;
-using Xunit;
 
-namespace Melon.Tests.Library.Data
+namespace Melon.Tests.ScriptLibrary.Data
 {
     public class EnumerableConstructorTests
     {
