@@ -1,5 +1,6 @@
 ﻿using Jint;
 using Melon.Engine.Builder;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -42,6 +43,17 @@ namespace Melon.Tests.ScriptLibrary.Standards
             var result = _engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
+        }
+
+        [Fact(DisplayName = "'std' system.osInformation() method should work correctly")]
+        public void StdSystemOsInformationShouldHaveCorrectData()
+        {
+            var script = @"std.system.osInformation()";
+            var result = _engine.Evaluate(script).AsObject();
+
+            Assert.Equal(Environment.OSVersion.Platform.ToString(), result.Get("platform"));
+            Assert.Equal(Environment.OSVersion.VersionString, result.Get("version"));
+            Assert.Equal(Environment.OSVersion.ServicePack, result.Get("servicePack"));
         }
     }
 }
