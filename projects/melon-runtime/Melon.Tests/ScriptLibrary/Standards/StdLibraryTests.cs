@@ -2,6 +2,7 @@
 using Melon.Engine.Builder;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace Melon.Tests.ScriptLibrary.Standards
@@ -54,6 +55,24 @@ namespace Melon.Tests.ScriptLibrary.Standards
             Assert.Equal(Environment.OSVersion.Platform.ToString(), result.Get("platform"));
             Assert.Equal(Environment.OSVersion.VersionString, result.Get("version"));
             Assert.Equal(Environment.OSVersion.ServicePack, result.Get("servicePack"));
+        }
+
+        [Fact(DisplayName = "'std' system.environment.currentDirectory() method return should be valid")]
+        public void StdSystemEnvironmentCurrentDirectoryShouldBeValid()
+        {
+            var script = @"std.environment.currentDirectory()";
+            var result = _engine.Evaluate(script).AsString();
+
+            Assert.NotEmpty(result);
+        }
+
+        [Fact(DisplayName = "'std' system.environment.baseDirectory() method return should be valid")]
+        public void StdSystemEnvironmentBaseDirectoryShouldBeValid()
+        {
+            var script = @"std.environment.baseDirectory()";
+            var result = _engine.Evaluate(script).AsString();
+
+            Assert.NotEmpty(result);
         }
     }
 }
