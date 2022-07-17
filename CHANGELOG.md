@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.7.0]()
+## [v1.7.0](https://www.npmjs.com/package/melon-runtime/v/1.7.0)
 
 - ☢ Breaking change
 - 📌 New feature/implementation 
