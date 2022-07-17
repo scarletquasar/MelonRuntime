@@ -31,6 +31,15 @@ Create, manage and scale applications and tools easily without having to think a
 
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
+```ts
+const system = xrequire("dotnet:System");
+const consoleWriteLine = system.getType("Console").getMethod("WriteLine", 0);
+
+consoleWriteLine.invoke(["Hello world from .NET!", null]);
+
+//Output: Hello world from .NET!
+```
+
 <hr>
 
 ### 🧤 **Hands on development** 
