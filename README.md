@@ -19,26 +19,25 @@
 
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 
-## Why Melon?
+<hr>
 
 ### 🚀 **Declarative-first programming**
 
-<hr>
-
 Create, manage and scale applications and tools easily without having to think about everything.
+
+<hr>
 
 ### ⚡ **.NET based environment** 
 
-<hr>
-
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
+<hr>
 
 ### 🧤 **Hands on development** 
 
-<hr>
-
 Create a complete application in few lines with zero dependency.
+
+<hr>
 
 **Node.js**:
 
