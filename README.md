@@ -37,39 +37,69 @@ Portable, fast and powerful applications with all the features offered by the .N
 
 Create a complete application in few lines with zero dependency.
 
-<hr>
-
-**Node.js**:
+- ⛔ **Node.js**:
 
 <details>
 
 ```js
 const http = require("http");
-const Todo = require("./controller");
-const { getReqData } = require("./utils");
 
-const PORT = process.env.PORT || 5000;
+const PORT = 80;
 
 const server = http.createServer(async (req, res) => {
-    if (req.url === "/api/todos" && req.method === "GET") {
-        const todos = await new Todo().getTodos();e
+    if (req.url === "/" && req.method === "GET") {
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(todos));
+        res.end("Hello world");
     }
+}
 
-    else if (req.url.match(/\/api\/todos\/([0-9]+)/) && req.method === "GET") {
-        try {
-            const id = req.url.split("/")[3];
-            const todo = await new Todo().getTodo(id);
-            res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify(todo));
-        } catch (error) {
-            res.writeHead(404, { "Content-Type": "application/json" });
-
-(...)
+server.listen(PORT, () => {
+    console.log(`server started on port: ${PORT}`);
+});
 ```
 
 </details>
+
+- ⛔ **Deno**:
+
+<details>
+
+```ts
+const listener = Deno.listen({ port: 80 });
+console.log("http://localhost:80/");
+
+for await (const conn of listener) {
+  serve(conn);
+}
+
+async function serve(conn: Deno.Conn) {
+  for await (const { respondWith } of Deno.serveHttp(conn)) {
+    respondWith(new Response("Hello world"));
+  }
+}
+```
+
+</details>
+
+- ⚡ **Melon**:
+
+<details>
+
+```ts
+const app = http.app({ 
+    name: "webapp", 
+    host: "localhost", 
+    port: 80, 
+    enableHttps: false 
+  });
+
+app.get("/", () => "Hello world");
+app.run();
+```
+
+</details>
+
+<hr>
 
 
 ## Installation and usage:
