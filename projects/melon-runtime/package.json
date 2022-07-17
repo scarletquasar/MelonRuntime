@@ -1,37 +1,37 @@
 {
-    "name": "melon-runtime",
-    "version": "1.7.0",
-    "description": "Declarative modern .NET JavaScript runtime",
-    "type": "module",
-    "scripts": {
-        "prepublish": "dotnet publish Melon -o Output",
-        "go": "dotnet exec Output/Melon.dll",
-        "dev": "dotnet publish Melon -o Output && dotnet exec Output/Melon.dll"
-    },
-    "keywords": [
-      "runtime",
-      "javascript",
-      "typescript",
-      "data",
-      "dotnet",
-      "fast",
-      "docker",
-      "mit",
-      "windows",
-      "macos",
-      "linux"
-    ],
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/MelonRuntime/Melon.git"
-    },
-    "author": "Victória Rose, Malu Rose",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/MelonRuntime/Melon/issues"
-    },
-    "homepage": "https://github.com/MelonRuntime/Melon#readme",
-    "bin": {
-      "melon": "Commands/melon.js"
-    }
+  "name": "melon-runtime",
+  "version": "1.7.0",
+  "description": "Declarative modern .NET JavaScript runtime",
+  "type": "module",
+  "scripts": {
+      "prepublish": "dotnet publish Melon -o Output",
+      "go": "dotnet exec Output/Melon.dll",
+      "dev": "dotnet publish Melon -o Output && dotnet exec Output/Melon.dll"
+  },
+  "keywords": [
+    "runtime",
+    "javascript",
+    "typescript",
+    "data",
+    "dotnet",
+    "fast",
+    "docker",
+    "mit",
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelonRuntime/Melon.git"
+  },
+  "author": "Victória Rose, Malu Rose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MelonRuntime/Melon/issues"
+  },
+  "homepage": "https://github.com/MelonRuntime/Melon#readme",
+  "bin": {
+    "melon": "Commands/melon.js"
   }
+}
