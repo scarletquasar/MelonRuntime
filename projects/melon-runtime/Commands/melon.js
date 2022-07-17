@@ -11,6 +11,6 @@ const args = process.argv.slice(2);
 const outputDirectory = __dirname.replace('Commands', 'Output');
 const spawnOptions = { stdio: "inherit" };
 
-const melon = spawn('dotnet', ["exec", path.join(outputDirectory, "MelonJS.dll"), ...args], spawnOptions);
+const melon = spawn('dotnet', ["exec", path.join(outputDirectory, "Melon.dll"), ...args], spawnOptions);
 
 melon.on('data', console.log);

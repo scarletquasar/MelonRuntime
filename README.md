@@ -13,49 +13,132 @@
 
 <hr>
 
-**MelonRuntime** is a dynamic, easy-to-use JavaScript runtime focused in **automation**, **data management** and dedicated **web applications**.
+**Melon** is a declarative modern .NET JavaScript runtime.
 
 <hr>
 
-- [Documentation (in development)](https://github.com/MelonRuntime/Melon/blob/main/projects/melon-docs/Index.md)
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 
-## Why Melon?
+<hr>
 
-**MelonRuntime** is built using the power, practicality and performance of the [.NET environment](https://dotnet.microsoft.com/en-us/), so it has extended capabilities to **JavaScript** and **TypeScript** in addition to the following advantages:
+### 🚀 **Declarative-first programming**
 
-- Easy to use, **zero configuration** required to build and execute projects
-- **TypeScript** by default: MelonRuntime generated projects use static typing security and reliability
-- Based in NPM, so can leverage NPM package manager for quick library and tool management
-- Wide range of built-in libraries bringing ease to the development of scalable and maintainable applications
+Create, manage and scale applications and tools easily without having to think about everything.
+
+```ts
+const { shift } = std;
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let myValue = getRandomInt(1, 3);
+
+shift(myValue)
+  .option(1 || 2, () => console.log("Cool"))
+  .option(3, (value) => console.log("Too much!"));
+```
+
+<hr>
+
+### ⚡ **.NET based environment** 
+
+Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
+
+```ts
+const system = xrequire("dotnet:System");
+const consoleWriteLine = system.getType("Console").getMethod("WriteLine", 0);
+
+consoleWriteLine.invoke(["Hello world from .NET!", null]);
+
+//Output: Hello world from .NET!
+```
+
+<hr>
+
+### 🧤 **Hands on development** 
+
+Create a complete application in few lines with zero dependency.
+
+⚡ **Melon**:
+
+<details>
+
+```ts
+const app = http.app();
+
+app.get("/", () => "Hello world");
+app.run();
+
+//App running in http://localhost:80
+```
+
+</details>
+
+⛔ **Node.js**:
+
+<details>
+
+```js
+const http = require("http");
+
+const PORT = 80;
+
+const server = http.createServer(async (req, res) => {
+    if (req.url === "/" && req.method === "GET") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end("Hello world");
+    }
+}
+
+server.listen(PORT, () => {
+    console.log(`server started on port: ${PORT}`);
+});
+```
+
+</details>
+
+⛔ **Deno**:
+
+<details>
+
+```ts
+const listener = Deno.listen({ port: 80 });
+console.log("http://localhost:80/");
+
+for await (const conn of listener) {
+  serve(conn);
+}
+
+async function serve(conn: Deno.Conn) {
+  for await (const { respondWith } of Deno.serveHttp(conn)) {
+    respondWith(new Response("Hello world"));
+  }
+}
+```
+
+</details>
+
+<hr>
+
 
 ## Installation and usage:
-> Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
 
-- Install [ASP.NET 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already
-- Install the `melon-runtime` package globally using the command: `npm i melon-runtime@1.6.0 -g -f` or select a version from the table below:
+> ⛔ Melon runtime requires ASP.NET 6 and Node (NPM) installed to work
 
-| Version | Type |
-| ------- | ---- |
-| [1.7.0-next.8](https://www.npmjs.com/package/melon-runtime/v/1.7.0-next.6) | Last development |
-| [1.6.0](https://www.npmjs.com/package/melon-runtime/v/1.6.0) | **Last Stable** |
+```
+npm i melon-runtime -g
+```
 
-## Generating and executing a project
+To execute Melon, just type `npx melon [command]` in terminal.
 
-- Go to a directory using `terminal` or inside your IDE and execute the command: `npx melon new`, a basic node.js-based file structure will be created
-- Run `npm install` to install the required [melon types](https://www.npmjs.com/package/melon-types) and start working with **TypeScript**
-- Run `npm run go` to initialize the project
+## Commands
 
-> Tip: A bundle file containing all installed NPM packages and your project will be created in `/dist/main.js`
-
-## Docker
-
-- [Dockerfile models](https://github.com/MelonRuntime/MelonRuntime/tree/main/utils/dockerfiles/)
-- [MelonRuntime docker integration example](https://github.com/EternalQuasar0206/docker-api-melon)
-
-## Extra
-
-- [Check the MelonRuntime-compatible verified useful NPM packages](https://github.com/MelonRuntime/MelonRuntime/blob/main/compatible-libraries.md)
+- `npx melon run [script]` - Executes a script directly from the command line
+- `npx melon load [path]` - Loads an external entry point
+- `npx melon new` - Creates a new empty Melon project in the current folder
 
 ## Core Contributors 
 

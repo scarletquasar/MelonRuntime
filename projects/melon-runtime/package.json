@@ -1,8 +1,13 @@
 {
   "name": "melon-runtime",
-  "version": "1.7.0-next.8",
-  "description": "MelonJS",
+  "version": "1.7.0",
+  "description": "Declarative modern .NET JavaScript runtime",
   "type": "module",
+  "scripts": {
+      "prepublish": "dotnet publish Melon -o Output",
+      "go": "dotnet exec Output/Melon.dll",
+      "dev": "dotnet publish Melon -o Output && dotnet exec Output/Melon.dll"
+  },
   "keywords": [
     "runtime",
     "javascript",

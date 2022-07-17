@@ -1,9 +1,10 @@
 .vs
-*/MelonJS
-*/MelonJs.Data
-*/MelonJs.JavaScript
-*/MelonJs.Models
-*/MelonJs.Static
-*/MelonJs.WebApps
+*/Melon
+*/Melon.Container
+*/Melon.Engine
+*/Melon.Library
+*/Melon.Static
+*/Melon.Web
+*/Melon.Tests
 */*.csproj.user
 *.sln
