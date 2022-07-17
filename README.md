@@ -37,9 +37,8 @@ function getRandomInt(min, max) {
 let myValue = getRandomInt(1, 3);
 
 shift(myValue)
-  .option(1, (value) => console.log(value + " duck"))
-  .option(2, (value) => console.log(value + " frogs"))
-  .option(3, (value) => console.log(value + " cats"));
+  .option(1 || 2, () => console.log("Cool"))
+  .option(3, (value) => console.log("Too much!"))
 ```
 
 <hr>
