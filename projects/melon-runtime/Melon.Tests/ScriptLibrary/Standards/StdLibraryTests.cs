@@ -2,7 +2,6 @@
 using Melon.Engine.Builder;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Xunit;
 
 namespace Melon.Tests.ScriptLibrary.Standards
