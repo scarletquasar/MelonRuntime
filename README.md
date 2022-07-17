@@ -34,6 +34,38 @@ Portable, fast and powerful applications with all the features offered by the .N
 
 Create a complete application in few lines with zero dependency.
 
+**Node.js**:
+
+<details>
+
+```js
+const http = require("http");
+const Todo = require("./controller");
+const { getReqData } = require("./utils");
+
+const PORT = process.env.PORT || 5000;
+
+const server = http.createServer(async (req, res) => {
+    if (req.url === "/api/todos" && req.method === "GET") {
+        const todos = await new Todo().getTodos();e
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(todos));
+    }
+
+    else if (req.url.match(/\/api\/todos\/([0-9]+)/) && req.method === "GET") {
+        try {
+            const id = req.url.split("/")[3];
+            const todo = await new Todo().getTodo(id);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(todo));
+        } catch (error) {
+            res.writeHead(404, { "Content-Type": "application/json" });
+
+(...)
+```
+
+</details>
+
 
 ## Installation and usage:
 > Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
