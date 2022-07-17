@@ -37,7 +37,7 @@ Portable, fast and powerful applications with all the features offered by the .N
 
 Create a complete application in few lines with zero dependency.
 
-- ⛔ **Node.js**:
+⛔ **Node.js**:
 
 <details>
 
@@ -60,7 +60,7 @@ server.listen(PORT, () => {
 
 </details>
 
-- ⛔ **Deno**:
+⛔ **Deno**:
 
 <details>
 
@@ -81,7 +81,7 @@ async function serve(conn: Deno.Conn) {
 
 </details>
 
-- ⚡ **Melon**:
+⚡ **Melon**:
 
 <details>
 
