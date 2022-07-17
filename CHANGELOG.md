@@ -2,7 +2,8 @@
 
 ## [v1.7.0]()
 
-> ☢ Breaking change | 📌 New feature/implementation |
+- ☢ Breaking change
+- 📌 New feature/implementation 
 
 ### 🚀 **Tests Development**
 
