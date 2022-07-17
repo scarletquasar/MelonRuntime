@@ -4,7 +4,7 @@
 
 🚀 **Tests Development**
 
-We are developing unit tests to cover misbehavior and bugs within Melon so we will be able to identify, prevent and fix internal issues with our libraries and core methods, we have also been able to resolve several minor issues identified and we are excited to end full test coverage.
+We are developing unit tests to cover misbehavior and bugs within Melon so we will be able to identify, prevent and fix internal issues with our libraries and core methods, we have also been able to resolve several minor issues identified and we are excited to end full test coverage. In the next minor versions we will be focused in bug bounty and aim the full coverage of Melon.
 
 ### [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
