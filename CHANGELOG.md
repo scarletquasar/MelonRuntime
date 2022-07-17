@@ -6,6 +6,16 @@
 
 We are developing unit tests to cover misbehavior and bugs within Melon so we will be able to identify, prevent and fix internal issues with our libraries and core methods, we have also been able to resolve several minor issues identified and we are excited to end full test coverage. In the next minor versions we will be focused in bug bounty and aim the full coverage of Melon.
 
+⚡ **Hard Optimizations**
+
+Several internal optimizations were performed, such as the implementation of internal lazy loading, reduction of steps to achieve the construction of the main Melon Engine instance and complete reorganization of the solution structure, with a focus on architectural scalability.
+
+- **[core]** Csharp solution rebuilt focusing in best pratices and scalability
+- **[core]** Implemented lazy loading for internal JS libraries + builder pattern for creating the final Engine instance
+- **[core]** Fixed optimization gaps in the code (JavaScript and C#)
+
+♻ **Rework Implementations**
+
 ### [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
 
