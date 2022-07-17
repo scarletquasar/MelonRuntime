@@ -21,9 +21,18 @@
 
 ## Why Melon?
 
-- 🚀 **Declarative-first programming**: Create, manage and scale applications and tools easily without having to think about everything
-- ⚡ **.NET based environment**: Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop
-- 🧤 **Hands on development**: Create a complete application in few lines with zero dependency
+### 🚀 **Declarative-first programming**
+
+Create, manage and scale applications and tools easily without having to think about everything.
+
+### ⚡ **.NET based environment** 
+
+Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
+
+
+### 🧤 **Hands on development** 
+
+Create a complete application in few lines with zero dependency.
 
 
 ## Installation and usage:
