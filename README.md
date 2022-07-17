@@ -133,13 +133,11 @@ npm i melon-runtime -g
 
 To execute Melon, just type `npx melon [command]` in terminal.
 
-## Generating and executing a project
+## Commands
 
-- Go to a directory using `terminal` or inside your IDE and execute the command: `npx melon new`, a basic node.js-based file structure will be created
-- Run `npm install` to install the required packages and start working with **TypeScript**
-- Run `npm run go` to initialize the project
-
-> Tip: A bundle file containing all installed NPM packages and your project will be created in `/dist/main.js`
+- `npx melon run [script]` - Executes a script directly from the command line
+- `npx melon load [path]` - Loads an external entry point
+- `npx melon new` - Creates a new empty Melon project in the current folder
 
 ## Core Contributors 
 
