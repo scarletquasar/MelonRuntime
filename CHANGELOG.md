@@ -33,6 +33,7 @@ Several internal optimizations were performed, such as the implementation of int
 - 📌 **[core]** Implemented wrapped `HttpApplication` as content of `std` to ease imports
 - 📌 **[core]** Implemented wrapped `Response` as content of `std` to ease imports
 - 📌 **[core]** Implemented `http.[result/static/image/audio/video/pdf/html]` as valid webapp route responses
+- ☢ **[core]** Re-implemented commands with only `--silent` and `--disable[target]`
 
 ## [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
