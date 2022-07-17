@@ -63,6 +63,21 @@ consoleWriteLine.invoke(["Hello world from .NET!", null]);
 
 Create a complete application in few lines with zero dependency.
 
+⚡ **Melon**:
+
+<details>
+
+```ts
+const app = http.app();
+
+app.get("/", () => "Hello world");
+app.run();
+
+//App running in http://localhost:80
+```
+
+</details>
+
 ⛔ **Node.js**:
 
 <details>
@@ -103,21 +118,6 @@ async function serve(conn: Deno.Conn) {
     respondWith(new Response("Hello world"));
   }
 }
-```
-
-</details>
-
-⚡ **Melon**:
-
-<details>
-
-```ts
-const app = http.app();
-
-app.get("/", () => "Hello world");
-app.run();
-
-//App running in http://localhost:80
 ```
 
 </details>
