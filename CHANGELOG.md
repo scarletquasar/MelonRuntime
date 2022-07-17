@@ -22,6 +22,7 @@ Several internal optimizations were performed, such as the implementation of int
 - **[core]** Implemented `system` as sub-module with its own methods
 - **[core]** Implemented `environment` as sub-module with its own methods
 - **[core]** Implemented `process` as sub-module with its own methods
+- 📌 **[core] [new]** Created new `guards` library to make easier declarative programming with Melon
 
 ## [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
