@@ -17,6 +17,7 @@
 
 <hr>
 
+- [Installation](https://github.com/MelonRuntime/Melon#installation-and-usage)
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 
 <hr>
