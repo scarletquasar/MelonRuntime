@@ -35,7 +35,7 @@ Several internal optimizations were performed, such as the implementation of int
 - 📌 **[core]** Implemented `http.[result/static/image/audio/video/pdf/html]` as valid webapp route responses
 - ☢ **[core]** Re-implemented commands with only `--silent` and `--disable[target]`
 
-## [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
+### [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
 
 > Optimization update
@@ -46,7 +46,7 @@ Several internal optimizations were performed, such as the implementation of int
 - **[scripts]** All the repository internal scripts were reworked
 - **[docker]** Implemented `1.6.x` dockerfile
 
-## [v1.5.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.5.0)
+### [v1.5.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.5.0)
 `06/24/2022`
 
 > Docker + async/await + RestAPI update
