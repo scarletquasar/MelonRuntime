@@ -25,6 +25,17 @@
 
 Create, manage and scale applications and tools easily without having to think about everything.
 
+```ts
+const { shift } = std;
+
+let myValue = Math.floor(Math.random() * (1 - 3 + 1) + min);
+
+shift(myValue)
+  .option(1, (value) => console.log(value + " duck"))
+  .option(2, (value) => console.log(value + " frogs"))
+  .option(3, (value) => console.log(value + " cats"));
+```
+
 <hr>
 
 ### ⚡ **.NET based environment** 
