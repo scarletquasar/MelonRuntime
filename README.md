@@ -125,15 +125,13 @@ async function serve(conn: Deno.Conn) {
 
 
 ## Installation and usage:
-> Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
+> ⛔ Melon runtime requires ASP.NET 6 and Node (NPM) installed to work
 
-- Install [Node](https://nodejs.org/en/) (Automatically generated projects require NPM to run)
-- Install [ASP.NET 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if you haven't already
-- Install the `melon-runtime` package globally using the command: `npm i melon-runtime@1.7.0 -g -f` or select a version from the table below:
+```
+npm i melon-runtime -g
+```
 
-| Version | Type |
-| ------- | ---- |
-| [1.7.0](https://www.npmjs.com/package/melon-runtime/v/1.7.0) | **Last Stable** |
+To execute Melon, just type `npx melon [command]` in terminal.
 
 ## Generating and executing a project
 
