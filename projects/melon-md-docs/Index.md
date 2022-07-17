@@ -7,3 +7,13 @@
 **Melon** official *markdown* documentation.
 
 <hr>
+
+## Summary
+
+- ✨ Creating and executing a new Melon project
+- 🔩 `console` internal library
+- 🔩 `std` internal library
+- 🔩 `data` internal library
+- 🔩 `http` internal library
+- 🔩 `fs` internal library
+- 📕 Internal Constructors
