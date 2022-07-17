@@ -84,28 +84,9 @@ namespace Melon
             var commandArgs = args.Where(x => !x.StartsWith("--")).ToList();
             var commandExecution = ExecuteEnvironmentCommand();
 
-            try
-            {
-                if(!commandExecution)
-                {
-                    WaitForScript();
-                }
-            }
-            catch (Exception e) when (e is ParserException || e is JavaScriptException)
-            {
-                dynamic ex = e;
-                CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
-                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
-            }
-            catch (Exception e)
-            {
-                CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
-                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
-            }
-
             if (!commandExecution)
             {
-                WaitForScript();
+                ExecuteWithHandler(WaitForScript);
             }
 
             bool ExecuteEnvironmentCommand()
@@ -126,7 +107,7 @@ namespace Melon
             }
         }
 
-        public static void WaitForScript()
+        private static void WaitForScript()
         {
             Console.WriteLine();
             CLNConsole.Write("> ", ConsoleColor.Red);
@@ -136,6 +117,32 @@ namespace Melon
 
             engine!.Execute(script);
             WaitForScript();
+        }
+
+        private static void ExecuteWithHandler(Action action, bool repeat = true)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception e) when (e is ParserException || e is JavaScriptException)
+            {
+                dynamic ex = e;
+                CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
+                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+            }
+            catch (Exception e)
+            {
+                CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
+                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+            }
+            finally
+            {
+                if(repeat)
+                {
+                    ExecuteWithHandler(action, repeat);
+                }
+            }
         }
     }
 }
