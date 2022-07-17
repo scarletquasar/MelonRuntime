@@ -28,6 +28,11 @@ Several internal optimizations were performed, such as the implementation of int
 - 📌 **[core]** Implemented `system` as sub-module with its own methods
 - 📌 **[core]** Implemented `environment` as sub-module with its own methods
 - 📌 **[core]** Implemented `process` as sub-module with its own methods
+- ☢ **[core]** Re-implemented `http` library from zero with several changes
+- 📌 **[core]** Implemented wrapped `HttpRoute` as content of `std` to ease imports
+- 📌 **[core]** Implemented wrapped `HttpApplication` as content of `std` to ease imports
+- 📌 **[core]** Implemented wrapped `Response` as content of `std` to ease imports
+- 📌 **[core]** Implemented `http.[result/static/image/audio/video/pdf/html]` as valid webapp route responses
 
 ## [v1.6.0](https://github.com/MelonRuntime/MelonRuntime/releases/tag/v1.6.0)
 `06/25/2022`
