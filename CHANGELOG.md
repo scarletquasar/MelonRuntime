@@ -1,6 +1,7 @@
 # Changelog
 
 ## [v1.7.0]()
+`07/17/2022`
 
 - ☢ Breaking change
 - 📌 New feature/implementation 
