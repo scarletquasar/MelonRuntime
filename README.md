@@ -86,15 +86,12 @@ async function serve(conn: Deno.Conn) {
 <details>
 
 ```ts
-const app = http.app({ 
-    name: "webapp", 
-    host: "localhost", 
-    port: 80, 
-    enableHttps: false 
-  });
+const app = http.app();
 
 app.get("/", () => "Hello world");
 app.run();
+
+//App running in http://localhost:80
 ```
 
 </details>
