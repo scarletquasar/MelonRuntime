@@ -21,9 +21,10 @@
 
 ## Why Melon?
 
-- Benefits from the functionality of .NET combined with the practicality of JavaScript
-- Minimal and simplified learning curve with friendly built-in API
-- Outsourced NPM package support with automated project generator
+- 🚀 **Declarative-first programming**: Create, manage and scale applications and tools easily without having to think about everything
+- ⚡ **.NET based environment**: Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop
+- 🧤 **Hands on development**: Create a complete application in few lines with zero dependency
+
 
 ## Installation and usage:
 > Tip: How to install ASP.NET 6 Runtime ([Windows](https://www.youtube.com/watch?v=AC5UWby16sg) | [Linux](https://www.youtube.com/watch?v=g0vuTh0Dao8))
