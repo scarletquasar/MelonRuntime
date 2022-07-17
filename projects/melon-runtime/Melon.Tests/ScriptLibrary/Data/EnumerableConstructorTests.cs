@@ -1,7 +1,7 @@
 ﻿using Jint;
 using Xunit;
 using Jint.Runtime;
-using Melon.Engine.Builder;
+using Melon.Engine.Builders;
 using System.Collections.Generic;
 
 namespace Melon.Tests.ScriptLibrary.Data
