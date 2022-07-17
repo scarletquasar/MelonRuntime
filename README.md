@@ -23,14 +23,20 @@
 
 ### 🚀 **Declarative-first programming**
 
+<hr>
+
 Create, manage and scale applications and tools easily without having to think about everything.
 
 ### ⚡ **.NET based environment** 
+
+<hr>
 
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
 
 ### 🧤 **Hands on development** 
+
+<hr>
 
 Create a complete application in few lines with zero dependency.
 
