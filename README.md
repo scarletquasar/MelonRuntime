@@ -28,7 +28,13 @@ Create, manage and scale applications and tools easily without having to think a
 ```ts
 const { shift } = std;
 
-let myValue = Math.floor(Math.random() * (1 - 3 + 1) + min);
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let myValue = getRandomInt(1, 3);
 
 shift(myValue)
   .option(1, (value) => console.log(value + " duck"))
