@@ -10,7 +10,7 @@
 
 ## Summary
 
-- ✨ Creating and executing a new Melon project
+- [✨ Creating and executing a new Melon project](./CreatingAndExecutingANewMelonProject.md)
 - 🔩 `console` internal library
 - 🔩 `std` internal library
 - 🔩 `data` internal library
