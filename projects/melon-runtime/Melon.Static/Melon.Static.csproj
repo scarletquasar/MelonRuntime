@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
     <PackageReference Include="Jint" Version="2.11.58" />
   </ItemGroup>
 
