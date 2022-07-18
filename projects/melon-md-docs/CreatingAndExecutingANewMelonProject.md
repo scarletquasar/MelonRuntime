@@ -12,7 +12,7 @@
 - Use the command `npx melon new` and a default project will be created
 - To execute, use the command `npm run go`
 
-- 📌 What will happen?
+## 📌 What will happen?
 
 A new set of pre-built files will be created in that folder, allowing you to develop
 a new complete application from this base. For default, all Melon pre-built applications
@@ -20,8 +20,8 @@ are **TypeScript-based**.
 
 ```mermaid
 graph TD;
-    A-->B;
-    A-->C;
+    Root folder-->/src/ folder;
+    Root folder-->C;
     B-->D;
     C-->D;
 ```
