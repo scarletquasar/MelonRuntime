@@ -20,8 +20,8 @@ are **TypeScript-based**.
 
 ```mermaid
 graph TD;
-    Root folder-->/src/ folder;
-    Root folder-->C;
+    Root-->/src/;
+    Root-->C;
     B-->D;
     C-->D;
 ```
