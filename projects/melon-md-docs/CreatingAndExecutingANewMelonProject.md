@@ -18,6 +18,11 @@ A new set of pre-built files will be created in that folder, allowing you to dev
 a new complete application from this base. For default, all Melon pre-built applications
 are **TypeScript-based**.
 
+> **Note**
+> 
+> Melon built-in project structure requires a `src/index.ts` as entry point, this can be
+> changed directly in the `package.json` `go` command
+
 ```mermaid
 graph TD;
     Root-->/src/;
