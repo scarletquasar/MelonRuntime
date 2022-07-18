@@ -21,7 +21,9 @@ are **TypeScript-based**.
 ```mermaid
 graph TD;
     Root-->/src/;
-    Root-->C;
-    B-->D;
-    C-->D;
+    /src/-->index.ts;
+    Root-->.babelrc;
+    Root-->.gitignore;
+    Root-->package.json;
+    Root-->tsconfig.json;
 ```
