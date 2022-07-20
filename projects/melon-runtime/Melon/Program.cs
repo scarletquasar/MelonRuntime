@@ -27,10 +27,15 @@ namespace Melon
         }
         private static CommandContainer MakeCommandContainer()
         {
+            void safeExecuteScript(string[] args)
+            {
+                Helpers.ExecuteWithHandler(() => Runtime.Engine?.Execute(string.Join(" ", args)), false);
+            }
+
             var lambdaCommands = new LambdaCommandList()
             {
                 { "exit", (string[] args) => Environment.Exit(1) },
-                { "run", (string[] args) => Runtime.Engine?.Execute(string.Join(" ", args)) }
+                { "run", (string[] args) => safeExecuteScript(args) }
             };
 
             var commands = new CommandList()

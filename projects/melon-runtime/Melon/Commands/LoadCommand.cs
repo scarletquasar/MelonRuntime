@@ -9,7 +9,8 @@ namespace Melon.Commands
         {
             var path = string.Join(" ", arguments);
             var entryPoint = File.ReadAllText(path);
-            Runtime.Engine!.Execute(entryPoint);
+
+            Helpers.ExecuteWithHandler(() => Runtime.Engine!.Execute(entryPoint), false);
         }
     }
 }
