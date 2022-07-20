@@ -12,7 +12,7 @@ namespace Melon.Commands
 
             Directory.CreateDirectory(currentPath + "/src/");
 
-            List<Tuple<string, string, string>> projectFiles = new()
+            HashSet<Tuple<string, string, string>> projectFiles = new()
             {
                 new("src/index.ts", currentPath + "/src/index.ts", Resources.NewProjectIndex),
                 new(".babelrc", currentPath + "/.babelrc", Resources.NewProjectBabelRc),
@@ -21,7 +21,13 @@ namespace Melon.Commands
                 new(".gitignore", currentPath + "/.gitignore", Resources.NewProjectGitIgnore)
             };
 
-            projectFiles.ForEach(file => CreateProjectFile(file.Item1, file.Item2, file.Item3));
+            int projectFilesCount = projectFiles.Count;
+
+            for(var index = 0; index < projectFilesCount; index++)
+            {
+                var file = projectFiles.ElementAt(index);
+                CreateProjectFile(file.Item1, file.Item2, file.Item3);
+            }
         }
 
         private static void CreateProjectFile(string item, string path, string content)
