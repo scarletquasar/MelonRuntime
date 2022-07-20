@@ -20,11 +20,10 @@
 
 ### ♻ **Refactor Optimizations**
 
-- 🎯 **[core]** Now Melon workflow consist in coherent separated execution blocks with "Helpers", "Models" and "Builders" (v1.7.1)
-
+- 🎯 **[core]** Now Melon workflow consist in coherent separated execution blocks with "Helpers", "Models" and "Builders"
 ### ✨ **Hotfix Implementations**
 
-- 🎯 **[types]** Fixed `melon-types` not working properly in this entire workflow (v1.9.1)
+- 🎯 **[types]** Fixed `melon-types` not working properly in this entire workflow
 
 ## [v1.7.0](https://www.npmjs.com/package/melon-runtime/v/1.7.0)
 `07/16/2022`
