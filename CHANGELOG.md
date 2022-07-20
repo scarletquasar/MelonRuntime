@@ -1,5 +1,18 @@
 # Changelog
 
+## [v1.7.2](https://www.npmjs.com/package/melon-runtime/v/1.7.2)
+`07/20/2022`
+
+> 🎯 Hotfix Patch
+
+### ♻ **Refactor Optimizations**
+
+- 🎯 **[core]** Refactored "NewCommand" ("new" command) class to consistently implement new project files in a scalable maneer
+
+### ✨ **Hotfix Implementations**
+
+- 🎯 **[core]** Implemented execution handler in "run" and load "commands" to avoid program-breaking errors
+
 ## [v1.7.1](https://www.npmjs.com/package/melon-runtime/v/1.7.1)
 `07/18/2022`
 
