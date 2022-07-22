@@ -61,14 +61,53 @@ namespace Melon.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world&quot;);.
+        /// </summary>
+        internal static string NewProjectJsIndex {
+            get {
+                return ResourceManager.GetString("NewProjectJsIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a {
+        ///  &quot;scripts&quot;: {
+        ///    &quot;go&quot;: &quot;npx melon load ./index.js&quot;
+        ///  }
+        ///}.
+        /// </summary>
+        internal static string NewProjectJsPackageInfo {
+            get {
+                return ResourceManager.GetString("NewProjectJsPackageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;, &quot;@babel/preset-env&quot;],
         ///    &quot;plugins&quot;: [&quot;tailcall-optimization&quot;]
         ///}.
         /// </summary>
-        internal static string NewProjectBabelRc {
+        internal static string NewProjectTsBabelRc {
             get {
-                return ResourceManager.GetString("NewProjectBabelRc", resourceCulture);
+                return ResourceManager.GetString("NewProjectTsBabelRc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a {
+        ///    &quot;compilerOptions&quot;: {
+        ///      &quot;outDir&quot;: &quot;build&quot;,
+        ///      &quot;types&quot;: [
+        ///        &quot;melon-types&quot;
+        ///      ],
+        ///      &quot;lib&quot;: [ &quot;es2022&quot; ]
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string NewProjectTsconfig {
+            get {
+                return ResourceManager.GetString("NewProjectTsconfig", resourceCulture);
             }
         }
         
@@ -103,18 +142,18 @@ namespace Melon.Properties {
         ///
         ///# Grunt intermediate storage (https://gruntjs.com/creating-plugins [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
-        internal static string NewProjectGitIgnore {
+        internal static string NewProjectTsGitIgnore {
             get {
-                return ResourceManager.GetString("NewProjectGitIgnore", resourceCulture);
+                return ResourceManager.GetString("NewProjectTsGitIgnore", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world&quot;);.
         /// </summary>
-        internal static string NewProjectIndex {
+        internal static string NewProjectTsIndex {
             get {
-                return ResourceManager.GetString("NewProjectIndex", resourceCulture);
+                return ResourceManager.GetString("NewProjectTsIndex", resourceCulture);
             }
         }
         
@@ -134,26 +173,9 @@ namespace Melon.Properties {
         ///  }
         ///}.
         /// </summary>
-        internal static string NewProjectPackageInfo {
+        internal static string NewProjectTsPackageInfo {
             get {
-                return ResourceManager.GetString("NewProjectPackageInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a {
-        ///    &quot;compilerOptions&quot;: {
-        ///      &quot;outDir&quot;: &quot;build&quot;,
-        ///      &quot;types&quot;: [
-        ///        &quot;melon-types&quot;
-        ///      ],
-        ///      &quot;lib&quot;: [ &quot;es2022&quot; ]
-        ///    }
-        ///}.
-        /// </summary>
-        internal static string NewProjectTsconfig {
-            get {
-                return ResourceManager.GetString("NewProjectTsconfig", resourceCulture);
+                return ResourceManager.GetString("NewProjectTsPackageInfo", resourceCulture);
             }
         }
     }
