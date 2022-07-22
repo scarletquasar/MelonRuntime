@@ -29,7 +29,6 @@ namespace Melon.Commands
                 throw new ArgumentException(Consts.NotSpecifiedArgumentError);
             }
 
-
             projectFilesCount = projectFiles.Count;
 
             for(var index = 0; index < projectFilesCount; index++)

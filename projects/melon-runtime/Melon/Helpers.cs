@@ -79,7 +79,7 @@ namespace Melon
             }
             catch (Exception e)
             {
-                CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
+                CLNConsole.WriteLine($"> [{e.GetType().Name}] {e.Message} ", ConsoleColor.Red);
 
                 if(keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
