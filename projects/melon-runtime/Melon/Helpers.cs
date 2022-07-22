@@ -63,7 +63,7 @@ namespace Melon
             engine!.Execute(script);
             WaitForScript();
         }
-        internal static void ExecuteWithHandler(Action action, bool repeat = true)
+        internal static void ExecuteWithHandler(Action action, bool repeat = true, bool keepStackTracing = true)
         {
             try
             {
@@ -73,12 +73,16 @@ namespace Melon
             {
                 dynamic ex = e;
                 CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
-                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+
+                if(keepStackTracing)
+                    CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             catch (Exception e)
             {
                 CLNConsole.WriteLine($"> [Internal Exception] {e.Message} ", ConsoleColor.Red);
-                CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
+
+                if(keepStackTracing)
+                    CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             finally
             {
