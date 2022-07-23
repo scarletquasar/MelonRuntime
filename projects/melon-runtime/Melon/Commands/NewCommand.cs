@@ -9,19 +9,17 @@ namespace Melon.Commands
     {
         public void Execute(string[] arguments)
         {
-            var currentPath = Environment.CurrentDirectory + (arguments.Length > 0 ? string.Join("", arguments) : "");
-
             ProjectScheme projectFiles;
             int projectFilesCount;
 
             if (arguments.Any())
             {
-                Directory.CreateDirectory(currentPath + "/src/");
+                Directory.CreateDirectory("./src/");
 
                 projectFiles = arguments[0] switch
                 {
-                    "typescript" => GetTypeScriptScheme(currentPath),
-                    "javascript" => GetJavaScriptScheme(currentPath),
+                    "typescript" => GetTypeScriptScheme(),
+                    "javascript" => GetJavaScriptScheme(),
                     _ => throw new ArgumentException(Consts.NotSpecifiedProjectError),
                 };
             }
@@ -49,24 +47,24 @@ namespace Melon.Commands
             File.WriteAllText(path, content);
         }
 
-        private static ProjectScheme GetTypeScriptScheme(string currentPath)
+        private static ProjectScheme GetTypeScriptScheme()
         {
             return new()
             {
-                new("src/index.ts", currentPath + "/src/index.ts", Resources.NewProjectTsIndex),
-                new(".babelrc", currentPath + "/.babelrc", Resources.NewProjectTsBabelRc),
-                new("package.json", currentPath + "/package.json", Resources.NewProjectTsPackageInfo),
-                new("tsconfig.json", currentPath + "/tsconfig.json", Resources.NewProjectTsconfig),
-                new(".gitignore", currentPath + "/.gitignore", Resources.NewProjectTsGitIgnore)
+                new("src/index.ts", "./src/index.ts", Resources.NewProjectTsIndex),
+                new(".babelrc", "./.babelrc", Resources.NewProjectTsBabelRc),
+                new("package.json", "./package.json", Resources.NewProjectTsPackageInfo),
+                new("tsconfig.json", "./tsconfig.json", Resources.NewProjectTsconfig),
+                new(".gitignore", "./.gitignore", Resources.NewProjectTsGitIgnore)
             };
         }
 
-        private static ProjectScheme GetJavaScriptScheme(string currentPath)
+        private static ProjectScheme GetJavaScriptScheme()
         {
             return new()
             {
-                new("src/index.js", currentPath + "/index.js", Resources.NewProjectJsIndex),
-                new("package.json", currentPath + "/package.json", Resources.NewProjectJsPackageInfo),
+                new("src/index.js", "./index.js", Resources.NewProjectJsIndex),
+                new("package.json", "./package.json", Resources.NewProjectJsPackageInfo),
             };
         }
     }
