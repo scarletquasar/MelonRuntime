@@ -11,16 +11,17 @@ namespace Melon.Commands
         {
             var currentPath = Environment.CurrentDirectory + (arguments.Length > 0 ? string.Join("", arguments) : "");
 
-            Directory.CreateDirectory(currentPath + "/src/");
             ProjectScheme projectFiles;
             int projectFilesCount;
 
             if (arguments.Any())
             {
+                Directory.CreateDirectory(currentPath + "/src/");
+
                 projectFiles = arguments[0] switch
                 {
-                    "--typescript" => GetTypeScriptScheme(currentPath),
-                    "--javascript" => GetJavaScriptScheme(currentPath),
+                    "typescript" => GetTypeScriptScheme(currentPath),
+                    "javascript" => GetJavaScriptScheme(currentPath),
                     _ => throw new ArgumentException(Consts.NotSpecifiedProjectError),
                 };
             }
