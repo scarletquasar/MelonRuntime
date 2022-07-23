@@ -139,7 +139,7 @@ To execute Melon, just type `npx melon [command]` in terminal.
 
 - `npx melon run [script]` - Executes a script directly from the command line
 - `npx melon load [path]` - Loads an external entry point
-- `npx melon new` - Creates a new empty Melon project in the current folder
+- `npx melon new [javascript|typescript]` - Creates a new empty Melon project in the current folder
 
 ## Core Contributors 
 
