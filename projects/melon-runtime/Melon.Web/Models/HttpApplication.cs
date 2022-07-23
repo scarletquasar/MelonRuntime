@@ -2,7 +2,13 @@
 {
     public class HttpApplication
     {
-        public HttpApplication(string name, string host, int port, List<HttpRoute> routes, List<HttpEcho> echoes, bool enableHttps = true)
+        public HttpApplication(
+            string name, 
+            string host, 
+            int port, 
+            List<HttpRoute> routes, 
+            List<HttpEcho> echoes, 
+            bool enableHttps = true)
         {
             Name = name;
             Routes = routes;

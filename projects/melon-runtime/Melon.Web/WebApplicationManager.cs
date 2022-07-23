@@ -43,7 +43,6 @@ namespace Melon.Web
 
             webApp.Run();
         }
-
         private static void SetupRoutes(this WebApplication webApp, string name, List<HttpRoute> routes, Engine? engine)
         {
             foreach (var route in routes)
