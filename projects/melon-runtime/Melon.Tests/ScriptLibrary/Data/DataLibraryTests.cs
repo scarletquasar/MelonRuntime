@@ -7,7 +7,7 @@ namespace Melon.Tests.ScriptLibrary.Data
 {
     public class DataLibraryTests
     {
-        private readonly Jint.Engine _engine;
+        private readonly Jint.Engine engine;
 
         public DataLibraryTests()
         {
@@ -19,7 +19,7 @@ namespace Melon.Tests.ScriptLibrary.Data
             };
 
             loadList.ForEach(x => builder.Load(x));
-            _engine = builder.Build();
+            engine = builder.Build();
         }
 
         [Fact(DisplayName = "'data' clone() method should work correctly")]
@@ -30,7 +30,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 let b = data.clone(1); 
                 b;
             ";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -43,7 +43,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 let b = 1; 
                 data.compare(a, b);
             ";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -56,7 +56,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 let b = [1]; 
                 data.find(a, b).found;
             ";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }

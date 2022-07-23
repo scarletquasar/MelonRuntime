@@ -55,7 +55,10 @@ namespace Melon
         private static void HandleInputs(string[] args)
         {
             var commandArgs = Helpers.GetCommandArguments(args);
-            var commandExecution = Runtime.CommandContainer!.ExecuteCommands(commandArgs);
+            var commandExecution = true;
+            var handlerLambda = () => { commandExecution = Runtime.CommandContainer!.ExecuteCommands(commandArgs); };
+
+            Helpers.ExecuteWithHandler(handlerLambda, false, false);
 
             if (!commandExecution)
             {

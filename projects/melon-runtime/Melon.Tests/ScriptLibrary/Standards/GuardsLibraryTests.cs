@@ -7,7 +7,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
 {
     public class GuardsLibraryTests
     {
-        private readonly Jint.Engine _engine;
+        private readonly Jint.Engine engine;
 
         public GuardsLibraryTests()
         {
@@ -19,14 +19,14 @@ namespace Melon.Tests.ScriptLibrary.Standards
             };
 
             loadList.ForEach(x => builder.Load(x));
-            _engine = builder.Build();
+            engine = builder.Build();
         }
 
         [Fact(DisplayName = "'guards.number' isEven() method should work correctly")]
         public void GuardsIsEvenMethodShouldWorkCorrectly()
         {
             var script = @"guards.number.isEven(2)";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -35,7 +35,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsOddMethodShouldWorkCorrectly()
         {
             var script = @"guards.number.isOdd(1)";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -44,7 +44,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsIntegerMethodShouldWorkCorrectly()
         {
             var script = @"guards.number.isInteger(1)";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -53,7 +53,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsFloatMethodShouldWorkCorrectly()
         {
             var script = @"guards.number.isFloat(1.5)";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -62,7 +62,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsEmptyArrayMethodShouldWorkCorrectly()
         {
             var script = @"guards.iterable.isEmptyArray([])";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -71,7 +71,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsEmptyObjectMethodShouldWorkCorrectly()
         {
             var script = @"guards.iterable.isEmptyObject({})";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -80,7 +80,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsNullOrEmptyMethodShouldWorkCorrectly()
         {
             var script = @"guards.string.isNullOrEmpty('');";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -89,7 +89,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void GuardsIsNullOrWhiteSpaceMethodShouldWorkCorrectly()
         {
             var script = @"guards.string.isNullOrWhiteSpace('');";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }

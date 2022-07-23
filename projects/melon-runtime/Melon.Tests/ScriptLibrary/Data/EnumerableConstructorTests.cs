@@ -8,7 +8,7 @@ namespace Melon.Tests.ScriptLibrary.Data
 {
     public class EnumerableConstructorTests
     {
-        private readonly Jint.Engine _engine;
+        private readonly Jint.Engine engine;
 
         public EnumerableConstructorTests()
         {
@@ -21,14 +21,14 @@ namespace Melon.Tests.ScriptLibrary.Data
             };
 
             loadList.ForEach(x => builder.Load(x));
-            _engine = builder.Build();
+            engine = builder.Build();
         }
 
         [Fact(DisplayName = "Constructor Enumerable count should have the right value")]
         public void ConstructorEnumerableCountShouldHaveTheRightValue()
         {
             var script = "new Enumerable([1, 2, 3]).count";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(3, result);
         }
@@ -38,7 +38,7 @@ namespace Melon.Tests.ScriptLibrary.Data
         {
             var script = "new Enumerable([1, 2, 3], 2)";
 
-            Assert.Throws<JavaScriptException>(() => _engine.Evaluate(script));
+            Assert.Throws<JavaScriptException>(() => engine.Evaluate(script));
         }
 
         [Fact(DisplayName = "Constructor Enumerable add() method should work")]
@@ -50,7 +50,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.toArray()[0];
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(100, result);
         }
@@ -64,7 +64,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.toArray().toString();
             ";
 
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.Equal("100,200", result);
         }
@@ -77,7 +77,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 Array.isArray(en.toArray());
             ";
 
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -90,7 +90,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.take(1).toArray().toString();
             ";
 
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.Equal("1", result);
         }
@@ -103,7 +103,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.skip(1).toArray().toString();
             ";
 
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.Equal("2,3", result);
         }
@@ -116,7 +116,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.where(x => x === 3).toArray().toString();
             ";
 
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.Equal("3", result);
         }
@@ -129,7 +129,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.firstOrDefault();
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -142,7 +142,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.lastOrDefault();
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -155,7 +155,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.first();
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -168,7 +168,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.last();
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -181,7 +181,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.any();
             ";
 
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -194,7 +194,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.all(x => x === 1);
             ";
 
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -207,7 +207,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.average();
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(5, result);
         }
@@ -221,7 +221,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.toArray()[0] instanceof Number;
             ";
 
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -234,7 +234,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.equals([1]);
             ";
 
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -248,7 +248,7 @@ namespace Melon.Tests.ScriptLibrary.Data
                 en.count
             ";
 
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(0, result);
         }
@@ -257,7 +257,7 @@ namespace Melon.Tests.ScriptLibrary.Data
         public void ConstructorEnumerableShouldHaveTheCorrectElements()
         {
             var script = "new Enumerable([1, 2, 3]).toArray().toString()";
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.Equal("1,2,3", result);
         }

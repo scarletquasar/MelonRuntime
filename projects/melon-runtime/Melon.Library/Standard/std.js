@@ -17,6 +17,35 @@
         }
         return internal;
     },
+    time: {
+        _timers: [],
+        setTimeout: (callback, delay) => {
+            const identifier = () => std.time._timers.push({ callback }) - 1;
+            _$internalBinding["SetTimeout"](identifier(), delay);
+        },
+        setInterval: (callback, delay) => {
+            const identifier = () => std.time._timers.push({ callback }) - 1;
+            _$internalBinding["SetInterval"](identifier(), delay);
+        }
+    },
+    json: {
+        tryParse: (target, options = { onErrorReturn: () => { return {} }, modifier: x => x }) => {
+            try {
+                return options.modifier(JSON.parse(target));
+            }
+            catch {
+                return options.onErrorReturn(target);
+            }
+        },
+        tryStringify: (target, options = { onErrorReturn: (value) => value.toString(), modifier: x => x }) => {
+            try {
+                return options.modifier(JSON.stringify(target));
+            }
+            catch {
+                return options.onErrorReturn(target);
+            }
+        }
+    },
     system: {
         osInformation: _$internalBinding["OsInformation"]
     },

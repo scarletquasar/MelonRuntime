@@ -8,7 +8,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
 {
     public class StdLibraryTests
     {
-        private readonly Jint.Engine _engine;
+        private readonly Jint.Engine engine;
 
         public StdLibraryTests()
         {
@@ -20,14 +20,14 @@ namespace Melon.Tests.ScriptLibrary.Standards
             };
 
             loadList.ForEach(x => builder.Load(x));
-            _engine = builder.Build();
+            engine = builder.Build();
         }
 
         [Fact(DisplayName = "'std' Promise should be a valid promise")]
         public void StdPromiseShouldBeAValidPromise()
         {
             var script = @"std.Promise.constructor.name === Promise.constructor.name";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -40,7 +40,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
                 std.shift(1).option(1, (x) => a = x);
                 a;
             ";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -49,7 +49,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void StdSystemOsInformationShouldHaveCorrectData()
         {
             var script = @"std.system.osInformation()";
-            var result = _engine.Evaluate(script).AsObject();
+            var result = engine.Evaluate(script).AsObject();
 
             Assert.Equal(Environment.OSVersion.Platform.ToString(), result.Get("platform"));
             Assert.Equal(Environment.OSVersion.VersionString, result.Get("version"));
@@ -60,7 +60,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void StdEnvironmentCurrentDirectoryShouldBeValid()
         {
             var script = @"std.environment.currentDirectory()";
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.NotEmpty(result);
         }
@@ -69,7 +69,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public void StdEnvironmentBaseDirectoryShouldBeValid()
         {
             var script = @"std.environment.baseDirectory()";
-            var result = _engine.Evaluate(script).AsString();
+            var result = engine.Evaluate(script).AsString();
 
             Assert.NotEmpty(result);
         }
@@ -81,7 +81,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
                 std.environment.setEnvironmentVariable('test', 123);
                 Object.keys(std.environment.getEnvironmentVariables()).length;
             ";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.NotEqual((uint)0, (uint)result);
         }
@@ -93,7 +93,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
                 std.environment.setEnvironmentVariable('test', 123);
                 std.environment.getEnvironmentVariables()['test'];
             ";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal(123, result);
         }
@@ -106,7 +106,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
                 std.environment.clearLocalEnvironmentVariables();
                 Object.keys(std.environment.getEnvironmentVariables()).length;
             ";
-            var result = _engine.Evaluate(script).AsNumber();
+            var result = engine.Evaluate(script).AsNumber();
 
             Assert.Equal((uint)0, (uint)result);
         }
@@ -117,7 +117,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
             var script = @"
                 Array.isArray(std.process.argv);
             ";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
@@ -128,7 +128,7 @@ namespace Melon.Tests.ScriptLibrary.Standards
             var script = @"
                 std.process.env instanceof Object;
             ";
-            var result = _engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
         }
