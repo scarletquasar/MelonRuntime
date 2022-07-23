@@ -3,8 +3,11 @@ type Std = {
     Promise: (resolve: Function, reject?: Function) => void
     shift: (value: any) => any
     json: {
-        tryParse: <T>(json: string, onErrorReturn: (value: string) => T) => T
-        tryStringify: (target: any, onErrorReturn: (value: any) => string) => string
+        tryParse: <T>(json: string, options: { onErrorReturn: (value: string) => T, modifier: (target: T) => T }) => T
+        tryStringify: (
+            target: any, 
+            options: { onErrorReturn: (value: string) => string, modifier: (target: string) => string }
+        ) => string
     },
     system: {
         osInformation: {

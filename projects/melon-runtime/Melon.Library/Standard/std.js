@@ -18,20 +18,20 @@
         return internal;
     },
     json: {
-        tryParse: (json, onErrorReturn = () => { return {} }) => {
+        tryParse: (target, options = { onErrorReturn: () => { return {} }, modifier: x => x }) => {
             try {
-                return JSON.parse(json);
+                return options.modifier(JSON.parse(target));
             }
             catch {
-                return onErrorReturn(json);
+                return options.onErrorReturn(target);
             }
         },
-        tryStringify: (target, onErrorReturn = (value) => value.toString()) {
+        tryStringify: (target, options = { onErrorReturn: (value) => value.toString(), modifier: x => x }) => {
             try {
-                return JSON.stringify(target);
+                return options.modifier(JSON.stringify(target));
             }
             catch {
-                return onErrorReturn(target);
+                return options.onErrorReturn(target);
             }
         }
     },
