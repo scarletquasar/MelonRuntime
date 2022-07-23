@@ -16,6 +16,8 @@
             this.echoes = [];
             this.routes = [];
 
+            this.middlewares = [];
+
             this.events = {
                 beforeCall: () => { },
                 afterCall: () => { },
@@ -28,6 +30,7 @@
 
                     try {
                         this.events.beforeCall(request);
+                        this.middlewares.forEach(middleware => request = middleware(request));
                         result = callback(request);
                         this.events.afterCall(request);
                     }
@@ -40,6 +43,10 @@
 
                 return executionTree;
             }
+        }
+
+        use(middleware) {
+            this.middlewares.push(middleware);
         }
 
         on(event, callback) {
