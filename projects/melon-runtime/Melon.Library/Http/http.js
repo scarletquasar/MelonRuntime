@@ -15,20 +15,49 @@
             this.enableHttps = enableHttps;
             this.echoes = [];
             this.routes = [];
+
+            this.events = {
+                beforeCall: () => { },
+                afterCall: () => { },
+                error: () => { }
+            };
+
+            this._mountExecutionTree = (callback) => {
+                const executionTree = (request) => {
+                    let result;
+
+                    try {
+                        this.events.beforeCall(request);
+                        result = callback(request);
+                        this.events.afterCall(request);
+                    }
+                    catch (error) {
+                        this.events.error(error, request);
+                    }
+
+                    return result;
+                }
+
+                return executionTree;
+            }
+        }
+
+        on(event, callback) {
+            this.events[event] = callback;
         }
 
         get(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "GET", callback);
+            const httpRoute = new http.HttpRoute(route, "GET", this._mountExecutionTree(callback));
             this.routes.push(httpRoute);
         }
 
         post(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "POST", callback);
+            const httpRoute = new http.HttpRoute(route, "POST", this._mountExecutionTree(callback));
             this.routes.push(httpRoute);
         }
 
         delete(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "DELETE", callback);
+            const httpRoute = new http.HttpRoute(route, "DELETE", this._mountExecutionTree(callback));
             this.routes.push(httpRoute);
         }
 
