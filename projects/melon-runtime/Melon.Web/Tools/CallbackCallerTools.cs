@@ -1,4 +1,6 @@
-﻿namespace Melon.Web.Tools
+﻿using Melon.Web.Properties;
+
+namespace Melon.Web.Tools
 {
     public static class CallbackCallerTools
     {
@@ -6,28 +8,17 @@
             string appIdentifier,
             string method,
             string route,
-            string? serializedQuery = null,
-            string? serializedHeaders = null,
-            string? serializedBody = null)
+            string serializedQuery = "{}",
+            string serializedHeaders = "{}",
+            string serializedBody = "{}")
         {
-            var result = $"(http._apps['{appIdentifier}']";
-            result += $".routes.filter(x => x.method === '{method}'";
-            result += $" && x.route === '{route}')[0].callback)";
-
-            switch (method)
-            {
-                case "GET":
-                    result += $"('{serializedQuery}', '{serializedHeaders}')";
-                    break;
-
-                case "POST":
-                    result += $"('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')";
-                    break;
-
-                case "DELETE":
-                    result += $"('{serializedBody}', '{serializedQuery}', '{serializedHeaders}')";
-                    break;
-            }
+            var result = Resources.RouteCallbackCaller
+                .Replace("{appIdentifier}", appIdentifier)
+                .Replace("{method}", method)
+                .Replace("{route}", route)
+                .Replace("{serializedQuery}", serializedQuery)
+                .Replace("{serializedBody}", serializedBody)
+                .Replace("{serializedHeaders}", serializedHeaders);
 
             return result;
         }

@@ -4,6 +4,7 @@ using Melon.Library.Static.OS;
 using Melon.Library.Static.Web;
 using Melon.Library.Static.XRequire;
 using Melon.Web;
+using Melon.Web.Models;
 
 namespace Melon.Library.Static
 {
@@ -40,7 +41,7 @@ namespace Melon.Library.Static
             //Module - [Http]
             { 
                 "SetupWebApplication", 
-                new Action<string, string, int, string, string, bool>(WebApplicationManager.ExecuteWebApplication) 
+                new Action<string>(WebApplicationManager.ExecuteWebApplication) 
             },
             { 
                 "FetchRequest",

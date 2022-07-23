@@ -9,6 +9,12 @@ type MSimpleResponse<R, MT extends string> = {
     response: R
 }
 
+type HttpRequest = {
+    query: Record<string, any>,
+    body: any,
+    headers: Record<string, any>
+}
+
 declare class HttpApplicationInternal {
     name: string;
     host: string;
@@ -16,7 +22,7 @@ declare class HttpApplicationInternal {
     enableHttps: boolean;
     echoes: any[];
     routes: any[];
-    get: (route: string, callback: Function) => void;
+    get: (route: string, callback: (request: HttpRequest) => string) => void;
     post: (route: string, callback: Function) => void;
     delete: (route: string, callback: Function) => void;
     run: () => void;

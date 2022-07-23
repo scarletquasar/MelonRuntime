@@ -33,14 +33,16 @@
         }
 
         run() {
-            _$internalBinding["SetupWebApplication"](
-                this.name,
-                this.host,
-                this.port,
-                JSON.stringify(this.routes),
-                JSON.stringify(this.echoes),
-                this.enableHttps
-            )
+            const parameters = JSON.stringify({
+                Name: this.name,
+                Host: this.host,
+                Port: this.port,
+                Routes: JSON.stringify(this.routes),
+                Echoes: JSON.stringify(this.echoes),
+                EnableHttps: this.enableHttps
+            });
+
+            _$internalBinding["SetupWebApplication"](parameters);
         }
 
         listen(port, host = this.host) {

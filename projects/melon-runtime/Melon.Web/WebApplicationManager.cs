@@ -1,5 +1,4 @@
-﻿using Cli.NET.Tools;
-using Jint;
+﻿using Jint;
 using Melon.Static.Runtime;
 using Melon.Web.Models;
 using Melon.Web.Tools;
@@ -10,13 +9,19 @@ namespace Melon.Web
     public static class WebApplicationManager
     {
         static int Main() => 0;
-        public static void ExecuteWebApplication
-            (string name, string host, int port, string routes, string echoes, bool enableHttps = false)
+        public static void ExecuteWebApplication(string serializedParameters)
         {
-            var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(routes);
-            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(echoes);
+            var parameters = JsonSerializer.Deserialize<ExecuteWebApplicationParameters>(serializedParameters);
+            var parsedRoutes = JsonSerializer.Deserialize<List<HttpRoute>>(parameters!.Routes ?? "[]");
+            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(parameters!.Echoes ?? "[]");
 
-            var app = new HttpApplication(name, host, port, parsedRoutes ?? new(), parsedEchoes ?? new(), enableHttps);
+            var app = new HttpApplication(
+                parameters.Name!, 
+                parameters.Host!, 
+                parameters.Port, 
+                parsedRoutes!, 
+                parsedEchoes!, parameters.EnableHttps);
+
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
 
             var engine = Runtime.Engine;
@@ -24,10 +29,6 @@ namespace Melon.Web
 
             var webApp = builder.Build();
 
-            /*
-             * Enable HTTPS redirection for the internally created web application
-             * Obs: Will require a valid HTTPS certificate to work in a server
-             */
             if (app.EnableHttps)
             {
                 webApp.UseHttpsRedirection();
@@ -36,15 +37,9 @@ namespace Melon.Web
             app.Echoes.ForEach(x => webApp.Urls.Add($"http{httpsCondition}://{x.Host}:{x.Port}"));
 
             webApp.Urls.Add($"http{httpsCondition}://{app.Host}:{app.Port}");
+            webApp.SetupRoutes(parameters.Name!, app.Routes, engine);
 
-            webApp.SetupRoutes(name, app.Routes, engine);
-
-            Console.WriteLine();
-            CLNConsole.Write("[Melon ASP.NET host] ", ConsoleColor.DarkYellow);
-            CLNConsole.Write("Starting web application with default: ", ConsoleColor.Green);
-            CLNConsole.Write(webApp.Urls.ElementAt(0), ConsoleColor.Blue);
-            Console.WriteLine();
-            Console.WriteLine();
+            Helpers.DisplayMelonAspnetInformation(webApp.Urls.ElementAt(0));
 
             webApp.Run();
         }

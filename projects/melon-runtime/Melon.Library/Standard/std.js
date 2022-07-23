@@ -17,6 +17,16 @@
         }
         return internal;
     },
+    json: {
+        tryParse: (json, onErrorReturn = () => { return {} }) => {
+            try {
+                return JSON.parse(json);
+            }
+            catch {
+                return onErrorReturn(json);
+            }
+        }
+    },
     system: {
         osInformation: _$internalBinding["OsInformation"]
     },
