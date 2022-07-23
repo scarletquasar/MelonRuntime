@@ -4,7 +4,7 @@ using Melon.Library.Static.OS;
 using Melon.Library.Static.Web;
 using Melon.Library.Static.XRequire;
 using Melon.Web;
-using Melon.Web.Models;
+using Melon.Library.Static.Generic;
 
 namespace Melon.Library.Static
 {
@@ -21,6 +21,8 @@ namespace Melon.Library.Static
             { "ProcessExit", new Action<int>(Environment.Exit) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
             { "ProcessEnvironmentVariables", Environment.GetEnvironmentVariables() },
+            { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
+            { "SetInterval", new Action<int, int>(Time.SetInterval) },
 
             //Module - [InputOutput]
             { "ConsoleLog", new Action<object, int>(InputOutput.Console.Log) },
@@ -73,6 +75,5 @@ namespace Melon.Library.Static
                 new Func<string, string, string, object[], dynamic?>(XRequireStaticExternal.CreateInstanceDirectlyFromAssembly)
             }
         };
-        
     }
 }

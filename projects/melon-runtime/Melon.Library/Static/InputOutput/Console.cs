@@ -8,6 +8,7 @@ namespace Melon.Library.Static.InputOutput
     {
         public static void Log(object obj, int color = 0)
         {
+            System.Console.WriteLine();
             try
             {
                 JsonSerializerOptions options = new()
