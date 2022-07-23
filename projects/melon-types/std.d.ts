@@ -33,3 +33,5 @@ type Std = {
         env: Record<string, any>
     }
 }
+
+declare const std: Std;
