@@ -9,6 +9,10 @@ type Std = {
             options: { onErrorReturn: (value: string) => string, modifier: (target: string) => string }
         ) => string
     },
+    time: {
+        setInterval: (action: Function, delay: number) => void,
+        setTimeout: (action: Function, delay: number) => void
+    }
     system: {
         osInformation: {
             platform: string

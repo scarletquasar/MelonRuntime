@@ -1,5 +1,19 @@
 # Changelog
 
+## [v1.8.0](https://www.npmjs.com/package/melon-runtime/v/1.8.0)
+`07/23/2022`
+
+- ☢ Breaking change
+- 📌 New feature/implementation 
+
+- 📌 **[core]** Implemented `std.json.tryParse()` function
+- 📌 **[core]** Implemented `std.json.tryStringify()` function
+- 📌 **[core]** Implemented `std.time.setTimeout()` function
+- 📌 **[core]** Implemented `std.time.setInterval()` function
+- 📌 **[core]** Implemented `HttpApplication.use()` middleware function
+- 📌 **[core]** Implemented `HttpApplication.on()` event function
+- ☢ **[project-gen]** Now the `npx melon new` command requires `typescript` or `javascript` argument
+
 ## [v1.7.2](https://www.npmjs.com/package/melon-runtime/v/1.7.2)
 `07/20/2022`
 
