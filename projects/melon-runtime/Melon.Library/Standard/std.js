@@ -25,6 +25,14 @@
             catch {
                 return onErrorReturn(json);
             }
+        },
+        tryStringify: (target, onErrorReturn = (value) => value.toString()) {
+            try {
+                return JSON.stringify(target);
+            }
+            catch {
+                return onErrorReturn(target);
+            }
         }
     },
     system: {

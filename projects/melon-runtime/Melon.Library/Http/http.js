@@ -62,7 +62,7 @@
         }
 
         json() {
-            return JSON.parse(this.body);
+            return std.json.tryParse(this.body, x => x);
         }
 
         text() {
