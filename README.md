@@ -42,7 +42,7 @@ let myValue = getRandomInt(1, 3);
 
 shift(myValue)
   .option(1 || 2, () => console.log("Cool"))
-  .option(3, (value) => console.log("Too much!"));
+  .option(3, () => console.log("Too much!"));
 ```
 
 <hr>
