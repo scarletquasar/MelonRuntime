@@ -1,11 +1,4 @@
 declare class DatabaseProviderInternal {
-    constructor(
-        host: string, 
-        port: number, 
-        database: string, 
-        user: string,
-        password: string
-    );
     executeNonQuery: (sql: string) => number;
     executeQuery: <T>(sql: string) => T;
 }
@@ -17,9 +10,27 @@ type Data = {
         found: boolean,
         count: number
     },
-    PgClient: DatabaseProviderInternal,
-    MySqlClient: DatabaseProviderInternal,
-    SqlServerClient: DatabaseProviderInternal
+    PgClient: new (
+        host: string, 
+        port: number, 
+        database: string, 
+        user: string,
+        password: string
+    ) => DatabaseProviderInternal,
+    MySqlClient: new (
+        host: string, 
+        port: number, 
+        database: string, 
+        user: string,
+        password: string
+    ) => DatabaseProviderInternal,
+    SqlServerClient: new (
+        host: string, 
+        port: number, 
+        database: string, 
+        user: string,
+        password: string
+    ) => DatabaseProviderInternal
 }
 
 declare const data: Data;
