@@ -55,7 +55,7 @@ type Http = {
     HttpApplication: HttpApplicationInternal
     Response: ResponseInternal
     request: (target: string, method: string, body: string, headers: string) => Promise<Http["Response"]>
-    app: (options?: {name: string, host: string, port: string, enableHttps?: boolean}) => HttpApplicationInternal
+    app: (options?: { name: string, host: string, port: number, enableHttps?: boolean }) => HttpApplicationInternal
     result: (statusCode: number, response?: any) => {
         type: string,
         status: number,
