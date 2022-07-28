@@ -17,6 +17,7 @@
 
 <hr>
 
+- [Official Website](https://melonruntime.github.io/site/)
 - [Installation](https://github.com/MelonRuntime/Melon#installation-and-usage)
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 - [Internal Utilities](https://github.com/MelonRuntime/Melon/tree/main/utils)
