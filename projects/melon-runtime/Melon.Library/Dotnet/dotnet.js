@@ -1,18 +1,28 @@
 ﻿const dotnet = {
-    getMethodFrom: (expression, index = 0) => {
+    getStaticMethod: (expression, index = 0) => {
         const parts = expression.split(":");
         const namespace = parts[0];
         const type = parts[1];
         const method = parts[2];
 
         const finalMethod = function (...args) {
-            const xrequireNamespace = xrequire(`dotnet:${namespace}`);
-            const xrequireType = xrequireNamespace.getType(type);
-            const xrequireMethod = xrequireType.getMethod(method, index);
+            const callStaticMethodBinding = _$internalBinding["InteropInternalCallStaticMethod"];
+            const internalStaticMethod = callStaticMethodBinding(namespace, type, method, index, [...args]);
 
-            return xrequireMethod.invoke(Array.from(args));
+            return internalStaticMethod.invoke(Array.from(args));
         }
 
         return finalMethod;
+    },
+    getStaticProperty: (expression) => {
+        const parts = expression.split(":");
+        const namespace = parts[0];
+        const type = parts[1];
+        const property = parts[2];
+
+        const callStaticPropertyBinding = _$internalBinding["InteropInternalGetStaticProperty"];
+        const internalStaticProperty = callStaticPropertyBinding(namespace, type, property);
+
+        return internalStaticProperty;
     }
 }

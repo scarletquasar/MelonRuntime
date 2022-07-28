@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-namespace Melon.Library.Static.XRequire
+namespace Melon.Library.Static.InteropReflection
 {
-    public static class XRequireDotnetInternal
+    public static class ReflectionHelper
     {
         private static Tuple<string, List<Type>> _cachedMethodSearchTypes = new("", new());
         private static Tuple<string, List<Type>> _cachedFieldSearchTypes = new("", new());
@@ -42,8 +42,7 @@ namespace Melon.Library.Static.XRequire
 
             return result?.Invoke(parameters[0], parameters.Skip(1).ToArray());
         }
-
-        public static dynamic? GetField(string nSpace, string search, string fieldName)
+        public static dynamic? GetStaticProperty(string nSpace, string search, string fieldName)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -68,17 +67,19 @@ namespace Melon.Library.Static.XRequire
                 types = _cachedFieldSearchTypes.Item2;
             }
 
-            IQueryable<FieldInfo> field = types
+            IQueryable<PropertyInfo> fields = types
                 .First()
-                .GetFields()
+                .GetProperties(BindingFlags.Instance |
+                       BindingFlags.Static |
+                       BindingFlags.NonPublic |
+                       BindingFlags.Public)
                 .Where(x => x.Name == fieldName)
                 .AsQueryable();
 
-            var result = field.FirstOrDefault();
+            var result = fields.FirstOrDefault();
 
-            return result;
+            return result?.GetValue(null);
         }
-
         public static dynamic CreateInstanceOfType(string nSpace, string search, object[] parameters)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();

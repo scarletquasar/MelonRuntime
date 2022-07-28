@@ -2,9 +2,9 @@
 using Melon.Library.Static.Database;
 using Melon.Library.Static.OS;
 using Melon.Library.Static.Web;
-using Melon.Library.Static.XRequire;
 using Melon.Web;
 using Melon.Library.Static.Generic;
+using Melon.Library.Static.InteropReflection;
 
 namespace Melon.Library.Static
 {
@@ -52,27 +52,11 @@ namespace Melon.Library.Static
 
             //Module - [Interop]
             {
-                "InteropInternalCallMethod",
-                new Func<string, string, string, int, object[], dynamic?>(XRequireDotnetInternal.CallMethod) },
+                "InteropInternalCallStaticMethod",
+                new Func<string, string, string, int, object[], dynamic?>(ReflectionHelper.CallMethod) },
             {
-                "InteropInternalGetField",
-                new Func<string, string, string, dynamic?>(XRequireDotnetInternal.GetField)
-            },
-            {
-                "InteropInternalCreateInstanceOfType",
-                new Func<string, string, object[], dynamic?>(XRequireDotnetInternal.CreateInstanceOfType)
-            },
-            {
-                "InteropExternalCallMethodDirectlyFromAssembly",
-                new Func<string, string, string, string, object[], dynamic?>(XRequireStaticExternal.CallMethodDirectlyFromAssembly)
-            },
-            {
-                "InteropExternalCallFieldDirectlyFromAssembly",
-                new Func<string, string, string, string, dynamic?>(XRequireStaticExternal.CallFieldDirectlyFromAssembly)
-            },
-            {
-                "InteropExternalCreateInstanceDirectlyFromAssembly",
-                new Func<string, string, string, object[], dynamic?>(XRequireStaticExternal.CreateInstanceDirectlyFromAssembly)
+                "InteropInternalGetStaticProperty",
+                new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
             }
         };
     }

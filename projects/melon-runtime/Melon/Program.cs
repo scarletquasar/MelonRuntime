@@ -11,6 +11,8 @@ namespace Melon
     {
         internal static void Main(string[] args)
         {
+            Console.Title = "Melon Runtime";
+
             Helpers.DisplayMelonDefaultInformation();
 
             Runtime.Engine = MakeEngine(args);
