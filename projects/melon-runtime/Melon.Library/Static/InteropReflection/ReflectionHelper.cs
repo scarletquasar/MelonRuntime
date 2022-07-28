@@ -31,16 +31,16 @@ namespace Melon.Library.Static.InteropReflection
                 types = _cachedMethodSearchTypes.Item2;
             }
 
-            IQueryable<MethodInfo> method =
+            IQueryable<MethodInfo> methods =
                 types
                 .First()
                 .GetMethods()
                 .Where(x => x.Name == methodName)
                 .AsQueryable();
 
-            var result = method.ToList()[index];
+            var result = methods.ToList()[index];
 
-            return result?.Invoke(parameters[0], parameters.Skip(1).ToArray());
+            return result?.Invoke(null, parameters.ToArray());
         }
         public static dynamic? GetStaticProperty(string nSpace, string search, string fieldName)
         {

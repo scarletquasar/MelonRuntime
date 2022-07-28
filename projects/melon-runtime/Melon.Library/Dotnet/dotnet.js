@@ -7,9 +7,8 @@
 
         const finalMethod = function (...args) {
             const callStaticMethodBinding = _$internalBinding["InteropInternalCallStaticMethod"];
-            const internalStaticMethod = callStaticMethodBinding(namespace, type, method, index, [...args]);
 
-            return internalStaticMethod.invoke(Array.from(args));
+            return callStaticMethodBinding(namespace, type, method, index, [...args]);
         }
 
         return finalMethod;

@@ -18,7 +18,6 @@ namespace Melon
                 "Standard/Set",
                 "Standard/Map",
                 "Standard/std",
-                "Standard/xrequire",
                 "Standard/console",
                 "Dotnet/dotnet",
                 "FileSystem/fs",
