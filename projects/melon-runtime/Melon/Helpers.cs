@@ -20,6 +20,7 @@ namespace Melon
                 "Standard/std",
                 "Standard/xrequire",
                 "Standard/console",
+                "Dotnet/dotnet",
                 "FileSystem/fs",
                 "Data/Enumerable",
                 "Data/IndexedArray",
