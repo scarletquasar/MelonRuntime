@@ -17,7 +17,7 @@ const __xrequire_dotnet_internal__ = (namespace) => {
             return {
                 getMethod: (method, index = 0) => {
                     return {
-                        invoke: (parameters, targetObject = null) => {
+                        invoke: (parameters = [], targetObject = null) => {
                             if (!Array.isArray(parameters)) {
                                 parameters = [parameters];
                             }
@@ -46,7 +46,7 @@ const __xrequire_dotnet_external__ = (fileName) => {
             return {
                 getMethod: (method, index = 0) => {
                     return {
-                        invoke: (parameters, targetObject = null) => {
+                        invoke: (parameters = [], targetObject = null) => {
                             if (!Array.isArray(parameters)) {
                                 parameters = [parameters];
                             }
