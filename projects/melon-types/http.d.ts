@@ -17,6 +17,12 @@ type HttpRequest = {
 
 type HttpApplicationEvent = "beforeCall" | "afterCall" | "error";
 
+type HttpComposedResponse = {
+    type: string;
+    status: number;
+    response: string;
+}
+
 declare class HttpApplicationInternal {
     name: string;
     host: string;
@@ -26,9 +32,9 @@ declare class HttpApplicationInternal {
     routes: any[];
     on: (event: HttpApplicationEvent, action: (request: HttpRequest) => any) => void;
     use: (middleware: (request: HttpRequest) => any) => void;
-    get: (route: string, callback: (request: HttpRequest) => string) => void;
-    post: (route: string, callback: (request: HttpRequest) => string) => void;
-    delete: (route: string, callback: (request: HttpRequest) => string) => void;
+    get: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
+    post: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
+    delete: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
     run: () => void;
     listen: (port: number, host?: string) => void;
 }
@@ -48,8 +54,8 @@ declare class ResponseInternal {
 type Http = {
     HttpApplication: HttpApplicationInternal
     Response: ResponseInternal
-    request: (target: string, method: string, body: string, headers: string) => Promise<Http["Response"]>
-    app: (options?: {name: string, host: string, port: string, enableHttps?: boolean}) => HttpApplicationInternal
+    request: (target: string, method?: string, body?: string, headers?: string) => Promise<Http["Response"]>
+    app: (options?: { name: string, host: string, port: number, enableHttps?: boolean }) => HttpApplicationInternal
     result: (statusCode: number, response?: any) => {
         type: string,
         status: number,

@@ -17,8 +17,8 @@
 
 <hr>
 
+- [Official Website](https://melonruntime.github.io/site/)
 - [Installation](https://github.com/MelonRuntime/Melon#installation-and-usage)
-- [Documentation (In development)](./projects/melon-md-docs/Index.md)
 - [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
 - [Internal Utilities](https://github.com/MelonRuntime/Melon/tree/main/utils)
 - [Compatible Libraries](https://github.com/MelonRuntime/Melon/blob/main/LIBRARY_COMPATIBILITY.md)
@@ -42,7 +42,7 @@ let myValue = getRandomInt(1, 3);
 
 shift(myValue)
   .option(1 || 2, () => console.log("Cool"))
-  .option(3, (value) => console.log("Too much!"));
+  .option(3, () => console.log("Too much!"));
 ```
 
 <hr>
@@ -139,7 +139,7 @@ To execute Melon, just type `npx melon [command]` in terminal.
 
 - `npx melon run [script]` - Executes a script directly from the command line
 - `npx melon load [path]` - Loads an external entry point
-- `npx melon new` - Creates a new empty Melon project in the current folder
+- `npx melon new [javascript|typescript]` - Creates a new empty Melon project in the current folder
 
 ## Core Contributors 
 
