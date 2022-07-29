@@ -1,6 +1,6 @@
 type Dotnet = {
-    getStaticMethod: (expression: `${string}:${string}:${string}`, index: number) => Function,
-    getStaticField: <T>(expression: `${string}:${string}:${string}`) => T
+    getStaticMethod: <TFunctionReturn>(expression: `${string}:${string}:${string}`) => (...args: any) => TFunctionReturn,
+    getStaticProperty: <TProperty>(expression: `${string}:${string}:${string}`) => TProperty
 }
 
 declare const dotnet: Dotnet;

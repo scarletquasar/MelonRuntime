@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
+
 namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
-        public static dynamic? CallMethod(string nSpace, string search, string methodName, int index, object[] parameters)
+        public static dynamic? CallMethod(string nSpace, string search, string methodName, object[] parameters)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 

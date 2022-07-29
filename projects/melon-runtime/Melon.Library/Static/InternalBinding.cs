@@ -53,7 +53,7 @@ namespace Melon.Library.Static
             //Module - [Interop]
             {
                 "InteropInternalCallStaticMethod",
-                new Func<string, string, string, int, object[], dynamic?>(ReflectionHelper.CallMethod) },
+                new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) },
             {
                 "InteropInternalGetStaticProperty",
                 new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)

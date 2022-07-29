@@ -1,5 +1,5 @@
 ﻿const dotnet = {
-    getStaticMethod: (expression, index = 0) => {
+    getStaticMethod: (expression) => {
         const parts = expression.split(":");
         const namespace = parts[0];
         const type = parts[1];
@@ -8,7 +8,7 @@
         const finalMethod = function (...args) {
             const callStaticMethodBinding = _$internalBinding["InteropInternalCallStaticMethod"];
 
-            return callStaticMethodBinding(namespace, type, method, index, [...args]);
+            return callStaticMethodBinding(namespace, type, method, [...args]);
         }
 
         return finalMethod;
