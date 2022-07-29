@@ -24,10 +24,6 @@ namespace Melon.Library.Static
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
             { "SetInterval", new Action<int, int>(Time.SetInterval) },
 
-            //Module - [InputOutput]
-            { "ConsoleLog", new Action<object, int>(InputOutput.Console.Log) },
-            { "ConsoleClear", new Action(Console.Clear) },
-
             //Module - [FileSystem]
             { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
             { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) },

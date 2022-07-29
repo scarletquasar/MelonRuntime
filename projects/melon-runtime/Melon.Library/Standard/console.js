@@ -1,20 +1,33 @@
 ﻿const console = {
+    _dotnetCLNConsole: (method) => dotnet.getStaticMethod(`Cli.NET.Tools:CLNConsole:${method}`),
+    _dotnetConsole: (method) => dotnet.getStaticMethod(`System:Console:${method}`),
+    write: (target, color = "White") => {
+        const result = std.json.tryStringify(target);
+        console._dotnetCLNConsole("Write")(result, color);
+    },
+    writeLine: (target, color = "White") => {
+        const result = std.json.tryStringify(target);
+        console._dotnetCLNConsole("WriteLine")(result, color);
+    },
     log: function () {
         Array.from(arguments).forEach(object => {
-            _$internalBinding["ConsoleLog"](object, 15);
+            const result = std.json.tryStringify(object);
+            console._dotnetCLNConsole("WriteLine")(result, "White");
         })
     },
     error: function () {
         Array.from(arguments).forEach(object => {
-            _$internalBinding["ConsoleLog"](object, 12);
+            const result = std.json.tryStringify(object);
+            console._dotnetCLNConsole("WriteLine")(result, "DarkRed");
         })
     },
     warn: function () {
         Array.from(arguments).forEach(object => {
-            _$internalBinding["ConsoleLog"](object, 14);
+            const result = std.json.tryStringify(object);
+            console._dotnetCLNConsole("WriteLine")(result, "Yellow");
         })
     },
-    clear: _$internalBinding["ConsoleClear"],
+    clear: () => console._dotnetConsole("Clear")(),
     table: function (data, columns) {
         if (data.constructor === Object) {
             if (!columns) {
