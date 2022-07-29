@@ -3,33 +3,18 @@ namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
-        private static Tuple<string, List<Type>> _cachedMethodSearchTypes = new("", new());
-        private static Tuple<string, List<Type>> _cachedFieldSearchTypes = new("", new());
-        private static Tuple<string, List<Type>> _cachedInstanceCreationTypes = new("", new());
         public static dynamic? CallMethod(string nSpace, string search, string methodName, int index, object[] parameters)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             IEnumerable<Type> types;
 
-            if (_cachedMethodSearchTypes.Item1 != search)
-            {
-                types =
-                    assemblies
-                    .Select(assembly => assembly.GetTypes())
-                    .SelectMany(x => x)
-                    .Where(x => x.Namespace == nSpace)
-                    .Where(x => x.FullName != null && x.FullName.Contains(search));
-
-                lock (_cachedMethodSearchTypes!)
-                {
-                    _cachedMethodSearchTypes = new(search, types.ToList());
-                }
-            }
-            else
-            {
-                types = _cachedMethodSearchTypes.Item2;
-            }
+            types =
+                assemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.FullName != null && x.FullName.Contains(search));
 
             return
                 types
@@ -48,24 +33,12 @@ namespace Melon.Library.Static.InteropReflection
 
             IEnumerable<Type> types;
 
-            if (_cachedFieldSearchTypes.Item1 != search)
-            {
-                types =
-                    assemblies
-                    .Select(assembly => assembly.GetTypes())
-                    .SelectMany(x => x)
-                    .Where(x => x.Namespace == nSpace)
-                    .Where(x => x.FullName != null && x.FullName.Contains(search));
-
-                lock (_cachedFieldSearchTypes!)
-                {
-                    _cachedFieldSearchTypes = new(search, types.ToList());
-                }
-            }
-            else
-            {
-                types = _cachedFieldSearchTypes.Item2;
-            }
+            types =
+                assemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.FullName != null && x.FullName.Contains(search));
 
             IQueryable<PropertyInfo> fields = types
                 .First()
@@ -86,24 +59,12 @@ namespace Melon.Library.Static.InteropReflection
 
             IEnumerable<Type> types;
 
-            if (_cachedInstanceCreationTypes.Item1 != search)
-            {
-                types =
-                    assemblies
-                    .Select(assembly => assembly.GetTypes())
-                    .SelectMany(x => x)
-                    .Where(x => x.Namespace == nSpace)
-                    .Where(x => x.FullName != null && x.FullName.Contains(search));
-
-                lock (_cachedInstanceCreationTypes!)
-                {
-                    _cachedInstanceCreationTypes = new(search, types.ToList());
-                }
-            }
-            else
-            {
-                types = _cachedInstanceCreationTypes.Item2;
-            }
+            types =
+                assemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.FullName != null && x.FullName.Contains(search));
 
             return Activator.CreateInstance(types!.First(), parameters, null)!;
         }
