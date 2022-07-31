@@ -25,46 +25,36 @@
 
 <hr>
 
-### 🚀 **Declarative-first programming**
-
-Create, manage and scale applications and tools easily without having to think about everything.
-
-```ts
-const { shift } = std;
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-let myValue = getRandomInt(1, 3);
-
-shift(myValue)
-  .option(1 || 2, () => console.log("Cool"))
-  .option(3, () => console.log("Too much!"));
-```
-
-<hr>
-
-### ⚡ **.NET based environment** 
-
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
 ```ts
-const system = xrequire("dotnet:System");
-const consoleWriteLine = system.getType("Console").getMethod("WriteLine", 0);
+const consoleWriteLine = dotnet.getStaticMethod("System:Console:WriteLine");
+const { system } = std;
 
-consoleWriteLine.invoke(["Hello world from .NET!", null]);
-
-//Output: Hello world from .NET!
+consoleWriteLine(system.osInformation())
 ```
 
 <hr>
 
-### 🧤 **Hands on development** 
+## Installation and usage
 
-Create a complete application in few lines with zero dependency.
+> ⛔ Melon requires ASP.NET Core 6 and Node.js installed.
+
+```
+npm i melon-runtime -g
+```
+
+To execute Melon, just type `npx melon [command]` in your terminal.
+
+## Commands
+
+- `npx melon run [script]` - Executes a script directly from the command line
+- `npx melon load [path]` - Loads an external entry point
+- `npx melon new [javascript|typescript]` - Creates a new empty Melon project in the current folder
+
+### 🧤 **Hands-on development** 
+
+Create a complete application in few lines with zero dependencies.
 
 ⚡ **Melon**:
 
@@ -125,29 +115,13 @@ async function serve(conn: Deno.Conn) {
 
 <hr>
 
-## Installation and usage:
-
-> ⛔ Melon runtime requires ASP.NET 6 and Node (NPM) installed to work
-
-```
-npm i melon-runtime -g
-```
-
-To execute Melon, just type `npx melon [command]` in terminal.
-
-## Commands
-
-- `npx melon run [script]` - Executes a script directly from the command line
-- `npx melon load [path]` - Loads an external entry point
-- `npx melon new [javascript|typescript]` - Creates a new empty Melon project in the current folder
-
-## Core Contributors 
+## Contributors 
 
 | [Victória Rose](https://github.com/EternalQuasar0206) | [Gabriel Grubba](https://github.com/Grubba27) | [Vinicius Lanzarini](https://github.com/vilanz) |
 | -------------- | -------------- | -------------- |
 | <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> | <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> | <div align="center"><img src="https://avatars.githubusercontent.com/u/29522926?v=4" width="60"></div> |
 
-## Last Sponsors 
+## Latest Sponsors 
 
 | [Lucas Rufo](https://github.com/LucasRufo) |
 | -------------- |
