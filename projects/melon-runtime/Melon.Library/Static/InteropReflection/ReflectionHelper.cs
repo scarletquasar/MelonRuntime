@@ -4,9 +4,28 @@ namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
+        public static HashSet<Assembly> LoadedAssemblies = new();
+        public static string? LoadAssembly(string path)
+        {
+            var assembly = Assembly.LoadFrom(path);
+            LoadedAssemblies.Add(assembly);
+
+            return assembly.FullName;
+        }
+        public static void RemoveAssembly(string fullName)
+        {
+            LoadedAssemblies = LoadedAssemblies
+                .Where(assembly => assembly.FullName != fullName)
+                .ToHashSet();
+        }
+        public static string?[] GetLoadedAssemblies()
+        {
+            return LoadedAssemblies.Select(x => x.FullName).ToArray();
+        }
         public static dynamic? CallMethod(string nSpace, string search, string methodName, object[] parameters)
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            HashSet<Assembly> assemblies = 
+                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
 
             IEnumerable<Type> types;
 
@@ -30,7 +49,8 @@ namespace Melon.Library.Static.InteropReflection
         }
         public static dynamic? GetStaticProperty(string nSpace, string search, string fieldName)
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            HashSet<Assembly> assemblies =
+                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
 
             IEnumerable<Type> types;
 
@@ -56,7 +76,8 @@ namespace Melon.Library.Static.InteropReflection
         }
         public static dynamic CreateInstanceOfType(string nSpace, string search, object[] parameters)
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            HashSet<Assembly> assemblies =
+                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
 
             IEnumerable<Type> types;
 

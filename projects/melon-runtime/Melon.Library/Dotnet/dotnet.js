@@ -23,5 +23,8 @@
         const internalStaticProperty = callStaticPropertyBinding(namespace, type, property);
 
         return internalStaticProperty;
-    }
+    },
+    loadAssembly: (path) => _$internalBinding["InteropInternalLoadAssembly"](path),
+    removeAssembly: (fullName) => _$internalBinding["InteropInternalRemoveAssembly"](fullName),
+    getLoadedAssemblies: () => _$internalBinding["InteropInternalLGetLoadedAssemblies"]
 }

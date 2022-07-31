@@ -49,10 +49,23 @@ namespace Melon.Library.Static
             //Module - [Interop]
             {
                 "InteropInternalCallStaticMethod",
-                new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) },
+                new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) 
+            },
             {
                 "InteropInternalGetStaticProperty",
                 new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
+            },
+            {
+                "InteropInternalLoadAssembly",
+                new Func<string, string?>(ReflectionHelper.LoadAssembly)
+            },
+            {
+                "InteropInternalRemoveAssembly",
+                new Action<string>(ReflectionHelper.RemoveAssembly)
+            },
+            {
+                "InteropInternalLGetLoadedAssemblies",
+                new Func<string?[]>(ReflectionHelper.GetLoadedAssemblies)
             }
         };
     }
