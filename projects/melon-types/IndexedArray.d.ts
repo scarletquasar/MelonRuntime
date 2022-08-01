@@ -1,4 +1,4 @@
-type IndexedArrayIndexUnit<T> = Record<string, T[] | IndexedArray<T>>;
+import { IndexedArrayIndexUnit } from "./types/IndexedArray/IndexedArrayIndexUnit";
 
 declare class IndexedArray<T> {
     constructor(arg: T[]);

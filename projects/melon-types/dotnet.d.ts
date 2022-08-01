@@ -1,6 +1,9 @@
+import { DotnetFetchExpression } from "./types/dotnet/DotnetFetchExpression";
+import { DotnetGetStaticMethodResult } from "./types/dotnet/DotnetGetStaticMethodResult";
+
 type Dotnet = {
-    getStaticMethod: <TFunctionReturn>(expression: `${string}:${string}:${string}`) => (...args: any) => TFunctionReturn,
-    getStaticProperty: <TProperty>(expression: `${string}:${string}:${string}`) => TProperty,
+    getStaticMethod: <T>(expr: DotnetFetchExpression) => DotnetGetStaticMethodResult<T>,
+    getStaticProperty: <T>(expr: DotnetFetchExpression) => T,
     loadAssembly: (path: string) => string,
     removeAssembly: (path: string) => void,
     getAssemblies: (path: string) => (string | null)[]

@@ -1,55 +1,7 @@
-type ImageExtension = "png" | "gif" | "jpeg" | "jpg" | "png" | "svg+xml" | "webp" | "bmp" | "avif" | "tiff";
-type AudioExtension = "wave" | "wav" | "x-wav" | "x-pn-wav" | "webm" | "ogg" | "opus" | "midi" | "aac";
-type VideoExtension = "x-flv" | "mp4" | "x-msvideo" | "mpeg" | "ogg" | "webm" | "mp2t" | "3gpp" | "3ggp2";
-type AnyExtension = string;
-
-type MSimpleResponse<R, MT extends string> = {
-    type: MT,
-    status: number,
-    response: R
-}
-
-type HttpRequest = {
-    query: Record<string, any>,
-    body: any,
-    headers: Record<string, any>
-}
-
-type HttpApplicationEvent = "beforeCall" | "afterCall" | "error";
-
-type HttpComposedResponse = {
-    type: string;
-    status: number;
-    response: string;
-}
-
-declare class HttpApplicationInternal {
-    name: string;
-    host: string;
-    port: number;
-    enableHttps: boolean;
-    echoes: any[];
-    routes: any[];
-    on: (event: HttpApplicationEvent, action: (request: HttpRequest) => any) => void;
-    use: (middleware: (request: HttpRequest) => any) => void;
-    get: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
-    post: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
-    delete: (route: string, callback: (request: HttpRequest) => string | HttpComposedResponse) => void;
-    run: () => void;
-    listen: (port: number, host?: string) => void;
-}
-
-declare class ResponseInternal {
-    constructor(
-        body: string, 
-        headers: Record<string, any>, 
-        latency: number, 
-        statusCode: number, 
-        ok: boolean
-    );
-    json: () => Record<string, any>;
-    text: () => string;
-}
+import { AnyExtension, AudioExtension, ImageExtension } from "./types/http/FileExtensions";
+import { HttpApplicationInternal } from "./types/http/HttpApplicationInternal";
+import { MSimpleResponse } from "./types/http/MSimpleResponse";
+import { ResponseInternal } from "./types/http/ResponseInternal";
 
 type Http = {
     HttpApplication: HttpApplicationInternal

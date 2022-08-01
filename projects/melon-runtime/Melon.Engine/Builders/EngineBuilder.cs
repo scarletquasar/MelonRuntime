@@ -15,7 +15,6 @@ namespace Melon.Engine.Builders
             engine.SetValue("_$internalBinding", internalBinding);
             loadedScripts = new HashSet<string>();
         }
-
         public EngineBuilder Load(string identifier)
         {
             var content = LibraryLoader.ByIdentifier(identifier);
@@ -23,7 +22,6 @@ namespace Melon.Engine.Builders
 
             return this;
         }
-
         public Jint.Engine Build()
         {
             for (short index = 0; index < loadedScripts.Count; index++)
