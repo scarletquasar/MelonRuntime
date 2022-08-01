@@ -36,6 +36,19 @@ consoleWriteLine(system.osInformation())
 
 <hr>
 
+### **Hands-on development** 
+
+Create a complete application in few lines with zero dependencies.
+
+```ts
+const app = http.app();
+
+app.get("/", () => "Hello world");
+app.run();
+
+//App running in http://localhost:80
+``` 
+
 ## Installation and usage
 
 > ⛔ Melon requires ASP.NET Core 6 and Node.js installed.
@@ -51,19 +64,6 @@ To execute Melon, just type `npx melon [command]` in your terminal.
 - `npx melon run [script]` - Executes a script directly from the command line
 - `npx melon load [path]` - Loads an external entry point
 - `npx melon new [javascript|typescript]` - Creates a new empty Melon project in the current folder
-
-### 🧤 **Hands-on development** 
-
-Create a complete application in few lines with zero dependencies.
-
-```ts
-const app = http.app();
-
-app.get("/", () => "Hello world");
-app.run();
-
-//App running in http://localhost:80
-``` 
 
 <hr>
 
