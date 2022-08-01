@@ -1,17 +1,10 @@
+import { JsonTryParseOptions } from "./types/std/JsonTryParseOptions";
+import { JsonTryStringifyOptions } from "./types/std/JsonTryStringifyOptions";
+
 declare namespace Promise {
     interface PromisePolyfillConstructor extends PromiseConstructor {
         _immediateFn?: ((handler: (() => void) | string) => void) | undefined;
     }
-}
-
-type JsonTryParseOptions<T> = { 
-    onErrorReturn: (value: string) => T, 
-    modifier: (target: T) => T 
-}
-
-type JsonTryStringifyOptions = { 
-    onErrorReturn: (value: string) => string, 
-    modifier: (target: string) => string 
 }
 
 type Std = {
