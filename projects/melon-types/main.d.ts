@@ -10,4 +10,4 @@
 /// <reference path="IndexedArray.d.ts" />
 /// <reference path="Queue.d.ts" />
 /// <reference path="std.d.ts" />
-/// <reference path="xrequire.d.ts" />
+/// <reference path="dotnet.d.ts" />
