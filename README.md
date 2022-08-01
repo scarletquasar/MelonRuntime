@@ -58,18 +58,16 @@ Create a complete application in few lines with zero dependencies.
 
 ⚡ **Melon**:
 
-<details>
-
-```ts
+| | | |
+| - | - | - |
+| ```ts
 const app = http.app();
 
 app.get("/", () => "Hello world");
 app.run();
 
 //App running in http://localhost:80
-```
-
-</details>
+``` | | |
 
 ⛔ **Node.js**:
 
