@@ -56,60 +56,14 @@ To execute Melon, just type `npx melon [command]` in your terminal.
 
 Create a complete application in few lines with zero dependencies.
 
-⚡ **Melon**:
-
-| | | |
-| - | - | - |
-| ```ts
+```ts
 const app = http.app();
 
 app.get("/", () => "Hello world");
 app.run();
 
 //App running in http://localhost:80
-``` | | |
-
-⛔ **Node.js**:
-
-<details>
-
-```js
-const http = require("http");
-
-const server = http.createServer(async (req, res) => {
-    if (req.url === "/" && req.method === "GET") {
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end("Hello world");
-    }
-}
-
-server.listen(80, () => {
-    console.log(`server started on port: ${80}`);
-});
-```
-
-</details>
-
-⛔ **Deno**:
-
-<details>
-
-```ts
-const listener = Deno.listen({ port: 80 });
-console.log("http://localhost:80/");
-
-for await (const conn of listener) {
-  serve(conn);
-}
-
-async function serve(conn: Deno.Conn) {
-  for await (const { respondWith } of Deno.serveHttp(conn)) {
-    respondWith(new Response("Hello world"));
-  }
-}
-```
-
-</details>
+``` 
 
 <hr>
 
