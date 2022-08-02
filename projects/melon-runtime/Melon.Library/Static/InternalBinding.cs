@@ -14,8 +14,6 @@ namespace Melon.Library.Static
         public static Dictionary<string, dynamic> Dictionary = new()
         {
             //Module - [Standard]
-            { "CurrentDirectory", new Func<string>(() => Environment.CurrentDirectory) },
-            { "BaseDirectory", new Func<string?>(() => Dictionary?["CurrentDirectory"]()) },
             { "OsInformation", new Func<dynamic>(() => OSBinding.GetOSInformation()) },
             { "ArgumentsVector", Environment.GetCommandLineArgs() },
             { "ProcessExit", new Action<int>(Environment.Exit) },

@@ -15,11 +15,11 @@ namespace Melon
             var engineBuilder = new EngineBuilder();
             var loadList = new List<string>()
             {
+                "Dotnet/dotnet",
                 "Standard/Set",
                 "Standard/Map",
                 "Standard/std",
                 "Standard/console",
-                "Dotnet/dotnet",
                 "FileSystem/fs",
                 "Data/Enumerable",
                 "Data/IndexedArray",

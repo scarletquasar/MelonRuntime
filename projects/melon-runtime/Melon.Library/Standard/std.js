@@ -50,8 +50,7 @@
         osInformation: _$internalBinding["OsInformation"]
     },
     environment: {
-        currentDirectory: _$internalBinding["CurrentDirectory"],
-        baseDirectory: () => _$internalBinding["BaseDirectory"](),
+        baseDirectory: dotnet.getStaticProperty("System:Environment:CurrentDirectory"),
 
         getEnvironmentVariables: () => {
             const localEnv = _$internalBinding["LocalEnvironmentVariables"];

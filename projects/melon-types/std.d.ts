@@ -26,8 +26,7 @@ type Std = {
         }
     },
     environment: {
-        currentDirectory: string
-        baseDirectory: () => string
+        baseDirectory: string
         getEnvironmentVariables: () => Record<string, any>
         setEnvironmentVariable: (key: string, value: any) => void
         clearLocalEnvironmentVariables: () => void
