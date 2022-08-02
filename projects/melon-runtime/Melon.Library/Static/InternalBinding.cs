@@ -21,6 +21,8 @@ namespace Melon.Library.Static
             //Module - [FileSystem]
             { "ReadFileText", new Func<string, string>(File.ReadAllText) },
             { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
+            { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
+            { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
 
             //Module - [Database]
             { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
