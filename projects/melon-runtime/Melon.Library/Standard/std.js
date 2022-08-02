@@ -47,7 +47,11 @@
         }
     },
     system: {
-        osInformation: _$internalBinding["OsInformation"]
+        osInformation: {
+            platform: dotnet.getStaticProperty("System:Environment:OSVersion").Platform,
+            version: dotnet.getStaticProperty("System:Environment:OSVersion").VersionString,
+            servicePack: dotnet.getStaticProperty("System:Environment:OSVersion").ServicePack
+        }
     },
     environment: {
         baseDirectory: dotnet.getStaticProperty("System:Environment:CurrentDirectory"),

@@ -20,7 +20,7 @@ type Std = {
     }
     system: {
         osInformation: {
-            platform: string
+            platform: number
             version: string,
             servicePack: string
         }
