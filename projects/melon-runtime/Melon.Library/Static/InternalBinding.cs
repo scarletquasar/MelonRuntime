@@ -13,7 +13,6 @@ namespace Melon.Library.Static
         public static Dictionary<string, dynamic> Dictionary = new()
         {
             //Module - [Standard]
-            { "ArgumentsVector", Environment.GetCommandLineArgs() },
             { "ProcessExit", new Action<int>(Environment.Exit) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },

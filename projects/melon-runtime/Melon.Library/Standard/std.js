@@ -71,7 +71,7 @@
         }
     },
     process: {
-        argv: _$internalBinding["ArgumentsVector"],
+        argv: dotnet.getStaticMethod("System:Environment:GetCommandLineArgs")(),
         exit: _$internalBinding["ProcessExit"],
         env: Object.assign(_$internalBinding["LocalEnvironmentVariables"], _$internalBinding["ProcessEnvironmentVariables"])
     }
