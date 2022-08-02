@@ -1,7 +1,6 @@
 ﻿function Enumerable(base = [], capacity = -1) {
     this.count = 0;
     this._errorCapacity = "Error: Exceeded limit capacity for this Enumerable";
-    /* Define add */
     this.add = (value, index = 0) => {
         if(capacity != -1 && this.count + 1 > capacity) {
             throw new Error(this._errorCapacity);
@@ -10,14 +9,14 @@
         if (this[index] === undefined) {
             this[index] = value;
             this.count++;
-            return;
+            return this;
         }
 
         index++;
         this.add(value, index);
-    }
 
-    /* Setup array-based structure */
+        return this;
+    }
     if (Array.isArray(base)) {
         base.forEach(x => this.add(x));
     }
@@ -28,8 +27,6 @@
             index--;
         }
     }
-
-    /* Define toArray */
     this.toArray = () => {
         let index = 0;
         const result = [];
@@ -44,8 +41,6 @@
 
         return result;
     }
-
-    /* Setup methods */
     this.take = (quantity) => new Enumerable(this.toArray().slice(0, quantity));
     this.skip = (quantity) => new Enumerable(this.toArray().slice(quantity));
     this.where = (filter) => new Enumerable(this.toArray().filter(filter));
@@ -64,8 +59,10 @@
     }
     this.cast = (constructor) => new Enumerable(this.toArray().map(x => new constructor(x)));
     this.equals = (element) => data.compare(this.toArray(), element);
-    this.addRange = (elements) => elements.forEach(this.add);
-
+    this.addRange = (elements) => {
+        elements.forEach(this.add);
+        return this;
+    };
     this.clear = () => {
         let index = this.count;
         while(index > 0) {
@@ -73,8 +70,7 @@
             index--;
         }
         this.count = 0;
+        return this;
     }
-
-    /* Return instance */
     return this;
 }

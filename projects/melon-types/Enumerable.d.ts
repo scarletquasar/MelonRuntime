@@ -14,7 +14,7 @@ declare class Enumerable<T> {
     average: () => T;
     cast: <T>(constructor: any) => Enumerable<T>;
     equals: (target: any) => boolean;
-    add: (item: T) => void;
-    addRange: (items: T[]) => void;
-    clear: () => void;
+    add: (item: T) => Enumerable<T>;
+    addRange: (items: T[]) => Enumerable<T>;
+    clear: () => Enumerable<T>;
 }
