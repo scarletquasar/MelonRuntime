@@ -57,7 +57,7 @@
         baseDirectory: dotnet.getStaticProperty("System:Environment:CurrentDirectory"),
         getEnvironmentVariables: () => {
             const localEnv = _$internalBinding["LocalEnvironmentVariables"];
-            const processEnv = _$internalBinding["ProcessEnvironmentVariables"];
+            const processEnv = dotnet.getStaticMethod("System:Environment:GetEnvironmentVariables")();
 
             return Object.assign(localEnv, processEnv);
         },

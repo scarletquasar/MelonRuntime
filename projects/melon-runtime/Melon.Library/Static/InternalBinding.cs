@@ -1,6 +1,5 @@
 ﻿using Melon.Library.Models;
 using Melon.Library.Static.Database;
-using Melon.Library.Static.OS;
 using Melon.Library.Static.Web;
 using Melon.Web;
 using Melon.Library.Static.Generic;
@@ -17,7 +16,6 @@ namespace Melon.Library.Static
             { "ArgumentsVector", Environment.GetCommandLineArgs() },
             { "ProcessExit", new Action<int>(Environment.Exit) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
-            { "ProcessEnvironmentVariables", Environment.GetEnvironmentVariables() },
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
             { "SetInterval", new Action<int, int>(Time.SetInterval) },
 
