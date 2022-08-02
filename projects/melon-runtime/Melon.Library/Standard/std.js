@@ -51,19 +51,16 @@
     },
     environment: {
         baseDirectory: dotnet.getStaticProperty("System:Environment:CurrentDirectory"),
-
         getEnvironmentVariables: () => {
             const localEnv = _$internalBinding["LocalEnvironmentVariables"];
             const processEnv = _$internalBinding["ProcessEnvironmentVariables"];
 
             return Object.assign(localEnv, processEnv);
         },
-
         setEnvironmentVariable: (key, value) => {
             _$internalBinding["LocalEnvironmentVariables"][key] = value;
             std.process.env[key] = value;
         },
-
         clearLocalEnvironmentVariables: () => {
             _$internalBinding["LocalEnvironmentVariables"].Clear();
             std.process.env = _$internalBinding["ProcessEnvironmentVariables"];
