@@ -19,8 +19,8 @@ namespace Melon.Library.Static
             { "SetInterval", new Action<int, int>(Time.SetInterval) },
 
             //Module - [FileSystem]
-            { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
-            { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) },
+            { "ReadFileText", new Func<string, string>(File.ReadAllText) },
+            { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
 
             //Module - [Database]
             { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
