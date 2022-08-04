@@ -1,12 +1,12 @@
 ﻿const console = {
     _dotnetCLNConsole: (method) => dotnet.getStaticMethod(`Cli.NET.Tools:CLNConsole:${method}`),
     _dotnetConsole: (method) => dotnet.getStaticMethod(`System:Console:${method}`),
-    write: (target, color = "White") => {
-        const result = std.json.tryStringify(target);
+    write: (target, color = "White", stringify = true) => {
+        const result = stringify ? std.json.tryStringify(target) : target;
         console._dotnetCLNConsole("Write")(result, color);
     },
     writeLine: (target, color = "White") => {
-        const result = std.json.tryStringify(target);
+        const result = stringify ? std.json.tryStringify(target) : target;
         console._dotnetCLNConsole("WriteLine")(result, color);
     },
     log: function () {
