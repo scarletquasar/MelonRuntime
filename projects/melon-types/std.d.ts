@@ -8,11 +8,11 @@ declare namespace Promise {
 }
 
 type Std = {
+    Promise: Promise.PromisePolyfillConstructor,
+    shift: (value: any) => any,
     melon: {
         loadedModules: string[]
     },
-    Promise: Promise.PromisePolyfillConstructor,
-    shift: (value: any) => any,
     json: {
         tryParse: <T>(json: string, options: JsonTryParseOptions<T>) => T
         tryStringify: (target: any, options: JsonTryStringifyOptions) => string
