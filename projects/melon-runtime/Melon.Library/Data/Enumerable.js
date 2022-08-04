@@ -1,9 +1,8 @@
 ﻿function Enumerable(base = [], capacity = -1) {
     this.count = 0;
-    this._errorCapacity = "Error: Exceeded limit capacity for this Enumerable";
     this.add = (value, index = 0) => {
         if(capacity != -1 && this.count + 1 > capacity) {
-            throw new Error(this._errorCapacity);
+            throw new RangeError(internalConsts.ENUMERABLE_EXCEEDED_CAPACITY);
         }
 
         if (this[index] === undefined) {
@@ -50,7 +49,6 @@
     this.last = () => this[this.count - 1];
     this.any = () => this.toArray().length > 0;
     this.all = (condition = x => x === x) => this.toArray().every(x => condition(x));
-
     this.average = () => {
         const array = this.toArray();
         const sum = array.reduce((a, b) => a + b, 0);

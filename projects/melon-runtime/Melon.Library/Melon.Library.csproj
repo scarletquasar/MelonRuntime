@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Consts\consts.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\data.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

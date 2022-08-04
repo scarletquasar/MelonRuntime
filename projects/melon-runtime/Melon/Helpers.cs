@@ -15,6 +15,7 @@ namespace Melon
             var engineBuilder = new EngineBuilder();
             var loadList = new List<string>()
             {
+                "Consts/consts",
                 "Dotnet/dotnet",
                 "Standard/Set",
                 "Standard/Map",
