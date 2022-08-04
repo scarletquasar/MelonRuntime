@@ -1,20 +1,13 @@
 import { JsonTryParseOptions } from "./types/std/JsonTryParseOptions";
 import { JsonTryStringifyOptions } from "./types/std/JsonTryStringifyOptions";
 
-declare namespace Promise {
-    interface PromisePolyfillConstructor extends PromiseConstructor {
-        _immediateFn?: ((handler: (() => void) | string) => void) | undefined;
-    }
-}
-
 type Std = {
-    Promise: Promise.PromisePolyfillConstructor,
     shift: (value: any) => any,
     melon: {
         loadedModules: string[]
     },
     json: {
-        tryParse: <T>(json: string, options: JsonTryParseOptions<T>) => T
+        tryParse: <T>(json: string, options: JsonTryParseOptions<T>) => T,
         tryStringify: (target: any, options: JsonTryStringifyOptions) => string
     },
     time: {
@@ -23,21 +16,21 @@ type Std = {
     }
     system: {
         osInformation: {
-            platform: number
+            platform: number,
             version: string,
             servicePack: string
         }
     },
     environment: {
-        baseDirectory: string
-        getEnvironmentVariables: () => Record<string, any>
-        setEnvironmentVariable: (key: string, value: any) => void
+        baseDirectory: string,
+        getEnvironmentVariables: () => Record<string, any>,
+        setEnvironmentVariable: (key: string, value: any) => void,
         clearLocalEnvironmentVariables: () => void
     },
     process: {
-        argv: string[]
+        argv: string[],
+        env: Record<string, any>,
         exit: () => void
-        env: Record<string, any>
     }
 }
 

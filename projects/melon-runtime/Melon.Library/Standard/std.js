@@ -18,6 +18,7 @@
         return internal;
     },
     melon: {
+        currentVersion: 
         loadedModules: []
     },
     json: {
