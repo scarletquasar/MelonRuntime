@@ -1,4 +1,7 @@
 ﻿const std = {
+    melon: {
+        loadedModules: []
+    },
     Promise: Promise,
     shift: (value) => {
         const internal = {

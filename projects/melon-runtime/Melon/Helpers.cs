@@ -4,6 +4,7 @@ using Jint.Runtime;
 using Melon.Engine.Builders;
 using Melon.Models;
 using Melon.Static.Runtime;
+using Newtonsoft.Json;
 using System.Reflection;
 
 namespace Melon
@@ -13,25 +14,9 @@ namespace Melon
         internal static Jint.Engine AssembleEngine(EngineAssemblerParameters parameters)
         {
             var engineBuilder = new EngineBuilder();
-            var loadList = new List<string>()
-            {
-                "Consts/consts",
-                "Dotnet/dotnet",
-                "Standard/Set",
-                "Standard/Map",
-                "Standard/std",
-                "Standard/console",
-                "FileSystem/fs",
-                "Data/Enumerable",
-                "Data/IndexedArray",
-                "Data/data",
-                "Operations/AsyncLoop",
-                "Operations/AsyncTask",
-                "Operations/Queue",
-                "Http/http"
-            };
+            var loadList = JsonConvert.DeserializeObject<List<string>>(Properties.Modules.Standard);
 
-            loadList.ForEach(item =>
+            loadList!.ForEach(item =>
             {
                 if (!parameters.DisallowedLibraries.Contains(item))
                 {
