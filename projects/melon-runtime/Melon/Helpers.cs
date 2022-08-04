@@ -35,21 +35,9 @@ namespace Melon
             {
                 if (!parameters.DisallowedLibraries.Contains(item))
                 {
-                    if (!parameters.SilentMode)
-                    {
-                        Console.WriteLine();
-                        CLNConsole.Write("[load] ", ConsoleColor.DarkYellow);
-                        CLNConsole.Write(item, ConsoleColor.DarkMagenta);
-                    }
-
                     engineBuilder.Load(item);
                 }
             });
-
-            if (!parameters.SilentMode)
-            {
-                Console.WriteLine();
-            }
 
             return engineBuilder.Build();
         }
@@ -101,16 +89,14 @@ namespace Melon
             CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
         }
-        internal static (bool, List<string>) GetFlagArguments(string[] args)
+        internal static List<string> GetDisallowedModules(string[] args)
         {
             var disallowed = args
                 .Where(x => x.StartsWith("--disallow["))
                 .Select(x => x.Split("[")[1].Replace("]", ""))
                 .ToList();
 
-            var silent = args.Where(x => x == "--silent").Any();
-
-            return (silent, disallowed);
+            return disallowed;
         }
         internal static List<string> GetCommandArguments(string[] args)
         {

@@ -22,8 +22,8 @@ namespace Melon
         }
         private static Jint.Engine MakeEngine(string[] args)
         {
-            var (silentMode, disallowedLibraries) = Helpers.GetFlagArguments(args);
-            var engineParameters = new EngineAssemblerParameters(disallowedLibraries, silentMode);
+            var disallowedModules = Helpers.GetDisallowedModules(args);
+            var engineParameters = new EngineAssemblerParameters(disallowedModules);
 
             return Helpers.AssembleEngine(engineParameters);
         }
