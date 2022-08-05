@@ -31,17 +31,17 @@
         constructor(name) {
             _$internalBinding["CreateRealm"](name);
             this.name = name;
-            this.setPropByValue = (name, value) => {
+            this.setValue = (name, value) => {
                 _$internalBinding["SetRealmScriptProperty"](this.name, name, value);
             }
-            this.setPropByInstance = (name, expression, ...parameters) => {
+            this.setInstance = (name, expression, ...parameters) => {
                 const parts = expression.split(":");
                 const namespace = parts[0];
                 const type = parts[1];
 
                 _$internalBinding["SetRealmInstanceProperty"](this.name, name, namespace, type, Array.from(parameters));
             }
-            this.getProp = (name) => _$internalBinding["GetRealmProperty"](this.name, name);
+            this.get = (name) => _$internalBinding["GetRealmProperty"](this.name, name);
         }
     }
 }
