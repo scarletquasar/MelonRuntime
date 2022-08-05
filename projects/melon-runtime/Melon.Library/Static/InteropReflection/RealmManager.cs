@@ -21,7 +21,7 @@ namespace Melon.Library.Static.InteropReflection
             )
         {
             var instance = ReflectionHelper.CreateInstanceOfType(nSpace, type, parameters);
-            Runtime.Realms![realmName]![propertyName] = instance;
+            Runtime.Realms![realmName]![propertyName] = instance!;
         }
         public static dynamic? GetRealmProperty(string realmName, string propertyName) 
         {

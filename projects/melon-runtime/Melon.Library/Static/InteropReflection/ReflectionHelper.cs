@@ -24,12 +24,8 @@ namespace Melon.Library.Static.InteropReflection
         }
         public static dynamic? CallMethod(string nSpace, string search, string methodName, object[] parameters)
         {
-            HashSet<Assembly> assemblies = 
-                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
-
-            IEnumerable<Type> types;
-
-            types =
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
+            IEnumerable<Type> types =
                 assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
@@ -49,12 +45,8 @@ namespace Melon.Library.Static.InteropReflection
         }
         public static dynamic? GetStaticProperty(string nSpace, string search, string fieldName)
         {
-            HashSet<Assembly> assemblies =
-                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
-
-            IEnumerable<Type> types;
-
-            types =
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
+            IEnumerable<Type> types =
                 assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
@@ -76,12 +68,8 @@ namespace Melon.Library.Static.InteropReflection
         }
         public static dynamic? CreateInstanceOfType(string nSpace, string search, object[] parameters)
         {
-            HashSet<Assembly> assemblies =
-                AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
-
-            Type type;
-
-            type =
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
+            Type type =
                 assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
