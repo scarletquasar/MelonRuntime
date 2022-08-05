@@ -33,36 +33,19 @@ namespace Melon.Library.Static
             { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
 
             //Module - [Http]
-            { 
-                "SetupWebApplication", 
-                new Action<string>(WebApplicationManager.ExecuteWebApplication) 
-            },
-            { 
-                "FetchRequest",
-                new Func<string, string, string, string, HttpResponse>(Http.Request) 
-            },
+            { "SetupWebApplication", new Action<string>(WebApplicationManager.ExecuteWebApplication) },
+            { "FetchRequest", new Func<string, string, string, string, HttpResponse>(Http.Request) },
 
             //Module - [Interop]
-            {
-                "InteropInternalCallStaticMethod",
-                new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) 
-            },
-            {
-                "InteropInternalGetStaticProperty",
-                new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
-            },
-            {
-                "InteropInternalLoadAssembly",
-                new Func<string, string?>(ReflectionHelper.LoadAssembly)
-            },
-            {
-                "InteropInternalRemoveAssembly",
-                new Action<string>(ReflectionHelper.RemoveAssembly)
-            },
-            {
-                "InteropInternalLGetLoadedAssemblies",
-                new Func<string?[]>(ReflectionHelper.GetLoadedAssemblies)
-            }
+            { "CallStaticMethod", new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) },
+            { "GetStaticProperty", new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty) },
+            { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
+            { "RemoveAssembly", new Action<string>(ReflectionHelper.RemoveAssembly) },
+            { "GetLoadedAssemblies", new Func<string?[]>(ReflectionHelper.GetLoadedAssemblies) },
+            { "CreateRealm", new Action<string>(RealmManager.CreateRealm)},
+            { "SetRealmScriptProperty", new Action<string, string, dynamic>(RealmManager.SetRealmPropertyFromScript) },
+            { "SetRealmInstanceProperty", new Action<string, string, string, string, object[]>(RealmManager.SetRealmPropertyFromInstance) },
+            { "GetRealmProperty", new Func<string, string, dynamic?>(RealmManager.GetRealmProperty) },
         };
     }
 }

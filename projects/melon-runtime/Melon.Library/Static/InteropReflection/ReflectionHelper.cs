@@ -74,21 +74,22 @@ namespace Melon.Library.Static.InteropReflection
 
             return result?.GetValue(null);
         }
-        public static dynamic CreateInstanceOfType(string nSpace, string search, object[] parameters)
+        public static dynamic? CreateInstanceOfType(string nSpace, string search, object[] parameters)
         {
             HashSet<Assembly> assemblies =
                 AppDomain.CurrentDomain.GetAssemblies().Concat(LoadedAssemblies).ToHashSet();
 
-            IEnumerable<Type> types;
+            Type type;
 
-            types =
+            type =
                 assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
                 .Where(x => x.Namespace == nSpace)
-                .Where(x => x.FullName != null && x.FullName.Contains(search));
+                .Where(x => x.FullName != null && x.Name == search)
+                .First();
 
-            return Activator.CreateInstance(types!.First(), parameters, null)!;
+            return Activator.CreateInstance(type, parameters);
         }
     }
 }

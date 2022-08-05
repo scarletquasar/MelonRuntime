@@ -15,6 +15,7 @@ namespace Melon
 
             Helpers.DisplayMelonDefaultInformation();
 
+            Runtime.Realms = new();
             Runtime.Engine = MakeEngine(args);
             Runtime.CommandContainer = MakeCommandContainer();
 

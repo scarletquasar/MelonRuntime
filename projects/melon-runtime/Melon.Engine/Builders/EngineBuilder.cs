@@ -1,5 +1,6 @@
 ﻿using Melon.Library.Static;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace Melon.Engine.Builders
 {
@@ -32,7 +33,11 @@ namespace Melon.Engine.Builders
             }
 
             var names = JsonConvert.SerializeObject(loadedScripts.Keys.ToArray());
+            var version = Assembly.GetExecutingAssembly().GetName().Version!;
+            var versionScriptConstructor = $"new Version({version.Major}, {version.Minor}, {version.Build})";
+
             engine.Execute($"std.melon.loadedModules = {names}");
+            engine.Execute($"std.melon.currentVersion = {versionScriptConstructor}");
 
             return engine;
         }
