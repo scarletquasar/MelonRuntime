@@ -146,6 +146,104 @@
             found
         }
     },
+    numbers: {
+        SByte: (number) => {
+            if (number > 127 || number < -128) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "SByte",
+                value
+            }
+        },
+        Byte: (number) => {
+            if (number > 255 || number < 0) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "Byte",
+                value
+            }
+        },
+        Short: (number) => {
+            if (number > 32767 || number < -32768) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "Short",
+                value
+            }
+        },
+        UShort: (number) => {
+            if (number > 65535 || number < 0) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "UShort",
+                value
+            }
+        },
+        Int: (number) => {
+            if (number > 2147483647 || number < -2147483648) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "Int",
+                value
+            }
+        },
+        UInt: (number) => {
+            if (number > 4294967295 || number < 0) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "UInt",
+                value
+            }
+        },
+        Long: (number) => {
+            if (number > 9223372036854775807 || number < -9223372036854775808) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "Long",
+                value
+            }
+        },
+        ULong: (number) => {
+            if (number > 18446744073709551615 || number < 0) {
+                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
+            }
+
+            const value = Math.floor(number);
+
+            return {
+                type: "ULong",
+                value
+            }
+        },
+    },
     PgClient: function (host, port, database, username, password) {
         this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
         this.executeNonQuery = (sql) => _$internalBinding["PostgreSQLBindingNonQuery"](sql, this._connectionString);
