@@ -243,6 +243,24 @@
                 value
             }
         },
+        Float: (number) => {
+            return {
+                type: "Float",
+                number
+            }
+        },
+        Double: (number) => {
+            return {
+                type: "Float",
+                number
+            }
+        },
+        Decimal: (number) => {
+            return {
+                type: "Float",
+                number
+            }
+        }
     },
     PgClient: function (host, port, database, username, password) {
         this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
