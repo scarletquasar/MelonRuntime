@@ -6,79 +6,34 @@
 
         return JSON.parse(JSON.stringify(target));
     },
-    compare: (value1, value2, cmpFn) => {
-        if (cmpFn === void 0) { cmpFn = function (a, b) { return a === b } };
-        const firstConstructor = value1.constructor.name;
-        const secondConstructor = value2.constructor.name;
+    compare: (target, value, expression = (a, b) => a === b, customModifier = (a, b) => [a, b]) => {
+        const result = {
+            comment: "",
+            equals: false,
+            equalityPercent: 0
+        }
+        const compareUniques = (target, value) => expression(target, value);
+        const compareArrays = (target, value) => {
+            const equalityArray = [];
+            target.forEach((item, index) => equalityArray.push(compareUniques(item, value[index])));
 
-        if (firstConstructor !== secondConstructor)
-            return cmpFn(value1, value2);
+            return equalityArray.every(item => item === true);
+        }
+        const compareObjects = (target, value) => compareArrays(Object.entries(target), Object.entries(value));
+        const compareMaps = (target, value) => compareArrays(target.entries(), value.entries());
+        const compareEnumerables = (target, value) => compareArrays(target.toArray(), value.toArray());
 
-        let len1 = null;
-        let len2 = null;
-
-        switch (firstConstructor) {
-            case "Map":
-                let map1 = value1;
-                let map2 = value2;
-                len1 = map1.size;
-                len2 = map2.size;
-
-                if (len1 !== len2)
-                    return false;
-
-                let arrayMap1 = Array.from(map1.entries());
-                let arrayMap2 = Array.from(map1.entries());
-                return compare(arrayMap1, arrayMap2, cmpFn);
-
-            case "Set":
-                let set1 = value1;
-                let set2 = value2;
-                len1 = set1.size;
-                len2 = set2.size;
-
-                if (len1 !== len2)
-                    return false;
-
-                let setArray1 = Array.from(set1);
-                let setArray2 = Array.from(set2);
-                return data.compare(setArray1, setArray2);
-
-            case "Array":
-                let array1 = value1;
-                let array2 = value2;
-                len1 = array1.length;
-                len2 = array2.length;
-
-                if (len1 !== len2)
-                    return cmpFn(len1, len2);
-
-                for (let i = 0; i < (len1 !== null && len1 !== void 0 ? len1 : 0); i++) {
-                    if (!data.compare(array1[i], array2[i], cmpFn)) {
-                        return cmpFn(array1[i], array2[i]);
-                    }
-                }
+        switch (typeof target) {
+            case "string":
+            case "number":
+            case "boolean":
+                const length = target.toString().length;
 
                 break;
-
-            case "Object":
-                let obj1 = value1;
-                let obj2 = value2;
-                let objArray1 = Object.entries(obj1);
-                let objArray2 = Object.entries(obj2);
-                len1 = objArray1.length;
-                len2 = objArray2.length;
-
-                if (len1 !== len2)
-                    return cmpFn(len1, len2);
-
-                return data.compare(objArray1, objArray2, cmpFn);
-
-            default:
-                return cmpFn(value1.toString(), value2.toString());
         }
 
-        return true;
+        return result;
+
     },
     find: (object, target, count = 0, found = false) => {
         if (typeof target == "object") {
@@ -144,122 +99,6 @@
         return {
             count,
             found
-        }
-    },
-    numbers: {
-        SByte: (number) => {
-            if (number > 127 || number < -128) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "SByte",
-                value
-            }
-        },
-        Byte: (number) => {
-            if (number > 255 || number < 0) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "Byte",
-                value
-            }
-        },
-        Short: (number) => {
-            if (number > 32767 || number < -32768) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "Short",
-                value
-            }
-        },
-        UShort: (number) => {
-            if (number > 65535 || number < 0) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "UShort",
-                value
-            }
-        },
-        Int: (number) => {
-            if (number > 2147483647 || number < -2147483648) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "Int",
-                value
-            }
-        },
-        UInt: (number) => {
-            if (number > 4294967295 || number < 0) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "UInt",
-                value
-            }
-        },
-        Long: (number) => {
-            if (number > 9223372036854775807 || number < -9223372036854775808) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "Long",
-                value
-            }
-        },
-        ULong: (number) => {
-            if (number > 18446744073709551615 || number < 0) {
-                throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
-            }
-
-            const value = Math.floor(number);
-
-            return {
-                type: "ULong",
-                value
-            }
-        },
-        Float: (number) => {
-            return {
-                type: "Float",
-                number
-            }
-        },
-        Double: (number) => {
-            return {
-                type: "Float",
-                number
-            }
-        },
-        Decimal: (number) => {
-            return {
-                type: "Float",
-                number
-            }
         }
     },
     PgClient: function (host, port, database, username, password) {

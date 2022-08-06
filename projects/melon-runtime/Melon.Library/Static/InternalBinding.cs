@@ -17,13 +17,11 @@ namespace Melon.Library.Static
             { "ProcessExit", new Action<int>(Environment.Exit) },
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
             { "SetInterval", new Action<int, int>(Time.SetInterval) },
-
             //Module - [FileSystem]
             { "ReadFileText", new Func<string, string>(File.ReadAllText) },
             { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
             { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
             { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
-
             //Module - [Database]
             { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
             { "PostgreSQLBindingNonQuery", new Func<string, string, int>(PgStatic.ExecuteNonQuery) },
@@ -31,11 +29,9 @@ namespace Melon.Library.Static
             { "MySqlBindingNonQuery", new Func<string, string, int>(MySqlStatic.ExecuteNonQuery) },
             { "SqlServerBindingQuery", new Func<string, string, dynamic>(SqlServerStatic.ExecuteQuery) },
             { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
-
             //Module - [Http]
             { "SetupWebApplication", new Action<string>(WebApplicationManager.ExecuteWebApplication) },
             { "FetchRequest", new Func<string, string, string, string, HttpResponse>(Http.Request) },
-
             //Module - [Interop]
             { "CallStaticMethod", new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) },
             { "GetStaticProperty", new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty) },
@@ -44,7 +40,10 @@ namespace Melon.Library.Static
             { "GetLoadedAssemblies", new Func<string?[]>(ReflectionHelper.GetLoadedAssemblies) },
             { "CreateRealm", new Action<string>(RealmManager.CreateRealm)},
             { "SetRealmScriptProperty", new Action<string, string, dynamic>(RealmManager.SetRealmPropertyFromScript) },
-            { "SetRealmInstanceProperty", new Action<string, string, string, string, object[]>(RealmManager.SetRealmPropertyFromInstance) },
+            { 
+                "SetRealmInstanceProperty", 
+                new Action<string, string, string, string, object[]>(RealmManager.SetRealmPropertyFromInstance) 
+            },
             { "GetRealmProperty", new Func<string, string, dynamic?>(RealmManager.GetRealmProperty) },
         };
     }
