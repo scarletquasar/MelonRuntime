@@ -36,7 +36,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "SByte",
+                type: "sbyte",
                 value
             }
         },
@@ -48,7 +48,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "Byte",
+                type: "byte",
                 value
             }
         },
@@ -60,7 +60,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "Short",
+                type: "short",
                 value
             }
         },
@@ -72,7 +72,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "UShort",
+                type: "ushort",
                 value
             }
         },
@@ -84,7 +84,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "Int",
+                type: "int",
                 value
             }
         },
@@ -96,7 +96,7 @@
             const value = Math.floor(number);
 
             return {
-                type: "UInt",
+                type: "uint",
                 value
             }
         },
