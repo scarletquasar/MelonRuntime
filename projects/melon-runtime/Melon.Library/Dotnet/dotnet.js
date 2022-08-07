@@ -28,7 +28,7 @@
     removeAssembly: (fullName) => _$internalBinding["RemoveAssembly"](fullName),
     getLoadedAssemblies: () => _$internalBinding["GetLoadedAssemblies"],
     types: {
-        SByte: (number) => {
+        sbyte: (number) => {
             if (number > 127 || number < -128) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -40,7 +40,7 @@
                 value
             }
         },
-        Byte: (number) => {
+        byte: (number) => {
             if (number > 255 || number < 0) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -52,7 +52,7 @@
                 value
             }
         },
-        Short: (number) => {
+        short: (number) => {
             if (number > 32767 || number < -32768) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -64,7 +64,7 @@
                 value
             }
         },
-        UShort: (number) => {
+        ushort: (number) => {
             if (number > 65535 || number < 0) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -76,7 +76,7 @@
                 value
             }
         },
-        Int: (number) => {
+        int: (number) => {
             if (number > 2147483647 || number < -2147483648) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -88,7 +88,7 @@
                 value
             }
         },
-        UInt: (number) => {
+        uint: (number) => {
             if (number > 4294967295 || number < 0) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -100,7 +100,7 @@
                 value
             }
         },
-        Long: (number) => {
+        long: (number) => {
             if (number > 9223372036854775807 || number < -9223372036854775808) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -108,11 +108,11 @@
             const value = Math.floor(number);
 
             return {
-                type: "Long",
+                type: "long",
                 value
             }
         },
-        ULong: (number) => {
+        ulong: (number) => {
             if (number > 18446744073709551615 || number < 0) {
                 throw new RangeError(internalConsts.INVALID_NUMBER_CAPACITY);
             }
@@ -120,25 +120,25 @@
             const value = Math.floor(number);
 
             return {
-                type: "ULong",
+                type: "ulong",
                 value
             }
         },
-        Float: (number) => {
+        float: (number) => {
             return {
-                type: "Float",
+                type: "float",
                 number
             }
         },
-        Double: (number) => {
+        double: (number) => {
             return {
-                type: "Float",
+                type: "double",
                 number
             }
         },
-        Decimal: (number) => {
+        decimal: (number) => {
             return {
-                type: "Float",
+                type: "decimal",
                 number
             }
         }

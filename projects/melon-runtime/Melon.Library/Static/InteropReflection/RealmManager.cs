@@ -29,7 +29,7 @@ namespace Melon.Library.Static.InteropReflection
                     var paramType = ((dynamic)parameter).type;
                     var paramValue = ((dynamic)parameter).value;
 
-                    var typedValue = GetTypedValueFromConstructorName(paramType, paramValue);
+                    var typedValue = GetTypedValue(paramType, paramValue);
 
                     parameterList.Add(typedValue);
                 }
@@ -46,18 +46,18 @@ namespace Melon.Library.Static.InteropReflection
         {
             return Runtime.Realms![realmName]![propertyName];
         }
-        private static object GetTypedValueFromConstructorName(string type, object value)
+        private static object GetTypedValue(string type, object value)
         {
             return type switch
             {
-                "SByte" => Convert.ToSByte(value),
-                "Byte" => Convert.ToByte(value),
-                "Short" => Convert.ToInt16(value),
-                "UShort" => Convert.ToUInt16(value),
-                "Int" => Convert.ToInt32(value),
-                "UInt" => Convert.ToUInt32(value),
-                "Long" => Convert.ToInt64(value),
-                "ULong" => Convert.ToUInt64(value),
+                "sbyte" => Convert.ToSByte(value),
+                "byte" => Convert.ToByte(value),
+                "short" => Convert.ToInt16(value),
+                "ushort" => Convert.ToUInt16(value),
+                "int" => Convert.ToInt32(value),
+                "uint" => Convert.ToUInt32(value),
+                "long" => Convert.ToInt64(value),
+                "ulong" => Convert.ToUInt64(value),
                 _ => value,
             };
         }

@@ -1,7 +1,6 @@
 type CompareResult = {
     comment: string,
-    equals: boolean,
-    equalityPercent: number
+    equals: boolean
 }
 
 export { CompareResult }
