@@ -108,25 +108,43 @@
 
         throw new TypeError(internalConsts.NO_SUPPORT_FOR_THE_OBJECT);
     },
-    PgClient: function (host, port, database, username, password) {
-        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`
-        this.executeNonQuery = (sql) => _$internalBinding["PostgreSQLBindingNonQuery"](sql, this._connectionString);
-        this.executeQuery = (sql) => JSON.parse(_$internalBinding["PostgreSQLBindingQuery"](sql, this._connectionString));
+    PgClient: function (options) {
+        this.executeNonQuery = (sql) => {
+            const sendNonQueryCommand = _$internalBinding["PostgreSQLBindingNonQuery"];
+            return sendNonQueryCommand(sql, options);
+        }
+        this.executeQuery = (sql) => {
+            const sendQueryCommand = _$internalBinding["PostgreSQLBindingQuery"];
+            const result = sendQueryCommand(sql, options);
 
+            return JSON.parse(result);
+        }
         return this;
     },
-    MySQLClient: function (host, port, database, username, password) {
-        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`;
-        this.executeNonQuery = (sql) => _$internalBinding["MySqlBindingNonQuery"](sql, this._connectionString);
-        this.executeQuery = (sql) => JSON.parse(_$internalBinding["MySqlBindingQuery"](sql, this._connectionString));
+    MySQLClient: function (options) {
+        this.executeNonQuery = (sql) => {
+            const sendNonQueryCommand = _$internalBinding["MySqlBindingNonQuery"];
+            return sendNonQueryCommand(sql, options);
+        }
+        this.executeQuery = (sql) => {
+            const sendQueryCommand = _$internalBinding["MySqlBindingQuery"];
+            const result = sendQueryCommand(sql, options);
 
+            return JSON.parse(result);
+        }
         return this;
     },
-    SqlServerClient: function (host, port, database, username, password) {
-        this._connectionString = `Server=${host};Port=${port};Database=${database};User Id=${username};Password=${password};`;
-        this.executeNonQuery = (sql) => _$internalBinding["SqlServerBindingNonQuery"](sql, this._connectionString);
-        this.executeQuery = (sql) => JSON.parse(_$internalBinding["SqlServerBindingQuery"](sql, this._connectionString));
+    SqlServerClient: function (options) {
+        this.executeNonQuery = (sql) => {
+            const sendNonQueryCommand = _$internalBinding["SqlServerBindingNonQuery"];
+            return sendNonQueryCommand(sql, options);
+        }
+        this.executeQuery = (sql) => {
+            const sendQueryCommand = _$internalBinding["SqlServerBindingQuery"];
+            const result = sendQueryCommand(sql, options);
 
+            return JSON.parse(result);
+        }
         return this;
     }
 }

@@ -23,12 +23,12 @@ namespace Melon.Library.Static
             { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
             { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
             //Module - [Database]
-            { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
-            { "PostgreSQLBindingNonQuery", new Func<string, string, int>(PgStatic.ExecuteNonQuery) },
-            { "MySqlBindingQuery", new Func<string, string, dynamic>(MySqlStatic.ExecuteQuery) },
-            { "MySqlBindingNonQuery", new Func<string, string, int>(MySqlStatic.ExecuteNonQuery) },
-            { "SqlServerBindingQuery", new Func<string, string, dynamic>(SqlServerStatic.ExecuteQuery) },
-            { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
+            { "PostgreSQLBindingQuery", new Func<string, dynamic, dynamic>(PgStatic.ExecuteQuery) },
+            { "PostgreSQLBindingNonQuery", new Func<string, dynamic, int>(PgStatic.ExecuteNonQuery) },
+            { "MySqlBindingQuery", new Func<string, dynamic, dynamic>(MySqlStatic.ExecuteQuery) },
+            { "MySqlBindingNonQuery", new Func<string, dynamic, int>(MySqlStatic.ExecuteNonQuery) },
+            { "SqlServerBindingQuery", new Func<string, dynamic, dynamic>(SqlServerStatic.ExecuteQuery) },
+            { "SqlServerBindingNonQuery", new Func<string, dynamic, int>(SqlServerStatic.ExecuteNonQuery) },
             //Module - [Http]
             { "SetupWebApplication", new Action<string>(WebApplicationManager.ExecuteWebApplication) },
             { "FetchRequest", new Func<string, string, string, string, HttpResponse>(Http.Request) },
