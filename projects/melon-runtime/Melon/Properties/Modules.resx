@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Standard" xml:space="preserve">
-    <value>["Consts/consts","Dotnet/dotnet","Standard/Version","Standard/Set","Standard/Map","Standard/std","Standard/console","FileSystem/fs","Data/Enumerable","Data/IndexedArray","Data/data","Operations/AsyncLoop","Operations/AsyncTask","Operations/Queue","Http/http"]</value>
+    <value>["Consts/consts","Dotnet/dotnet","Standard/Version","Standard/Set","Standard/Map","Standard/std","Standard/console","FileSystem/fs","Data/Enumerable","Data/data","Operations/AsyncLoop","Operations/AsyncTask","Operations/Queue","Http/http"]</value>
   </data>
 </root>

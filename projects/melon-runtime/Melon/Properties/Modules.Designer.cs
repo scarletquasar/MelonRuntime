@@ -61,7 +61,7 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a [&quot;Consts/consts&quot;,&quot;Dotnet/dotnet&quot;,&quot;Standard/Version&quot;,&quot;Standard/Set&quot;,&quot;Standard/Map&quot;,&quot;Standard/std&quot;,&quot;Standard/console&quot;,&quot;FileSystem/fs&quot;,&quot;Data/Enumerable&quot;,&quot;Data/IndexedArray&quot;,&quot;Data/data&quot;,&quot;Operations/AsyncLoop&quot;,&quot;Operations/AsyncTask&quot;,&quot;Operations/Queue&quot;,&quot;Http/http&quot;].
+        ///   Consulta uma cadeia de caracteres localizada semelhante a [&quot;Consts/consts&quot;,&quot;Dotnet/dotnet&quot;,&quot;Standard/Version&quot;,&quot;Standard/Set&quot;,&quot;Standard/Map&quot;,&quot;Standard/std&quot;,&quot;Standard/console&quot;,&quot;FileSystem/fs&quot;,&quot;Data/Enumerable&quot;,&quot;Data/data&quot;,&quot;Operations/AsyncLoop&quot;,&quot;Operations/AsyncTask&quot;,&quot;Operations/Queue&quot;,&quot;Http/http&quot;].
         /// </summary>
         internal static string Standard {
             get {

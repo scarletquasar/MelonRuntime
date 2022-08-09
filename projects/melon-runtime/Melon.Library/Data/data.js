@@ -1,11 +1,5 @@
 ﻿const data = {
-    clone: function (target) {
-        if (typeof target === "function") {
-            return function () { target(...arguments ?? ''); }
-        }
-
-        return JSON.parse(JSON.stringify(target));
-    },
+    clone: (value) => _$internalBinding["DeepClone"](value),
     compare: (target, value, expression = (a, b) => a === b, customModifier = null) => {
         const result = {
             comments: "",

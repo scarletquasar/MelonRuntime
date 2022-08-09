@@ -4,6 +4,7 @@ using Melon.Library.Static.Web;
 using Melon.Web;
 using Melon.Library.Static.Generic;
 using Melon.Library.Static.InteropReflection;
+using Jint.Native;
 
 namespace Melon.Library.Static
 {
@@ -13,6 +14,7 @@ namespace Melon.Library.Static
         public static Dictionary<string, dynamic> Dictionary = new()
         {
             //Module - [Standard]
+            { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
             { "ProcessExit", new Action<int>(Environment.Exit) },
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
