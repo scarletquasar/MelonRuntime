@@ -15,6 +15,9 @@ namespace Melon.Tests.ScriptLibrary.Data
 
             var loadList = new List<string>()
             {
+                "Dotnet/dotnet",
+                "Standard/Version",
+                "Standard/std",
                 "Data/data"
             };
 
@@ -41,24 +44,11 @@ namespace Melon.Tests.ScriptLibrary.Data
             var script = @"
                 let a = 1; 
                 let b = 1; 
-                data.compare(a, b);
+                JSON.stringify(data.compare(a, b));
             ";
-            var result = engine.Evaluate(script).AsBoolean();
+            var result = engine.Evaluate(script).AsString();
 
-            Assert.True(result);
-        }
-
-        [Fact(DisplayName = "'data' find() method should work correctly")]
-        public void DataFindMethodShouldWorkCorrectly()
-        {
-            var script = @"
-                let a = 1; 
-                let b = [1]; 
-                data.find(a, b).found;
-            ";
-            var result = engine.Evaluate(script).AsBoolean();
-
-            Assert.True(result);
+            Assert.Equal("{\"comments\":\"\",\"equals\":true}", result);
         }
     }
 }

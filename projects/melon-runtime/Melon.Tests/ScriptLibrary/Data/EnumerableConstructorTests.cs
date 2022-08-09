@@ -16,6 +16,9 @@ namespace Melon.Tests.ScriptLibrary.Data
 
             var loadList = new List<string>()
             {
+                "Dotnet/dotnet",
+                "Standard/Version",
+                "Standard/std",
                 "Data/Enumerable",
                 "Data/data"
             };
