@@ -15,6 +15,9 @@ namespace Melon.Tests.ScriptLibrary.Standards
 
             var loadList = new List<string>()
             {
+                "Dotnet/dotnet",
+                "Standard/Version",
+                "Standard/std",
                 "Standard/guards"
             };
 

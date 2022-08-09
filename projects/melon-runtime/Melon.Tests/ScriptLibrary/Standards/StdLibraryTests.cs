@@ -16,20 +16,13 @@ namespace Melon.Tests.ScriptLibrary.Standards
 
             var loadList = new List<string>()
             {
+                "Dotnet/dotnet",
+                "Standard/Version",
                 "Standard/std"
             };
 
             loadList.ForEach(x => builder.Load(x));
             engine = builder.Build();
-        }
-
-        [Fact(DisplayName = "'std' Promise should be a valid promise")]
-        public void StdPromiseShouldBeAValidPromise()
-        {
-            var script = @"std.Promise.constructor.name === Promise.constructor.name";
-            var result = engine.Evaluate(script).AsBoolean();
-
-            Assert.True(result);
         }
 
         [Fact(DisplayName = "'std' shift() method should work correctly")]
@@ -45,30 +38,21 @@ namespace Melon.Tests.ScriptLibrary.Standards
             Assert.Equal(1, result);
         }
 
-        [Fact(DisplayName = "'std' system.osInformation() method should work correctly")]
+        [Fact(DisplayName = "'std' system.osInformation should be valid")]
         public void StdSystemOsInformationShouldHaveCorrectData()
         {
-            var script = @"std.system.osInformation()";
+            var script = @"std.system.osInformation";
             var result = engine.Evaluate(script).AsObject();
 
-            Assert.Equal(Environment.OSVersion.Platform.ToString(), result.Get("platform"));
+            Assert.Equal(((double)Environment.OSVersion.Platform), result.Get("platform"));
             Assert.Equal(Environment.OSVersion.VersionString, result.Get("version"));
             Assert.Equal(Environment.OSVersion.ServicePack, result.Get("servicePack"));
         }
 
-        [Fact(DisplayName = "'std' system.environment.currentDirectory() method return should be valid")]
+        [Fact(DisplayName = "'std' system.environment.baseDirectory should be valid")]
         public void StdEnvironmentCurrentDirectoryShouldBeValid()
         {
-            var script = @"std.environment.currentDirectory()";
-            var result = engine.Evaluate(script).AsString();
-
-            Assert.NotEmpty(result);
-        }
-
-        [Fact(DisplayName = "'std' system.environment.baseDirectory() method return should be valid")]
-        public void StdEnvironmentBaseDirectoryShouldBeValid()
-        {
-            var script = @"std.environment.baseDirectory()";
+            var script = @"std.environment.baseDirectory";
             var result = engine.Evaluate(script).AsString();
 
             Assert.NotEmpty(result);
