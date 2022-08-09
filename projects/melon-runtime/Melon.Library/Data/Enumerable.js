@@ -56,7 +56,7 @@
         return (sum / array.length) || 0;
     }
     this.cast = (constructor) => new Enumerable(this.toArray().map(x => new constructor(x)));
-    this.equals = (element) => data.compare(this.toArray(), element);
+    this.equals = (element) => data.compare(this.toArray(), element).equals;
     this.addRange = (elements) => {
         elements.forEach(this.add);
         return this;
