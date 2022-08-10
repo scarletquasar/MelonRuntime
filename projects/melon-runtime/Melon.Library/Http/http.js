@@ -45,30 +45,24 @@
                 return executionTree;
             }
         }
-
         use(middleware) {
             this.middlewares.push(middleware);
         }
-
         on(event, callback) {
             this.events[event] = callback;
         }
-
         get(route, callback, localMiddlewares = []) {
             const httpRoute = new http.HttpRoute(route, "GET", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
-
         post(route, callback, middlewares = []) {
             const httpRoute = new http.HttpRoute(route, "POST", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
-
         delete(route, callback, middlewares = []) {
             const httpRoute = new http.HttpRoute(route, "DELETE", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
-
         run() {
             const parameters = JSON.stringify({
                 Name: this.name,
@@ -81,7 +75,6 @@
 
             _$internalBinding["SetupWebApplication"](parameters);
         }
-
         listen(port, host = this.host) {
             this.echoes.push({
                 host,
