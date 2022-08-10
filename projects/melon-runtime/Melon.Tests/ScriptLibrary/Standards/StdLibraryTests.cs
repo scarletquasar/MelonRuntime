@@ -2,7 +2,9 @@
 using Melon.Engine.Builders;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
+using Melon.Static.Runtime;
 
 namespace Melon.Tests.ScriptLibrary.Standards
 {
@@ -22,7 +24,9 @@ namespace Melon.Tests.ScriptLibrary.Standards
             };
 
             loadList.ForEach(x => builder.Load(x));
+
             engine = builder.Build();
+            Runtime.Engine = builder.Build();
         }
 
         [Fact(DisplayName = "'std' shift() method should work correctly")]
@@ -115,6 +119,26 @@ namespace Melon.Tests.ScriptLibrary.Standards
             var result = engine.Evaluate(script).AsBoolean();
 
             Assert.True(result);
+        }
+
+        [Fact(DisplayName = "'std' time.setTimeout should work correctly")]
+        public async void StdTimeSetTimeoutShouldWorkCorrectly()
+        {
+            var callerScript = @"
+                let a = 1;
+                std.time.setTimeout(() => a = 2, 1000);
+            ";
+
+            Runtime.Engine!.Execute(callerScript);
+
+            await Task.Delay(2000);
+
+            var script = @"
+                a;
+            ";
+            var result = Runtime.Engine!.Evaluate(script).AsNumber();
+
+            Assert.Equal(2, result);
         }
     }
 }

@@ -3,6 +3,7 @@ using Xunit;
 using Jint.Runtime;
 using Melon.Engine.Builders;
 using System.Collections.Generic;
+using Melon.Static.Runtime;
 
 namespace Melon.Tests.ScriptLibrary.Data
 {

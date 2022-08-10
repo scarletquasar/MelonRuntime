@@ -1,5 +1,6 @@
 ﻿using Jint;
 using Melon.Engine.Builders;
+using Melon.Static.Runtime;
 using System.Collections.Generic;
 using Xunit;
 
