@@ -24,12 +24,13 @@
                 error: () => { }
             };
 
-            this._mountExecutionTree = (callback) => {
+            this._mountExecutionTree = (callback, localMiddlewares) => {
                 const executionTree = (request) => {
                     let result;
 
                     try {
                         this.events.beforeCall(request);
+                        localMiddlewares.forEach(middleware => request = middleware(request));
                         this.middlewares.forEach(middleware => request = middleware(request));
                         result = callback(request);
                         this.events.afterCall(request);
@@ -53,18 +54,18 @@
             this.events[event] = callback;
         }
 
-        get(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "GET", this._mountExecutionTree(callback));
+        get(route, callback, localMiddlewares = []) {
+            const httpRoute = new http.HttpRoute(route, "GET", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
 
-        post(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "POST", this._mountExecutionTree(callback));
+        post(route, callback, middlewares = []) {
+            const httpRoute = new http.HttpRoute(route, "POST", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
 
-        delete(route, callback) {
-            const httpRoute = new http.HttpRoute(route, "DELETE", this._mountExecutionTree(callback));
+        delete(route, callback, middlewares = []) {
+            const httpRoute = new http.HttpRoute(route, "DELETE", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
         }
 

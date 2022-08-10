@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Text.Json;
-using Melon.Library.Models;
+using Melon.Library.Models.Web;
 
 namespace Melon.Library.Static.Web
 {
@@ -60,32 +59,6 @@ namespace Melon.Library.Static.Web
                 Ok = result.IsSuccessStatusCode,
                 StatusCode = (uint)result.StatusCode
             };
-        }
-
-        public static Models.PingReply Ping(string target, uint times)
-        {
-            List<float> results = new();
-
-            while (times > 0)
-            {
-                Ping ping = new();
-
-                try
-                {
-                    target = target.Replace("http://", "").Replace("https://", "");
-
-                    System.Net.NetworkInformation.PingReply reply = ping.Send(target);
-                    results.Add(reply.RoundtripTime);
-                }
-                finally
-                {
-                    ping.Dispose();
-                }
-
-                times--;
-            }
-
-            return new(results);
         }
     }
 }
