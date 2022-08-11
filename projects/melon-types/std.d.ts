@@ -1,9 +1,11 @@
 import { JsonTryParseOptions } from "./types/std/JsonTryParseOptions";
 import { JsonTryStringifyOptions } from "./types/std/JsonTryStringifyOptions";
+import { Version } from "./Version";
 
 type Std = {
     shift: (value: any) => any,
     melon: {
+        currentVersion: Version,
         loadedModules: string[]
     },
     boolean: {
