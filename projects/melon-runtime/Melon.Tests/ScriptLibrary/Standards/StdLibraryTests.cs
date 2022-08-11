@@ -125,8 +125,8 @@ namespace Melon.Tests.ScriptLibrary.Standards
         public async void StdTimeSetTimeoutShouldWorkCorrectly()
         {
             var callerScript = @"
-                let a = 1;
-                std.time.setTimeout(() => a = 2, 1000);
+                let setTimeoutTarget = 1;
+                std.time.setTimeout(() => setTimeoutTarget = 2, 1000);
             ";
 
             Runtime.Engine!.Execute(callerScript);
@@ -134,11 +134,31 @@ namespace Melon.Tests.ScriptLibrary.Standards
             await Task.Delay(2000);
 
             var script = @"
-                a;
+                setTimeoutTarget;
             ";
             var result = Runtime.Engine!.Evaluate(script).AsNumber();
 
             Assert.Equal(2, result);
+        }
+
+        [Fact(DisplayName = "'std' time.setInterval should work correctly")]
+        public async void StdTimeSetIntervalShouldWorkCorrectly()
+        {
+            var callerScript = @"
+                let setIntervalTarget = 1;
+                std.time.setInterval(() => setIntervalTarget++, 1000);
+            ";
+
+            Runtime.Engine!.Execute(callerScript);
+
+            await Task.Delay(1500);
+
+            var script = @"
+                setIntervalTarget;
+            ";
+            var result = Runtime.Engine!.Evaluate(script).AsNumber();
+
+            Assert.Equal(3, result);
         }
     }
 }
