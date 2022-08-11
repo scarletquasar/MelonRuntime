@@ -17,3 +17,11 @@ Welcome to **Melon** interactive documentation. In this summary you will find re
 
 <hr>
 
+## 🔥 Getting Started
+
+Welcome to Melon! Melon is a .NET declarative JavaScript runtime that focuses on fast and reliable software development, always in a robust and scalable way. To get started, you will need to install [ASP.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) and [Node.js](https://nodejs.org/en/).
+
+> **Note**
+> 
+> `ASP.NET 6` is needed by Melon as core framework and `Node.js` is needed because it comes with `npm`, 
+> that is needed to install, make and execute projects
