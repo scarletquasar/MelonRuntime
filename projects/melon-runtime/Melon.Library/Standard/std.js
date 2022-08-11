@@ -1,4 +1,4 @@
-﻿     const std = {
+﻿const std = {
     Promise: Promise,
     shift: (value) => {
         return {
@@ -19,6 +19,17 @@
     melon: {
         currentVersion: new Version(),
         loadedModules: []
+    },
+    boolean: {
+        checkAll: (method, values = []) => {
+            let results = [];
+            values.forEach(value => results.push(method(value)));
+            return results.every(result => result === true);
+        },
+        checkOne: (method, values = []) => {
+            values.forEach(value => results.push(method(value)));
+            return results.find(result => result === true) !== null;
+        }
     },
     json: {
         tryParse: (target, options = { onErrorReturn: () => { return {} }, modifier: x => x }) => {

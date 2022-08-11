@@ -36,7 +36,6 @@ namespace Melon.Commands
                 CreateProjectFile(file.Item1, file.Item2, file.Item3);
             }
         }
-
         private static void CreateProjectFile(string item, string path, string content)
         {
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
@@ -46,7 +45,6 @@ namespace Melon.Commands
 
             File.WriteAllText(path, content);
         }
-
         private static ProjectScheme GetTypeScriptScheme()
         {
             return new()
@@ -60,7 +58,6 @@ namespace Melon.Commands
                 new("webpack.config.development.js", "./webpack.config.development.js", Resources.NewProjectTsWebpackConfigDevelopment)
             };
         }
-
         private static ProjectScheme GetJavaScriptScheme()
         {
             return new()

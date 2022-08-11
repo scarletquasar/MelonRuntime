@@ -6,6 +6,10 @@ type Std = {
     melon: {
         loadedModules: string[]
     },
+    boolean: {
+        checkAll: (method: Function, values: any[]) => boolean,
+        checkOne: (method: Function, values: any[]) => boolean
+    },
     json: {
         tryParse: <T>(json: string, options: JsonTryParseOptions<T>) => T,
         tryStringify: (target: any, options: JsonTryStringifyOptions) => string
