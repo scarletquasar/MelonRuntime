@@ -24,4 +24,5 @@ Welcome to Melon! Melon is a .NET declarative JavaScript runtime that focuses on
 > **Note**
 > 
 > `ASP.NET 6` is needed by Melon as core framework and `Node.js` is needed because it comes with `npm`, 
-> that is needed to install, make and execute projects
+> that is needed to install, make and execute projects. These requirements are needed to execute the runtime
+> in an easy way. You can also execute Melon runtime by compiling the source code.
