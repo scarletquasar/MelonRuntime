@@ -55,7 +55,9 @@ namespace Melon.Commands
                 new(".babelrc", "./.babelrc", Resources.NewProjectTsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectTsPackageInfo),
                 new("tsconfig.json", "./tsconfig.json", Resources.NewProjectTsconfig),
-                new(".gitignore", "./.gitignore", Resources.NewProjectTsGitIgnore)
+                new(".gitignore", "./.gitignore", Resources.NewProjectTsGitIgnore),
+                new("webpack.config.production.js", "./webpack.config.production.js", Resources.NewProjectTsWebpackConfigProduction),
+                new("webpack.config.development.js", "./webpack.config.development.js", Resources.NewProjectTsWebpackConfigDevelopment)
             };
         }
 
