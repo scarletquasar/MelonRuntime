@@ -26,3 +26,18 @@ Welcome to Melon! Melon is a .NET declarative JavaScript runtime that focuses on
 > `ASP.NET 6` is needed by Melon as core framework and `Node.js` is needed because it comes with `npm`, 
 > that is needed to install, make and execute projects. These requirements are needed to execute the runtime
 > in an easy way. You can also execute Melon runtime by compiling the source code.
+
+## Installation
+
+After having the basic requirements (in some cases, depending on your operational system, version and provider you may need to restart your device before starting), open your desired terminal and execute the following command:
+
+```bash
+> npm install melon-runtime -g -f
+```
+
+> **Note**
+> 
+> The installation command is basic: you will be calling `npm`, setting the name of desired package as `melon-runtime` and passing 
+> the global (it means that you can use the package anywhere) `-g` flag and the force (it will overwrite any older version of 
+> `melon-runtime` and prevent caching issues) `-f` flag.
+
