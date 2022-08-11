@@ -41,3 +41,11 @@ After having the basic requirements (in some cases, depending on your operationa
 > the global (it means that you can use the package anywhere) `-g` flag and the force (it will overwrite any older version of 
 > `melon-runtime` and prevent caching issues) `-f` flag.
 
+
+## Creating a project
+
+Melon, by default, have two ways to create a new project: just navigate to the desired folder (our root), certify you have administrator rights (it may not be needed in the most of cases), open your desired terminal and execute the following command:
+
+```bash
+> npx melon new [javascript|typescript]
+```
