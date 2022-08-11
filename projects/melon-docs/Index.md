@@ -62,9 +62,12 @@ Melon, by default, have two ways to create a new project: just navigate to the d
 
 After creating the project (running the command with success), the files will appear in your root folder and you will can execute your project in `development` or `production` mode. The table below lists the template built-in commands that you can call to debug, build and run the project:
 
-| Command name | Description |
+| Command name | D
+escription |
 | ------------ | ----------- |
 | `go` | `JavaScript only` Runs the project |
 | `dev` | `TypeScript only` Runs the project in development mode |
 | `build` | `TypeScript only` Creates a production bundle |
 | `run` | `TypeScript only` Runs current bundle (needs `build` before) |
+
+Now, you are ready to make your first Melon applications. [Back to top](#)
