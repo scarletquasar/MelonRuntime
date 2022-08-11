@@ -51,6 +51,22 @@
         on(event, callback) {
             this.events[event] = callback;
         }
+        route(route, method, callback, localMiddlewares = []) {
+            const fixedMethod = method.toUpperCase();
+            switch (fixedMethod) {
+                case "GET":
+                    this.get(route, callback, localMiddlewares);
+                    break;
+
+                case "POST":
+                    this.post(route, callback, localMiddlewares);
+                    break;
+
+                case "DELETE":
+                    this.delete(route, callback, localMiddlewares);
+                    break;
+            }
+        }
         get(route, callback, localMiddlewares = []) {
             const httpRoute = new http.HttpRoute(route, "GET", this._mountExecutionTree(callback, localMiddlewares));
             this.routes.push(httpRoute);
