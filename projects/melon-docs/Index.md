@@ -55,8 +55,16 @@ Melon, by default, have two ways to create a new project: just navigate to the d
 > You may specify only one of the two options: `javascript` or `typescript`, a template project will be created fastly
 > after running the command with the specified target development environment.
 
+| Option name | Description |
+| ------------ | ----------- |
+| `javascript` | Creates a basic, clean JavaScript project to be executed in Melon |
+| `typescript` | Creates a basic, pre-configured JavaScript project to be executed in Melon |
+
 After creating the project (running the command with success), the files will appear in your root folder and you will can execute your project in `development` or `production` mode. The table below lists the template built-in commands that you can call to debug, build and run the project:
 
 | Command name | Description |
 | ------------ | ----------- |
-| | |
+| `go` | `JavaScript only` Runs the project |
+| `dev` | `TypeScript only` Runs the project in development mode |
+| `build` | `TypeScript only` Creates a production bundle |
+| `run` | `TypeScript only` Runs current bundle (needs `build` before) |
