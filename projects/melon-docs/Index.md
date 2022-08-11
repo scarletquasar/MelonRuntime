@@ -50,7 +50,7 @@ Melon, by default, have two ways to create a new project: just navigate to the d
 > npx melon new [javascript|typescript]
 ```
 
-> **Waring**
+> **Warning**
 > 
 > You may specify only one of the two options: `javascript` or `typescript`, a template project will be created fastly
 > after running the command with the specified target development environment.
