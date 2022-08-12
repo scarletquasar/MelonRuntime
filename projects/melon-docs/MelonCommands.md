@@ -3,7 +3,7 @@
 </div>
 
 <br>
--
+
 <div id="no-view" align="center">
 
   [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime)
@@ -15,6 +15,10 @@
 
 <hr>
 
-In this section you can find a complete list of Melon CLI commands.
+In this section you can find a complete list of Melon CLI commands that can be used with `npx melon [command]`.
 
 <hr>
+
+| Command Name | Arguments | Description |
+| ------------ | --------- | ----------- |
+| `new` | `javascript` `typescript` | Creates a new Melon project in the current directory. One valid argument is required |
