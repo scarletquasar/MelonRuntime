@@ -21,4 +21,5 @@ In this section you can find a complete list of Melon CLI commands that can be u
 
 | Command Name | Arguments | Description |
 | ------------ | --------- | ----------- |
-| `new` | `javascript` `typescript` | Creates a new Melon project in the current directory. One valid argument is required |
+| `new` | `[javascript]:string` `[typescript]:string` | Creates a new Melon project in the current directory. One valid argument is required |
+| `run` | `script:string` | Runs a JavaScript string directly |
