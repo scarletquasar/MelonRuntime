@@ -9,7 +9,7 @@
   [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime)
   [![npm downloads](https://badgen.net/npm/dm/melon-runtime)](https://www.npmjs.com/package/melon-runtime)
 
-  Getting Started - [Melon Commands](./MelonCommands.md) - [dotnet](./modules/dotnet.md) - [console](./modules/consle.md) - [console](./modules/consle.md) - [fs](./modules/fs.md) - [console](./modules/consle.md)
+  Getting Started - [Melon Commands](./MelonCommands.md) - [dotnet](./modules/dotnet.md) - [std](./modules/std.md) - [console](./modules/consle.md) - [console](./modules/consle.md) - [fs](./modules/fs.md) - [guards](./modules/guards.md) - [http](./modules/http.md)  
   
 </div>
 
