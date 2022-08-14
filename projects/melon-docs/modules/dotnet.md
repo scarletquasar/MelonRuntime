@@ -18,3 +18,26 @@
 `dotnet` module reference for Melon.
 
 <hr>
+
+## getStaticMethod (Method)
+
+Returns a .NET internal static method using an expression with the template: `[Namespace:Type:Method]`. Can be used to call any static method that is currently loaded by the internal program, including ALL built-in ones (from the framework) and/or related to [CLI.NET](https://github.com/victoriaquasar/Cli.NET).
+
+**⚡ Usage (JavaScript):**
+
+```js
+const { getStaticMethod } = dotnet;
+const writeLine = getStaticMethod("System:Console:WriteLine");
+
+writeLine("Hello World!"); //Hello World!
+```
+
+**⚡ Usage (TypeScript):**
+
+```ts
+const { getStaticMethod } = dotnet;
+const writeLine = getStaticMethod<void>("System:Console:WriteLine");
+
+writeLine("Hello World!"); //Hello World!
+```
+
