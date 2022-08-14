@@ -42,14 +42,18 @@ writeLine("Hello World!"); //Hello World!
 getStaticMethod<TReturn>("Namespace:Type:Method");
 ```
 
-> **Note** (Usage)
->
-> `TReturn` is the return type of the obtained method, use `void` if there is no return.
-
 ```ts
 const { getStaticMethod } = dotnet;
 const writeLine = getStaticMethod<void>("System:Console:WriteLine");
 
 writeLine("Hello World!"); //Hello World!
 ```
+
+> **Note** (Usage)
+>
+> `TReturn` is the return type of the obtained method, use `void` if there is no return.
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L7) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L2).
 
