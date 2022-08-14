@@ -19,6 +19,12 @@
 
 <hr>
 
+### Summary
+
+- [getStaticMethod (Method)](#getstaticmethod-method)
+
+<hr>
+
 ## getStaticMethod (Method)
 
 Returns a .NET internal static method using an expression with the template: `[Namespace:Type:Method]`. Can be used to call any static method that is currently loaded by the internal program, including ALL built-in ones (from the framework) and/or related to [CLI.NET](https://github.com/victoriaquasar/Cli.NET).
