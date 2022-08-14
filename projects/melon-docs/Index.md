@@ -38,7 +38,8 @@ After having the basic requirements (in some cases, depending on your operationa
 ```
 
 > **Note**
-> 
+> (Why this command?) 
+>
 > The installation command is basic: you will be calling `npm`, setting the name of desired package as `melon-runtime` and passing 
 > the global (it means that you can use the package anywhere) `-g` flag and the force (it will overwrite any older version of 
 > `melon-runtime` and prevent caching issues) `-f` flag.
