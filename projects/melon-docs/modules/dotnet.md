@@ -26,6 +26,10 @@ Returns a .NET internal static method using an expression with the template: `[N
 **⚡ Usage (JavaScript):**
 
 ```js
+getStaticMethod("Namespace:Type:Method");
+```
+
+```js
 const { getStaticMethod } = dotnet;
 const writeLine = getStaticMethod("System:Console:WriteLine");
 
@@ -33,6 +37,14 @@ writeLine("Hello World!"); //Hello World!
 ```
 
 **⚡ Usage (TypeScript):**
+
+```ts
+getStaticMethod<TReturn>("Namespace:Type:Method");
+```
+
+> **Note** (Usage)
+>
+> `TReturn` is the return type of the obtained method, use `void` if there is no return.
 
 ```ts
 const { getStaticMethod } = dotnet;
