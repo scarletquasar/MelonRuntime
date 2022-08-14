@@ -48,7 +48,7 @@ After having the basic requirements (in some cases, depending on your operationa
 > **Note**
 > (Development)
 >
-> You can find the source code of the `melon-runtime` package [here](https://github.com/MelonRuntime/Melon/tree/main/projects/melon-runtime).
+> You can find the source code of the `melon-runtime` package [here](../melon-runtime).
 
 
 ## Creating a project
