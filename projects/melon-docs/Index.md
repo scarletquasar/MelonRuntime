@@ -43,6 +43,10 @@ After having the basic requirements (in some cases, depending on your operationa
 > the global (it means that you can use the package anywhere) `-g` flag and the force (it will overwrite any older version of 
 > `melon-runtime` and prevent caching issues) `-f` flag.
 
+> **Development note**
+> 
+> You can find the source code of the `melon-runtime` package [here](../melon-runtime/).
+
 
 ## Creating a project
 
@@ -72,4 +76,6 @@ escription |
 | `build` | `TypeScript only` Creates a production bundle |
 | `run` | `TypeScript only` Runs current bundle (needs `build` before) |
 
-Now, you are ready to make your first Melon applications. [Back to top](#)
+Now, you are ready to make your first Melon applications. 
+
+[Back to top](#)
