@@ -22,6 +22,7 @@
 ### Summary
 
 - [getStaticMethod (Method)](#getstaticmethod-method)
+- [getStaticProperty (Method)](#getstaticproperty-method)
 
 <hr>
 
