@@ -97,3 +97,5 @@ const title = getStaticProperty<string>("System:Console:Title");
 > **Note** (Development)
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L8) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L16).
+
+## loadAssembly (Method)
