@@ -27,7 +27,7 @@
 
 ## getStaticMethod (Method)
 
-Returns a .NET internal static method using an expression with the template: `[Namespace:Type:Method]`. Can be used to call any static method that is currently loaded by the internal program, including ALL built-in ones (from the framework) and/or related to [CLI.NET](https://github.com/victoriaquasar/Cli.NET).
+Returns a static .NET method using an expression with the template: `[Namespace:Type:Method]`. Can be used to call any static method that is currently loaded by the internal program, including ALL built-in ones (from the framework) and/or related to [CLI.NET](https://github.com/victoriaquasar/Cli.NET).
 
 **⚡ Usage (JavaScript):**
 
@@ -63,3 +63,36 @@ writeLine("Hello World!"); //Hello World!
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L7) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L2).
 
+## getStaticProperty (Method)
+
+Returns a static .NET property using an expression with the template: `[Namespace:Type:Property]`. Can be used to call any static property that is currently loaded by the internal program.
+
+**⚡ Usage (JavaScript):**
+
+```js
+getStaticProperty("Namespace:Type:Property");
+```
+
+```js
+const { getStaticProperty } = dotnet;
+const title = getStaticField("System:Console:Title");
+```
+
+**⚡ Usage (TypeScript):**
+
+```ts
+getStaticProperty<TProperty>("Namespace:Type:Method");
+```
+
+```ts
+const { getStaticProperty } = dotnet;
+const title = getStaticProperty<string>("System:Console:Title");
+```
+
+> **Note** (Usage)
+>
+> `TProperty` is the TypeScript equivalent type of the desired property.
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L8) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L16).
