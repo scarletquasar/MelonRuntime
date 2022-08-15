@@ -100,4 +100,17 @@ const title = getStaticProperty<string>("System:Console:Title");
 
 ## loadAssembly (Method)
 
+Loads an external assembly by passing the target path as argument and returns the assembly name (string). Note: can only load valid .NET assemblies (.dll files).
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+loadAssembly("/Path/To/Assembly.dll");
+```
+
+```js
+const { loadAssembly } = dotnet;
+const assemblyName = loadAssembly("./MyAssembly.dll");
+```
+
 [Back to top](#)
