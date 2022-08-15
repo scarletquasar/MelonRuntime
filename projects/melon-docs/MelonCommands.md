@@ -28,3 +28,5 @@ In this section you can find a complete list of Melon CLI commands that can be u
 > (Development)
 >
 > You can find the source code of Melon commands [here](../melon-runtime/Melon/Commands/).
+
+[Back to top](#)
