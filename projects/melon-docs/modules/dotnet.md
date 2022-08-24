@@ -312,4 +312,16 @@ const { decimal } = dotnet.types;
 const myDecimal = decimal(10.5);
 ```
 
+## Realm (Constructor)
+
+Realm is a special constructor that allows the JavaScript code do manipulate, execute and get a return value of C# instances via proxy, using helper methods. Each realm needs an identifier because the "Realms" are stored statically inside the program execution and NOT inside the `Engine` instance.
+
+### name (Property)
+
+The name (`string`) - identifier - of the Realm, this property makes a "link" to find the internal realm reference, where the instances to be manipulated will be stored.
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this property [here](../../melon-types/types/dotnet/Realm.ts#L4) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L149).
+
 [Back to top](./dotnet.md)
