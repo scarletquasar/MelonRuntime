@@ -312,4 +312,4 @@ const { decimal } = dotnet.types;
 const myDecimal = decimal(10.5);
 ```
 
-[Back to top](.)
+[Back to top](./dotnet.md)
