@@ -123,4 +123,28 @@ const assemblyName: string = loadAssembly("./MyAssembly.dll");
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L9) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L27).
 
-[Back to top](#)
+## removeAssembly (Method)
+
+Loads an external assembly by passing the target path as argument and returns the assembly name (string). Note: can only load valid .NET assemblies (.dll files).
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+removeAssembly("Assembly Name");
+```
+
+```js
+const { removeAssembly } = dotnet;
+removeAssembly("MyAssembly");
+```
+
+> **Warning**
+>
+> This is an experimental method and may not work as intended. More development time is
+> required to grant stability.
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L10) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L28).
+
+[Back to top](.)
