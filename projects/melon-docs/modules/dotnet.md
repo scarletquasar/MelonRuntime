@@ -176,6 +176,52 @@ const loadedAssemblies = getLoadedAssemblies();
 
 ## types (Submodule)
 
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this submodule [here](../../melon-types/dotnet.d.ts#L12) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L30).
+
 ### sbyte (Method)
+
+Represents a dotnet `sbyte` (SByte) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { sbyte } = dotnet.types;
+const mySbyte = sbyte(127);
+```
+
+### byte (Method)
+
+Represents a dotnet `byte` (Byte) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { byte } = dotnet.types;
+const myByte = byte(255);
+```
+
+### short (Method)
+
+Represents a dotnet `short` (Int16) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { short } = dotnet.types;
+const myShort = short(32767);
+```
+
+### ushort (Method)
+
+Represents a dotnet `ushort` (UInt16) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { ushort } = dotnet.types;
+const myUshort = ushort(32767);
+```
 
 [Back to top](.)
