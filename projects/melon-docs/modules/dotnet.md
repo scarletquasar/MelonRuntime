@@ -28,6 +28,17 @@
 - [getLoadedAssemblies (Method)](#getloadedassemblies-method)
 - [types (Submodule)](#types-submodule)
   - [sbyte (Method)](#sbyte-method)
+  - [byte (Method)](#byte-method)
+  - [short (Method)](#short-method)
+  - [ushort (Method)](#ushort-method)
+  - [int (Method)](#int-method)
+  - [uint (Method)](#uint-method)
+  - [long (Method)](#long-method)
+  - [ulong (Method)](#ulong-method)
+  - [float (Method)](#float-method)
+  - [double (Method)](#double-method)
+  - [decimal (Method)](#decimal-method)
+
 <hr>
 
 ## getStaticMethod (Method)
