@@ -151,4 +151,26 @@ removeAssembly("MyAssembly");
 
 ## getLoadedAssemblies (Method)
 
+Returns a list of the loaded assembly names, the values can be `string` or `null`.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const loadedAssemblies = getLoadedAssemblies();
+```
+
+```js
+const { getLoadedAssemblies } = dotnet;
+const loadedAssemblies = getLoadedAssemblies();
+```
+
+> **Warning**
+>
+> This is an experimental method and may not work as intended. More development time is
+> required to grant stability.
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L11) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L29).
+
 [Back to top](.)
