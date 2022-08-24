@@ -26,7 +26,8 @@
 - [loadAssembly (Method)](#loadassembly-method)
 - [removeAssembly (Method)](#removeassembly-method)
 - [getLoadedAssemblies (Method)](#getloadedassemblies-method)
-
+- [types (Submodule)](#types-submodule)
+  - [sbyte (Method)]()
 <hr>
 
 ## getStaticMethod (Method)
@@ -172,5 +173,9 @@ const loadedAssemblies = getLoadedAssemblies();
 > **Note** (Development)
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L11) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L29).
+
+## types (Submodule)
+
+### sbyte (Method)
 
 [Back to top](.)
