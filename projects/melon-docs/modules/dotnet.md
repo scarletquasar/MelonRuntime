@@ -113,4 +113,8 @@ const { loadAssembly } = dotnet;
 const assemblyName = loadAssembly("./MyAssembly.dll");
 ```
 
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L9) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L27).
+
 [Back to top](#)
