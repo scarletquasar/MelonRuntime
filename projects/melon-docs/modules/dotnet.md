@@ -113,6 +113,11 @@ const { loadAssembly } = dotnet;
 const assemblyName = loadAssembly("./MyAssembly.dll");
 ```
 
+> **Warning**
+>
+> This is an experimental method and may not work as intended. More development time is
+> required to grant stability.
+
 > **Note** (Development)
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/dotnet.d.ts#L9) and the method core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L27).
