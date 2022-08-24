@@ -232,7 +232,7 @@ Represents a dotnet `int` (Int32) data type. Can be used to create Realm instanc
 
 ```js
 const { int } = dotnet.types;
-const myInt = ushort(2147483647);
+const myInt = int(2147483647);
 ```
 
 ### uint (Method)
@@ -243,7 +243,62 @@ Represents a dotnet `uint` (UInt32) data type. Can be used to create Realm insta
 
 ```js
 const { uint } = dotnet.types;
-const myUint = ushort(4294967295);
+const myUint = uint(4294967295);
+```
+
+### long (Method)
+
+Represents a dotnet `long` (Int64) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { long } = dotnet.types;
+const myLong = long(4294967295);
+```
+
+### ulong (Method)
+
+Represents a dotnet `ulong` (UInt64) data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { ulong } = dotnet.types;
+const myUlong = ulong(4294967295);
+```
+
+### float (Method)
+
+Represents a dotnet `float` data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { float } = dotnet.types;
+const myFloat = float(10.5);
+```
+
+### double (Method)
+
+Represents a dotnet `double` data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { double } = dotnet.types;
+const myDouble = double(10.5);
+```
+
+### decimal (Method)
+
+Represents a dotnet `double` data type. Can be used to create Realm instances with the correct data types.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const { decimal } = dotnet.types;
+const myDecimal = decimal(10.5);
 ```
 
 [Back to top](.)
