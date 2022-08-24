@@ -23,6 +23,7 @@
 
 - [getStaticMethod (Method)](#getstaticmethod-method)
 - [getStaticProperty (Method)](#getstaticproperty-method)
+- [loadAssembly (Method)](#loadassembly-method)
 
 <hr>
 
@@ -110,7 +111,7 @@ loadAssembly("/Path/To/Assembly.dll");
 
 ```js
 const { loadAssembly } = dotnet;
-const assemblyName = loadAssembly("./MyAssembly.dll");
+const assemblyName: string = loadAssembly("./MyAssembly.dll");
 ```
 
 > **Warning**
