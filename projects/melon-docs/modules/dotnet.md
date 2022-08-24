@@ -27,7 +27,7 @@
 - [removeAssembly (Method)](#removeassembly-method)
 - [getLoadedAssemblies (Method)](#getloadedassemblies-method)
 - [types (Submodule)](#types-submodule)
-  - [sbyte (Method)]()
+  - [sbyte (Method)](#sbyte-method)
 <hr>
 
 ## getStaticMethod (Method)
