@@ -19,7 +19,7 @@
 
 - [Official Website](https://melonruntime.github.io/site/)
 - [Installation](https://github.com/MelonRuntime/Melon#installation-and-usage)
-- [Changelog](https://github.com/MelonRuntime/MelonRuntime/blob/main/CHANGELOG.md)
+- [Documentation](./projects/melon-docs/Index.md)
 - [Internal Utilities](https://github.com/MelonRuntime/Melon/tree/main/utils)
 - [Compatible Libraries](https://github.com/MelonRuntime/Melon/blob/main/LIBRARY_COMPATIBILITY.md)
 

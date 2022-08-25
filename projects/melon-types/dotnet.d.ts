@@ -8,7 +8,7 @@ type Dotnet = {
     getStaticProperty: <T>(expr: DotnetFetchExpression) => T,
     loadAssembly: (path: string) => string,
     removeAssembly: (path: string) => void,
-    getAssemblies: (path: string) => (string | null)[],
+    getLoadedAssemblies: () => (string | null)[],
     types: DotnetNumericTypes,
     Realm: RealmConstructor
 }
