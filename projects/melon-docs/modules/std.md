@@ -21,6 +21,13 @@
 
 ### Summary
 
+- [shift (Method)](#shift-method)
+- [melon (Submodule)](#melon-submodule)
+  - [currentVersion (Property)](#currentversion-property)
+  - [loadedModules (Property)](#loadedmodules-property)
+- [boolean (Submodule)](#boolean-submodule)
+  - [checkAll (Method)](#checkall-method)
+  - [checkOne (Method)](#checkone-method)
 <hr>
 
 ## shift (Method)
