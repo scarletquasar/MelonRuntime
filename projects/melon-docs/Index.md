@@ -17,6 +17,8 @@
 
 Welcome to **Melon** interactive documentation. In this summary you will find references to the standard libraries, tutorials, and resources to make learning and using the runtime easier.
 
+**This documentation is incomplete/in development. Contribute [here](https://github.com/MelonRuntime/Melon/pulls).**
+
 <hr>
 
 ## 🔥 Getting Started
