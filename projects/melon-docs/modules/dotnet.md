@@ -344,4 +344,21 @@ console.log(myRealm.get("myValue")); //2
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L5) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L150).
 
+### setInstance (Method)
+
+Stores an instance value inside a Realm.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+const { Realm } = dotnet;
+const myRealm = new Realm("MyRealm");
+
+myRealm.setInstance("myInstanceValue", "MyNamespace:MyType", ...parameters);
+```
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L6) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L153).
+
 [Back to top](./dotnet.md)
