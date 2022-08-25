@@ -378,6 +378,6 @@ console.log(myRealm.get("myValue")); //2
 
 > **Note** (Development)
 >
-> You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L6) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L153).
+> You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L7) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L160).
 
 [Back to top](./dotnet.md)
