@@ -44,3 +44,31 @@ shift()
 ### currentVersion (Property)
 
 [Version](./GenericConstructors.md#version-constructor) instance of the current Melon version.
+
+### loadedModules (Property)
+
+Returns a `string[]` containing the name of the loaded modules in this Melon execution.
+
+## boolean (Submodule)
+
+Contains utilities to manipulate and generate boolean values.
+
+### checkAll (Method)
+
+Check all the conditions using a lambda expression, if they're true, returns true, otherwise, returns false.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+console.log(std.boolean.checkAll(x => x === true, [true, true, false])); //false
+```
+
+### checkOne (Method)
+
+Check one condition using a lambda expression, if it's true, returns true, otherwise, returns false.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+console.log(std.boolean.checkOne(x => x === true, [true, true, false])); //true
+```
