@@ -361,4 +361,23 @@ myRealm.setInstance("myInstanceValue", "MyNamespace:MyType", ...parameters);
 >
 > You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L6) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L153).
 
+### get (Method)
+
+Returns the converted (via [interop](https://github.com/sebastienros/jint#net-interoperability)) value of a Realm stored value.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+const { Realm } = dotnet;
+const myRealm = new Realm("MyRealm");
+
+myRealm.setValue("myValue", 2);
+
+console.log(myRealm.get("myValue")); //2
+```
+
+> **Note** (Development)
+>
+> You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L6) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L153).
+
 [Back to top](./dotnet.md)
