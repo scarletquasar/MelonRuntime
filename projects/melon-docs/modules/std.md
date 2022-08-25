@@ -30,9 +30,13 @@ Creates a callback chain that will execute a callback based in a condition that 
 **⚡ Usage (JavaScript/TypeScript):**
 
 ```ts
+shift<T>().option(value, function);
+```
+
+```ts
 const { shift } = dotnet;
 
-shift()
+shift<number>()
   .option(1, () => console.log("Hello "))
   .option(1 || 2, , () => console.log("World!"))
 ```
@@ -72,3 +76,9 @@ Check one condition using a lambda expression, if it's true, returns true, other
 ```ts
 console.log(std.boolean.checkOne(x => x === true, [true, true, false])); //true
 ```
+
+## json (Submodule)
+
+Contains utilities to serialize, deserialize, manipulate and generate JSON values.
+
+### tryParse
