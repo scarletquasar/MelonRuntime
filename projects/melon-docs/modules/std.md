@@ -95,9 +95,9 @@ console.log(std.boolean.checkOne(x => x === true, [true, true, false])); //true
 
 Contains utilities to serialize, deserialize, manipulate and generate JSON values.
 
-### tryParse
+### tryParse (Method)
 
-Tries to parse a JSON string, if it fails, returns a custom value.
+Tries to parse a JSON string, if it fails, executes a callback and returns a custom value.
 
 **⚡ Usage (JavaScript):**
 
@@ -117,3 +117,15 @@ const myObject = std.json.tryParse<Record<string, number>>("{a:1}", {
 });
 ```
 
+### tryStringify (Method)
+
+Tries to stringify a variable, if it fails, executes a callback and returns a custom value.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+const myString = std.json.tryStringify({a:1}, {
+  onErrorReturn: "",
+  modifier: x => x
+});
+```
