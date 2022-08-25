@@ -20,3 +20,10 @@
 <hr>
 
 ### Summary
+
+<hr>
+
+## shift (Method)
+
+Creates a callback chain that will execute a callback based in a condition that is related to the initial specified value.
+
