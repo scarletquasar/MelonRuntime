@@ -97,4 +97,23 @@ Contains utilities to serialize, deserialize, manipulate and generate JSON value
 
 ### tryParse
 
-Tries to parse a JSON string, if it fails, 
+Tries to parse a JSON string, if it fails, returns a custom value.
+
+**⚡ Usage (JavaScript):**
+
+```js
+const myObject = std.json.tryParse("{a:1}", {
+  onErrorReturn: {},
+  modifier: x => x
+});
+```
+
+**⚡ Usage (TypeScript):**
+
+```ts
+const myObject = std.json.tryParse<Record<string, number>>("{a:1}", {
+  onErrorReturn: {},
+  modifier: x => x
+});
+```
+
