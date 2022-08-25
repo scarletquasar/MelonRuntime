@@ -28,6 +28,9 @@
 - [boolean (Submodule)](#boolean-submodule)
   - [checkAll (Method)](#checkall-method)
   - [checkOne (Method)](#checkone-method)
+- [json (Submodule)](#json-submodule)
+  - [tryParse (Method)](#tryparse-method)
+  - [tryStringify (Method)](#trystringify-method)
 <hr>
 
 ## shift (Method)
