@@ -36,3 +36,11 @@ shift()
   .option(1, () => console.log("Hello "))
   .option(1 || 2, , () => console.log("World!"))
 ```
+
+## melon (Submodule)
+
+`melon` submodule contains utilities related to the runtime environment and useful information.
+
+### currentVersion (Property)
+
+[Version](./GenericConstructors.md#version-constructor) instance of the current Melon version.
