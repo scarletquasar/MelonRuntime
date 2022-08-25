@@ -27,7 +27,7 @@
 
 Creates a callback chain that will execute a callback based in a condition that is related to the initial specified value.
 
-**⚡ Usage (TypeScript):**
+**⚡ Usage (JavaScript/TypeScript):**
 
 ```ts
 const { shift } = dotnet;
