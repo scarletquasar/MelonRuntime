@@ -27,10 +27,24 @@
 
 Creates a callback chain that will execute a callback based in a condition that is related to the initial specified value.
 
-**⚡ Usage (JavaScript/TypeScript):**
+**⚡ Usage (JavaScript):**
+
+```js
+shift(value).option(condition, function);
+```
+
+```js
+const { shift } = dotnet;
+
+shift()
+  .option(1, () => console.log("Hello "))
+  .option(1 || 2, , () => console.log("World!"))
+```
+
+**⚡ Usage (TypeScript):**
 
 ```ts
-shift<T>().option(value, function);
+shift<T>(value).option(condition, function);
 ```
 
 ```ts
@@ -82,3 +96,5 @@ console.log(std.boolean.checkOne(x => x === true, [true, true, false])); //true
 Contains utilities to serialize, deserialize, manipulate and generate JSON values.
 
 ### tryParse
+
+Tries to parse a JSON string, if it fails, 
