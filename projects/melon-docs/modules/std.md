@@ -27,3 +27,12 @@
 
 Creates a callback chain that will execute a callback based in a condition that is related to the initial specified value.
 
+**⚡ Usage (TypeScript):**
+
+```ts
+const { shift } = dotnet;
+
+shift()
+  .option(1, () => console.log("Hello "))
+  .option(1 || 2, , () => console.log("World!"))
+```
