@@ -328,8 +328,19 @@ The name (`string`) - identifier - of the Realm, this property makes a "link" to
 
 Stores a direct value inside a Realm. Important: The values passed in this method will be converted by the Jint engine, following the interoperability. The conversion values are listed [here](https://github.com/sebastienros/jint#net-interoperability).
 
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+const { Realm } = dotnet;
+const myRealm = new Realm("MyRealm");
+
+myRealm.setValue("myValue", 2);
+
+console.log(myRealm.get("myValue")); //2
+```
+
 > **Note** (Development)
 >
-> You can get the `melon-types` typing source for this property [here](../../melon-types/types/dotnet/Realm.ts#L4) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L149).
+> You can get the `melon-types` typing source for this method [here](../../melon-types/types/dotnet/Realm.ts#L5) and the submodule core source [here](../../melon-runtime/Melon.Library/Dotnet/dotnet.js#L150).
 
 [Back to top](./dotnet.md)
