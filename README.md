@@ -54,8 +54,8 @@ app.run();
 
 > ⛔ Melon requires ASP.NET Core 6 and Node.js installed.
 
-```
-npm i melon-runtime -g
+```bash
+> npm i melon-runtime -g
 ```
 
 To execute Melon, just type `npx melon [command]` in your terminal.
