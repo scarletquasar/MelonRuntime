@@ -38,6 +38,7 @@
   - [float (Method)](#float-method)
   - [double (Method)](#double-method)
   - [decimal (Method)](#decimal-method)
+- [Realm (Constructor)](#realm-constructor)
 
 <hr>
 
