@@ -171,3 +171,19 @@ const { setInterval } = std.time;
 
 setInterval(() => console.log("Hello world!"), 2000)
 ```
+
+### setTimeout (method)
+
+Sets a timer (milisseconds) which executes a function or specified piece of code once the timer expires.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```js
+setTimeout(function, delay);
+```
+
+```js
+const { setTimeout } = std.time;
+
+setTimeout(() => console.log("Hello world!"), 2000)
+```
