@@ -139,3 +139,23 @@ const myString = std.json.tryStringify({a:1}, {
   modifier: x => x
 });
 ```
+
+## time (Submodule)
+
+Contains utilities related to time and timers in general.
+
+### setInterval (method)
+
+Repeatedly calls a function or executes a code snippet, with a fixed time delay (milisseconds) between each call.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+setInterval(function, delay);
+```
+
+```js
+const { setInterval } = std.time;
+
+setInterval(() => console.log("Hello world!"), 2000)
+```
