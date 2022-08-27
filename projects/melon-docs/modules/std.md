@@ -111,6 +111,10 @@ Tries to parse a JSON string, if it fails, executes a callback and returns a cus
 
 **⚡ Usage (JavaScript):**
 
+```ts
+tryParse(string, options);
+```
+
 ```js
 const myObject = std.json.tryParse("{a:1}", {
   onErrorReturn: {},
@@ -119,6 +123,10 @@ const myObject = std.json.tryParse("{a:1}", {
 ```
 
 **⚡ Usage (TypeScript):**
+
+```ts
+tryParse<TOutput>(string, options);
+```
 
 ```ts
 const myObject = std.json.tryParse<Record<string, number>>("{a:1}", {
@@ -132,6 +140,10 @@ const myObject = std.json.tryParse<Record<string, number>>("{a:1}", {
 Tries to stringify a variable, if it fails, executes a callback and returns a custom value.
 
 **⚡ Usage (JavaScript/TypeScript):**
+
+```js
+tryStringify(object, options);
+```
 
 ```js
 const myString = std.json.tryStringify({a:1}, {
@@ -150,7 +162,7 @@ Repeatedly calls a function or executes a code snippet, with a fixed time delay 
 
 **⚡ Usage (JavaScript/TypeScript):**
 
-```ts
+```js
 setInterval(function, delay);
 ```
 
