@@ -156,7 +156,7 @@ const myString = std.json.tryStringify({a:1}, {
 
 Contains utilities related to time and timers in general.
 
-### setInterval (method)
+### setInterval (Method)
 
 Repeatedly calls a function or executes a code snippet, with a fixed time delay (milisseconds) between each call.
 
@@ -172,7 +172,7 @@ const { setInterval } = std.time;
 setInterval(() => console.log("Hello world!"), 2000)
 ```
 
-### setTimeout (method)
+### setTimeout (Method)
 
 Sets a timer (milisseconds) which executes a function or specified piece of code once the timer expires.
 
@@ -187,3 +187,11 @@ const { setTimeout } = std.time;
 
 setTimeout(() => console.log("Hello world!"), 2000)
 ```
+
+## system (Submodule)
+
+### osInformation (Submodule)
+
+### platform (Property)
+
+Returns 
