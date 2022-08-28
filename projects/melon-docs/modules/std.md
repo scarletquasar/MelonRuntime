@@ -192,7 +192,7 @@ setTimeout(() => console.log("Hello world!"), 2000)
 
 ### osInformation (Submodule)
 
-### platform (Property)
+#### platform (Property)
 
 The current platform id.
 
@@ -212,11 +212,11 @@ Other = 7
 **⚡ Usage (JavaScript):**
 
 ```ts
-std.environment.platform; //number;
+std.environment.platform; //number
 ```
 
 **⚡ Usage (TypeScript):**
 
 ```ts
-std.environment.platform; //Platform;
+std.environment.platform; //Platform
 ```
