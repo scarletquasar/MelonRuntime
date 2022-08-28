@@ -220,3 +220,23 @@ std.environment.platform; //number
 ```ts
 std.environment.platform; //Platform
 ```
+
+#### version
+
+The version string of the current operating system.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.version; //string
+```
+
+#### servicePack
+
+The service pack (only Windows) string of the current operating system.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.servicePack; //string
+```
