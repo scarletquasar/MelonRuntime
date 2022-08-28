@@ -194,4 +194,29 @@ setTimeout(() => console.log("Hello world!"), 2000)
 
 ### platform (Property)
 
-Returns 
+The current platform id.
+
+**⚡ Platforms (TypeScript):**
+
+```ts
+Win32S = 0
+Win32Windows = 1
+Win32NT = 2
+WinCE = 3
+Unix = 4
+Xbox = 5
+MacOSX = 6
+Other = 7
+```
+
+**⚡ Usage (JavaScript):**
+
+```ts
+std.environment.platform; //number;
+```
+
+**⚡ Usage (TypeScript):**
+
+```ts
+std.environment.platform; //Platform;
+```
