@@ -31,6 +31,14 @@
 - [json (Submodule)](#json-submodule)
   - [tryParse (Method)](#tryparse-method)
   - [tryStringify (Method)](#trystringify-method)
+- [time (Submodule)](#time-submodule)
+  - [setInterval (Method)](#setinterval-method)
+  - [setTimeout (Method)](#setTimeout-method)
+- [system (Submodule)](#system-submodule)
+  - [osInformation (Submodule)](#osinformation-submodule)
+    - [platform (Property)](#platform-property)
+    - [version (Property)](#version-property)
+    - [servicePack (Property)](#servicePack-property)
 <hr>
 
 ## shift (Method)
@@ -221,7 +229,7 @@ std.system.osInformation.platform; //number
 std.system.osInformation.platform; //Platform
 ```
 
-#### version
+#### version (Property)
 
 The version string of the current operating system.
 
@@ -314,3 +322,5 @@ Finish the current Melon instance (process).
 ```ts
 std.process.exit();
 ```
+
+[Back to top](./std.md)
