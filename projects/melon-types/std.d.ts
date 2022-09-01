@@ -1,5 +1,6 @@
 import { JsonTryParseOptions } from "./types/std/JsonTryParseOptions";
 import { JsonTryStringifyOptions } from "./types/std/JsonTryStringifyOptions";
+import { Platform } from "./types/std/Platform";
 import { StdShiftOption } from "./types/std/StdShiftOption";
 import { Version } from "./Version";
 
@@ -23,7 +24,7 @@ type Std = {
     }
     system: {
         osInformation: {
-            platform: number,
+            platform: Platform,
             version: string,
             servicePack: string
         }
