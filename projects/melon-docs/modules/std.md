@@ -272,3 +272,45 @@ Set a custom environment variable.
 ```ts
 std.environment.setEnvironmentVariable("name", value);
 ```
+
+### clearLocalEnvironmentVariables (Method)
+
+Clear all **custom** environment variables.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.clearLocalEnvironmentVariables();
+```
+
+## process (Submodule)
+
+### argv (Property)
+
+The current command line arguments.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.process.argv; //string[]
+```
+
+### env (Property)
+
+The current environment variables.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.process.argv; //Record<string, any>
+```
+
+### exit (Method)
+
+Finish the current Melon instance (process).
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.process.exit();
+```
