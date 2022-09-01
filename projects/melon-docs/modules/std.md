@@ -39,6 +39,15 @@
     - [platform (Property)](#platform-property)
     - [version (Property)](#version-property)
     - [servicePack (Property)](#servicePack-property)
+- [environment (Submodule)](#environment-submodule)
+  - [baseDirectory (Property)](#basedirectory-property)
+  - [getEnvironmentVariables (Method)](#getenvironmentvariables-method)
+  - [setEnvironmentVariable (Method)](#setenvironmentvariable-method)
+  - [clearEnvironmentVariables (Method)](#clearlocalenvironmentvariables-method)
+- [process (Submodule)](#process-submodule)
+  - [argv (Property)](#argv-property)
+  - [env (Property)](#env-property)
+  - [exit (Method)](#exit-method)
 <hr>
 
 ## shift (Method)
