@@ -252,3 +252,23 @@ The base application directory path.
 ```ts
 std.environment.baseDirectory; //string
 ```
+
+### getEnvironmentVariables (Method)
+
+Returns the current environment variables.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.getEnvironmentVariables(); //Record<string, any>
+```
+
+### setEnvironmentVariable (Method)
+
+Set a custom environment variable.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.setEnvironmentVariable("name", value);
+```
