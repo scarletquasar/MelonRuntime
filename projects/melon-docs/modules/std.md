@@ -212,13 +212,13 @@ Other = 7
 **⚡ Usage (JavaScript):**
 
 ```ts
-std.environment.platform; //number
+std.system.osInformation.platform; //number
 ```
 
 **⚡ Usage (TypeScript):**
 
 ```ts
-std.environment.platform; //Platform
+std.system.osInformation.platform; //Platform
 ```
 
 #### version
@@ -228,7 +228,7 @@ The version string of the current operating system.
 **⚡ Usage (JavaScript/TypeScript):**
 
 ```ts
-std.environment.version; //string
+std.system.osInformation.version; //string
 ```
 
 #### servicePack
@@ -238,5 +238,17 @@ The service pack (only Windows) string of the current operating system.
 **⚡ Usage (JavaScript/TypeScript):**
 
 ```ts
-std.environment.servicePack; //string
+std.system.osInformation.servicePack; //string
+```
+
+## environment (Submodule)
+
+### baseDirectory (Property)
+
+The base application directory path.
+
+**⚡ Usage (JavaScript/TypeScript):**
+
+```ts
+std.environment.baseDirectory; //string
 ```
