@@ -1,6 +1,6 @@
-import { CompareExpression } from "./types/data/CompareExpression";
-import { CompareResult } from "./types/data/CompareResult";
-import { DatabaseProviderConstructor } from "./types/data/DatabaseProviderConstructor";
+import { CompareExpression } from "../melon-core/types/data/CompareExpression";
+import { CompareResult } from "../melon-core/types/data/CompareResult";
+import { DatabaseProviderConstructor } from "../melon-core/types/data/DatabaseProviderConstructor";
 
 type Data = {
     clone<T>(target: T): T

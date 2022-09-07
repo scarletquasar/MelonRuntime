@@ -9,5 +9,12 @@ namespace Melon.Web.Models
 
         [JsonPropertyName("port")]
         public int Port { get; set; }
+
+        public HttpEcho() { }
+        public HttpEcho(string host, int port)
+        {
+            Host = host;
+            Port = port;
+        }
     }
 }

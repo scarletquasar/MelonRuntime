@@ -1,7 +1,7 @@
-import { DotnetNumericTypes } from "./types/dotnet/DotnetNumericTypes";
-import { DotnetFetchExpression } from "./types/dotnet/DotnetFetchExpression";
-import { DotnetGetStaticMethodResult } from "./types/dotnet/DotnetGetStaticMethodResult";
-import { RealmConstructor } from "./types/dotnet/RealmConstructor";
+import { DotnetNumericTypes } from "../melon-core/types/dotnet/DotnetNumericTypes";
+import { DotnetFetchExpression } from "../melon-core/types/dotnet/DotnetFetchExpression";
+import { DotnetGetStaticMethodResult } from "../melon-core/types/dotnet/DotnetGetStaticMethodResult";
+import { RealmConstructor } from "../melon-core/types/dotnet/RealmConstructor";
 
 type Dotnet = {
     getStaticMethod: <T>(expr: DotnetFetchExpression) => DotnetGetStaticMethodResult<T>,

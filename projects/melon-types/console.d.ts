@@ -1,4 +1,4 @@
-import { ConsoleColor } from "./types/console/ConsoleColor"
+import { ConsoleColor } from "../melon-core/types/console/ConsoleColor"
 
 type Console = {
     write(target: any, color: ConsoleColor): void,

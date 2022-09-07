@@ -7,7 +7,6 @@
 /// <reference path="fs.d.ts" />
 /// <reference path="guards.d.ts" />
 /// <reference path="http.d.ts" />
-/// <reference path="IndexedArray.d.ts" />
 /// <reference path="Queue.d.ts" />
 /// <reference path="std.d.ts" />
 /// <reference path="dotnet.d.ts" />

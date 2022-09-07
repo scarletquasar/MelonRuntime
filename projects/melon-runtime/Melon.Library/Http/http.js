@@ -18,38 +18,23 @@
 
             this.middlewares = [];
 
-            this.events = {
-                beforeCall: () => { },
-                afterCall: () => { },
-                error: () => { }
-            };
-
             this._mountExecutionTree = (callback, localMiddlewares) => {
-                const executionTree = (request) => {
-                    let result;
+                const executionTree = new Promise(() => {
+                    const middlewareIndex = 0;
+                    const middlewareLenght = this.middlewares.length;
+                    let callback;
+                    while (middlewareIndex < middlewareLenght) {
+                        if (this.middlewares[middlewareIndex] instanceof Promise) {
 
-                    try {
-                        this.events.beforeCall(request);
-                        localMiddlewares.forEach(middleware => request = middleware(request));
-                        this.middlewares.forEach(middleware => request = middleware(request));
-                        result = callback(request);
-                        this.events.afterCall(request);
+                        }
                     }
-                    catch (error) {
-                        this.events.error(error, request);
-                    }
-
-                    return result;
-                }
+                });
 
                 return executionTree;
             }
         }
         use(middleware) {
             this.middlewares.push(middleware);
-        }
-        on(event, callback) {
-            this.events[event] = callback;
         }
         route(route, method, callback, localMiddlewares = []) {
             const fixedMethod = method.toUpperCase();
