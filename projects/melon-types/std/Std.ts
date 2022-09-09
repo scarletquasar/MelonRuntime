@@ -1,25 +1,26 @@
-import { Platform } from "../melon-core/types/std/Platform";
-import { StdShiftOption } from "../melon-core/types/std/StdShiftOption";
-import { Version } from "./Version";
+import { Version } from "../constructors/Version"
+import { Platform } from "./Platform"
 
 type Std = {
-    shift: (value: any) => StdShiftOption,
+    shift: () => {
+        option: (condition: boolean, callback: () => unknown) => Std["shift"]
+    },
     melon: {
         currentVersion: Version,
         loadedModules: string[]
     },
     boolean: {
-        checkAll: (method: Function, values: any[]) => boolean,
-        checkOne: (method: Function, values: any[]) => boolean
+        checkAll: <T>(method: Function, values: T[]) => boolean,
+        checkOne: <T>(method: Function, values: T[]) => boolean
     },
     json: {
         tryParse: <T>(json: string) => T,
-        tryStringify: (target: any) => string
+        tryStringify: () => <T>(target: T) => string
     },
     time: {
-        setInterval: (action: Function, delay: number) => void,
-        setTimeout: (action: Function, delay: number) => void
-    }
+        setInterval: (callback: Function, delay: number) => void,
+        setTimeout: (callback: Function, delay: number) => void
+    },
     system: {
         osInformation: {
             platform: Platform,
@@ -27,7 +28,7 @@ type Std = {
             servicePack: string
         }
     },
-    environment: {
+    environmnet: {
         baseDirectory: string,
         getEnvironmentVariables: () => Record<string, any>,
         setEnvironmentVariable: (key: string, value: any) => void,
@@ -40,4 +41,4 @@ type Std = {
     }
 }
 
-declare const std: Std;
+export { Std }

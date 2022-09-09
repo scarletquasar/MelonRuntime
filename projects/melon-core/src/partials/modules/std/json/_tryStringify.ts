@@ -1,4 +1,4 @@
-function _tryStringify<T>(target: any) {
+function _tryStringify<T>(target: T) {
     try {
         return JSON.stringify(target);
     }

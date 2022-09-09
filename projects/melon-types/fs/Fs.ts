@@ -1,0 +1,5 @@
+type Fs = {
+
+}
+
+export { Fs }

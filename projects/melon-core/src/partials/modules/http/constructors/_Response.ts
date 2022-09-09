@@ -21,8 +21,8 @@ class _Response {
         this.ok = ok;
     }
 
-    json() {
-        return _std.json.tryParse(this.body);
+    json<T>() {
+        return _std.json.tryParse(this.body) as T;
     }
 
     text() {

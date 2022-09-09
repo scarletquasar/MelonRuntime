@@ -1,6 +1,6 @@
 import { _dotnet } from "../../dotnet/_dotnet";
 
-function _getEnvironmentVariables() {
+function _getEnvironmentVariables(): Record<string, any> {
     const localEnv = _$internalBinding["LocalEnvironmentVariables"];
     const processEnv = 
         _dotnet.getStaticMethod<Record<string, any>>("System:Environment:GetEnvironmentVariables")();

@@ -1,0 +1,5 @@
+type Data = {
+
+}
+
+export { Data }

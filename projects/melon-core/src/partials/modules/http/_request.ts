@@ -5,9 +5,9 @@ import { _http } from "./_http";
 async function _request(
     target: string,
     method: string = "GET",
-    body: Record<string, any>,
-    headers: Record<string, any>
-) {
+    body: Record<string, any> = {},
+    headers: Record<string, any> = {}
+): Promise<_Response> {
     const stringified = {
         body: _std.json.tryStringify(body),
         headers: _std.json.tryStringify(headers)

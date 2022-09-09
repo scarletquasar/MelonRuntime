@@ -1,6 +1,6 @@
 import { _console } from "./_console";
 
-function _table(data: any, columns: any) {
+function _table(data: any[], columns: any[]) {
     if (data.constructor === Object) {
         if (!columns) {
             columns = [];

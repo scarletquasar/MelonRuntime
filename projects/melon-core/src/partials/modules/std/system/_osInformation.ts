@@ -1,7 +1,8 @@
 import { _dotnet } from "../../dotnet/_dotnet";
+import { Platform } from "../enums/Platform";
 
 type internalOSVersion = {
-    Platform: number,
+    Platform: Platform,
     VersionString: string,
     ServicePack: string
 }
