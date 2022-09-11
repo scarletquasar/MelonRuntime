@@ -32,7 +32,8 @@ namespace Melon.Web.Extensions
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
 
                     var callbackObjectReference = $@"
-                        http
+                        Melon
+                        .http
                         ._apps['{identifierName}']
                         .routes
                         .find(x => x.method === '{endpoint!.Method!}' 
