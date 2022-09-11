@@ -1,5 +1,6 @@
 ﻿using Jint;
 using Jint.Native;
+using Jint.Runtime;
 using Melon.Web.Models;
 using Melon.Web.Tools;
 using System.Text.Json;
@@ -35,52 +36,45 @@ namespace Melon.Web.Extensions
                         Melon
                         .http
                         ._apps['{identifierName}']
-                        .routes
+                        .getEndpoints()
                         .find(x => x.method === '{endpoint!.Method!}' 
                                 && x.route === '{endpoint!.Route!}')
                         .callback
                     ";
 
-                    JsValue? result = null;
-
-                    var callbackCaller = CallbackCallerTools.GetCallbackCaller(
+                    var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
                         identifierName,
                         endpoint!.Method!,
                         endpoint!.Route!, 
                         stringQuery, 
                         stringHeaders);
 
-                    var isAsyncMethod = engine
-                        .Evaluate(callbackObjectReference)
-                        .IsPromise();
-
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if (isAsyncMethod)
+                    if(evaluation.IsPromise())
                     {
-                        var promiseFinished = false;
+                        var promise = await getPromiseResult(evaluation);
+                        return getResult(promise);
+                    }
 
-                        while(!promiseFinished)
+                    return getResult(evaluation);
+
+                    async Task<JsValue> getPromiseResult(JsValue promise)
+                    {
+                        try
                         {
-                            await Task.Run(() =>
-                            {
-                                try
-                                {
-                                    result = evaluation.UnwrapIfPromise();
-                                    promiseFinished = true;
-                                }
-                                finally { }
-                            });
+                            return promise.UnwrapIfPromise();
+                        }
+                        catch(InvalidOperationException)
+                        {
+                            return await getPromiseResult(promise);
+                        }
+                        catch(PromiseRejectedException)
+                        {
+                            throw;
                         }
                     }
-                    else
-                    {
-                        result = evaluation;
-                    }
-
-                    return getResult();
-
-                    IResult getResult()
+                    IResult getResult(JsValue result)
                     {
                         if (result is null)
                         {

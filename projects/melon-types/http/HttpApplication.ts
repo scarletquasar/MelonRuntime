@@ -1,4 +1,5 @@
 import { CallbackFunction } from "./CallbackFunction";
+import { HttpEndpoint } from "./HttpEndpoint";
 
 interface HttpApplication {
     name: string;
@@ -6,6 +7,7 @@ interface HttpApplication {
     port: number;
     enableHttps: boolean;
 
+    getEndpoints: () => HttpEndpoint[];
     get: (route: string, callback: CallbackFunction) => void;
     post: (route: string, callback: CallbackFunction) => void;
     delete: (route: string, callback: CallbackFunction) => void;

@@ -24,3 +24,5 @@ globalThis.Map = _Map as any;
 globalThis.Set = _Set as any;
 
 globalThis.Melon = Melon;
+
+export { Melon }

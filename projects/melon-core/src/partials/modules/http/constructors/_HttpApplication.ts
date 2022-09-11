@@ -24,6 +24,10 @@ class _HttpApplication {
         this.#endpoints = [];
     }
 
+    getEndpoints() {
+        return this.#endpoints;
+    }
+
     get(route: string, callback: CallbackFunction) {
         const httpRoute = new _HttpEndpoint(route, "GET", callback);
         this.#endpoints.push(httpRoute);

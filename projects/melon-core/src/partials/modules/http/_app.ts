@@ -1,3 +1,4 @@
+import { Melon } from "../../../index";
 import { _HttpApplication } from "./constructors/_HttpApplication";
 import { _http } from "./_http";
 
@@ -14,7 +15,7 @@ function _app(options =
     const port = options.port;
     const enableHttps = options.enableHttps ?? false;
 
-    _http._apps[name] = (new _HttpApplication(name, host, port, enableHttps));
+    Melon.http._apps[name] = new _HttpApplication(name, host, port, enableHttps);
     return _http._apps[name];
 }
 
