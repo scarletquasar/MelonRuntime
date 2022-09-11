@@ -34,11 +34,12 @@ namespace Melon.Engine.Builders
             }
 
             var names = JsonConvert.SerializeObject(loadedScripts.Keys.ToArray());
-            var version = Assembly.GetExecutingAssembly().GetName().Version!;
-            var versionScriptConstructor = $"new Version({version.Major}, {version.Minor}, {version.Build})";
+            var version = Assembly.GetCallingAssembly().GetName().Version!;
+            var versionScriptConstructor = 
+                $"new Melon.Version({version.Major}, {version.Minor}, {version.Build})";
 
-            engine.Execute($"std.melon.loadedModules = {names}");
-            engine.Execute($"std.melon.currentVersion = {versionScriptConstructor}");
+            engine.Execute($"Melon.std.melon.loadedModules = {names}");
+            engine.Execute($"Melon.std.melon.currentVersion = {versionScriptConstructor}");
 
             return engine;
         }

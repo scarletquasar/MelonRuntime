@@ -6,8 +6,7 @@ type Std = {
         option: (condition: boolean, callback: () => unknown) => Std["shift"]
     },
     melon: {
-        currentVersion: Version,
-        loadedModules: string[]
+        currentVersion: Version
     },
     boolean: {
         checkAll: <T>(method: Function, values: T[]) => boolean,

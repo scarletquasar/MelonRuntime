@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Bundle\core.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Consts\consts.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

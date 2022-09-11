@@ -6,7 +6,7 @@ function _getStaticMethod<T>(expression: DotnetFetchExpression): (...args: any) 
     const type = parts[1];
     const method = parts[2];
 
-    const finalMethod = function (...args) {
+    const finalMethod = function (...args: any[]) {
         const callStaticMethodBinding = _$internalBinding["CallStaticMethod"];
         return callStaticMethodBinding(namespace, type, method, [...args]);
     }

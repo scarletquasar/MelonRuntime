@@ -24,11 +24,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Consts.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\Modules.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Modules.resx</DependentUpon>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -40,10 +35,6 @@
     <EmbeddedResource Update="Properties\Consts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Consts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Modules.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Modules.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -18,8 +18,7 @@ import { _shift } from "./_shift";
 const _std = {
     shift: _shift,
     melon: {
-        currentVersion: new _Version(),
-        loadedModules: new Array<string>()
+        currentVersion: new _Version()
     },
     boolean: {
         checkAll: _checkAll,

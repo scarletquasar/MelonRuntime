@@ -14,16 +14,8 @@ namespace Melon
         internal static Jint.Engine AssembleEngine(EngineAssemblerParameters parameters)
         {
             var engineBuilder = new EngineBuilder();
-            var loadList = JsonConvert.DeserializeObject<List<string>>(Properties.Modules.Standard);
 
-            loadList!.ForEach(item =>
-            {
-                if (!parameters.DisallowedLibraries.Contains(item))
-                {
-                    engineBuilder.Load(item);
-                }
-            });
-
+            engineBuilder.Load("Bundle/core");
             return engineBuilder.Build();
         }
         internal static void WaitForScript()

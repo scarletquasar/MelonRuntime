@@ -1,6 +1,14 @@
 import { _internalConsts } from "../internalConsts/_internalConsts";
 
-function _compare<T>(target: T, value: T, expression = (a: T, b: T) => a === b, customModifier = null) {
+function _compare<T>(
+    target: T, 
+    value: T, 
+    expression = (a: T, b: T) => a === b, 
+    customModifier: Function = null
+): {
+    comment: string,
+    equals: boolean
+} {
     const result = {
         comment: "",
         equals: false

@@ -1,3 +1,5 @@
+import { HttpApplication } from "./HttpApplication"
+import { HttpComposedResponse } from "./HttpComposedResponse"
 import { Response } from "./Response"
 
 type Http = {
@@ -12,7 +14,9 @@ type Http = {
         host: string,
         port: number,
         enableHttps: boolean
-    }) => HttpApplication
+    }) => HttpApplication,
+    result: (statusCode: number, response: any) => HttpComposedResponse,
+    static: (response: any, type: `${string}/${string}`) => HttpComposedResponse
 }
 
 export { Http }

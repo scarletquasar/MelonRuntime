@@ -1,5 +1,5 @@
 function _clone(value: any) {
-    _$internalBinding["DeepClone"](value);
+    return _$internalBinding["DeepClone"](value);
 }
 
 export { _clone }
