@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Melon.Engine\Melon.Engine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Melon\data\" />
+  </ItemGroup>
+
 </Project>
