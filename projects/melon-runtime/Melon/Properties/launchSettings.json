@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Melon": {
-      "commandName": "Project",
-      "commandLineArgs": "\r\n"
+      "commandName": "Project"
     }
   }
 }
