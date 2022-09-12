@@ -24,6 +24,8 @@ namespace Melon.Web
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
 
             var engine = Runtime.Engine;
+            engine!.Execute($"Melon.http._apps['{app.Name}']._promises = []");
+
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
             var webApp = builder.Build();

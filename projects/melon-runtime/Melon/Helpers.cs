@@ -29,7 +29,11 @@ namespace Melon
             engine!.Execute(script);
             WaitForScript();
         }
-        internal static void ExecuteWithHandler(Action action, bool repeat = true, bool keepStackTracing = true)
+        internal static void ExecuteWithHandler(
+            Action action, 
+            bool repeat = true, 
+            bool keepStackTracing = true
+        )
         {
             try
             {
@@ -38,7 +42,7 @@ namespace Melon
             catch (Exception e) when (e is ParserException || e is JavaScriptException)
             {
                 dynamic ex = e;
-                CLNConsole.WriteLine($"> [Exception in line {ex.LineNumber}] {ex.Error} ", ConsoleColor.Red);
+                CLNConsole.WriteLine($"> [{ex.Error}] ", ConsoleColor.Red);
 
                 if(keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);

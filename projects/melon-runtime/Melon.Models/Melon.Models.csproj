@@ -10,8 +10,4 @@
     <PackageReference Include="Jint" Version="3.0.0-beta-2041" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Jint\Abstract\Promise\" />
-  </ItemGroup>
-
 </Project>

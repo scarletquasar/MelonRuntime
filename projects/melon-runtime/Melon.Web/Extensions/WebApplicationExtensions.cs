@@ -42,54 +42,30 @@ namespace Melon.Web.Extensions
                         .callback
                     ";
 
-                    var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
-                        identifierName,
-                        endpoint!.Method!,
-                        endpoint!.Route!, 
-                        stringQuery, 
-                        stringHeaders);
+                    var callbackCaller = await CallbackCallerTools
+                        .GetCallbackCaller(
+                            identifierName,
+                            endpoint!.Method!,
+                            endpoint!.Route!, 
+                            stringQuery,
+                            stringHeaders
+                        );
 
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if(evaluation.IsPromise())
+                    if(evaluation.IsNumber())
                     {
-                        var promise = await getPromiseResult(evaluation);
-                        return getResult(promise);
+                        var promiseResult = 
+                            await ResultManager.ExecutePromise(
+                                engine, 
+                                identifierName, 
+                                (uint)evaluation.AsNumber()
+                            );
+
+                        return ResultManager.GetHttpResult(promiseResult);
                     }
 
-                    return getResult(evaluation);
-
-                    async Task<JsValue> getPromiseResult(JsValue evaluation)
-                    {
-                        return await Task.Run(() =>
-                        {
-                            while(true)
-                            {
-                                try
-                                {
-                                    return evaluation.UnwrapIfPromise();
-                                }
-                                catch(PromiseRejectedException)
-                                {
-                                    throw;
-                                }
-                            }
-                        });
-                    }
-                    IResult getResult(JsValue result)
-                    {
-                        if (result is null)
-                        {
-                            return Results.StatusCode(500);
-                        }
-
-                        if (result.IsString())
-                        {
-                            return Results.Ok(result.AsString());
-                        }
-
-                        return HttpResultTools.GetHttpResult(result);
-                    }
+                    return ResultManager.GetHttpResult(evaluation);
                 }
 
                 switch(endpoint.Method)
