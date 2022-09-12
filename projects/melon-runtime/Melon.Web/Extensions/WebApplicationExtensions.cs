@@ -59,20 +59,22 @@ namespace Melon.Web.Extensions
 
                     return getResult(evaluation);
 
-                    async Task<JsValue> getPromiseResult(JsValue promise)
+                    async Task<JsValue> getPromiseResult(JsValue evaluation)
                     {
-                        try
+                        return await Task.Run(() =>
                         {
-                            return promise.UnwrapIfPromise();
-                        }
-                        catch(InvalidOperationException)
-                        {
-                            return await getPromiseResult(promise);
-                        }
-                        catch(PromiseRejectedException)
-                        {
-                            throw;
-                        }
+                            while(true)
+                            {
+                                try
+                                {
+                                    return evaluation.UnwrapIfPromise();
+                                }
+                                catch(PromiseRejectedException)
+                                {
+                                    throw;
+                                }
+                            }
+                        });
                     }
                     IResult getResult(JsValue result)
                     {
