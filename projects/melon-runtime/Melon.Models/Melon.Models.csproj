@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
     <PackageReference Include="Jint" Version="3.0.0-beta-2041" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Melon.Models\Melon.Models.csproj" />
   </ItemGroup>
 
 </Project>

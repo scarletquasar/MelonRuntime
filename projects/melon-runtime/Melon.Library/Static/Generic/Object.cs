@@ -1,5 +1,4 @@
-﻿using Jint.Native;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Melon.Library.Static.Generic
 {
