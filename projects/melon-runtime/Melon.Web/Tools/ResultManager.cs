@@ -38,14 +38,15 @@ namespace Melon.Web.Tools
                     {
                         throw;
                     }
-
-                    await Task.Delay(100);
+                    catch (InvalidOperationException)
+                    {
+                        await Task.Delay(100);
+                    }
                 }
             });
 
             return result!;
         }
-
         public static IResult GetHttpResult(JsValue result)
         {
             if (result is null)
