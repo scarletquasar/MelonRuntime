@@ -6,7 +6,7 @@
             string name, 
             string host, 
             int port, 
-            List<HttpRoute> routes, 
+            List<HttpEndpoint> routes, 
             List<HttpEcho> echoes, 
             bool enableHttps = true)
         {
@@ -22,7 +22,7 @@
         public string Host { get; set; }
         public int Port { get; set; }
         public bool EnableHttps { get; set; }
-        public List<HttpRoute> Routes { get; set; }
+        public List<HttpEndpoint> Routes { get; set; }
         public List<HttpEcho> Echoes { get; set; }
     }
 }

@@ -1,10 +1,8 @@
-﻿using Melon.Web.Properties;
-
-namespace Melon.Web.Tools
+﻿namespace Melon.Web.Tools
 {
     public static class CallbackCallerTools
     {
-        internal static string GetCallbackCaller(
+        internal static async Task<string> GetCallbackCaller(
             string appIdentifier,
             string method,
             string route,
@@ -12,7 +10,8 @@ namespace Melon.Web.Tools
             string serializedHeaders = "{}",
             string serializedBody = "{}")
         {
-            var result = Resources.RouteCallbackCaller
+            var callbackCaller = await File.ReadAllTextAsync("./Scripts/RouteCallbackCaller.js");
+            var result = callbackCaller
                 .Replace("{appIdentifier}", appIdentifier)
                 .Replace("{method}", method)
                 .Replace("{route}", route)

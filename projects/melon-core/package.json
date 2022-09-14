@@ -1,0 +1,12 @@
+{
+    "scripts": {
+        "compile": "babel --extensions .ts ./src/ --out-dir ./babel && webpack ./babel/index.js --config webpack.config.js"
+    },
+    "devDependencies": {
+        "@babel/cli": "latest",
+        "@babel/core": "latest",
+        "@babel/preset-env": "latest",
+        "@babel/preset-typescript": "latest",
+        "webpack-cli": "latest"
+    }
+}
