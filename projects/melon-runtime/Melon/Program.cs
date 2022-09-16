@@ -11,8 +11,11 @@ namespace Melon
     {
         internal static void Main(string[] args)
         {
+            Console.Title = "Melon Runtime";
+
             Helpers.DisplayMelonDefaultInformation();
 
+            Runtime.Realms = new();
             Runtime.Engine = MakeEngine(args);
             Runtime.CommandContainer = MakeCommandContainer();
 
@@ -20,8 +23,8 @@ namespace Melon
         }
         private static Jint.Engine MakeEngine(string[] args)
         {
-            var (silentMode, disallowedLibraries) = Helpers.GetFlagArguments(args);
-            var engineParameters = new EngineAssemblerParameters(disallowedLibraries, silentMode);
+            var disallowedModules = Helpers.GetDisallowedModules(args);
+            var engineParameters = new EngineAssemblerParameters(disallowedModules);
 
             return Helpers.AssembleEngine(engineParameters);
         }

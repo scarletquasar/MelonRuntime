@@ -2,13 +2,11 @@
 {
     internal class EngineAssemblerParameters
     {
-        internal EngineAssemblerParameters(List<string> disallowedLibraries, bool silentMode)
+        internal EngineAssemblerParameters(List<string> disallowedLibraries)
         {
             DisallowedLibraries = disallowedLibraries;
-            SilentMode = silentMode;
         }
 
         internal List<string> DisallowedLibraries { get; set; }
-        internal bool SilentMode { get; set; }
     }
 }

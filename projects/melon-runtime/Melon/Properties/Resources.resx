@@ -117,20 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NewProjectJsBabelRc" xml:space="preserve">
+    <value>{
+    "presets": ["@babel/preset-env"]
+}</value>
+  </data>
   <data name="NewProjectJsIndex" xml:space="preserve">
     <value>console.log("Hello world");</value>
   </data>
   <data name="NewProjectJsPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "go": "npx melon load ./index.js"
+    "dev": "babel --extensions .js ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js &amp;&amp; npx melon load ./dist/main.js",
+    "build": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js",
+    "run": "npx melon load ./dist/main.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "melon-types": "latest",
+    "webpack-cli": "latest"
   }
 }</value>
   </data>
   <data name="NewProjectTsBabelRc" xml:space="preserve">
     <value>{
-    "presets": ["@babel/preset-typescript", "@babel/preset-env"],
-    "plugins": ["tailcall-optimization"]
+    "presets": ["@babel/preset-typescript", "@babel/preset-env"]
 }</value>
   </data>
   <data name="NewProjectTsconfig" xml:space="preserve">
@@ -285,7 +298,9 @@ babel/
   <data name="NewProjectTsPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "go": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js &amp;&amp; npx melon load ./dist/main.js"
+    "dev": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js &amp;&amp; npx melon load ./dist/main.js",
+    "build": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js",
+    "run": "npx melon load ./dist/main.js"
   },
   "devDependencies": {
     "@babel/cli": "latest",
@@ -293,9 +308,18 @@ babel/
     "@babel/preset-env": "latest",
     "@babel/preset-typescript": "latest",
     "melon-types": "latest",
-    "webpack-cli": "latest",
-    "babel-plugin-tailcall-optimization": "^2.0.0"
+    "webpack-cli": "latest"
   }
 }</value>
+  </data>
+  <data name="NewProjectWebpackConfigDevelopment" xml:space="preserve">
+    <value>module.exports = {
+  mode: 'development',
+};</value>
+  </data>
+  <data name="NewProjectWebpackConfigProduction" xml:space="preserve">
+    <value>module.exports = {
+  mode: 'production'
+};</value>
   </data>
 </root>

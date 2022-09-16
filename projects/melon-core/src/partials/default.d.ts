@@ -1,0 +1,1 @@
+declare const _$internalBinding: Record<any, any>;

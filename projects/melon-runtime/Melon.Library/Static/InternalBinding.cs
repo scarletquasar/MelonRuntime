@@ -1,79 +1,46 @@
-﻿using Melon.Library.Models;
-using Melon.Library.Static.Database;
-using Melon.Library.Static.OS;
+﻿using Melon.Library.Static.Database;
 using Melon.Library.Static.Web;
-using Melon.Library.Static.XRequire;
 using Melon.Web;
 using Melon.Library.Static.Generic;
+using Melon.Library.Static.InteropReflection;
+using Melon.Models.Library;
 
 namespace Melon.Library.Static
 {
     public static class InternalBinding
     {
-        public static Dictionary<string, dynamic> LocalEnvironmentVariables = new() { };
-        public static Dictionary<string, dynamic> Dictionary = new()
+        public static Dictionary<string, dynamic> LocalEnvironmentVariables { get; } = new() { };
+        public static Dictionary<string, dynamic> Dictionary { get; } = new()
         {
-            //Module - [Standard]
-            { "CurrentDirectory", new Func<string>(() => Environment.CurrentDirectory) },
-            { "BaseDirectory", new Func<string?>(() => Dictionary?["CurrentDirectory"]()) },
-            { "OsInformation", new Func<dynamic>(() => OSBinding.GetOSInformation()) },
-            { "ArgumentsVector", Environment.GetCommandLineArgs() },
-            { "ProcessExit", new Action<int>(Environment.Exit) },
+            { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
             { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
-            { "ProcessEnvironmentVariables", Environment.GetEnvironmentVariables() },
+            { "ProcessExit", new Action<int>(Environment.Exit) },
             { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
             { "SetInterval", new Action<int, int>(Time.SetInterval) },
-
-            //Module - [InputOutput]
-            { "ConsoleLog", new Action<object, int>(InputOutput.Console.Log) },
-            { "ConsoleClear", new Action(Console.Clear) },
-
-            //Module - [FileSystem]
-            { "ReadFileTextSync", new Func<string, string>(File.ReadAllText) },
-            { "WriteFileTextSync", new Action<string, string?>(File.WriteAllText) },
-
-            //Module - [Database]
-            { "PostgreSQLBindingQuery", new Func<string, string, dynamic>(PgStatic.ExecuteQuery) },
-            { "PostgreSQLBindingNonQuery", new Func<string, string, int>(PgStatic.ExecuteNonQuery) },
-            { "MySqlBindingQuery", new Func<string, string, dynamic>(MySqlStatic.ExecuteQuery) },
-            { "MySqlBindingNonQuery", new Func<string, string, int>(MySqlStatic.ExecuteNonQuery) },
-            { "SqlServerBindingQuery", new Func<string, string, dynamic>(SqlServerStatic.ExecuteQuery) },
-            { "SqlServerBindingNonQuery", new Func<string, string, int>(SqlServerStatic.ExecuteNonQuery) },
-
-            //Module - [Http]
+            { "ReadFileText", new Func<string, string>(File.ReadAllText) },
+            { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
+            { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
+            { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
+            { "PostgreSQLBindingQuery", new Func<string, dynamic, dynamic>(PgStatic.ExecuteQuery) },
+            { "PostgreSQLBindingNonQuery", new Func<string, dynamic, int>(PgStatic.ExecuteNonQuery) },
+            { "MySqlBindingQuery", new Func<string, dynamic, dynamic>(MySqlStatic.ExecuteQuery) },
+            { "MySqlBindingNonQuery", new Func<string, dynamic, int>(MySqlStatic.ExecuteNonQuery) },
+            { "SqlServerBindingQuery", new Func<string, dynamic, dynamic>(SqlServerStatic.ExecuteQuery) },
+            { "SqlServerBindingNonQuery", new Func<string, dynamic, int>(SqlServerStatic.ExecuteNonQuery) },
+            { "SetupWebApplication", new Action<string>(WebApplicationManager.ExecuteWebApplication) },
+            { "FetchRequest", new Func<string, string, string, string, HttpResponse>(Http.Request) },
+            { "CallStaticMethod", new Func<string, string, string, object[], dynamic?>(ReflectionHelper.CallMethod) },
+            { "GetStaticProperty", new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty) },
+            { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
+            { "RemoveAssembly", new Action<string>(ReflectionHelper.RemoveAssembly) },
+            { "GetLoadedAssemblies", new Func<string?[]>(ReflectionHelper.GetLoadedAssemblies) },
+            { "CreateRealm", new Action<string>(RealmManager.CreateRealm)},
+            { "SetRealmScriptProperty", new Action<string, string, dynamic>(RealmManager.SetRealmPropertyFromScript) },
             { 
-                "SetupWebApplication", 
-                new Action<string>(WebApplicationManager.ExecuteWebApplication) 
+                "SetRealmInstanceProperty", 
+                new Action<string, string, string, string, object[]>(RealmManager.SetRealmPropertyFromInstance) 
             },
-            { 
-                "FetchRequest",
-                new Func<string, string, string, string, HttpResponse>(Http.Request) 
-            },
-
-            //Module - [Interop]
-            {
-                "InteropInternalCallMethod",
-                new Func<string, string, string, int, object[], dynamic?>(XRequireDotnetInternal.CallMethod) },
-            {
-                "InteropInternalGetField",
-                new Func<string, string, string, dynamic?>(XRequireDotnetInternal.GetField)
-            },
-            {
-                "InteropInternalCreateInstanceOfType",
-                new Func<string, string, object[], dynamic?>(XRequireDotnetInternal.CreateInstanceOfType)
-            },
-            {
-                "InteropExternalCallMethodDirectlyFromAssembly",
-                new Func<string, string, string, string, object[], dynamic?>(XRequireStaticExternal.CallMethodDirectlyFromAssembly)
-            },
-            {
-                "InteropExternalCallFieldDirectlyFromAssembly",
-                new Func<string, string, string, string, dynamic?>(XRequireStaticExternal.CallFieldDirectlyFromAssembly)
-            },
-            {
-                "InteropExternalCreateInstanceDirectlyFromAssembly",
-                new Func<string, string, string, object[], dynamic?>(XRequireStaticExternal.CreateInstanceDirectlyFromAssembly)
-            }
+            { "GetRealmProperty", new Func<string, string, dynamic?>(RealmManager.GetRealmProperty) },
         };
     }
 }

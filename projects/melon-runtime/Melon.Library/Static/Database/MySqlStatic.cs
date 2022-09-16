@@ -6,9 +6,18 @@ namespace Melon.Library.Static.Database
 {
     public static class MySqlStatic
     {
-        public static int ExecuteNonQuery(string sql, string connectionString)
+        public static int ExecuteNonQuery(string sql, dynamic options)
         {
-            var connection = new MySqlConnection(connectionString);
+            var connectionParams = new MySqlConnectionStringBuilder
+            {
+                Server = options.host,
+                Port = options.port,
+                UserID = options.user,
+                Database = options.database,
+                Password = options.password
+            };
+
+            var connection = new MySqlConnection(connectionParams.ConnectionString);
 
             connection.Open();
 
@@ -20,9 +29,18 @@ namespace Melon.Library.Static.Database
             return result;
         }
 
-        public static string ExecuteQuery(string sql, string connectionString)
+        public static string ExecuteQuery(string sql, dynamic options)
         {
-            var connection = new MySqlConnection(connectionString);
+            var connectionParams = new MySqlConnectionStringBuilder
+            {
+                Server = options.host,
+                Port = options.port,
+                UserID = options.user,
+                Database = options.database,
+                Password = options.password
+            };
+
+            var connection = new MySqlConnection(connectionParams.ConnectionString);
 
             connection.Open();
 
