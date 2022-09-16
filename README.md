@@ -44,18 +44,4 @@ app.get("/", async () => "Hello world");
 app.run();
 
 //App running in http://localhost:80
-``` 
-
-<hr>
-
-## Contributors 
-
-| [Victória Rose](https://github.com/EternalQuasar0206) | [Gabriel Grubba](https://github.com/Grubba27) | [Vinicius Lanzarini](https://github.com/vilanz) |
-| -------------- | -------------- | -------------- |
-| <div align="center"><img src="https://avatars.githubusercontent.com/u/70824102?v=4" width="60"></div> | <div align="center"><img src="https://avatars.githubusercontent.com/u/70247653?v=4" width="60"></div> | <div align="center"><img src="https://avatars.githubusercontent.com/u/29522926?v=4" width="60"></div> |
-
-## Latest Sponsors 
-
-| [Lucas Rufo](https://github.com/LucasRufo) |
-| -------------- |
-| <div align="center"><img src="https://avatars.githubusercontent.com/u/60830097?v=4" width="60"></div> |
+```
