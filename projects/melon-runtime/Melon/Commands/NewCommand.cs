@@ -54,8 +54,8 @@ namespace Melon.Commands
                 new("package.json", "./package.json", Resources.NewProjectTsPackageInfo),
                 new("tsconfig.json", "./tsconfig.json", Resources.NewProjectTsconfig),
                 new(".gitignore", "./.gitignore", Resources.NewProjectTsGitIgnore),
-                new("webpack.config.production.js", "./webpack.config.production.js", Resources.NewProjectTsWebpackConfigProduction),
-                new("webpack.config.development.js", "./webpack.config.development.js", Resources.NewProjectTsWebpackConfigDevelopment)
+                new("webpack.config.production.js", "./webpack.config.production.js", Resources.NewProjectWebpackConfigProduction),
+                new("webpack.config.development.js", "./webpack.config.development.js", Resources.NewProjectWebpackConfigDevelopment)
             };
         }
         private static ProjectScheme GetJavaScriptScheme()
@@ -63,6 +63,7 @@ namespace Melon.Commands
             return new()
             {
                 new("src/index.js", "./index.js", Resources.NewProjectJsIndex),
+                new(".babelrc", "./.babelrc", Resources.NewProjectJsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectJsPackageInfo),
             };
         }
