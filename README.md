@@ -18,6 +18,7 @@
 <hr>
 
 - [Documentation](https://github.com/MelonRuntime/Melon/wiki)
+- [Discord Server](https://discord.gg/wDJDT9Yq7C)
 
 <hr>
 
