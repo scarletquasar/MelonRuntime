@@ -17,11 +17,7 @@
 
 <hr>
 
-- [Official Website](https://melonruntime.github.io/site/)
-- [Installation](https://github.com/MelonRuntime/Melon#installation-and-usage)
-- [Documentation](./projects/melon-docs/Index.md)
-- [Internal Utilities](https://github.com/MelonRuntime/Melon/tree/main/utils)
-- [Compatible Libraries](https://github.com/MelonRuntime/Melon/blob/main/LIBRARY_COMPATIBILITY.md)
+- [Documentation](https://github.com/MelonRuntime/Melon/wiki)
 
 <hr>
 
