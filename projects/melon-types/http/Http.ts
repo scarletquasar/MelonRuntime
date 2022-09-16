@@ -8,6 +8,12 @@ type Http = {
         method?: string,
         body?: Record<string, any>,
         headers?: Record<string, any>
+    ) => Response,
+    requestAsync: (
+        target: string,
+        method?: string,
+        body?: Record<string, any>,
+        headers?: Record<string, any>
     ) => Promise<Response>,
     app: (options: {
         name: string, 

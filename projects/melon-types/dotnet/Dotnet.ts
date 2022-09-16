@@ -6,6 +6,7 @@ type Dotnet = {
     getStaticMethod: <T>(expression: DotnetFetchExpression) => (...args: any) => T,
     getStaticProperty: <T>(expression: DotnetFetchExpression) => T,
     loadAssembly: (path: string) => string,
+    loadAssemblyAsync: (path: string) => Promise<string>,
     removeAssembly: (name: string) => void,
     getLoadedAssemblies: () => string[],
     types: {

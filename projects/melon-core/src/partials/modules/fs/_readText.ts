@@ -1,4 +1,4 @@
-async function _readText(path: string): Promise<string> {
+function _readText(path: string): string {
     return _$internalBinding["ReadFileText"](path);
 }
 

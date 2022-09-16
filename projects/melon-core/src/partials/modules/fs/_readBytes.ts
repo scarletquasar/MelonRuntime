@@ -1,4 +1,4 @@
-async function _readBytes(path: string): Promise<number[]> {
+function _readBytes(path: string): number[] {
     return _$internalBinding["ReadFileBytes"](path);
 }
 
