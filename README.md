@@ -24,11 +24,10 @@
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
 ```ts
-const { system } = std; //<-- Built-in Melon library
-const writeLine = dotnet.getStaticMethod("System:Console:WriteLine"); //<-- Dotnet interop
+const { getStaticMethod } = Melon.dotnet;
+const writeLine = getStaticMethod<void>("System:Console:WriteLine");
 
-
-writeLine(system.osInformation());
+writeLine("Hello World!");
 ```
 
 <hr>
