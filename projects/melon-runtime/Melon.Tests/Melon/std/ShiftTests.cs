@@ -18,7 +18,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.shift() should work properly in [true] targets")]
         public void StdShiftShouldWorkProperlyInTrueTargets()
         {
-            var script = @"
+            var script =
+                @"
                 let a = 0;
                 Melon.std.shift().option(true, () => a++);
                 a === 1;
@@ -32,7 +33,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.shift() should work properly in [false] targets")]
         public void StdShiftShouldWorkProperlyInFalseTargets()
         {
-            var script = @"
+            var script =
+                @"
                 let a = 0;
                 Melon.std.shift().option(false, () => a++);
                 a === 0;
@@ -46,7 +48,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.shift() should work properly with multi-options")]
         public void StdShiftShouldWorkProperlyWithMultiOptions()
         {
-            var script = @"
+            var script =
+                @"
                 let a = 0;
                 Melon.std.shift()
                     .option(true, () => a++)

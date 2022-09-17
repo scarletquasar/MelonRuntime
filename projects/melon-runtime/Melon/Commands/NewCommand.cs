@@ -30,12 +30,13 @@ namespace Melon.Commands
 
             projectFilesCount = projectFiles.Count;
 
-            for(var index = 0; index < projectFilesCount; index++)
+            for (var index = 0; index < projectFilesCount; index++)
             {
                 var file = projectFiles.ElementAt(index);
                 CreateProjectFile(file.Item1, file.Item2, file.Item3);
             }
         }
+
         private static void CreateProjectFile(string item, string path, string content)
         {
             CLNConsole.Write("> ", ConsoleColor.DarkRed);
@@ -45,6 +46,7 @@ namespace Melon.Commands
 
             File.WriteAllText(path, content);
         }
+
         private static ProjectScheme GetTypeScriptScheme()
         {
             return new()
@@ -54,17 +56,36 @@ namespace Melon.Commands
                 new("package.json", "./package.json", Resources.NewProjectTsPackageInfo),
                 new("tsconfig.json", "./tsconfig.json", Resources.NewProjectTsconfig),
                 new(".gitignore", "./.gitignore", Resources.NewProjectTsGitIgnore),
-                new("webpack.config.production.js", "./webpack.config.production.js", Resources.NewProjectWebpackConfigProduction),
-                new("webpack.config.development.js", "./webpack.config.development.js", Resources.NewProjectWebpackConfigDevelopment)
+                new(
+                    "webpack.config.production.js",
+                    "./webpack.config.production.js",
+                    Resources.NewProjectWebpackConfigProduction
+                ),
+                new(
+                    "webpack.config.development.js",
+                    "./webpack.config.development.js",
+                    Resources.NewProjectWebpackConfigDevelopment
+                )
             };
         }
+
         private static ProjectScheme GetJavaScriptScheme()
         {
             return new()
             {
-                new("src/index.js", "./index.js", Resources.NewProjectJsIndex),
+                new("src/index.js", "./src/index.js", Resources.NewProjectJsIndex),
                 new(".babelrc", "./.babelrc", Resources.NewProjectJsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectJsPackageInfo),
+                new(
+                    "webpack.config.production.js",
+                    "./webpack.config.production.js",
+                    Resources.NewProjectWebpackConfigProduction
+                ),
+                new(
+                    "webpack.config.development.js",
+                    "./webpack.config.development.js",
+                    Resources.NewProjectWebpackConfigDevelopment
+                )
             };
         }
     }

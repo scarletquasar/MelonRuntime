@@ -18,7 +18,8 @@ namespace Melon.Library.Static.Generic
 
         public static void SetInterval(int identifier, int delay)
         {
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 while (true)
                 {
                     using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(delay));

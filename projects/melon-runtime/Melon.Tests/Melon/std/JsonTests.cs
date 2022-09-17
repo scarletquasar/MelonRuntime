@@ -18,7 +18,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.json.tryParse should work correctly")]
         public void StdJsonTryParseShouldWorkCorrectly()
         {
-            var script = @"
+            var script =
+                @"
                 const parsed = Melon.std.json.tryParse('{}');
                 JSON.stringify(parsed) === '{}';
             ";
@@ -31,7 +32,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.json.tryStringify should work correctly")]
         public void StdJsonTryStringifyShouldWorkCorrectly()
         {
-            var script = @"
+            var script =
+                @"
                 const stringified = Melon.std.json.tryStringify({});
                 stringified === '{}';
             ";
