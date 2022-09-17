@@ -83,7 +83,7 @@ namespace Melon.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///  &quot;scripts&quot;: {
-        ///    &quot;dev&quot;: &quot;babel --extensions .js ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js &amp;&amp; npx melon load ./dist/main.js&quot;,
+        ///    &quot;dev&quot;: &quot;babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js &amp;&amp; npx melon load ./dist/main.js&quot;,
         ///    &quot;build&quot;: &quot;babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js&quot;,
         ///    &quot;run&quot;: &quot;npx melon load ./dist/main.js&quot;
         ///  },
@@ -92,7 +92,7 @@ namespace Melon.Properties {
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
         ///    &quot;@babel/preset-env&quot;: &quot;latest&quot;,
         ///    &quot;melon-types&quot;: &quot;latest&quot;,
-        ///    &quot;webp [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///    &quot;webpack-cli&quot;: &quot;latest [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string NewProjectJsPackageInfo {
             get {
