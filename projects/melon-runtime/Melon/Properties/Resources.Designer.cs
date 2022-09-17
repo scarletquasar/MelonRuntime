@@ -91,9 +91,9 @@ namespace Melon.Properties {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
         ///    &quot;@babel/preset-env&quot;: &quot;latest&quot;,
-        ///    &quot;melon-types&quot;: &quot;latest&quot;,
         ///    &quot;webpack-cli&quot;: &quot;latest&quot;
-        ///  [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///  }
+        ///}.
         /// </summary>
         internal static string NewProjectJsPackageInfo {
             get {

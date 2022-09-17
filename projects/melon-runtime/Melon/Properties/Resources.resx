@@ -136,7 +136,6 @@
     "@babel/cli": "latest",
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
-    "melon-types": "latest",
     "webpack-cli": "latest"
   }
 }</value>
