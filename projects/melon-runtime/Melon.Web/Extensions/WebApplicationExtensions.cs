@@ -20,19 +20,22 @@ namespace Melon.Web.Extensions
             {
                 async Task<object> operation(HttpRequest request)
                 {
-                    var query = request
-                        .Query
-                        .ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                    var query = request.Query.ToDictionary(
+                        x => x.Key,
+                        x => string.Join("", x.Value)
+                    );
 
-                    var headers = request
-                        .Headers
-                        .ToDictionary(x => x.Key, x => string.Join("", x.Value));
+                    var headers = request.Headers.ToDictionary(
+                        x => x.Key,
+                        x => string.Join("", x.Value)
+                    );
 
                     var stringQuery = JsonSerializer.Serialize(query);
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
 
-                    var callbackObjectReference = $@"
+                    var callbackObjectReference =
+                        $@"
                         Melon
                         .http
                         ._apps['{identifierName}']
@@ -42,25 +45,23 @@ namespace Melon.Web.Extensions
                         .callback
                     ";
 
-                    var callbackCaller = await CallbackCallerTools
-                        .GetCallbackCaller(
-                            identifierName,
-                            endpoint!.Method!,
-                            endpoint!.Route!, 
-                            stringQuery,
-                            stringHeaders
-                        );
+                    var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
+                        identifierName,
+                        endpoint!.Method!,
+                        endpoint!.Route!,
+                        stringQuery,
+                        stringHeaders
+                    );
 
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if(evaluation.IsNumber())
+                    if (evaluation.IsNumber())
                     {
-                        var promiseResult = 
-                            await ResultManager.ExecutePromise(
-                                engine, 
-                                identifierName, 
-                                (uint)evaluation.AsNumber()
-                            );
+                        var promiseResult = await ResultManager.ExecutePromise(
+                            engine,
+                            identifierName,
+                            (uint)evaluation.AsNumber()
+                        );
 
                         return ResultManager.GetHttpResult(promiseResult);
                     }
@@ -68,7 +69,7 @@ namespace Melon.Web.Extensions
                     return ResultManager.GetHttpResult(evaluation);
                 }
 
-                switch(endpoint.Method)
+                switch (endpoint.Method)
                 {
                     case "GET":
                         webApp.MapGet(endpoint.Route!, operation);

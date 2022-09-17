@@ -3,12 +3,13 @@
     public class HttpApplication
     {
         public HttpApplication(
-            string name, 
-            string host, 
-            int port, 
-            List<HttpEndpoint> routes, 
-            List<HttpEcho> echoes, 
-            bool enableHttps = true)
+            string name,
+            string host,
+            int port,
+            List<HttpEndpoint> routes,
+            List<HttpEcho> echoes,
+            bool enableHttps = true
+        )
         {
             Name = name;
             Routes = routes;

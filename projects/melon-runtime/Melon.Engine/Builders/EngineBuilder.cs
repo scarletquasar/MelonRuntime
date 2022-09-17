@@ -13,6 +13,7 @@ namespace Melon.Engine.Builders
         {
             loadedScripts = new();
         }
+
         public EngineBuilder Load(string identifier)
         {
             var content = LibraryLoader.ByIdentifier(identifier);
@@ -20,6 +21,7 @@ namespace Melon.Engine.Builders
 
             return this;
         }
+
         public Jint.Engine Build()
         {
             var internalBinding = InternalBinding.Dictionary;
@@ -35,7 +37,7 @@ namespace Melon.Engine.Builders
 
             var names = JsonConvert.SerializeObject(loadedScripts.Keys.ToArray());
             var version = Assembly.GetCallingAssembly().GetName().Version!;
-            var versionScriptConstructor = 
+            var versionScriptConstructor =
                 $"new Melon.Version({version.Major}, {version.Minor}, {version.Build})";
 
             engine.Execute($"Melon.std.melon.loadedModules = {names}");

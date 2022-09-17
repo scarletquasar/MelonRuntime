@@ -7,14 +7,15 @@ namespace Melon.Web.Tools
     public static class ResultManager
     {
         public static async Task<JsValue> ExecutePromise(
-            Engine engine, 
-            string identifier, 
+            Engine engine,
+            string identifier,
             uint promiseId
         )
         {
             JsValue? result = null;
 
-            var promiseCallerIdentifier = $@"
+            var promiseCallerIdentifier =
+                $@"
                 Melon
                     .http
                     ._apps['{identifier}']
@@ -47,6 +48,7 @@ namespace Melon.Web.Tools
 
             return result!;
         }
+
         public static IResult GetHttpResult(JsValue result)
         {
             if (result is null)

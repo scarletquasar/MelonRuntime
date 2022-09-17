@@ -8,18 +8,27 @@ namespace Melon.Web
     public static class WebApplicationManager
     {
         static int Main() => 0;
+
         public static void ExecuteWebApplication(string serializedParameters)
         {
-            var parameters = JsonSerializer.Deserialize<ExecuteWebApplicationParameters>(serializedParameters);
-            var parsedEndpoints = JsonSerializer.Deserialize<List<HttpEndpoint>>(parameters!.Routes ?? "[]");
-            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(parameters!.Echoes ?? "[]");
+            var parameters = JsonSerializer.Deserialize<ExecuteWebApplicationParameters>(
+                serializedParameters
+            );
+            var parsedEndpoints = JsonSerializer.Deserialize<List<HttpEndpoint>>(
+                parameters!.Routes ?? "[]"
+            );
+            var parsedEchoes = JsonSerializer.Deserialize<List<HttpEcho>>(
+                parameters!.Echoes ?? "[]"
+            );
 
             var app = new HttpApplication(
                 parameters.Name!,
                 parameters.Host!,
                 parameters.Port,
                 parsedEndpoints!,
-                parsedEchoes!, parameters.EnableHttps);
+                parsedEchoes!,
+                parameters.EnableHttps
+            );
 
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
 

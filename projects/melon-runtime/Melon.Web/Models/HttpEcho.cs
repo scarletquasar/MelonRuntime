@@ -11,6 +11,7 @@ namespace Melon.Web.Models
         public int Port { get; set; }
 
         public HttpEcho() { }
+
         public HttpEcho(string host, int port)
         {
             Host = host;

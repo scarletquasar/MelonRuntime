@@ -21,6 +21,7 @@ namespace Melon
 
             HandleInputs(args);
         }
+
         private static Jint.Engine MakeEngine(string[] args)
         {
             var disallowedModules = Helpers.GetDisallowedModules(args);
@@ -28,11 +29,15 @@ namespace Melon
 
             return Helpers.AssembleEngine(engineParameters);
         }
+
         private static CommandContainer MakeCommandContainer()
         {
             void safeExecuteScript(string[] args)
             {
-                Helpers.ExecuteWithHandler(() => Runtime.Engine?.Execute(string.Join(" ", args)), false);
+                Helpers.ExecuteWithHandler(
+                    () => Runtime.Engine?.Execute(string.Join(" ", args)),
+                    false
+                );
             }
 
             var lambdaCommands = new LambdaCommandList()
@@ -55,11 +60,15 @@ namespace Melon
 
             return commandContainer;
         }
+
         private static void HandleInputs(string[] args)
         {
             var commandArgs = Helpers.GetCommandArguments(args);
             var commandExecution = true;
-            var handlerLambda = () => { commandExecution = Runtime.CommandContainer!.ExecuteCommands(commandArgs); };
+            var handlerLambda = () =>
+            {
+                commandExecution = Runtime.CommandContainer!.ExecuteCommands(commandArgs);
+            };
 
             Helpers.ExecuteWithHandler(handlerLambda, false, false);
 

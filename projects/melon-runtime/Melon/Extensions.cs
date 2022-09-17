@@ -4,7 +4,10 @@ namespace Melon
 {
     internal static class Extensions
     {
-        internal static bool ExecuteCommands(this CommandContainer commands, List<string> commandArgs)
+        internal static bool ExecuteCommands(
+            this CommandContainer commands,
+            List<string> commandArgs
+        )
         {
             switch (commandArgs!.Count)
             {
