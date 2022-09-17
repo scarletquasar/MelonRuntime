@@ -128,8 +128,8 @@
   <data name="NewProjectJsPackageInfo" xml:space="preserve">
     <value>{
   "scripts": {
-    "dev": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js &amp;&amp; npx melon load ./dist/main.js",
-    "build": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.development.js",
+    "dev": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.development.js &amp;&amp; npx melon load ./dist/main.js",
+    "build": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.production.js",
     "run": "npx melon load ./dist/main.js"
   },
   "devDependencies": {
