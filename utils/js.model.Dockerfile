@@ -13,14 +13,15 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -
 WORKDIR /docker
 COPY . /docker
 
-# Will install the latest version of MelonRuntime
+# Will install the latest version of Melon
 # Change to a specific version if required
-RUN npm i melon-runtime@latest --g
+RUN npm i melon-runtime -g -f
 
 # Bundling and installing packages
 RUN npm i
 RUN npx babel --extensions .ts ./src/ --out-dir ./babel
 RUN npx webpack ./babel/index.js
+RUN npm run build
 
 # Execution script that will be in package.json
-ENTRYPOINT ["npm", "run", "go"]
+ENTRYPOINT ["npm", "run", "run"]

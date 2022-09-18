@@ -1,3 +1,1 @@
-type InteropResult = string | number | boolean | Object | Date | RegExp | Function;
-
-export { InteropResult }
+declare type InteropResult = string | number | boolean | Object | Date | RegExp | Function;

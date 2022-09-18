@@ -1,4 +1,4 @@
-type ConsoleColor =
+declare type ConsoleColor =
     "Black" |
     "DarkBlue" |
     "DarkGreen" |
@@ -15,5 +15,3 @@ type ConsoleColor =
     "Magenta" |
     "Yellow" |
     "White";
-
-export { ConsoleColor }

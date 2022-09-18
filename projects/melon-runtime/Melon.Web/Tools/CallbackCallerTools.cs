@@ -8,7 +8,8 @@
             string route,
             string serializedQuery = "{}",
             string serializedHeaders = "{}",
-            string serializedBody = "{}")
+            string serializedBody = "{}"
+        )
         {
             var callbackCaller = await File.ReadAllTextAsync("./Scripts/RouteCallbackCaller.js");
             var result = callbackCaller

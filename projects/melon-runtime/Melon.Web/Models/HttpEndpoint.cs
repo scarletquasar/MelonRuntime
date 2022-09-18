@@ -11,6 +11,7 @@ namespace Melon.Web.Models
         public string? Route { get; set; }
 
         public HttpEndpoint() { }
+
         public HttpEndpoint(string method, string route)
         {
             Method = method;

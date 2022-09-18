@@ -6,17 +6,19 @@ namespace Melon.Library.Static.Web
 {
     public static class Http
     {
-        public static HttpResponse Request(string target, string method, string body, string headers)
+        public static HttpResponse Request(
+            string target,
+            string method,
+            string body,
+            string headers
+        )
         {
             HttpResponseMessage result = new();
 
             var headerDictionary = JsonSerializer.Deserialize<Dictionary<string, string>>(headers);
             var bodyObject = new StringContent(body);
 
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri(target)
-            };
+            var client = new HttpClient { BaseAddress = new Uri(target) };
 
             foreach (var item in headerDictionary ?? new())
             {

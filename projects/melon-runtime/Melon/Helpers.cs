@@ -18,6 +18,7 @@ namespace Melon
             engineBuilder.Load("Bundle/core");
             return engineBuilder.Build();
         }
+
         internal static void WaitForScript()
         {
             Console.WriteLine();
@@ -29,9 +30,10 @@ namespace Melon
             engine!.Execute(script);
             WaitForScript();
         }
+
         internal static void ExecuteWithHandler(
-            Action action, 
-            bool repeat = true, 
+            Action action,
+            bool repeat = true,
             bool keepStackTracing = true
         )
         {
@@ -44,14 +46,14 @@ namespace Melon
                 dynamic ex = e;
                 CLNConsole.WriteLine($"> [{ex.Error}] ", ConsoleColor.Red);
 
-                if(keepStackTracing)
+                if (keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             catch (Exception e)
             {
                 CLNConsole.WriteLine($"> [{e.GetType().Name}] {e.Message} ", ConsoleColor.Red);
 
-                if(keepStackTracing)
+                if (keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             finally
@@ -62,6 +64,7 @@ namespace Melon
                 }
             }
         }
+
         internal static void DisplayMelonDefaultInformation()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
@@ -70,18 +73,19 @@ namespace Melon
             CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
         }
+
         internal static List<string> GetDisallowedModules(string[] args)
         {
-            var disallowed = args
-                .Where(x => x.StartsWith("--disallow["))
+            var disallowed = args.Where(x => x.StartsWith("--disallow["))
                 .Select(x => x.Split("[")[1].Replace("]", ""))
                 .ToList();
 
             return disallowed;
         }
+
         internal static List<string> GetCommandArguments(string[] args)
         {
             return args.Where(x => !x.StartsWith("--")).ToList();
-        } 
+        }
     }
 }

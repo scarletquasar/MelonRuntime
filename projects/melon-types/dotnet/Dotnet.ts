@@ -1,8 +1,4 @@
-import { DotnetFetchExpression } from "./DotnetFetchExpression"
-import { Realm } from "./Realm"
-import { TypedNumber } from "./TypedNumber"
-
-type Dotnet = {
+declare type Dotnet = {
     getStaticMethod: <T>(expression: DotnetFetchExpression) => (...args: any) => T,
     getStaticProperty: <T>(expression: DotnetFetchExpression) => T,
     loadAssembly: (path: string) => string,
@@ -24,4 +20,3 @@ type Dotnet = {
     },
     Realm: Realm
 }
-export { Dotnet }

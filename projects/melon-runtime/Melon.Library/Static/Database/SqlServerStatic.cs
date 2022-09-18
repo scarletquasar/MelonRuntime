@@ -9,11 +9,11 @@ namespace Melon.Library.Static.Database
         public static int ExecuteNonQuery(string sql, dynamic options)
         {
             var connectionString =
-                $"Data Source={options.host},{options.port};" +
-                $"Network Library=DBMSSOCN;" +
-                $"Initial Catalog={options.database};" +
-                $"User ID={options.user};" +
-                $"Password={options.password};";
+                $"Data Source={options.host},{options.port};"
+                + $"Network Library=DBMSSOCN;"
+                + $"Initial Catalog={options.database};"
+                + $"User ID={options.user};"
+                + $"Password={options.password};";
 
             var connection = new SqlConnection(connectionString);
 
@@ -30,11 +30,11 @@ namespace Melon.Library.Static.Database
         public static string ExecuteQuery(string sql, dynamic options)
         {
             var connectionString =
-                $"Data Source={options.host},{options.port};" +
-                $"Network Library=DBMSSOCN;" +
-                $"Initial Catalog={options.database};" +
-                $"User ID={options.user};" +
-                $"Password={options.password};";
+                $"Data Source={options.host},{options.port};"
+                + $"Network Library=DBMSSOCN;"
+                + $"Initial Catalog={options.database};"
+                + $"User ID={options.user};"
+                + $"Password={options.password};";
 
             var connection = new SqlConnection(connectionString);
 

@@ -1,3 +1,1 @@
-type DotnetInstanceExpression = `${string}:${string}`;
-
-export { DotnetInstanceExpression }
+declare type DotnetInstanceExpression = `${string}:${string}`;

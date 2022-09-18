@@ -1,6 +1,4 @@
-import { ConsoleColor } from "./ConsoleColor"
-
-type Console = {
+declare type Console = {
     write: (target: any, color?: ConsoleColor) => void,
     writeLine: (target: any, color?: ConsoleColor) => void,
     log: (...args: any[]) => void,
@@ -9,5 +7,3 @@ type Console = {
     clear: () => void,
     table: (data: any[], columns: any[]) => void 
 }
-
-export { Console }

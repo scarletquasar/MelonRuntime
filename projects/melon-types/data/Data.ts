@@ -1,6 +1,4 @@
-import { DatabaseProviderConstructor } from "./DatabaseProvideConstructor"
-
-type Data = {
+declare type Data = {
     clone: (value: any) => any,
     compare: <T>(
         target: T, 
@@ -15,5 +13,3 @@ type Data = {
     MySqlClient: DatabaseProviderConstructor,
     SqlServerClient: DatabaseProviderConstructor
 }
-
-export { Data }

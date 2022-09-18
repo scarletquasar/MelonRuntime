@@ -1,4 +1,4 @@
-interface Response {
+declare interface Response {
     body: string;
     headers: Record<string, any>;
     latency: number;
@@ -7,5 +7,3 @@ interface Response {
     json<T>(): T;
     text(): string;
 }
-
-export { Response }

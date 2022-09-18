@@ -1,8 +1,4 @@
-import { HttpApplication } from "./HttpApplication"
-import { HttpComposedResponse } from "./HttpComposedResponse"
-import { Response } from "./Response"
-
-type Http = {
+declare type Http = {
     request: (
         target: string,
         method?: string,
@@ -24,5 +20,3 @@ type Http = {
     result: (statusCode: number, response: any) => HttpComposedResponse,
     static: (response: any, type: `${string}/${string}`) => HttpComposedResponse
 }
-
-export { Http }
