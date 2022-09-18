@@ -1,4 +1,4 @@
-enum Platform {
+declare enum Platform {
     Win32S = 0,
     Win32Windows = 1,
     Win32NT = 2,
@@ -8,5 +8,3 @@ enum Platform {
     MacOSX = 6,
     Other = 7
 }
-
-export { Platform }

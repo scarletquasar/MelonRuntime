@@ -1,7 +1,4 @@
-import { Version } from "../constructors/Version"
-import { Platform } from "./Platform"
-
-type Std = {
+declare type Std = {
     shift: () => {
         option: (condition: boolean, callback: () => unknown) => Std["shift"]
     },
@@ -39,5 +36,3 @@ type Std = {
         exit: () => void
     }
 }
-
-export { Std }

@@ -1,4 +1,4 @@
-type Guards = {
+declare type Guards = {
     number: {
         isEven: (number: number) => boolean;
         isOdd: (number: number) => boolean;
@@ -14,5 +14,3 @@ type Guards = {
         isNullOrWhiteSpace: (string: string) => boolean;
     };
 }
-
-export { Guards }

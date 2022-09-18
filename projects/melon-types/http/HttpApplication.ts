@@ -1,7 +1,4 @@
-import { CallbackFunction } from "./CallbackFunction";
-import { HttpEndpoint } from "./HttpEndpoint";
-
-interface HttpApplication {
+declare interface HttpApplication {
     name: string;
     host: string;
     port: number;
@@ -12,5 +9,3 @@ interface HttpApplication {
     post: (route: string, callback: CallbackFunction) => void;
     delete: (route: string, callback: CallbackFunction) => void;
 }
-
-export { HttpApplication }

@@ -1,5 +1,3 @@
-interface Version {
+declare interface Version {
     toString(): string;
 }
-
-export { Version }

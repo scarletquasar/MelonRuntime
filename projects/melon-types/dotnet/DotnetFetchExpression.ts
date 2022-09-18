@@ -1,3 +1,1 @@
-type DotnetFetchExpression = `${string}:${string}:${string}`;
-
-export { DotnetFetchExpression }
+declare type DotnetFetchExpression = `${string}:${string}:${string}`;

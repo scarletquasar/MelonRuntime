@@ -1,4 +1,4 @@
-type Fs = {
+declare type Fs = {
     readText: (path: string) => string,
     writeText: (path: string, content: string) => void,
     readBytes: (path: string) => number[],
@@ -8,5 +8,3 @@ type Fs = {
     readBytesAsync: (path: string) => Promise<number[]>,
     writeBytesAsync: (path: string, content: number[]) => Promise<void>
 }
-
-export { Fs }
