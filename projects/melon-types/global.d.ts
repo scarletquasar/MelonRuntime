@@ -50,7 +50,7 @@ declare const Melon: {
             body?: Record<string, any>,
             headers?: Record<string, any>
         ) => Promise<Response>,
-        app: (options: {
+        app: (options?: {
             name: string, 
             host: string,
             port: number,
