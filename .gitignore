@@ -1,6 +1,7 @@
 projects/melon-runtime/Output
 projects/melon-core/babel
 projects/melon-core/dist
+projects/melon-core/types
 node_modules
 
 ## Ignore Visual Studio temporary files, build results, and

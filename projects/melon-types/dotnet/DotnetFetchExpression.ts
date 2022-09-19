@@ -1,1 +1,0 @@
-declare type DotnetFetchExpression = `${string}:${string}:${string}`;

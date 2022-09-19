@@ -1,1 +1,0 @@
-declare type DatabaseProviderConstructor = new (options: DatabaseProviderOptions) => DatabaseProviderInternal;

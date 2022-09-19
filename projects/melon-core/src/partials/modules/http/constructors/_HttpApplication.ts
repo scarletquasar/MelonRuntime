@@ -1,3 +1,4 @@
+import { AsyncCallbackFunction } from "../../../../types/http/AsyncCallbackFunction";
 import { CallbackFunction } from "../../../../types/http/CallbackFunction";
 import { _http } from "../_http";
 import { _HttpEndpoint } from "./_HttpEndpoint";
@@ -28,7 +29,7 @@ class _HttpApplication {
         return this.#endpoints;
     }
 
-    get(route: string, callback: CallbackFunction) {
+    get(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
         const httpRoute = new _HttpEndpoint(route, "GET", callback);
         this.#endpoints.push(httpRoute);
     }
