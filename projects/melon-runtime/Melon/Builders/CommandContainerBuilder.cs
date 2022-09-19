@@ -23,7 +23,6 @@ namespace Melon.Builders
         internal CommandContainerBuilder SetupCommands(CommandList commands)
         {
             _actions.Add(() => _container.Register(commands));
-            ;
             return this;
         }
 

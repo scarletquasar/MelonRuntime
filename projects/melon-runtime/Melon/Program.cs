@@ -24,10 +24,7 @@ namespace Melon
 
         private static Jint.Engine MakeEngine(string[] args)
         {
-            var disallowedModules = Helpers.GetDisallowedModules(args);
-            var engineParameters = new EngineAssemblerParameters(disallowedModules);
-
-            return Helpers.AssembleEngine(engineParameters);
+            return Helpers.AssembleEngine();
         }
 
         private static CommandContainer MakeCommandContainer()

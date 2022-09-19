@@ -4,7 +4,7 @@ namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
-        public static HashSet<Assembly> LoadedAssemblies = new();
+        public static HashSet<Assembly> LoadedAssemblies { get; private set; } = new();
 
         public static string? LoadAssembly(string path)
         {
@@ -37,6 +37,7 @@ namespace Melon.Library.Static.InteropReflection
                 .GetAssemblies()
                 .Concat(LoadedAssemblies)
                 .ToHashSet();
+
             IEnumerable<Type> types = assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
@@ -60,6 +61,7 @@ namespace Melon.Library.Static.InteropReflection
                 .GetAssemblies()
                 .Concat(LoadedAssemblies)
                 .ToHashSet();
+
             IEnumerable<Type> types = assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
@@ -92,6 +94,7 @@ namespace Melon.Library.Static.InteropReflection
                 .GetAssemblies()
                 .Concat(LoadedAssemblies)
                 .ToHashSet();
+
             Type type = assemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
