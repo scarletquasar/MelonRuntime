@@ -4,6 +4,7 @@
 */Melon.Library
 */Melon.Static
 */Melon.Web
+*/Melon.Models
 */Melon.Tests
 */*.csproj.user
 *.sln
