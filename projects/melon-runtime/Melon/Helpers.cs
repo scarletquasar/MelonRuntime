@@ -2,16 +2,14 @@
 using Esprima;
 using Jint.Runtime;
 using Melon.Engine.Builders;
-using Melon.Models;
 using Melon.Static.Runtime;
-using Newtonsoft.Json;
 using System.Reflection;
 
 namespace Melon
 {
     internal static class Helpers
     {
-        internal static Jint.Engine AssembleEngine(EngineAssemblerParameters parameters)
+        internal static Jint.Engine AssembleEngine()
         {
             var engineBuilder = new EngineBuilder();
 
@@ -72,15 +70,6 @@ namespace Melon
             CLNConsole.Write("》 Melon ", ConsoleColor.Yellow);
             CLNConsole.Write(version, ConsoleColor.Cyan);
             Console.WriteLine();
-        }
-
-        internal static List<string> GetDisallowedModules(string[] args)
-        {
-            var disallowed = args.Where(x => x.StartsWith("--disallow["))
-                .Select(x => x.Split("[")[1].Replace("]", ""))
-                .ToList();
-
-            return disallowed;
         }
 
         internal static List<string> GetCommandArguments(string[] args)
