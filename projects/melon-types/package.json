@@ -1,8 +1,8 @@
 {
     "name": "melon-types",
-    "version": "2.0.5",
+    "version": "2.0.7",
     "description": "TypeScript types for melon-runtime development",
-    "types": "./global.d.ts",
+    "types": "./index.d.ts",
     "type": "module",
     "repository": {
       "type": "git",

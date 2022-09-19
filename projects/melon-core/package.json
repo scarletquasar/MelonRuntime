@@ -7,6 +7,7 @@
         "@babel/core": "latest",
         "@babel/preset-env": "latest",
         "@babel/preset-typescript": "latest",
+        "typescript": "^4.8.3",
         "webpack-cli": "latest"
     }
 }
