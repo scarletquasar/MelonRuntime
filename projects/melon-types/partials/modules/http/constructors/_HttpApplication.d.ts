@@ -1,3 +1,4 @@
+import { AsyncCallbackFunction } from "../../../../types/http/AsyncCallbackFunction";
 import { CallbackFunction } from "../../../../types/http/CallbackFunction";
 import { _HttpEndpoint } from "./_HttpEndpoint";
 declare class _HttpApplication {
@@ -8,7 +9,7 @@ declare class _HttpApplication {
     enableHttps: boolean;
     constructor(name: string, host: string, port: number, enableHttps?: boolean);
     getEndpoints(): _HttpEndpoint[];
-    get(route: string, callback: CallbackFunction): void;
+    get(route: string, callback: CallbackFunction | AsyncCallbackFunction): void;
     post(route: string, callback: CallbackFunction): void;
     delete(route: string, callback: CallbackFunction): void;
     listen(port: number, host?: string): void;
