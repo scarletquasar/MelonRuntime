@@ -1,1 +1,0 @@
-declare type CallbackFunction = (request: HttpRequest) => string | HttpComposedResponse;
