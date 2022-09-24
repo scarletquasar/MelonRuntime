@@ -1,5 +1,5 @@
 function _renameFile(path: string, newName: string) {
-    _$internalBinding["FileRename"](path, newName);
+    _$internalBinding["RenameFile"](path, newName);
 }
 
 export { _renameFile }
