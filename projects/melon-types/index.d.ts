@@ -134,3 +134,13 @@ declare const Melon: {
     };
     Version: typeof import("./partials/constructors/_Version")._Version;
 };
+
+declare const console: {
+    write: (target: any, color?: typeof import("./types/console/ConsoleColor")) => void,
+    writeLine: (target: any, color?: typeof import("./types/console/ConsoleColor")) => void,
+    log: (...args: any[]) => void,
+    error: (...args: any[]) => void,
+    warn: (...args: any[]) => void,
+    clear: () => void,
+    table: (data: any[], columns: any[]) => void 
+};
