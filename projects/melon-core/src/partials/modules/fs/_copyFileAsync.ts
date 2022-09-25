@@ -1,4 +1,4 @@
-function _copyFileAsync(from: string, to: string) {
+async function _copyFileAsync(from: string, to: string) {
     _$internalBinding["CopyFile"](from, to, true);
 }
 

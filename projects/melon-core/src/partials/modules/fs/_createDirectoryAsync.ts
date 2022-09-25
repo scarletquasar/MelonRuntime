@@ -1,4 +1,4 @@
-function _createDirectoryAsync(path: string) {
+async function _createDirectoryAsync(path: string) {
     _$internalBinding["CreateDirectory"](path);
 }
 

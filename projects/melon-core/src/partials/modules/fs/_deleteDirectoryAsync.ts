@@ -1,4 +1,4 @@
-function _deleteDirectoryAsync(path: string) {
+async function _deleteDirectoryAsync(path: string) {
     _$internalBinding["DeleteDirectory"](path, true);
 }
 

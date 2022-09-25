@@ -1,4 +1,4 @@
-function _renameFileAsync(path: string, newName: string) {
+async function _renameFileAsync(path: string, newName: string) {
     _$internalBinding["RenameFile"](path, newName);
 }
 
