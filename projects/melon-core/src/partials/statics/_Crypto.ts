@@ -4,8 +4,8 @@ const { getStaticMethod } = _dotnet;
 
 class _Crypto {
     static randomUUID() {
-        const getNewUUID = getStaticMethod<string>("System:Guid:NewGuid");
-        return getNewUUID();
+        const getRawUUID = getStaticMethod("System:Guid:NewGuid");
+        return getRawUUID().toString();
     }
 }
 
