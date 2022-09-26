@@ -6,6 +6,6 @@ declare class _Realm implements Realm {
     setValue: (name: string, value: string) => void;
     setInstance: (name: string, expression: DotnetInstanceExpression, ...parameters: any) => void;
     get: (name: string) => InteropResult;
-    constructor(name: string);
+    constructor(name?: string);
 }
 export { _Realm };

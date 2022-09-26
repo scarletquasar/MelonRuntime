@@ -2,7 +2,7 @@ declare const Melon: {
     std: {
         shift: typeof import("./partials/modules/std/_shift")._shift;
         melon: {
-            currentVersion: typeof import("./partials/constructors/_Version")._Version;
+            currentVersion: typeof import("./partials/constructors/_Version");
         };
         boolean: {
             checkAll: typeof import("./partials/modules/std/boolean/_checkAll")._checkAll;
@@ -68,6 +68,18 @@ declare const Melon: {
         writeTextAsync: typeof import("./partials/modules/fs/_writeTextAsync")._writeTextAsync;
         readBytesAsync: typeof import("./partials/modules/fs/_readBytesAsync")._readBytesAsync;
         writeBytesAsync: typeof import("./partials/modules/fs/_writeBytesAsync")._writeBytesAsync;
+        deleteFile: typeof import("./partials/modules/fs/_deleteFile")._deleteFile;
+        deleteFileAsync: typeof import("./partials/modules/fs/_deleteFileAsync")._deleteFileAsync;
+        moveFile: typeof import("./partials/modules/fs/_moveFile")._moveFile;
+        moveFileAsync: typeof import("./partials/modules/fs/_moveFileAsync")._moveFileAsync;
+        copyFile: typeof import("./partials/modules/fs/_copyFile")._copyFile;
+        renameFile: typeof import("./partials/modules/fs/_renameFile")._renameFile;
+        renameFileAsync: typeof import("./partials/modules/fs/_renameFileAsync")._renameFileAsync;
+        copyFileAsync: typeof import("./partials/modules/fs/_copyFileAsync")._copyFileAsync;
+        createDirectory: typeof import("./partials/modules/fs/_createDirectory")._createDirectory;
+        createDirectoryAsync: typeof import("./partials/modules/fs/_createDirectoryAsync")._createDirectoryAsync;
+        deleteDirectory: typeof import("./partials/modules/fs/_deleteDirectory")._deleteDirectory;
+        deleteDirectoryAsync: typeof import("./partials/modules/fs/_deleteDirectoryAsync")._deleteDirectoryAsync;
     };
     http: {
         _apps: {};
@@ -132,7 +144,7 @@ declare const Melon: {
         };
         Realm: typeof import("./partials/modules/dotnet/constructors/_Realm")._Realm;
     };
-    Version: typeof import("./partials/constructors/_Version")._Version;
+    Version: typeof import("./partials/constructors/_Version");
 };
 
 declare const console: {
@@ -142,5 +154,5 @@ declare const console: {
     error: (...args: any[]) => void,
     warn: (...args: any[]) => void,
     clear: () => void,
-    table: (data: any[], columns: any[]) => void 
+    table: (data: any[], columns: any[]) => void
 };
