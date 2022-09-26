@@ -1,6 +1,7 @@
 import { DotnetInstanceExpression } from "../../../../types/dotnet/DotnetInstanceExpression";
 import { InteropResult } from "../../../../types/dotnet/InteropResult";
 import { Realm } from "../../../../types/dotnet/Realm";
+import { _Crypto } from "../../../statics/_Crypto";
 
 class _Realm implements Realm {
     name: string;
@@ -8,8 +9,8 @@ class _Realm implements Realm {
     setInstance: (name: string, expression: DotnetInstanceExpression, ...parameters: any) => void;
     get: (name: string) => InteropResult;
 
-    constructor(name: string) {
-        _$internalBinding["CreateRealm"](name);
+    constructor(name?: string) {
+        _$internalBinding["CreateRealm"](name ?? _Crypto.randomUUID());
 
         this.name = name;
 
