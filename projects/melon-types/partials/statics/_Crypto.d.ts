@@ -1,4 +1,4 @@
-declare class _Crypto {
-    static randomUUID(): string;
-}
-export { _Crypto };
+declare const _crypto: {
+    randomUUID(): any;
+};
+export { _crypto };
