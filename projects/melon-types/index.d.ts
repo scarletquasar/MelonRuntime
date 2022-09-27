@@ -144,15 +144,20 @@ declare const Melon: {
         };
         Realm: typeof import("./partials/modules/dotnet/constructors/_Realm")._Realm;
     };
+    crypto: {
+        randomUUID(): string;
+    };
+    console: {
+        log: typeof import("./partials/modules/console/_log")._log;
+        write: typeof import("./partials/modules/console/_write")._write;
+        writeLine: typeof import("./partials/modules/console/_writeLine")._writeLine;
+        error: typeof import("./partials/modules/console/_error")._error;
+        warn: typeof import("./partials/modules/console/_warn")._warn;
+        clear: () => void;
+        table: typeof import("./partials/modules/console/_table")._table;
+    };
     Version: typeof import("./partials/constructors/_Version");
 };
 
-declare const console: {
-    write: (target: any, color?: typeof import("./types/console/ConsoleColor")) => void,
-    writeLine: (target: any, color?: typeof import("./types/console/ConsoleColor")) => void,
-    log: (...args: any[]) => void,
-    error: (...args: any[]) => void,
-    warn: (...args: any[]) => void,
-    clear: () => void,
-    table: (data: any[], columns: any[]) => void
-};
+declare const console: typeof Melon.console;
+declare const crypto: typeof Melon.crypto; 
