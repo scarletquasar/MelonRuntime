@@ -1,12 +1,10 @@
-import { _dotnet } from "../modules/dotnet/_dotnet";
+const _crypto = {
+    randomUUID() {
+        const callStaticMethodBinding = _$internalBinding["CallStaticMethod"];
+        const rawUUID = callStaticMethodBinding("System", "Guid", "NewGuid", []);
 
-const { getStaticMethod } = _dotnet;
-
-class _Crypto {
-    static randomUUID() {
-        const getRawUUID = getStaticMethod("System:Guid:NewGuid");
-        return getRawUUID().toString();
+        return rawUUID.toString();
     }
 }
 
-export { _Crypto }
+export { _crypto }
