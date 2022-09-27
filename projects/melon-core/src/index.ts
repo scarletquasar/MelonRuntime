@@ -8,6 +8,7 @@ import { _fs } from "./partials/modules/fs/_fs"
 import { _guards } from "./partials/modules/guards/_guards"
 import { _http } from "./partials/modules/http/_http"
 import { _std } from "./partials/modules/std/_std"
+import { _Crypto } from "./partials/statics/_Crypto"
 
 const Melon = {
     std: _std,
@@ -20,6 +21,8 @@ const Melon = {
 }
 
 globalThis.console = _console as any;
+globalThis.crypto = _Crypto;
+
 globalThis.Map = _Map as any;
 globalThis.Set = _Set as any;
 

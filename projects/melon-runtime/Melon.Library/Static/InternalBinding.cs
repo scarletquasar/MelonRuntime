@@ -4,6 +4,7 @@ using Melon.Web;
 using Melon.Library.Static.Generic;
 using Melon.Library.Static.InteropReflection;
 using Melon.Models.Library;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Melon.Library.Static
 {
@@ -22,6 +23,12 @@ namespace Melon.Library.Static
                 { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
                 { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
                 { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
+                { "DeleteFile", new Action<string>(File.Delete) },
+                { "CopyFile", new Action<string, string, bool>(File.Copy) },
+                { "MoveFile", new Action<string, string, bool>(File.Move) },
+                { "RenameFile", new Action<string, string>(FileSystem.RenameFile)},
+                { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
+                { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
                 {
                     "PostgreSQLBindingQuery",
                     new Func<string, dynamic, dynamic>(PgStatic.ExecuteQuery)

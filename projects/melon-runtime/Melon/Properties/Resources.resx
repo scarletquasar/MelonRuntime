@@ -130,7 +130,7 @@
   "scripts": {
     "dev": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.development.js &amp;&amp; npx melon load ./dist/main.js",
     "build": "babel ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.production.js",
-    "run": "npx melon load ./dist/main.js"
+    "go": "npx melon load ./dist/main.js"
   },
   "devDependencies": {
     "@babel/cli": "latest",
@@ -298,8 +298,8 @@ babel/
     <value>{
     "scripts": {
       "dev": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.development.js &amp;&amp; npx melon load ./dist/main.js",
-      "build": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.development.js",
-      "run": "npx melon load ./dist/main.js"
+      "build": "babel --extensions .ts ./src/ --out-dir ./babel &amp;&amp; webpack ./babel/index.js --config ./webpack.config.production.js",
+      "go": "npx melon load ./dist/main.js"
     },
     "devDependencies": {
       "@babel/cli": "latest",
@@ -313,7 +313,7 @@ babel/
   </data>
   <data name="NewProjectWebpackConfigDevelopment" xml:space="preserve">
     <value>module.exports = {
-  mode: 'development',
+  mode: 'development'
 };</value>
   </data>
   <data name="NewProjectWebpackConfigProduction" xml:space="preserve">
