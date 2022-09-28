@@ -16,8 +16,10 @@ namespace Melon.Web.Extensions
         {
             foreach (var endpoint in endpoints)
             {
-                async Task<object> operation(HttpRequest request)
+                async Task<object> operation(HttpContext context)
                 {
+                    var request = context.Request;
+
                     var query = request.Query.ToDictionary(
                         x => x.Key,
                         x => string.Join("", x.Value)
@@ -61,7 +63,19 @@ namespace Melon.Web.Extensions
                             (uint)evaluation.AsNumber()
                         );
 
+                        var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
+                        foreach(var header in promiseResultHeaders)
+                        {
+                            context.Response.Headers.Add(header.Key, header.Value.ToString());
+                        }
+
                         return ResultManager.GetHttpResult(promiseResult);
+                    }
+
+                    var syncResultHeaders = HttpResultTools.GetHttpHeaders(evaluation);
+                    foreach (var header in syncResultHeaders)
+                    {
+                        context.Response.Headers.Add(header.Key, header.Value);
                     }
 
                     return ResultManager.GetHttpResult(evaluation);
