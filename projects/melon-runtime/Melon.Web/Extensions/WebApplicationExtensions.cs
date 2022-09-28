@@ -16,10 +16,8 @@ namespace Melon.Web.Extensions
         {
             foreach (var endpoint in endpoints)
             {
-                async Task<object> operation(HttpContext context)
+                async Task<object> operation(HttpRequest request, HttpContext context)
                 {
-                    var request = context.Request;
-
                     var query = request.Query.ToDictionary(
                         x => x.Key,
                         x => string.Join("", x.Value)
