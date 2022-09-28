@@ -16,7 +16,7 @@ namespace Melon.Web.Tools
             var response = httpResult.Get("response").AsString();
             var status = httpResult.Get("status").AsNumber();
 
-            var type = Convert.ToString(headers!["Content-Type"]);
+            var type = Convert.ToString(headers!["Content-Type"])!;
             
             return status switch
             {
