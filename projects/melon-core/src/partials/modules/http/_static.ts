@@ -1,8 +1,11 @@
-function _static(response: any, type: `${string}/${string}`) {
+function _static(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
     return {
-        type,
         status: 200,
-        response
+        response,
+        headers: {
+            "Content-Type": type,
+            ...headers
+        }
     }
 }
 
