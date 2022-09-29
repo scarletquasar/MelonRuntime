@@ -6,7 +6,7 @@ class _Realm implements Realm {
     name: string;
     setValue: (name: string, value: string) => void;
     setInstance: (name: string, expression: DotnetInstanceExpression, ...parameters: any) => void;
-    get: (name: string) => any;
+    get: <TResult>(name: string) => TResult;
 
     constructor(name?: string) {
         _$internalBinding["CreateRealm"](name ?? _crypto.randomUUID());
