@@ -26,7 +26,7 @@ namespace Melon.Library.Static
                 { "DeleteFile", new Action<string>(File.Delete) },
                 { "CopyFile", new Action<string, string, bool>(File.Copy) },
                 { "MoveFile", new Action<string, string, bool>(File.Move) },
-                { "RenameFile", new Action<string, string>(FileSystem.RenameFile)},
+                { "RenameFile", new Action<string, string>(FileSystem.RenameFile) },
                 { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
                 { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
                 {

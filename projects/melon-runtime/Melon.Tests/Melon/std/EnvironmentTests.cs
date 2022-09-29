@@ -29,7 +29,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.environment.setEnvironmentVariable should work correctly")]
         public void EnvironmentSetEnvironmentVariableShouldWorkCorrectly()
         {
-            var script = @"
+            var script =
+                @"
                 Melon.std.environment.setEnvironmentVariable('test', 123);
                 Melon.std.environment.getEnvironmentVariables()['test'];
             ";
@@ -41,7 +42,8 @@ namespace Melon.Tests.Melon.std
         [Fact(DisplayName = "Melon.std.environment.getEnvironmentVariables should work correctly")]
         public void EnvironmentGetEnvironmentVariablesShouldWorkCorrectly()
         {
-            var script = @"
+            var script =
+                @"
                 Melon.std.environment.setEnvironmentVariable('test', 123);
                 Melon.std.environment.getEnvironmentVariables()['test'];
             ";
@@ -50,10 +52,13 @@ namespace Melon.Tests.Melon.std
             Assert.Equal(123, result);
         }
 
-        [Fact(DisplayName = "Melon.std.environment.clearLocalEnvironmentVariables should work correctly")]
+        [Fact(
+            DisplayName = "Melon.std.environment.clearLocalEnvironmentVariables should work correctly"
+        )]
         public void EnvironmentClearLocalEnvironmentVariablesShouldWorkCorrectly()
         {
-            var script = @"
+            var script =
+                @"
                 Melon.std.environment.setEnvironmentVariable('test', 123);
                 Melon.std.environment.clearLocalEnvironmentVariables();
                 Melon.std.environment.getEnvironmentVariables()['test'];

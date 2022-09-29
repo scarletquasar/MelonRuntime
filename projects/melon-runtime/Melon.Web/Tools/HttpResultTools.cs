@@ -9,15 +9,16 @@ namespace Melon.Web.Tools
         internal static IResult GetHttpResult(JsValue obj)
         {
             var httpResult = obj.AsObject();
-            
-            var headers = JsonSerializer
-                .Deserialize<Dictionary<string, object>>(httpResult.Get("headers").AsString());
+
+            var headers = JsonSerializer.Deserialize<Dictionary<string, object>>(
+                httpResult.Get("headers").AsString()
+            );
 
             var response = httpResult.Get("response").AsString();
             var status = httpResult.Get("status").AsNumber();
 
             var type = Convert.ToString(headers!["Content-Type"])!;
-            
+
             return status switch
             {
                 200 => GetSpecificResult(type, response),
