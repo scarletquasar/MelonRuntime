@@ -1,5 +1,6 @@
 ﻿using Jint;
 using Jint.Native;
+using System.Text.Json;
 
 namespace Melon.Web.Tools
 {
@@ -8,16 +9,24 @@ namespace Melon.Web.Tools
         internal static IResult GetHttpResult(JsValue obj)
         {
             var httpResult = obj.AsObject();
+            
+            var headers = JsonSerializer
+                .Deserialize<Dictionary<string, object>>(httpResult.Get("headers").AsString());
 
-            return (double)httpResult.Get("status").AsNumber() switch
+            var response = httpResult.Get("response").AsString();
+            var status = httpResult.Get("status").AsNumber();
+
+            var type = Convert.ToString(headers!["Content-Type"])!;
+            
+            return status switch
             {
-                200 => GetSpecificResult(httpResult),
-                404 => Results.NotFound(httpResult.Get("response").AsString()),
+                200 => GetSpecificResult(type, response),
+                404 => Results.NotFound(response),
                 401 => Results.Unauthorized(),
-                400 => Results.BadRequest(httpResult.Get("response").AsString()),
-                409 => Results.Conflict(httpResult.Get("response").AsString()),
+                400 => Results.BadRequest(response),
+                409 => Results.Conflict(response),
                 204 => Results.NoContent(),
-                422 => Results.UnprocessableEntity(httpResult.Get("response").AsString()),
+                422 => Results.UnprocessableEntity(response),
                 _
                     => Results.Problem(
                         httpResult.Get("response").AsString(),
@@ -26,16 +35,22 @@ namespace Melon.Web.Tools
             };
         }
 
-        internal static IResult GetSpecificResult(JsValue httpResult)
+        internal static IResult GetSpecificResult(string type, string response)
         {
-            var type = httpResult.Get("type").AsString();
-            var response = httpResult.Get("response").AsString();
             return type switch
             {
                 "text/plain" => Results.Content(response, type),
                 "application/json" => Results.Ok(response),
                 _ => Results.Content(response, type),
             };
+        }
+
+        internal static Dictionary<string, dynamic> GetHttpHeaders(JsValue obj)
+        {
+            var headers = obj.Get("headers").AsString();
+            var result = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(headers)!;
+
+            return result;
         }
     }
 }
