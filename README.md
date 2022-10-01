@@ -18,6 +18,7 @@
 <hr>
 
 - [Documentation](https://github.com/MelonRuntime/Melon/wiki)
+- [Feature Coverage](./FEATURE_COVERAGE.md)
 - [Discord Server](https://discord.gg/wDJDT9Yq7C)
 
 <hr>
