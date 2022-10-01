@@ -15,6 +15,7 @@ Feature coverage is a planning page where you can check what - from global JavaS
 | setTimeout | 🟧🟨 | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) |
 | setInterval | 🟧🟨 | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) |
 | fetch() | 🟥 | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/fetch) |
+| XmlHttpRequest() | 🟥 | [MDN](https://developer.mozilla.org/en-US/docs/Web/API/XmlHttpRequest) |
 | Map() | 🟩 | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) |
 | Set() | 🟩 | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) |
 
