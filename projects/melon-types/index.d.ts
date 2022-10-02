@@ -96,6 +96,10 @@ declare const Melon: {
         removeAssembly: (fullName: string) => void;
         getLoadedAssemblies: () => string[];
         loadAsemblyAsync: typeof import("./partials/modules/dotnet/_loadAssemblyAsync")._loadAssemblyAsync;
+        threading: {
+            createTask: typeof import("./partials/modules/dotnet/threading/_createTask")._createTask;
+            createThread: typeof import("./partials/modules/dotnet/threading/_createThread")._createThread;
+        };
         types: {
             sbyte: (number: number) => {
                 type: string;
@@ -148,6 +152,9 @@ declare const Melon: {
         randomUUID(): string;
     };
     console: {
+        _timers: Date[];
+        time: typeof import("./partials/modules/console/_time")._time;
+        timeEnd: typeof import("./partials/modules/console/_timeEnd")._timeEnd;
         log: typeof import("./partials/modules/console/_log")._log;
         write: typeof import("./partials/modules/console/_write")._write;
         writeLine: typeof import("./partials/modules/console/_writeLine")._writeLine;

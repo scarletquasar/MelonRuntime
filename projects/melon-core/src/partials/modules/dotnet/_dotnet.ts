@@ -7,6 +7,8 @@ import { _Realm } from "./constructors/_Realm";
 import { _removeAssembly } from "./_removeAssembly";
 import { _types } from "./_types";
 import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
+import { _createTask } from "./threading/_createTask";
+import { _createThread } from "./threading/_createThread";
 
 const _dotnet = {
     getStaticMethod: _getStaticMethod,
@@ -15,6 +17,10 @@ const _dotnet = {
     removeAssembly: _removeAssembly,
     getLoadedAssemblies: _getLoadedAssemblies,
     loadAsemblyAsync: _loadAssemblyAsync,
+    threading: {
+        createTask: _createTask,
+        createThread: _createThread
+    },
     types: _types,
     Realm: _Realm
 }

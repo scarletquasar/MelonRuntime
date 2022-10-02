@@ -5,6 +5,7 @@ using Melon.Library.Static.Generic;
 using Melon.Library.Static.InteropReflection;
 using Melon.Models.Library;
 using Microsoft.VisualBasic.FileIO;
+using Jint.Native;
 
 namespace Melon.Library.Static
 {
@@ -26,7 +27,7 @@ namespace Melon.Library.Static
                 { "DeleteFile", new Action<string>(File.Delete) },
                 { "CopyFile", new Action<string, string, bool>(File.Copy) },
                 { "MoveFile", new Action<string, string, bool>(File.Move) },
-                { "RenameFile", new Action<string, string>(FileSystem.RenameFile)},
+                { "RenameFile", new Action<string, string>(FileSystem.RenameFile) },
                 { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
                 { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
                 {
@@ -92,6 +93,8 @@ namespace Melon.Library.Static
                     "GetRealmProperty",
                     new Func<string, string, dynamic?>(RealmManager.GetRealmProperty)
                 },
+                { "CreateThread", new Func<JsValue, Thread>(ThreadingManager.CreateThread) },
+                { "CreateTask", new Func<JsValue, Task<object>>(ThreadingManager.CreateTask) }
             };
     }
 }

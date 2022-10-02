@@ -34,12 +34,12 @@ class _HttpApplication {
         this.#endpoints.push(httpRoute);
     }
 
-    post(route: string, callback: CallbackFunction) {
+    post(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
         const httpRoute = new _HttpEndpoint(route, "POST", callback);
         this.#endpoints.push(httpRoute);
     }
 
-    delete(route: string, callback: CallbackFunction) {
+    delete(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
         const httpRoute = new _HttpEndpoint(route, "DELETE", callback);
         this.#endpoints.push(httpRoute);
     }

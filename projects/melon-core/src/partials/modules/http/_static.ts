@@ -1,8 +1,13 @@
-function _static(response: any, type: `${string}/${string}`) {
+import { _std } from "../std/_std"
+
+function _static(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
     return {
-        type,
         status: 200,
-        response
+        response,
+        headers: JSON.stringify({
+            "Content-Type": type,
+            ...headers
+        })
     }
 }
 
