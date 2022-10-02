@@ -62,3 +62,19 @@ workerThread.start();
 
 //"Hello world"
 ```
+
+## Direct .NET interop
+
+It is possible to create a .NET instance manipulation object quickly using the Realm constructor, with it, there is the possibility to create instances with direct interoperability for use in code.
+
+```ts
+const { Realm } = Melon.dotnet;
+
+const realm = new Realm();
+realm.setInstance("randomInstance", "System:Random");
+const randomInstance = realm.get("randomInstance");
+
+console.log(randomInstance.next());
+
+//1144300903
+```
