@@ -10,7 +10,7 @@
 - Melon is architected to work within the npm (node package manager) environment, this means you can install existing packages that are compatible with the runtime's built-in api. We are also working to make more and more packages compatible.
 - Melon is designed to offer a quick solution for project prototyping, so that it offers the basics needed to create applications while offering scalability and maintainability when necessary.
 
-## **Built-in web development** 
+## Web development
 
 Melon brings the power of ASP.NET to JavaScript, allowing you to build synchronous or asynchronous dedicated web applications with few lines, using an express-like interface that is easy and simple to use.
 
@@ -22,4 +22,23 @@ app.get("/", async () => "Hello world");
 app.run();
 
 //App running in http://localhost:80
+```
+
+## Intensive I/O operations
+
+With the API of files and directories adapted to a JavaScript interface, it becomes simple to manage directories or files at the byte or text level in a simple and fast way, with just the use of simple methods without worrying about directly managing streams and cursors.
+
+```ts
+const { fs } = Melon;
+
+async function createFileAndReadContent() {
+  await fs.writeTextAsync("./hello.txt", "Hello world");
+  const content = await fs.readTextAsync("./hello.txt");
+
+  console.log(content);
+}
+
+createFileAndReadContent();
+
+//"Hello world"
 ```
