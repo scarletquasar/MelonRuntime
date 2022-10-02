@@ -59,4 +59,6 @@ const workerThread = createThread(() => {
 });
 
 workerThread.start();
+
+//"Hello world"
 ```
