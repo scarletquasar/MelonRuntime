@@ -1,11 +1,6 @@
 # Melon [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime) [![npm downloads](https://badgen.net/npm/dm/melon-runtime)](https://www.npmjs.com/package/melon-runtime) [![license](https://badgen.net/github/license/MelonRuntime/Melon)](#)
 
-
-<hr>
-
-**Melon** is a declarative modern .NET JavaScript runtime.
-
-<hr>
+**Melon** is a declarative modern .NET JavaScript runtime focused in rapid prototyping of projects, with minimal dependencies without breaking nothing.
 
 - [Documentation](https://github.com/MelonRuntime/Melon/wiki)
 - [Feature Coverage](./FEATURE_COVERAGE.md)
