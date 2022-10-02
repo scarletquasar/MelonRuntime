@@ -2,7 +2,7 @@
 
 **Melon** is a declarative modern .NET JavaScript runtime focused in rapid prototyping of projects, using minimal dependencies without breaking nothing.
 
-📚 [Documentation](https://github.com/MelonRuntime/Melon/wiki) - ⏳ [Feature Coverage](./FEATURE_COVERAGE.md) - 💬 [Discord Server](https://discord.gg/wDJDT9Yq7C)
+📚 [Getting Started](https://github.com/MelonRuntime/Melon/wiki) - ⏳ [Feature Coverage](./FEATURE_COVERAGE.md) - 💬 [Discord Server](https://discord.gg/wDJDT9Yq7C)
 
 ## Why Melon?
 
