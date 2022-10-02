@@ -47,6 +47,16 @@ createFileAndReadContent();
 
 Multithreaded parallel work can be done simply with Melon, the runtime uses an interface that creates a .NET "Thread" object and allows direct developer interaction via JavaScript, with automatic management by the internal CLR.
 
-```
+```ts
+const { createThread } = Melon.dotnet.threading;
+const { fs } = Melon;
 
+const workerThread = createThread(() => {
+  fs.writeText("./hello.txt", "Hello world");
+  const content = fs.readText("./hello.txt");
+
+  console.log(content);
+});
+
+workerThread.start();
 ```
