@@ -42,3 +42,11 @@ createFileAndReadContent();
 
 //"Hello world"
 ```
+
+## Multithreading
+
+Multithreaded parallel work can be done simply with Melon, the runtime uses an interface that creates a .NET "Thread" object and allows direct developer interaction via JavaScript, with automatic management by the internal CLR.
+
+```
+
+```
