@@ -7,6 +7,8 @@ class _Realm implements Realm {
     setValue: (name: string, value: string) => void;
     setInstance: (name: string, expression: DotnetInstanceExpression, ...parameters: any) => void;
     get: <TResult>(name: string) => TResult;
+    delete: (name: string) => void;
+    close: (delay: number) => void;
 
     constructor(name?: string) {
         _$internalBinding["CreateRealm"](name ?? _crypto.randomUUID());
@@ -30,8 +32,9 @@ class _Realm implements Realm {
             );
         }
 
-        this.get = (name) => 
-            _$internalBinding["GetRealmProperty"](this.name, name);
+        this.get = (name) => _$internalBinding["GetRealmProperty"](this.name, name);
+        this.delete = (name) => _$internalBinding["DeleteRealmProperty"](this.name, name);
+        this.close = (delay = 0) => _$internalBinding["DeleteRealm"](this.name, delay);
     }
 }
 

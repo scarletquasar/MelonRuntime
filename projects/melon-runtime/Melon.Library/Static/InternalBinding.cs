@@ -5,6 +5,7 @@ using Melon.Library.Static.Generic;
 using Melon.Library.Static.InteropReflection;
 using Melon.Models.Library;
 using Microsoft.VisualBasic.FileIO;
+using Jint.Native;
 
 namespace Melon.Library.Static
 {
@@ -92,6 +93,8 @@ namespace Melon.Library.Static
                     "GetRealmProperty",
                     new Func<string, string, dynamic?>(RealmManager.GetRealmProperty)
                 },
+                { "CreateThread", new Func<JsValue, Thread>(ThreadingManager.CreateThread) },
+                { "CreateTask", new Func<JsValue, Task<object>>(ThreadingManager.CreateTask) }
             };
     }
 }
