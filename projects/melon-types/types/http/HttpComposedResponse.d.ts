@@ -1,6 +1,6 @@
 declare type HttpComposedResponse = {
-    type: string;
     status: number;
     response: string;
+    headers: Record<string, any>;
 };
 export { HttpComposedResponse };

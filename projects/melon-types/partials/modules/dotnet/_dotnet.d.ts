@@ -2,6 +2,8 @@ import { _getStaticMethod } from "./_getStaticMethod";
 import { _getStaticProperty } from "./_getStaticProperty";
 import { _Realm } from "./constructors/_Realm";
 import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
+import { _createTask } from "./threading/_createTask";
+import { _createThread } from "./threading/_createThread";
 declare const _dotnet: {
     getStaticMethod: typeof _getStaticMethod;
     getStaticProperty: typeof _getStaticProperty;
@@ -9,6 +11,10 @@ declare const _dotnet: {
     removeAssembly: (fullName: string) => void;
     getLoadedAssemblies: () => string[];
     loadAsemblyAsync: typeof _loadAssemblyAsync;
+    threading: {
+        createTask: typeof _createTask;
+        createThread: typeof _createThread;
+    };
     types: {
         sbyte: (number: number) => {
             type: string;
