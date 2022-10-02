@@ -10,20 +10,9 @@
 - Melon is architected to work within the npm (node package manager) environment, this means you can install existing packages that are compatible with the runtime's built-in api. We are also working to make more and more packages compatible.
 - Melon is designed to offer a quick solution for project prototyping, so that it offers the basics needed to create applications while offering scalability and maintainability when necessary.
 
-Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
+## **Built-in web development** 
 
-```ts
-const { getStaticMethod } = Melon.dotnet;
-const writeLine = getStaticMethod<void>("System:Console:WriteLine");
-
-writeLine("Hello World!");
-```
-
-<hr>
-
-### **Hands-on development** 
-
-Create a complete application in few lines with zero dependencies.
+Melon brings the power of ASP.NET to JavaScript, allowing you to build synchronous or asynchronous dedicated web applications with few lines, using an express-like interface that is easy and simple to use.
 
 ```ts
 const { http } = Melon;
