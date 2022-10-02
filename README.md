@@ -4,7 +4,11 @@
 
 📚 [Documentation](https://github.com/MelonRuntime/Melon/wiki) - ⏳ [Feature Coverage](./FEATURE_COVERAGE.md) - 💬 [Discord Server](https://discord.gg/wDJDT9Yq7C)
 
-<hr>
+## Why Melon?
+
+- Melon is based in [.NET](https://dotnet.microsoft.com/en-us/), a **cross-platform** open source framework for building powerful applications, this power is being extended to JavaScript and TypeScript projects with compatibility and interoperability by default.
+- Melon is architected to work within the npm (node package manager) environment, this means you can install existing packages that are compatible with the runtime's built-in api. We are also working to make more and more packages compatible.
+- Melon is designed to offer a quick solution for project prototyping, so that it offers the basics needed to create applications while offering scalability and maintainability when necessary.
 
 Portable, fast and powerful applications with all the features offered by the .NET environment via functions or interop.
 
