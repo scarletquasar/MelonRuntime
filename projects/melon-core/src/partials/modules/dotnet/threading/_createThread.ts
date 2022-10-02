@@ -1,11 +1,12 @@
-import { _Realm } from "../constructors/_Realm";
-
-function _createThread(...args: any[]) {
-    let tempRealm = new _Realm();
+/*  Internally creates a new Thread with the provided action
+/  (as a Function type). The thread is a direct interop from
+/  the .NET Thread object and can interact with the environment 
+/  of the caller thread.
+*/
+function _createThread(action: Function) {
+    const createThread = _$internalBinding["CreateThread"];
     
-    tempRealm.setInstance("thread", "System.Threading:Thread", ...args);
-    
-    return tempRealm.get("thread");
+    return createThread(action);
 }
 
 export { _createThread }

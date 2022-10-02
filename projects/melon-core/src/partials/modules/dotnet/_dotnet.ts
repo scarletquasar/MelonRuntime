@@ -19,7 +19,7 @@ const _dotnet = {
     loadAsemblyAsync: _loadAssemblyAsync,
     threading: {
         createTask: _createTask,
-        creatThread: _createThread
+        createThread: _createThread
     },
     types: _types,
     Realm: _Realm
