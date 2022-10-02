@@ -24,7 +24,7 @@ app.run();
 //App running in http://localhost:80
 ```
 
-## Intensive I/O operations
+## Intensive async I/O operations
 
 With the API of files and directories adapted to a JavaScript interface, it becomes simple to manage directories or files at the byte or text level in a simple and fast way, with just the use of simple methods without worrying about directly managing streams and cursors.
 
