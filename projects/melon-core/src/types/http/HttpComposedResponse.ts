@@ -1,7 +1,7 @@
 type HttpComposedResponse = {
     status: number,
     response: string,
-    headers: Record<string, any>
+    headers: string
 }
 
 export { HttpComposedResponse }
