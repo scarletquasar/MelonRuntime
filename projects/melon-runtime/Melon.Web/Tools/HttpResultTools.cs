@@ -48,7 +48,7 @@ namespace Melon.Web.Tools
 
         internal static Dictionary<string, dynamic> GetHttpHeaders(JsValue obj)
         {
-            var headers = obj.Get("headers").AsString();
+            var headers = obj.Get("headers") == JsValue.Undefined ? "{}" : obj.Get("headers").AsString();
             var result = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(headers)!;
 
             return result;
