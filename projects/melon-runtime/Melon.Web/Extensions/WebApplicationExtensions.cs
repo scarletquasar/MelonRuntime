@@ -18,6 +18,9 @@ namespace Melon.Web.Extensions
             {
                 async Task<object> operation(HttpRequest request, HttpContext context)
                 {
+                    if(endpoint.Method!.ToLower() != request.Method.ToLower())
+                        return Results.StatusCode(StatusCodes.Status405MethodNotAllowed);
+
                     var query = request.Query.ToDictionary(
                         x => x.Key,
                         x => string.Join("", x.Value)
@@ -79,20 +82,7 @@ namespace Melon.Web.Extensions
                     return ResultManager.GetHttpResult(evaluation);
                 }
 
-                switch (endpoint.Method)
-                {
-                    case "GET":
-                        webApp.MapGet(endpoint.Route!, operation);
-                        break;
-
-                    case "POST":
-                        webApp.MapPost(endpoint.Route!, operation);
-                        break;
-
-                    case "DELETE":
-                        webApp.MapDelete(endpoint.Route!, operation);
-                        break;
-                }
+                webApp.Map(endpoint.Route!, operation);
             }
 
             return webApp;
