@@ -42,7 +42,7 @@ namespace Melon.Web.Tools
                     }
                     catch (InvalidOperationException)
                     {
-                        await Task.Delay(100);
+                        await Task.Delay(1);
                     }
                 }
             });
