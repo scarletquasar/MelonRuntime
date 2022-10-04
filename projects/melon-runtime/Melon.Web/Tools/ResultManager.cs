@@ -9,7 +9,7 @@ namespace Melon.Web.Tools
         public static async Task<JsValue> ExecutePromise(
             Engine engine,
             string identifier,
-            uint promiseId
+            string promiseId
         )
         {
             JsValue? result = null;
@@ -19,8 +19,8 @@ namespace Melon.Web.Tools
                 Melon
                     .http
                     ._apps['{identifier}']
-                    ._promises[{promiseId}]
-            ";
+                    ._promises['{promiseId}']
+                ";
 
             var promiseCaller = engine.Evaluate(promiseCallerIdentifier);
             var promise = engine.Invoke(promiseCaller);
@@ -33,6 +33,7 @@ namespace Melon.Web.Tools
                     try
                     {
                         result = promise.UnwrapIfPromise();
+                        engine.Execute(promiseCallerIdentifier + " = undefined");
                         finished = true;
                     }
                     catch (PromiseRejectedException)
@@ -41,7 +42,7 @@ namespace Melon.Web.Tools
                     }
                     catch (InvalidOperationException)
                     {
-                        await Task.Delay(100);
+                        await Task.Delay(1);
                     }
                 }
             });

@@ -56,12 +56,12 @@ namespace Melon.Web.Extensions
 
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if (evaluation.IsNumber())
+                    if (evaluation.IsString() && evaluation.AsString().StartsWith("pending_melon_http_promise_"))
                     {
                         var promiseResult = await ResultManager.ExecutePromise(
                             engine,
                             identifierName,
-                            (uint)evaluation.AsNumber()
+                            evaluation.AsString()
                         );
 
                         var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
