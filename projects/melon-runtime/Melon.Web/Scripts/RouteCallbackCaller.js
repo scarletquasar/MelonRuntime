@@ -23,11 +23,11 @@
     const result = () => callback(request);
 
     if (isAsync) {
-        return (Melon
-            .http
-            ._apps[identifier]
-            ._promises
-            .push(result)) - 1;
+        const uuid = "pending_melon_http_promise_" + crypto.randomUUID();
+
+        Melon.http._apps[identifier]._promises[uuid] = result;
+
+        return uuid;
     }
 
     return result;
