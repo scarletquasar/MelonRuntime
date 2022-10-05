@@ -13,9 +13,11 @@ class _PgDocumentClient {
         return /^[A-Za-z0-9]*$/.test(string);
     }
 
-    //Dictionaries
+    /* Dictionaries: Alias to tables, in this context are collections to
+    /  englobe "Documents" following a coherent design to quick data 
+    /  storage environments and cases. */
 
-    async createDictionary(name: string) {
+    async createDictionaryAsync(name: string) {
         if(!this.#__checkStringPattern(name)) {
             throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
         }
@@ -23,7 +25,7 @@ class _PgDocumentClient {
         const script = `
             CREATE TABLE ${name} (
                 name varchar(255) PRIMARY KEY,
-                document varchar(255)
+                document JSONB
             );
         `;
 
@@ -80,7 +82,7 @@ class _PgDocumentClient {
             SELECT document FROM ${dictionary} WHERE name = '${name}'
         `;
 
-        return this.#provider.executeQuery<TDocument>(script);
+        return this.#provider.executeQuery<TDocument>(script)[0];
     }
 
     async deleteDocumentAsync(dictionary: string, name: string) {
