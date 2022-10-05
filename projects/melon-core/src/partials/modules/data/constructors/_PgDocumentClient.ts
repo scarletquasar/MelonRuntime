@@ -82,7 +82,7 @@ class _PgDocumentClient {
             SELECT document FROM ${dictionary} WHERE name = '${name}'
         `;
 
-        return this.#provider.executeQuery<TDocument>(script)[0];
+        return this.#provider.executeQuery<TDocument>(script)[0].document;
     }
 
     async deleteDocumentAsync(dictionary: string, name: string) {
