@@ -1,17 +1,5 @@
 import { _createTask } from "./_createTask";
 
-enum TaskStatus
-{
-    Created,
-    WaitingForActivation,
-    WaitingToRun,
-    Running,
-    WaitingForChildrenToComplete,
-    RanToCompletion,
-    Canceled,
-    Faulted
-}
-
 class _Task<T> {
     #__interop_task: any;
 
@@ -33,10 +21,6 @@ class _Task<T> {
 
     get isFaulted(): boolean {
         return this.#__interop_task.isFaulted;
-    }
-
-    get taskStatus(): TaskStatus {
-        return this.#__interop_task.taskStatus;
     }
 
     get result(): T {
