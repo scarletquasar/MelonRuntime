@@ -10,6 +10,7 @@ import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
 import { _createTask } from "./threading/_createTask";
 import { _createThread } from "./threading/_createThread";
 import { _Task } from "./threading/_Task";
+import { _Thread } from "./threading/_Thread";
 
 const _dotnet = {
     getStaticMethod: _getStaticMethod,
@@ -21,7 +22,8 @@ const _dotnet = {
     threading: {
         createTask: _createTask,
         createThread: _createThread,
-        Task: _Task
+        Task: _Task,
+        Thread: _Thread
     },
     types: _types,
     Realm: _Realm
