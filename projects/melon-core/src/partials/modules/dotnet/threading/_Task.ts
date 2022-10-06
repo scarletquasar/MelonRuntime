@@ -3,7 +3,7 @@ import { _createTask } from "./_createTask";
 class _Task<T> {
     #__interop_task: any;
 
-    constructor(action: Function) {
+    constructor(action: (...args: any[]) => T) {
         this.#__interop_task = _createTask(action);
     }
 
