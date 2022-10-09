@@ -1,4 +1,5 @@
-﻿using Melon.Static.Runtime;
+﻿using Melon.Models.Engine;
+using Melon.Static.Runtime;
 using Melon.Web.Extensions;
 using Melon.Web.Models;
 using System.Text.Json;
@@ -32,8 +33,16 @@ namespace Melon.Web
 
             var httpsCondition = app.EnableHttps ? "s" : string.Empty;
 
-            var engine = Runtime.Engine;
-            engine!.Execute($"Melon.http._apps['{app.Name}']._promises = {{}}");
+            var engine = Runtime.Engine!;
+
+            using var melonHttpApps = new EngineOperation(engine)
+                .WithBase("Melon")
+                .WithProperty("http")
+                .WithProperty("_apps")
+                .WithProperty(app.Name)
+                .WithProperty("_promises");
+
+            melonHttpApps.Set("{}");
 
             var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 

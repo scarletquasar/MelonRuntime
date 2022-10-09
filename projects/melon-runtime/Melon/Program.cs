@@ -71,6 +71,7 @@ namespace Melon
 
             if (!commandExecution)
             {
+                Console.WriteLine();
                 Helpers.ExecuteWithHandler(Helpers.WaitForScript);
             }
         }
