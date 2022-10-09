@@ -8,5 +8,6 @@ declare interface Std {
     melon: _melon,
     boolean: _boolean,
     json: _json,
-    time: _time
+    time: _time,
+    system: _system
 }
