@@ -98,7 +98,6 @@ namespace Melon.Models.Engine
 
         public void Dispose()
         {
-            GC.Collect();
             GC.SuppressFinalize(this);
         }
     }
