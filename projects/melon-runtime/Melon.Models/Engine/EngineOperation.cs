@@ -2,7 +2,7 @@
 
 namespace Melon.Models.Engine
 {
-    public class EngineOperation
+    public class EngineOperation : IDisposable
     {
         private string _operationBase;
         private List<string> _operationItems;
@@ -94,6 +94,12 @@ namespace Melon.Models.Engine
             }
 
             return (T)(object)_engine.Evaluate(finalOperation);
-        } 
+        }
+
+        public void Dispose()
+        {
+            GC.Collect();
+            GC.SuppressFinalize(this);
+        }
     }
 }

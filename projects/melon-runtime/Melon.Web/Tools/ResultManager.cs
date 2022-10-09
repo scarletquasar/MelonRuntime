@@ -15,7 +15,7 @@ namespace Melon.Web.Tools
         {
             JsValue? result = null;
 
-            var promiseCallerIdentifier = new EngineOperation(engine)
+            using var promiseCallerIdentifier = new EngineOperation(engine)
                 .WithBase("Melon")
                 .WithProperty("http")
                 .WithProperty("_apps")
