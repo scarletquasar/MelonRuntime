@@ -35,17 +35,6 @@ namespace Melon.Web.Extensions
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
 
-                    var callbackObjectReference =
-                        $@"
-                        Melon
-                        .http
-                        ._apps['{identifierName}']
-                        .getEndpoints()
-                        .find(x => x.method === '{endpoint!.Method!}' 
-                                && x.route === '{endpoint!.Route!}')
-                        .callback
-                    ";
-
                     var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
                         identifierName,
                         endpoint!.Method!,
