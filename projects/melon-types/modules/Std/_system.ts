@@ -16,7 +16,9 @@ declare enum Platform {
 }
 
 declare type _system = {
-    platform: Platform,
-    version: string,
-    servicePack: string
+    osInformation: {
+        platform: Platform,
+        version: string,
+        servicePack: string
+    }
 }
