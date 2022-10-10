@@ -1,3 +1,0 @@
-declare type _system = {
-    
-}

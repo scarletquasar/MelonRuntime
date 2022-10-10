@@ -4,10 +4,12 @@
  * support and utilities.
  */
 declare interface Std {
-    shift(): typeof shift,
+    shift(): typeof _shift,
     melon: _melon,
     boolean: _boolean,
     json: _json,
     time: _time,
-    system: _system
+    system: _system,
+    environment: _environment,
+    process: _process
 }
