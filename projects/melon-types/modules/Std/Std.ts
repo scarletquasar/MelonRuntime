@@ -4,7 +4,7 @@
  * support and utilities.
  */
 declare interface Std {
-    shift(): typeof _shift,
+    shift(): _shift,
     melon: _melon,
     boolean: _boolean,
     json: _json,

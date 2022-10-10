@@ -1,3 +1,3 @@
-declare function _shift(): {
+declare type _shift = () => {
     option: (condition: boolean, callback: () => unknown) => any;
 };
