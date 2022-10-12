@@ -1,7 +1,4 @@
-/// <reference path="./modules/Console/Console.ts" />
-/// <reference path="./modules/Crypto/Crypto.ts" />
-/// <reference path="./modules/Http/Http.ts" />
-/// <reference path="./modules/Std/Std.ts" />
+/// <reference path="./modules/Http/HttpTypes.ts" />
 
 /**
  * The console interface provides access to the debugging/output console
