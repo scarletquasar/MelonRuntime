@@ -7,5 +7,9 @@ declare interface Melon {
      * Constructor of the Melon.Version class.
      */
     Version: new(major: number, minor: number, patch: number) => Version,
-    std: Std
+    std: Std,
+    http: Http,
+    crypto: Crypto,
+    guards: Guards,
+    console: Console
 }
