@@ -9,3 +9,29 @@ declare interface Realm {
     delete: (name: string) => void;
     close: (delay: number) => void;
 }
+
+declare interface Task<T> {
+    isCanceled: boolean;
+    isCompleted: boolean;
+    isCompletedSuccessfully: boolean;
+    isFaulted: boolean;
+    result: T;
+    start: () => void;
+    wait: () => void;
+    resolve: (cancellationFunction?: () => boolean) => Promise<T>;
+    unsafeGetInteropTask: () => any;
+}
+
+declare interface Thread {
+    start: () => void;
+    unsafeStart: () => void;
+    abort: () => void;
+    suspend: () => void;
+    resume: () => void;
+    join: () => void;
+    yield: () => void;
+    memoryBarrier: () => void;
+    beginCriticalRegion: () => void;
+    endCriticalRegion: () => void;
+    unsafeGetInteropThread: () => any;
+}

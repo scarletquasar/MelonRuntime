@@ -6,8 +6,10 @@ declare interface Dotnet {
     getLoadedAssemblies: () => string[];
     loadAsemblyAsync: (path: string) => Promise<string>;
     threading: {
-        createTask: (action: Function) => any;
-        createThread: (action: Function) => any;
+        createTask: (action: Function) => any,
+        createThread: (action: Function) => any,
+        Task: new<T>(action: (...args: any[]) => T) => Task<T>,
+        Thread: new(action: (...args: any[]) => any) => Thread
     };
     types: {
         sbyte: (number: number) => {
