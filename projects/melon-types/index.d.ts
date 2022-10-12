@@ -1,3 +1,8 @@
+/// <reference path="./modules/Console/Console.ts" />
+/// <reference path="./modules/Crypto/Crypto.ts" />
+/// <reference path="./modules/Http/Http.ts" />
+/// <reference path="./modules/Std/Std.ts" />
+
 /**
  * The console interface provides access to the debugging/output console
  * and is focused in showing information on the screen, using console
