@@ -12,5 +12,6 @@ declare interface Melon {
     crypto: Crypto,
     guards: Guards,
     console: Console,
-    fs: Fs
+    fs: Fs,
+    dotnet: Dotnet
 }
