@@ -91,4 +91,8 @@ declare interface Http {
         port: number, 
         enableHttps: boolean 
     }) => HttpApplication;
+    result: 
+        (statusCode: number, response?: any, headers?: Record<string, any>) => HttpComposedResponse;
+    static:
+        (response: any, type: `${string}/${string}`, headers?: Record<string, any>) => HttpComposedResponse;
 }
