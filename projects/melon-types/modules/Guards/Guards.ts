@@ -12,5 +12,5 @@ declare type Guards = {
     string: {
         isNullOrEmpty: (string: string) => boolean;
         isNullOrWhiteSpace: (string: string) => boolean;
-    },
+    }
 }
