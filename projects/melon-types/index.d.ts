@@ -16,3 +16,6 @@ declare const crypto: Crypto;
  * including direct reference to specification objects.
  */
 declare const Melon: Melon;
+
+declare const setTimeout: typeof Melon.std.time.setTimeout;
+declare const setInterval: typeof Melon.std.time.setInterval;
