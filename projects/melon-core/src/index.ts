@@ -24,6 +24,7 @@ const Melon = {
 
 globalThis.console = Melon.console as any;
 globalThis.crypto = Melon.crypto;
+globalThis.fs = Melon.fs;
 
 globalThis.setTimeout = Melon.std.time.setTimeout as any;
 globalThis.setInterval = Melon.std.time.setInterval as any;

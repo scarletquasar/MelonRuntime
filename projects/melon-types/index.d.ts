@@ -20,5 +20,7 @@ declare const crypto: Crypto;
  */
 declare const Melon: Melon;
 
+declare const fs: Fs;
+
 declare const setTimeout: typeof Melon.std.time.setTimeout;
 declare const setInterval: typeof Melon.std.time.setInterval;

@@ -11,5 +11,6 @@ declare interface Melon {
     http: Http,
     crypto: Crypto,
     guards: Guards,
-    console: Console
+    console: Console,
+    fs: Fs
 }
