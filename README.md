@@ -29,8 +29,6 @@ app.run();
 With the API of files and directories adapted to a JavaScript interface, it becomes simple to manage directories or files at the byte or text level in a simple and fast way, with just the use of simple methods without worrying about directly managing streams and cursors.
 
 ```ts
-const { fs } = Melon;
-
 async function createFileAndReadContent() {
   await fs.writeTextAsync("./hello.txt", "Hello world");
   const content = await fs.readTextAsync("./hello.txt");
@@ -49,7 +47,6 @@ Multithreaded parallel work can be done simply with Melon, the runtime uses an i
 
 ```ts
 const { createThread } = Melon.dotnet.threading;
-const { fs } = Melon;
 
 const workerThread = createThread(() => {
   fs.writeText("./hello.txt", "Hello world");
