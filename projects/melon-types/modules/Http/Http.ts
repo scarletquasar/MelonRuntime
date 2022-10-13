@@ -1,4 +1,4 @@
-declare type Http = {
+declare const Http: {
     request: (
         target: string, 
         method?: HttpMethod, 
@@ -22,3 +22,5 @@ declare type Http = {
     static:
         (response: any, type: `${string}/${string}`, headers?: Record<string, any>) => HttpComposedResponse;
 }
+
+export { Http }

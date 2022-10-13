@@ -3,7 +3,7 @@
  * and is focused in showing information on the screen, using console
  * timers and debugging data.
  */
-declare type Console = {
+declare const Console: {
     time: (name: string) => void;
     timeEnd: (name: string) => void;
     log: (...args: any[]) => void;
@@ -12,3 +12,5 @@ declare type Console = {
     clear: () => void;
     table: (tabularData: any) => void;
 }
+
+export { Console }

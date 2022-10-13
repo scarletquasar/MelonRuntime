@@ -3,7 +3,7 @@
  * features and contains methods and properties focused in
  * support and utilities.
  */
-declare type Std = {
+declare const Std: {
     shift(): _shift,
     melon: _melon,
     boolean: _boolean,
@@ -13,3 +13,5 @@ declare type Std = {
     environment: _environment,
     process: _process
 }
+
+export { Std }

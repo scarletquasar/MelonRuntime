@@ -4,6 +4,8 @@
  * cryptographically strong random number generator and to 
  * cryptographic primitives.
  */
-declare type Crypto = {
+declare const Crypto: {
     randomUUID: () => string;
 }
+
+export { Crypto }
