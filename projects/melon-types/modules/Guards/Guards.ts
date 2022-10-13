@@ -1,4 +1,4 @@
-declare type Guards = {
+declare const Guards: {
     number: {
         isEven: (number: number) => boolean;
         isOdd: (number: number) => boolean;
@@ -14,3 +14,5 @@ declare type Guards = {
         isNullOrWhiteSpace: (string: string) => boolean;
     }
 }
+
+export { Guards }

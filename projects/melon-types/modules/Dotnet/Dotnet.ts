@@ -1,4 +1,4 @@
-declare type Dotnet = {
+declare const Dotnet: {
     getStaticMethod: <T>(expression: DotnetFetchExpession) => (...args: any) => T;
     getStaticProperty: <T>(expression: DotnetFetchExpession) => T;
     loadAssembly: (path: string) => string;
@@ -59,3 +59,5 @@ declare type Dotnet = {
     };
     Realm: new(name?: string) => Realm;
 }
+
+export { Dotnet }

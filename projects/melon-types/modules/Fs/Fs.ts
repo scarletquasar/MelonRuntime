@@ -1,4 +1,4 @@
-declare type Fs = {
+declare const Fs: {
     readText: (path: string) => string;
     writeText: (path: string, content: string) => void;
     readBytes: (path: string) => Uint8Array;
@@ -20,3 +20,5 @@ declare type Fs = {
     deleteDirectory: (path: string) => void;
     deleteDirectoryAsync: (path: string) => Promise<void>;
 }
+
+export { Fs }

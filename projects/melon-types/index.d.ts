@@ -7,21 +7,21 @@
  * and is focused in showing information on the screen, using console
  * timers and debugging data.
  */
-declare const console: Console;
+declare const console: typeof import ("./modules/Console/Console").Console;
 /**
  * The Crypto interface represents basic cryptography features 
  * available in the current context. It allows access to a 
  * cryptographically strong random number generator and to 
  * cryptographic primitives.
  */
-declare const crypto: Crypto; 
+declare const crypto: typeof import ("./modules/Crypto/Crypto").Crypto; 
 /**
  * The Melon interface provides access to all the runtime features,
  * including direct reference to specification objects.
  */
-declare const Melon: Melon;
+declare const Melon: typeof import ("./modules/Melon").Melon;
 
-declare const fs: Fs;
+declare const fs: typeof import ("./modules/Fs/Fs").Fs;
 
-declare const setTimeout: typeof Melon.std.time.setTimeout;
-declare const setInterval: typeof Melon.std.time.setInterval;
+declare const setTimeout: (callback: Function, delay: number) => void;
+declare const setInterval: (callback: Function, delay: number) => void;

@@ -1,4 +1,4 @@
-declare type Data = {
+declare const Data: {
     MySqlClient: new(options: DatabaseProviderOptions) => DatabaseClient;
     PgClient: new(options: DatabaseProviderOptions) => DatabaseClient;
     SqlServerClient: new(options: DatabaseProviderOptions) => DatabaseClient;
@@ -11,3 +11,5 @@ declare type Data = {
         customModifier: Function
     ) => boolean;
 }
+
+export { Data }
