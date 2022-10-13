@@ -13,5 +13,6 @@ declare interface Melon {
     guards: Guards,
     console: Console,
     fs: Fs,
-    dotnet: Dotnet
+    dotnet: Dotnet,
+    data: Data
 }
