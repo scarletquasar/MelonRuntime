@@ -16,7 +16,7 @@ class _PgClient implements DatabaseProviderInternal {
     executeQuery<T>(sql: string) {
         const sendQueryCommand = _$internalBinding["PostgreSQLBindingQuery"];
         const result = sendQueryCommand(sql, this.#options);
-
+        
         return JSON.parse(result) as T;
     }
 }

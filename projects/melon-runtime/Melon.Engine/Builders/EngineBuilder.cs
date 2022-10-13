@@ -1,4 +1,5 @@
 ﻿using Melon.Library.Static;
+using Melon.Models.Engine;
 using Newtonsoft.Json;
 using System.Reflection;
 
@@ -6,18 +7,18 @@ namespace Melon.Engine.Builders
 {
     public class EngineBuilder
     {
-        private Jint.Engine? engine;
-        private readonly Dictionary<string, string> loadedScripts;
+        private Jint.Engine? _engine;
+        private readonly Dictionary<string, string> _loadedScripts;
 
         public EngineBuilder()
         {
-            loadedScripts = new();
+            _loadedScripts = new();
         }
 
         public EngineBuilder Load(string identifier)
         {
             var content = LibraryLoader.ByIdentifier(identifier);
-            loadedScripts.Add(identifier, content);
+            _loadedScripts.Add(identifier, content);
 
             return this;
         }
@@ -26,24 +27,38 @@ namespace Melon.Engine.Builders
         {
             var internalBinding = InternalBinding.Dictionary;
 
-            engine = new();
-            engine.SetValue("_$internalBinding", internalBinding);
+            _engine = new();
+            _engine.SetValue("_$internalBinding", internalBinding);
 
-            foreach (var script in loadedScripts)
+            foreach (var script in _loadedScripts)
             {
                 var code = script.Value;
-                engine.Execute(code);
+                _engine.Execute(code);
             }
 
-            var names = JsonConvert.SerializeObject(loadedScripts.Keys.ToArray());
+            var functionPrototype = new EngineOperation(_engine)
+                .WithBase("Function")
+                .WithProperty("prototype");
+
+            functionPrototype
+                .WithProperty("toString")
+                .Set(@"function () { return _$internalBinding['StringifyFunction'](this) }");
+
+            var names = JsonConvert.SerializeObject(_loadedScripts.Keys.ToArray());
+
             var version = Assembly.GetCallingAssembly().GetName().Version!;
             var versionScriptConstructor =
                 $"new Melon.Version({version.Major}, {version.Minor}, {version.Build})";
 
-            engine.Execute($"Melon.std.melon.loadedModules = {names}");
-            engine.Execute($"Melon.std.melon.currentVersion = {versionScriptConstructor}");
+            var melon = new EngineOperation(_engine)
+                .WithBase("Melon")
+                .WithProperty("std")
+                .WithProperty("melon");
 
-            return engine;
+            melon.WithProperty("loadedModules").Set(names);
+            melon.WithProperty("currentVersion").Set(versionScriptConstructor);
+
+            return _engine;
         }
     }
 }

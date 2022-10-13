@@ -11,7 +11,7 @@ namespace Melon.Library.Static.Database
             var connectionParams = new NpgsqlConnectionStringBuilder
             {
                 Host = options.host,
-                Port = options.port,
+                Port = Convert.ToInt32(options.port),
                 Username = options.user,
                 Database = options.database,
                 Password = options.password
@@ -34,7 +34,7 @@ namespace Melon.Library.Static.Database
             var connectionParams = new NpgsqlConnectionStringBuilder
             {
                 Host = options.host,
-                Port = options.port,
+                Port = Convert.ToInt32(options.port),
                 Username = options.user,
                 Database = options.database,
                 Password = options.password

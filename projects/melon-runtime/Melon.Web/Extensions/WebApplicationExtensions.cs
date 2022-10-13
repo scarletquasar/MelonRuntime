@@ -18,6 +18,9 @@ namespace Melon.Web.Extensions
             {
                 async Task<object> operation(HttpRequest request, HttpContext context)
                 {
+                    if(endpoint.Method!.ToLower() != request.Method.ToLower())
+                        return Results.StatusCode(StatusCodes.Status405MethodNotAllowed);
+
                     var query = request.Query.ToDictionary(
                         x => x.Key,
                         x => string.Join("", x.Value)
@@ -32,17 +35,6 @@ namespace Melon.Web.Extensions
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
 
-                    var callbackObjectReference =
-                        $@"
-                        Melon
-                        .http
-                        ._apps['{identifierName}']
-                        .getEndpoints()
-                        .find(x => x.method === '{endpoint!.Method!}' 
-                                && x.route === '{endpoint!.Route!}')
-                        .callback
-                    ";
-
                     var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
                         identifierName,
                         endpoint!.Method!,
@@ -53,12 +45,12 @@ namespace Melon.Web.Extensions
 
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if (evaluation.IsNumber())
+                    if (evaluation.IsString() && evaluation.AsString().StartsWith("pending_melon_http_promise_"))
                     {
                         var promiseResult = await ResultManager.ExecutePromise(
                             engine,
                             identifierName,
-                            (uint)evaluation.AsNumber()
+                            evaluation.AsString()
                         );
 
                         var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
@@ -79,20 +71,7 @@ namespace Melon.Web.Extensions
                     return ResultManager.GetHttpResult(evaluation);
                 }
 
-                switch (endpoint.Method)
-                {
-                    case "GET":
-                        webApp.MapGet(endpoint.Route!, operation);
-                        break;
-
-                    case "POST":
-                        webApp.MapPost(endpoint.Route!, operation);
-                        break;
-
-                    case "DELETE":
-                        webApp.MapDelete(endpoint.Route!, operation);
-                        break;
-                }
+                webApp.Map(endpoint.Route!, operation);
             }
 
             return webApp;

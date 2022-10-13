@@ -44,6 +44,26 @@ class _HttpApplication {
         this.#endpoints.push(httpRoute);
     }
 
+    put(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
+        const httpRoute = new _HttpEndpoint(route, "PUT", callback);
+        this.#endpoints.push(httpRoute);
+    }
+
+    patch(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
+        const httpRoute = new _HttpEndpoint(route, "PATCH", callback);
+        this.#endpoints.push(httpRoute);
+    }
+
+    head(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
+        const httpRoute = new _HttpEndpoint(route, "HEAD", callback);
+        this.#endpoints.push(httpRoute);
+    }
+
+    options(route: string, callback: CallbackFunction | AsyncCallbackFunction) {
+        const httpRoute = new _HttpEndpoint(route, "OPTIONS", callback);
+        this.#endpoints.push(httpRoute);
+    }
+
     listen(port: number, host = this.host) {
         this.#echoes.push({
             host,

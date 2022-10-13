@@ -2,7 +2,6 @@
 using Cli.NET.Models;
 using Melon.Static.Runtime;
 using Melon.Commands;
-using Melon.Models;
 using Melon.Builders;
 
 namespace Melon
@@ -71,6 +70,7 @@ namespace Melon
 
             if (!commandExecution)
             {
+                Console.WriteLine();
                 Helpers.ExecuteWithHandler(Helpers.WaitForScript);
             }
         }

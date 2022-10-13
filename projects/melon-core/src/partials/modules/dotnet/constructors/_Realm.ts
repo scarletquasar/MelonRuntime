@@ -11,7 +11,11 @@ class _Realm implements Realm {
     close: (delay: number) => void;
 
     constructor(name?: string) {
-        _$internalBinding["CreateRealm"](name ?? _crypto.randomUUID());
+        if(!name) {
+            name = _crypto.randomUUID();
+        }
+
+        _$internalBinding["CreateRealm"](name);
 
         this.name = name;
 

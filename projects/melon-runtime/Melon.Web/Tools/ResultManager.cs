@@ -1,6 +1,7 @@
 ﻿using Jint;
 using Jint.Native;
 using Jint.Runtime;
+using Melon.Models.Engine;
 
 namespace Melon.Web.Tools
 {
@@ -9,20 +10,21 @@ namespace Melon.Web.Tools
         public static async Task<JsValue> ExecutePromise(
             Engine engine,
             string identifier,
-            uint promiseId
+            string promiseId
         )
         {
             JsValue? result = null;
 
-            var promiseCallerIdentifier =
-                $@"
-                Melon
-                    .http
-                    ._apps['{identifier}']
-                    ._promises[{promiseId}]
-            ";
+            using var promiseCallerIdentifier = new EngineOperation(engine)
+                .WithBase("Melon")
+                .WithProperty("http")
+                .WithProperty("_apps")
+                .WithProperty(identifier)
+                .WithProperty("_promises")
+                .WithProperty(promiseId);
 
-            var promiseCaller = engine.Evaluate(promiseCallerIdentifier);
+            var promiseCaller = promiseCallerIdentifier.As<JsValue>();
+
             var promise = engine.Invoke(promiseCaller);
 
             await Task.Run(async () =>
@@ -33,6 +35,7 @@ namespace Melon.Web.Tools
                     try
                     {
                         result = promise.UnwrapIfPromise();
+                        promiseCallerIdentifier.Set("undefined");
                         finished = true;
                     }
                     catch (PromiseRejectedException)
@@ -41,7 +44,7 @@ namespace Melon.Web.Tools
                     }
                     catch (InvalidOperationException)
                     {
-                        await Task.Delay(100);
+                        await Task.Delay(1);
                     }
                 }
             });

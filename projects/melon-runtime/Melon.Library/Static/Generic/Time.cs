@@ -4,7 +4,7 @@ namespace Melon.Library.Static.Generic
 {
     public static class Time
     {
-        private const string stdSubmodule = "std.time._timers";
+        private const string stdSubmodule = "Melon.std.time._timers";
         private const string stdTargetAction = "callback()";
 
         public static void SetTimeout(int identifier, int delay)
