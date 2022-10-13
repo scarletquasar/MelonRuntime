@@ -15,6 +15,10 @@ namespace Melon.Library.Static
         public static Dictionary<string, dynamic> Dictionary { get; } =
             new()
             {
+                { 
+                    "StringifyFunction", 
+                    new Func<Func<JsValue, JsValue[], JsValue>, string>(Functions.StringifyFunction) 
+                },
                 { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
                 { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
                 { "ProcessExit", new Action<int>(Environment.Exit) },

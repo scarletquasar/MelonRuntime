@@ -36,6 +36,14 @@ namespace Melon.Engine.Builders
                 _engine.Execute(code);
             }
 
+            var functionPrototype = new EngineOperation(_engine)
+                .WithBase("Function")
+                .WithProperty("prototype");
+
+            functionPrototype
+                .WithProperty("toString")
+                .Set(@"function () { return _$internalBinding['StringifyFunction'](this) }");
+
             var names = JsonConvert.SerializeObject(_loadedScripts.Keys.ToArray());
 
             var version = Assembly.GetCallingAssembly().GetName().Version!;
