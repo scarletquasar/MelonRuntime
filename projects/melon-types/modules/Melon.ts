@@ -2,7 +2,7 @@
  * The Melon interface provides access to all the runtime features,
  * including direct reference to specification objects.
  */
-declare interface Melon {
+declare type Melon = {
     /**
      * Constructor of the Melon.Version class.
      */
