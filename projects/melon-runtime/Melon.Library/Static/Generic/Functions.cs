@@ -1,17 +1,18 @@
 ﻿using Jint.Native;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Jint.Runtime.Interop;
 
 namespace Melon.Library.Static.Generic
 {
     public static class Functions
     {
-        public static string StringifyFunction(Func<JsValue, JsValue[], JsValue> test)
+        public static string StringifyFunction(Func<JsValue, JsValue[], JsValue> function)
         {
-            return ((dynamic)test).Target.FunctionDeclaration.ToString()!;
+            var obj = (dynamic)function;
+
+            if(obj.Target.GetType() != typeof(ClrFunctionInstance))
+               return obj.Target.FunctionDeclaration.ToString();
+
+            return "function() { [native code] }";
         }
     }
 }
