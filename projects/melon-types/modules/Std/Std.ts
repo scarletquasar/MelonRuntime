@@ -3,7 +3,7 @@
  * features and contains methods and properties focused in
  * support and utilities.
  */
-declare interface Std {
+declare type Std = {
     shift(): _shift,
     melon: _melon,
     boolean: _boolean,

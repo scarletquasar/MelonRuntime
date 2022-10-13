@@ -4,6 +4,6 @@
  * cryptographically strong random number generator and to 
  * cryptographic primitives.
  */
-declare interface Crypto {
+declare type Crypto = {
     randomUUID: () => string;
 }
