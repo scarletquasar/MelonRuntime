@@ -1,6 +1,6 @@
 # <img src="https://avatars.githubusercontent.com/u/105192336?s=400&u=4375e36be647d2a64727bbefc2382c2801897b39&v=4" width="26"> Melon [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime) [![npm downloads](https://badgen.net/npm/dm/melon-runtime)](https://www.npmjs.com/package/melon-runtime) [![license](https://badgen.net/github/license/MelonRuntime/Melon)](#)
 
-**Melon** is a declarative modern .NET JavaScript runtime focused in rapid prototyping of projects, using minimal dependencies without breaking nothing.
+**Melon** is a declarative modern .NET JavaScript runtime focused in rapid prototyping of projects, using minimal dependencies without breaking anything.
 
 📚 [Getting Started (documentation)](https://github.com/MelonRuntime/Melon/wiki) - 💬 [Discord Server](https://discord.gg/wDJDT9Yq7C)
 
