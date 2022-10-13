@@ -3,7 +3,7 @@
  * and is focused in showing information on the screen, using console
  * timers and debugging data.
  */
-declare interface Console {
+declare type Console = {
     time: (name: string) => void;
     timeEnd: (name: string) => void;
     log: (...args: any[]) => void;

@@ -1,4 +1,4 @@
-declare interface Http {
+declare type Http = {
     request: (
         target: string, 
         method?: HttpMethod, 

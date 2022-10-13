@@ -1,4 +1,4 @@
-declare interface Data {
+declare type Data = {
     MySqlClient: new(options: DatabaseProviderOptions) => DatabaseClient;
     PgClient: new(options: DatabaseProviderOptions) => DatabaseClient;
     SqlServerClient: new(options: DatabaseProviderOptions) => DatabaseClient;

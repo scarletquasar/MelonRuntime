@@ -1,4 +1,4 @@
-declare interface Fs {
+declare type Fs = {
     readText: (path: string) => string;
     writeText: (path: string, content: string) => void;
     readBytes: (path: string) => Uint8Array;

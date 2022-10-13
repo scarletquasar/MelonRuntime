@@ -1,4 +1,4 @@
-declare interface Dotnet {
+declare type Dotnet = {
     getStaticMethod: <T>(expression: DotnetFetchExpession) => (...args: any) => T;
     getStaticProperty: <T>(expression: DotnetFetchExpession) => T;
     loadAssembly: (path: string) => string;
