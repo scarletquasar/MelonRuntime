@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Declarative modern .NET JavaScript runtime",
   "type": "module",
   "scripts": {
@@ -16,12 +16,12 @@
     "typescript",
     "data",
     "dotnet",
-    "fast",
     "docker",
     "mit",
     "windows",
     "macos",
-    "linux"
+    "linux",
+    "melon"
   ],
   "repository": {
     "type": "git",
