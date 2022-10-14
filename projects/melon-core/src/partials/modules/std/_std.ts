@@ -13,6 +13,7 @@ import { _exit } from "./process/_exit";
 import { _osInformation } from "./system/_osInformation";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
+import { _Timer } from "./time/_Timer";
 import { _shift } from "./_shift";
 
 const _std = {
@@ -31,7 +32,8 @@ const _std = {
     time: {
         _timers: [],
         setInterval: _setInterval,
-        setTimeout: _setTimeout
+        setTimeout: _setTimeout,
+        Timer: _Timer
     },
     system: {
         osInformation: _osInformation
