@@ -22,8 +22,6 @@ namespace Melon.Library.Static
                 { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
                 { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
                 { "ProcessExit", new Action<int>(Environment.Exit) },
-                { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
-                { "SetInterval", new Action<int, int>(Time.SetInterval) },
                 { "ReadFileText", new Func<string, string>(File.ReadAllText) },
                 { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
                 { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
