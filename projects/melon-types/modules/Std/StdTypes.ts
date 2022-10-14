@@ -14,3 +14,7 @@ declare enum Platform {
     MacOSX = 6,
     Other = 7
 }
+
+declare interface Timer {
+    cancel: () => void;
+}

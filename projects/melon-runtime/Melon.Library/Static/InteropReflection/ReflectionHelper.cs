@@ -42,7 +42,9 @@ namespace Melon.Library.Static.InteropReflection
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
                 .Where(x => x.Namespace == nSpace)
-                .Where(x => x.FullName != null && x.FullName.Contains(search));
+                .Where(x => x.FullName == $"{nSpace}.{search}");
+
+            var bab = types.First().GetMethods();
 
             return types
                 .First()
