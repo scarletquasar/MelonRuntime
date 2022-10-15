@@ -1,6 +1,10 @@
-﻿using Melon.Models.Library;
+﻿using DotnetFetch;
+using DotnetFetch.Models;
+using Melon.Models.Library;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace Melon.Library.Static.Web
 {
@@ -61,6 +65,22 @@ namespace Melon.Library.Static.Web
                 Ok = result.IsSuccessStatusCode,
                 StatusCode = (uint)result.StatusCode
             };
+        }
+
+        public static Response Fetch(
+            string resource, 
+            ExpandoObject? options = null
+        )
+        {
+            var json = new JsonObject();
+            var expandoDic = (IDictionary<string, object>)options;
+
+            foreach (var item in expandoDic!)
+            {
+                json[item.Key] = (JsonNode)item.Value;
+            }
+
+            return GlobalFetch.Fetch(resource, json).Result;
         }
     }
 }
