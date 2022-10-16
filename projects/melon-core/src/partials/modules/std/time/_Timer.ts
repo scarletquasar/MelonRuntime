@@ -7,13 +7,9 @@ class _Timer {
 
     constructor(callback: Function, delay: number, repeat: boolean) {
         const activator = async () => {
-            var unixtime_ms = new Date().getTime();
-            while(new Date().getTime() < unixtime_ms + delay) {
-                await (async () => null)();
-            }
-    
+            await _std.async.nextTick(delay);
             callback();
-        }
+        };
 
         this.#activator = activator;
         this.#repeat = repeat;

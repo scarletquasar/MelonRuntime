@@ -9,8 +9,8 @@ async function _requestAsync(
     body: Record<string, any> = {},
     headers: Record<string, any> = {}
 ): Promise<_Response> {
+    await _std.async.nextTick();
     const result = _request(target, method, body, headers);
-
     return result;
 }
 

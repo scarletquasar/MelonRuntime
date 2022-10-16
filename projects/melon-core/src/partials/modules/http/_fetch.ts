@@ -10,7 +10,7 @@ async function _fetch(
     const rawResult = await _$internalBinding["Fetch"](target, options);
 
     while(!rawResult.Status) {
-        await (async () => {})();
+        await _std.async.nextTick(1);
     }
 
     return rawResult;
