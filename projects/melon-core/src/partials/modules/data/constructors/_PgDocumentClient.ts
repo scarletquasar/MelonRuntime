@@ -30,7 +30,7 @@ class _PgDocumentClient {
             );
         `;
 
-        await eval("Melon.std.async.nextTick()");
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -51,7 +51,7 @@ class _PgDocumentClient {
             VALUES ('${name}', '${documentString}')
         `;
 
-        await eval("Melon.std.async.nextTick()");
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -70,7 +70,7 @@ class _PgDocumentClient {
             WHERE name = '${name}'
         `;
 
-        await eval("Melon.std.async.nextTick()");
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -102,7 +102,7 @@ class _PgDocumentClient {
             DELETE FROM ${dictionary} WHERE name = '${name}'
         `;
 
-        await eval("Melon.std.async.nextTick()");
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 }
