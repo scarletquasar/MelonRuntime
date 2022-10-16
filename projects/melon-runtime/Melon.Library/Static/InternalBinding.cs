@@ -69,7 +69,7 @@ namespace Melon.Library.Static
                 },
                 {
                     "Fetch",
-                    new Func<string, ExpandoObject?, Response>(Http.Fetch)
+                    new Func<string, ExpandoObject?, Task<Response>>(Http.Fetch)
                 },
                 {
                     "CallStaticMethod",

@@ -3,6 +3,7 @@ using DotnetFetch.Models;
 using Melon.Models.Library;
 using System.Diagnostics;
 using System.Dynamic;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -67,20 +68,18 @@ namespace Melon.Library.Static.Web
             };
         }
 
-        public static Response Fetch(
+        public static Task<Response> Fetch(
             string resource, 
             ExpandoObject? options = null
         )
         {
-            var json = new JsonObject();
-            var expandoDic = (IDictionary<string, object>)options;
+            var optionsString = JsonSerializer.Serialize(options);
+            var optionsBytes = Encoding.UTF8.GetBytes(optionsString); 
+            var optionsStream = new MemoryStream(optionsBytes);
 
-            foreach (var item in expandoDic!)
-            {
-                json[item.Key] = (JsonNode)item.Value;
-            }
+            JsonObject json = (JsonObject)JsonNode.Parse(optionsStream)!;
 
-            return GlobalFetch.Fetch(resource, json).Result;
+            return GlobalFetch.Fetch(resource, json);
         }
     }
 }
