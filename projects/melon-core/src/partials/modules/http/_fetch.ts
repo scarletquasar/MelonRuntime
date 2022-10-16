@@ -6,14 +6,22 @@ import { _http } from "./_http";
 async function _fetch(
     target: string,
     options: Record<string, any>
-): Promise<FetchResponse> {
-    const rawResult = await _$internalBinding["Fetch"](target, options);
+): Promise<_Response> {
+    const task = await _$internalBinding["Fetch"](target, options);
 
-    while(!rawResult.Status) {
+    while(task.Status <= 4) {
         await _std.async.nextTick(1);
     }
 
-    return rawResult;
+    const rawResult = task.Result;
+
+    return new _Response(
+        rawResult.Body ?? "",
+        rawResult.Headers ?? {},
+        rawResult.Latency ?? 0,
+        rawResult.StatusCode ?? 599,
+        rawResult.Ok ?? false
+    )
 }
 
 export { _fetch }
