@@ -10,8 +10,9 @@
 cd "./projects/melon-core"
 call npm run build
 
-copy "./dist/core.js" "../melon-runtime/Melon.Library/Bundle/core.js"
+cd "../.."
+xcopy ".\projects\melon-core\dist\core.js" ".\projects\melon-runtime\Melon.Library\Bundle\core.js" /Y
 
 :: Builds [melon-runtime]
-cd "../melon-runtime"
+cd "./projects/melon-runtime"
 call npm run build

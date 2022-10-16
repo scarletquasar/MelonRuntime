@@ -28,6 +28,7 @@ globalThis.fs = Melon.fs;
 
 globalThis.setTimeout = Melon.std.time.setTimeout as any;
 globalThis.setInterval = Melon.std.time.setInterval as any;
+globalThis.fetch = Melon.http.fetch;
 
 globalThis.Map = _Map as any;
 globalThis.Set = _Set as any;

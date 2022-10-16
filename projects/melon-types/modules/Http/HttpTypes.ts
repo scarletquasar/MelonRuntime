@@ -8,6 +8,8 @@ declare interface HttpResponse {
     latency: number;
     statusCode: number;
     ok: boolean;
+    json<T>(): T;
+    text(): string;
 }
 
 declare interface HttpRequest {

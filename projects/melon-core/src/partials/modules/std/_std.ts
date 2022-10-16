@@ -1,4 +1,5 @@
 import { _Version } from "../../constructors/_Version";
+import { _nextTick } from "./async/_nextTick";
 import { _checkAll } from "./boolean/_checkAll";
 import { _checkOne } from "./boolean/_checkOne";
 import { _baseDirectory } from "./environment/_baseDirectory";
@@ -18,6 +19,9 @@ import { _shift } from "./_shift";
 
 const _std = {
     shift: _shift,
+    async: {
+        nextTick: _nextTick
+    },
     melon: {
         currentVersion: new _Version()
     },

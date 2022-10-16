@@ -13,7 +13,7 @@ function _request(
         headers: _std.json.tryStringify(headers)
     }
 
-    const rawResult = _$internalBinding["FetchRequest"](
+    const rawResult = _$internalBinding["HttpRequest"](
         target,
         method, 
         stringified.body, 

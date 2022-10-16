@@ -1,6 +1,7 @@
 import { _HttpEndpoint } from "./constructors/_HttpEndpoint"
 import { _Response } from "./constructors/_Response"
 import { _app } from "./_app"
+import { _fetch } from "./_fetch"
 import { _request } from "./_request"
 import { _requestAsync } from "./_requestAsync"
 import { _result } from "./_result"
@@ -13,6 +14,7 @@ const _http = {
     app: _app,
     result: _result,
     static: _static,
+    fetch: _fetch
 }
 
 export { _http }

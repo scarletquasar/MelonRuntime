@@ -6,6 +6,9 @@ using Melon.Library.Static.InteropReflection;
 using Melon.Models.Library;
 using Microsoft.VisualBasic.FileIO;
 using Jint.Native;
+using System.Text.Json.Nodes;
+using DotnetFetch.Models;
+using System.Dynamic;
 
 namespace Melon.Library.Static
 {
@@ -61,8 +64,12 @@ namespace Melon.Library.Static
                     new Action<string>(WebApplicationManager.ExecuteWebApplication)
                 },
                 {
-                    "FetchRequest",
+                    "HttpRequest",
                     new Func<string, string, string, string, HttpResponse>(Http.Request)
+                },
+                {
+                    "Fetch",
+                    new Func<string, ExpandoObject?, Task<Response>>(Http.Fetch)
                 },
                 {
                     "CallStaticMethod",
