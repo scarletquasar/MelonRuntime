@@ -6,20 +6,22 @@ async function _fetch(
     target: string,
     options: Record<string, any>
 ): Promise<_Response> {
-    const task = await _$internalBinding["Fetch"](target, options);
+    const task = _$internalBinding["Fetch"](target, options);
+    const now = new Date().getTime();
 
-    while(task.Status <= 4) {
+    while(task.status <= 4) {
         await _std.async.nextTick(1);
     }
 
-    const rawResult = task.Result;
+    const then = new Date().getTime();
+    const rawResult = task.result;
 
     return new _Response(
-        rawResult.Body ?? "",
-        rawResult.Headers ?? {},
-        rawResult.Latency ?? 0,
-        rawResult.StatusCode ?? 599,
-        rawResult.Ok ?? false
+        rawResult.body ?? "",
+        rawResult.headers ?? {},
+        now - then,
+        rawResult.statusCode ?? 599,
+        rawResult.ok ?? false
     )
 }
 

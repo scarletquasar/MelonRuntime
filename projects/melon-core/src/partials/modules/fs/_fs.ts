@@ -12,6 +12,8 @@ import { _readBytes } from "./_readBytes";
 import { _readBytesAsync } from "./_readBytesAsync";
 import { _readText } from "./_readText";
 import { _readTextAsync } from "./_readTextAsync";
+import { _renameDirectory } from "./_renameDirectory";
+import { _renameDirectoryAsync } from "./_renameDirectoryAsync";
 import { _renameFile } from "./_renameFile";
 import { _renameFileAsync } from "./_renameFileAsync";
 import { _writeBytes } from "./_writeBytes";
@@ -39,7 +41,9 @@ const _fs = {
     createDirectory: _createDirectory,
     createDirectoryAsync: _createDirectoryAsync,
     deleteDirectory: _deleteDirectory,
-    deleteDirectoryAsync: _deleteDirectoryAsync
+    deleteDirectoryAsync: _deleteDirectoryAsync,
+    renameDirectory: _renameDirectory,
+    renameDirectoryAsync: _renameDirectoryAsync
 }
 
 export { _fs }

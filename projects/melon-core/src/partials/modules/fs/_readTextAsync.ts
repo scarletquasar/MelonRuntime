@@ -2,9 +2,13 @@ import { _std } from "../std/_std";
 import { _readText } from "./_readText";
 
 async function _readTextAsync(path: string): Promise<string> {
-    await _std.async.nextTick();
-    const result = _readText(path);
-    return result;
+    const task = _$internalBinding["ReadFileTextAsync"](path);
+
+    while(task.status <= 4) {
+        await _std.async.nextTick(1);
+    }
+
+    return task.result;
 }
 
 export { _readTextAsync }
