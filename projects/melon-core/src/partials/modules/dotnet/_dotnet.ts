@@ -18,7 +18,7 @@ const _dotnet = {
     loadAssembly: _loadAssembly,
     removeAssembly: _removeAssembly,
     getLoadedAssemblies: _getLoadedAssemblies,
-    loadAsemblyAsync: _loadAssemblyAsync,
+    loadAssemblyAsync: _loadAssemblyAsync,
     threading: {
         createTask: _createTask,
         createThread: _createThread,

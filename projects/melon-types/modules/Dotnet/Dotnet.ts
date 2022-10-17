@@ -4,7 +4,7 @@ declare const Dotnet: {
     loadAssembly: (path: string) => string;
     removeAssembly: (fullName: string) => void;
     getLoadedAssemblies: () => string[];
-    loadAsemblyAsync: (path: string) => Promise<string>;
+    loadAssemblyAsync: (path: string) => Promise<string>;
     threading: {
         createTask: (action: Function) => any,
         createThread: (action: Function) => any,
