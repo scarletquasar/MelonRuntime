@@ -1,6 +1,5 @@
-import { _std } from "../std/_std";
+import { _nextTick } from "../std/async/_nextTick";
 import { _Response } from "./constructors/_Response";
-import { _http } from "./_http";
 
 async function _fetch(
     target: string,
@@ -10,7 +9,7 @@ async function _fetch(
     const now = new Date().getTime();
 
     while(task.status <= 4) {
-        await _std.async.nextTick(1);
+        await _nextTick(1);
     }
 
     const then = new Date().getTime();

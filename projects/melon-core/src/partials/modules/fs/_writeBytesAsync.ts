@@ -1,11 +1,10 @@
-import { _std } from "../std/_std";
-import { _writeBytes } from "./_writeBytes"
+import { _nextTick } from "../std/async/_nextTick";
 
 async function _writeBytesAsync(path: string, bytes: number[]) {
     const task = _$internalBinding["WriteFileBytesAsync"](path, bytes);
     
     while(task.status <= 4) {
-        await _std.async.nextTick(1);
+        await _nextTick(1);
     }
 }
 
