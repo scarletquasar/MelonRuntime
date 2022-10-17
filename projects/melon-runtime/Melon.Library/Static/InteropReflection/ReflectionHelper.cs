@@ -6,9 +6,14 @@ namespace Melon.Library.Static.InteropReflection
     {
         public static HashSet<Assembly> LoadedAssemblies { get; private set; } = new();
 
+        public static async Task<string?> LoadAssemblyAsync(string path)
+        {
+            return await Task.Factory.StartNew(() => LoadAssembly(path));
+        }
+
         public static string? LoadAssembly(string path)
         {
-            var assembly = Assembly.LoadFrom(path);
+            var assembly = Assembly.LoadFile(path);
             LoadedAssemblies.Add(assembly);
 
             return assembly.FullName;

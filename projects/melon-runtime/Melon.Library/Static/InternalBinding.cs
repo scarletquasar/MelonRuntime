@@ -100,6 +100,10 @@ namespace Melon.Library.Static
                     new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
                 },
                 { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
+                { 
+                    "LoadAssemblyAsync", 
+                    new Func<string, Task<string?>>(ReflectionHelper.LoadAssemblyAsync) 
+                },
                 { "RemoveAssembly", new Action<string>(ReflectionHelper.RemoveAssembly) },
                 {
                     "GetLoadedAssemblies",
