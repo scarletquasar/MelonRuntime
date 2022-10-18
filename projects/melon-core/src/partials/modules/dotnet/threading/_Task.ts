@@ -39,6 +39,7 @@ class _Task<T> {
         this.#__interop_task.wait();
     }
 
+    //Warning: unstable 
     async resolve(cancellationFunction: () => boolean = () => false) {
         const task = this.#__interop_task;
         this.start();
