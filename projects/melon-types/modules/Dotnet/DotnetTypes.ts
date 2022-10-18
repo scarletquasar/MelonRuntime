@@ -18,7 +18,7 @@ declare interface Task<T> {
     result: T;
     start: () => void;
     wait: () => void;
-    resolve: (cancellationFunction?: () => boolean) => Promise<T>;
+    resolve: () => Promise<T>;
     unsafeGetInteropTask: () => any;
 }
 

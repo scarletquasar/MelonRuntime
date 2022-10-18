@@ -17,7 +17,7 @@ namespace Melon.Library.Static.InteropReflection
             return thread;
         }
 
-        public static Task<object> CreateTask(JsValue action)
+        public static Task<JsValue> CreateTask(JsValue action)
         {
             return new(() => Runtime.Engine!.Invoke(action));
         }
