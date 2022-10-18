@@ -125,7 +125,7 @@ namespace Melon.Library.Static
                     new Func<string, string, dynamic?>(RealmManager.GetRealmProperty)
                 },
                 { "CreateThread", new Func<JsValue, Thread>(ThreadingManager.CreateThread) },
-                { "CreateTask", new Func<JsValue, Task<object>>(ThreadingManager.CreateTask) }
+                { "CreateTask", new Func<JsValue, Task<JsValue>>(ThreadingManager.CreateTask) }
             };
     }
 }

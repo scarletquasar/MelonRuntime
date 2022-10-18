@@ -39,13 +39,18 @@ class _Task<T> {
         this.#__interop_task.wait();
     }
 
-    async resolve() {
+    async resolve(cancellationFunction: () => boolean = () => false) {
         const task = this.#__interop_task;
-        task.start();
+        this.start();
         
-        while(task.status <= 4) {
+        while(task.status <= 4 || !this.isCompleted) {
             await _nextTick(1);
+
+            if(cancellationFunction())
+                return null;
         }
+
+        this.wait();
 
         return task.result;
     }
