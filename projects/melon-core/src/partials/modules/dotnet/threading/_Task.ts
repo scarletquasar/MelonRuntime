@@ -1,3 +1,4 @@
+import { _nextTick } from "../../std/async/_nextTick";
 import { _createTask } from "./_createTask";
 
 class _Task<T> {
@@ -38,15 +39,15 @@ class _Task<T> {
         this.#__interop_task.wait();
     }
 
-    async resolve(cancellationFunction: () => boolean = () => false) {
-        this.start();
-
-        while(!this.isCompletedSuccessfully) {
-            if (cancellationFunction())
-                return;
-        }
+    async resolve() {
+        const task = this.#__interop_task;
+        task.start();
         
-        return this.result;
+        while(task.status <= 4) {
+            await _nextTick(1);
+        }
+
+        return task.result;
     }
 
     unsafeGetInteropTask() {
