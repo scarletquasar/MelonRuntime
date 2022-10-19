@@ -4,7 +4,7 @@ namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
-        public static List<string> LoadedAssemblies { get; private set; } = new();
+        public static IList<string> LoadedAssemblies { get; private set; } = new List<string>();
 
         public static async Task<string?> LoadAssemblyAsync(string path)
         {
