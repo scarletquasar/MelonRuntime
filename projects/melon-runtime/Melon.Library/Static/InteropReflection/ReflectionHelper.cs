@@ -5,6 +5,7 @@ namespace Melon.Library.Static.InteropReflection
     public static class ReflectionHelper
     {
         public static IList<string> LoadedAssemblies { get; private set; } = new List<string>();
+        private static Assembly[] _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
         public static async Task<string?> LoadAssemblyAsync(string path)
         {
@@ -15,6 +16,7 @@ namespace Melon.Library.Static.InteropReflection
         {
             var assembly = Assembly.LoadFile(path);
             LoadedAssemblies.Add(assembly.FullName ?? assembly.GetName().FullName);
+            _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             return assembly.FullName;
         }
@@ -24,6 +26,8 @@ namespace Melon.Library.Static.InteropReflection
             LoadedAssemblies = LoadedAssemblies
                 .Where(assembly => assembly != fullName)
                 .ToList();
+
+            _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
         }
 
         public static string?[] GetLoadedAssemblies()
@@ -38,9 +42,7 @@ namespace Melon.Library.Static.InteropReflection
             object[] parameters
         )
         {
-            var assems = AppDomain.CurrentDomain.GetAssemblies();
-
-            var type = assems
+            var type = _cachedAssemblies
                 .Select(x => x.GetTypes())
                 .SelectMany(x => x)
                 .FirstOrDefault(x => x.Namespace == ns && x.Name == typeName);
@@ -56,9 +58,7 @@ namespace Melon.Library.Static.InteropReflection
 
         public static dynamic? GetStaticProperty(string ns, string typeName, string propName)
         {
-            var assems = AppDomain.CurrentDomain.GetAssemblies();
-
-            var type = assems
+            var type = _cachedAssemblies
                 .Select(x => x.GetTypes())
                 .SelectMany(x => x)
                 .FirstOrDefault(x => x.Namespace == ns && x.Name == typeName);
@@ -78,7 +78,7 @@ namespace Melon.Library.Static.InteropReflection
         {
             var assems = AppDomain.CurrentDomain.GetAssemblies();
 
-            Type type = assems
+            Type type = _cachedAssemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
                 .Where(x => x.Namespace == nSpace)
