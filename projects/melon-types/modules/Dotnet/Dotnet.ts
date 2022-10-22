@@ -1,4 +1,5 @@
 declare const Dotnet: {
+    getFactories: (namespace: string) => Record<string, (...args: any) => any>;
     getStaticMethod: <T>(expression: DotnetFetchExpession) => (...args: any) => T;
     getStaticProperty: <T>(expression: DotnetFetchExpession) => T;
     loadAssembly: (path: string) => string;
