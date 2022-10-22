@@ -99,6 +99,7 @@ namespace Melon.Library.Static
                     "GetStaticProperty",
                     new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
                 },
+                { "GetTypes", new Func<string, dynamic>(ReflectionHelper.GetTypes) },
                 { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
                 { 
                     "LoadAssemblyAsync", 
