@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Melon\data\**" />
+    <EmbeddedResource Remove="Melon\data\**" />
+    <None Remove="Melon\data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Jint" Version="3.0.0-beta-2041" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0-preview-20220726-02" />
     <PackageReference Include="xunit" Version="2.4.2" />
@@ -22,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Melon.Engine\Melon.Engine.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Melon\data\" />
   </ItemGroup>
 
 </Project>
