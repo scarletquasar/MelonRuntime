@@ -36,6 +36,25 @@ namespace Melon.Tests.Melon.dotnet
         }
 
         [Fact]
+        public void TaskConstructorShouldWorkCorrectly()
+        {
+            Runtime.Engine = _engine;
+
+            var script = @"
+                const task = new Melon.dotnet.threading.Task(() => 1);
+                task.start();
+                task.wait();
+                task.result;
+            ";
+
+            var result = _engine.Evaluate(script).AsNumber();
+
+            Assert.Equal(1, result);
+
+            Runtime.Engine = null;
+        }
+
+        [Fact]
         public void CreateThreadShouldWorkCorrectly()
         {
             Runtime.Engine = _engine;
@@ -43,6 +62,27 @@ namespace Melon.Tests.Melon.dotnet
             var script = @"
                 let value = 0;
                 const thread = Melon.dotnet.threading.createThread(() => value = 1);
+                thread.start();
+                
+                while(value != 1) { }
+                value
+            ";
+
+            var result = _engine.Evaluate(script).AsNumber();
+
+            Assert.Equal(1, result);
+
+            Runtime.Engine = null;
+        }
+
+        [Fact]
+        public void ThreadConstructorShouldWorkCorrectly()
+        {
+            Runtime.Engine = _engine;
+
+            var script = @"
+                let value = 0;
+                const thread = new Melon.dotnet.threading.Thread(() => value = 1);
                 thread.start();
                 
                 while(value != 1) { }
