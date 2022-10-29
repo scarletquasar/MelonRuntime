@@ -1,5 +1,7 @@
-function $(caller: (a: any, ...args: any[]) => any | Function, ...args: any[]) {
-    return caller(this, ...args);
+function $<TInput, TReturn>(caller: ((a: TInput, ...args: any[]) => TReturn), ...args: any[]) {
+    return caller(this, ...args) as TReturn & { 
+        $: typeof $
+    };
 }
 
 export { $ }
