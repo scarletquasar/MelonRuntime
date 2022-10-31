@@ -4,11 +4,11 @@ using Xunit;
 
 namespace Melon.Tests.Melon.std
 {
-    public class DataTests
+    public class BooleanTests
     {
         private readonly Jint.Engine _engine;
 
-        public DataTests()
+        public BooleanTests()
         {
             var builder = new EngineBuilder();
             builder.Load("Bundle/core");
