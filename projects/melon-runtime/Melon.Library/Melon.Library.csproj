@@ -9,10 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
     <PackageReference Include="DotnetFetch" Version="1.0.0" />
-    <PackageReference Include="MySql.Data" Version="8.0.30" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2042" />
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
     <PackageReference Include="Npgsql" Version="6.0.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
   </ItemGroup>
 
   <ItemGroup>
