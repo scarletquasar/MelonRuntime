@@ -7,23 +7,30 @@ namespace Melon.Library.Static.InteropReflection
     {
         public static void CreateRealm(string name)
         {
-            Runtime.Realms!.Add(name, new());
+            lock(Runtime.Realms!) 
+            {
+                Runtime.Realms!.Add(name, new());
+            }
         }
 
         public static void DeleteRealm(string name, int delay)
         {
-            if(delay > 0)
+            lock (Runtime.Realms!)
             {
-                Task.Run(async () =>
+                if (delay > 0)
                 {
-                    await Task.Delay(delay);
-                    Runtime.Realms!.Remove(name);
-                });
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(delay);
+                        Runtime.Realms!.Remove(name);
+                    });
 
-                return;
+                    return;
+                }
+
+
+                Runtime.Realms!.Remove(name);
             }
-
-            Runtime.Realms!.Remove(name);
         }
 
         public static void SetRealmPropertyFromScript(
@@ -32,7 +39,8 @@ namespace Melon.Library.Static.InteropReflection
             dynamic value
         )
         {
-            Runtime.Realms![realmName]![propertyName] = value;
+            lock(Runtime.Realms![realmName])
+                Runtime.Realms![realmName]![propertyName] = value;
         }
 
         public static void SetRealmPropertyFromInstance(
@@ -67,7 +75,9 @@ namespace Melon.Library.Static.InteropReflection
                 type,
                 parameterList.ToArray()
             );
-            Runtime.Realms![realmName]![propertyName] = instance!;
+
+            lock(Runtime.Realms![realmName])
+                Runtime.Realms![realmName]![propertyName] = instance!;
         }
 
         public static dynamic? GetRealmProperty(string realmName, string propertyName)
@@ -77,7 +87,8 @@ namespace Melon.Library.Static.InteropReflection
 
         public static void DeleteRealmProperty(string realmName, string propertyName)
         {
-            Runtime.Realms![realmName].Remove(propertyName);
+            lock(Runtime.Realms![realmName])
+                Runtime.Realms![realmName].Remove(propertyName);
         }
 
         private static object GetTypedValue(string type, object value)

@@ -20,7 +20,6 @@ namespace Melon.Tests.Melon.dotnet
         public void RealmInstanceShouldWorkProperly()
         {
             Runtime.Engine = _engine;
-            Runtime.Realms = new();
 
             var script = @"
                 const realm = new Melon.dotnet.Realm();
@@ -34,14 +33,12 @@ namespace Melon.Tests.Melon.dotnet
             Assert.True(result);
 
             Runtime.Engine = null;
-            Runtime.Realms = null;
         }
 
         [Fact]
         public void RealmValueShouldWorkProperly()
         {
             Runtime.Engine = _engine;
-            Runtime.Realms = new();
 
             var script = @"
                 const realm = new Melon.dotnet.Realm();
@@ -54,7 +51,6 @@ namespace Melon.Tests.Melon.dotnet
             Assert.True(result);
 
             Runtime.Engine = null;
-            Runtime.Realms = null;
         }
     }
 }
