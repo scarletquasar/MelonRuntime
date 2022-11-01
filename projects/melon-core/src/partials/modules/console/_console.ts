@@ -1,3 +1,5 @@
+import { Realm } from "../../../types/dotnet/Realm";
+import { _Realm } from "../dotnet/constructors/_Realm";
 import { _clear } from "./_clear";
 import { _error } from "./_error";
 import { _log } from "./_log";
@@ -9,7 +11,7 @@ import { _write } from "./_write";
 import { _writeLine } from "./_writeLine";
 
 const _console = {
-    _timers: new Array<Date>,
+    _timers: new _Realm(),
     time: _time,
     timeEnd: _timeEnd,
     log: _log,
