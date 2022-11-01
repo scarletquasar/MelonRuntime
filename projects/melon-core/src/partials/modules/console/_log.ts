@@ -1,10 +1,13 @@
+import { _getStaticMethod } from "../dotnet/_getStaticMethod";
 import { _std } from "../std/_std";
-import { _dotnetCLNConsole } from "./_dotnetCLNConsole";
 
 function _log(...args: any[]) {
+    const serialize = _getStaticMethod("Newtonsoft.Json:JsonConvert:SerializeObject");
+    const log = _getStaticMethod("System:Console:WriteLine");
+
     Array.from(args).forEach(object => {
-        const result = _std.json.tryStringify(object);
-        _dotnetCLNConsole("WriteLine")(result, "White");
+        const serialized = serialize(object);
+        log(serialized);
     });
 };
 

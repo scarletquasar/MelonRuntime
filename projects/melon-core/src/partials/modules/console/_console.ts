@@ -1,4 +1,3 @@
-import { Realm } from "../../../types/dotnet/Realm";
 import { _Realm } from "../dotnet/constructors/_Realm";
 import { _clear } from "./_clear";
 import { _error } from "./_error";
