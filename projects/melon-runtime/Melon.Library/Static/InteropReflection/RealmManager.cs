@@ -12,11 +12,18 @@ namespace Melon.Library.Static.InteropReflection
 
         public static void DeleteRealm(string name, int delay)
         {
-            Task.Run(async () =>
+            if(delay > 0)
             {
-                await Task.Delay(delay);
-                Runtime.Realms!.Remove(name);
-            });
+                Task.Run(async () =>
+                {
+                    await Task.Delay(delay);
+                    Runtime.Realms!.Remove(name);
+                });
+
+                return;
+            }
+
+            Runtime.Realms!.Remove(name);
         }
 
         public static void SetRealmPropertyFromScript(
