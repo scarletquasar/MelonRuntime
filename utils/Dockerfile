@@ -1,4 +1,4 @@
-# Base Dockerfile compatible with MelonRuntime v1.8.0+
+# Base TypeScript Dockerfile compatible with Melon v2.4.0+
 
 # Will use .NET 6
 # Change to a specific version if required
@@ -19,9 +19,9 @@ RUN npm i melon-runtime -g -f
 
 # Bundling and installing packages
 RUN npm i
-RUN npx babel --extensions .ts ./src/ --out-dir ./babel
+RUN npx babel ./src/ --out-dir ./babel
 RUN npx webpack ./babel/index.js
 RUN npm run build
 
 # Execution script that will be in package.json
-ENTRYPOINT ["npm", "run", "run"]
+ENTRYPOINT ["npm", "run", "go"]
