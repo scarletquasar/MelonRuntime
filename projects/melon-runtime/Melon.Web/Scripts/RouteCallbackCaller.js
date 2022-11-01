@@ -2,31 +2,30 @@
     identifier,
     method,
     route,
-    serializedQuery,
-    serializedBody,
-    serializedHeaders,
+    query,
+    body,
+    headers,
     isAsync
 ) {
+    const { _apps: apps } = Melon.http;
+    const { tryParse } = Melon.std.json;
+    const webapp = apps[identifier];
+
+    const targetEndpoint = webapp
+        .getEndpoints()
+        .find(x => x.method === method && x.route === route);
+
     const request = {
-        query: Melon.std.json.tryParse(serializedQuery),
-        body: Melon.std.json.tryParse(serializedBody),
-        headers: Melon.std.json.tryParse(serializedHeaders)
+        query: tryParse(query),
+        body: tryParse(body),
+        headers: tryParse(headers)
     }
 
-    const callback = Melon
-        .http
-        ._apps[identifier]
-        .getEndpoints()
-        .find(x => x.method === method && x.route === route)
-        .callback;
-
-    const result = () => callback(request);
+    const result = () => targetEndpoint.callback(request);
 
     if (isAsync) {
         const uuid = "pending_melon_http_promise_" + crypto.randomUUID();
-
-        Melon.http._apps[identifier]._promises[uuid] = result;
-
+        webapp._promises[uuid] = result;
         return uuid;
     }
 
