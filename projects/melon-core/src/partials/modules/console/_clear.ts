@@ -1,5 +1,7 @@
-import { _dotnetConsole } from "./_dotnetConsole";
+import { _getStaticMethod } from "../dotnet/_getStaticMethod";
 
-const _clear = (): void => void _dotnetConsole("Clear")();
+const _clear = (): void => {
+    _getStaticMethod("System:Console:Clear")();
+};
 
 export { _clear }
