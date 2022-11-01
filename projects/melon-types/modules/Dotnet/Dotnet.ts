@@ -1,10 +1,11 @@
 declare const Dotnet: {
+    getFactories: (namespace: string) => Record<string, { new: (...args: any) => any }>;
     getStaticMethod: <T>(expression: DotnetFetchExpession) => (...args: any) => T;
     getStaticProperty: <T>(expression: DotnetFetchExpession) => T;
     loadAssembly: (path: string) => string;
     removeAssembly: (fullName: string) => void;
     getLoadedAssemblies: () => string[];
-    loadAsemblyAsync: (path: string) => Promise<string>;
+    loadAssemblyAsync: (path: string) => Promise<string>;
     threading: {
         createTask: (action: Function) => any,
         createThread: (action: Function) => any,

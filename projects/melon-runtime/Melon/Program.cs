@@ -48,7 +48,7 @@ namespace Melon
                 { "new", new NewCommand() }
             };
 
-            var commandContainerBuilder = new CommandContainerBuilder("> ", ConsoleColor.Green);
+            var commandContainerBuilder = new CommandContainerBuilder("", default);
             var commandContainer = commandContainerBuilder
                 .SetupLambdaCommands(lambdaCommands)
                 .SetupCommands(commands)
@@ -59,11 +59,10 @@ namespace Melon
 
         private static void HandleInputs(string[] args)
         {
-            var commandArgs = Helpers.GetCommandArguments(args);
             var commandExecution = true;
             var handlerLambda = () =>
             {
-                commandExecution = Runtime.CommandContainer!.ExecuteCommands(commandArgs);
+                commandExecution = Runtime.CommandContainer!.ExecuteCommands(args.ToList());
             };
 
             Helpers.ExecuteWithHandler(handlerLambda, false, false);

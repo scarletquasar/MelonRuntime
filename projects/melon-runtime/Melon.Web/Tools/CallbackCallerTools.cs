@@ -24,7 +24,6 @@ namespace Melon.Web.Tools
                 .Replace("{serializedQuery}", serializedQuery)
                 .Replace("{serializedBody}", serializedBody)
                 .Replace("{serializedHeaders}", serializedHeaders);
-
             return result;
         }
     }

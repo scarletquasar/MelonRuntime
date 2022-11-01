@@ -1,5 +1,6 @@
 import { DatabaseProviderOptions } from "../../../../types/data/DatabaseProviderOptions";
 import { _internalConsts } from "../../internalConsts/_internalConsts";
+import { _std } from "../../std/_std";
 import { _PgClient } from "./_PgClient";
 
 class _PgDocumentClient {
@@ -29,6 +30,7 @@ class _PgDocumentClient {
             );
         `;
 
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -49,6 +51,7 @@ class _PgDocumentClient {
             VALUES ('${name}', '${documentString}')
         `;
 
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -67,6 +70,7 @@ class _PgDocumentClient {
             WHERE name = '${name}'
         `;
 
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -82,6 +86,7 @@ class _PgDocumentClient {
             SELECT document FROM ${dictionary} WHERE name = '${name}'
         `;
 
+        await _std.async.nextTick();
         return this.#provider.executeQuery<TDocument>(script)[0].document;
     }
 
@@ -97,6 +102,7 @@ class _PgDocumentClient {
             DELETE FROM ${dictionary} WHERE name = '${name}'
         `;
 
+        await _std.async.nextTick();
         this.#provider.executeNonQuery(script);
     }
 }

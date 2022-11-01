@@ -4,12 +4,19 @@ namespace Melon.Library.Static.InteropReflection
 {
     public static class ReflectionHelper
     {
-        public static HashSet<Assembly> LoadedAssemblies { get; private set; } = new();
+        public static IList<string> LoadedAssemblies { get; private set; } = new List<string>();
+        private static Assembly[] _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+        public static async Task<string?> LoadAssemblyAsync(string path)
+        {
+            return await Task.Factory.StartNew(() => LoadAssembly(path));
+        }
 
         public static string? LoadAssembly(string path)
         {
-            var assembly = Assembly.LoadFrom(path);
-            LoadedAssemblies.Add(assembly);
+            var assembly = Assembly.LoadFile(path);
+            LoadedAssemblies.Add(assembly.FullName ?? assembly.GetName().FullName);
+            _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             return assembly.FullName;
         }
@@ -17,92 +24,79 @@ namespace Melon.Library.Static.InteropReflection
         public static void RemoveAssembly(string fullName)
         {
             LoadedAssemblies = LoadedAssemblies
-                .Where(assembly => assembly.FullName != fullName)
-                .ToHashSet();
+                .Where(assembly => assembly != fullName)
+                .ToList();
+
+            _cachedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
         }
 
         public static string?[] GetLoadedAssemblies()
         {
-            return LoadedAssemblies.Select(x => x.FullName).ToArray();
+            return LoadedAssemblies.ToArray();
         }
 
         public static dynamic? CallMethod(
-            string nSpace,
-            string search,
+            string ns,
+            string typeName,
             string methodName,
             object[] parameters
         )
         {
-            var assemblies = AppDomain.CurrentDomain
-                .GetAssemblies()
-                .Concat(LoadedAssemblies)
-                .ToHashSet();
-
-            IEnumerable<Type> types = assemblies
-                .Select(assembly => assembly.GetTypes())
+            var type = _cachedAssemblies
+                .Select(x => x.GetTypes())
                 .SelectMany(x => x)
-                .Where(x => x.Namespace == nSpace)
-                .Where(x => x.FullName != null && x.FullName.Contains(search));
+                .FirstOrDefault(x => x.Namespace == ns && x.Name == typeName);
 
-            return types
-                .First()
-                .InvokeMember(
-                    methodName,
-                    BindingFlags.InvokeMethod,
-                    Type.DefaultBinder,
-                    null,
-                    parameters.ToArray()
-                );
+            return type?.InvokeMember(
+                methodName,
+                BindingFlags.InvokeMethod,
+                Type.DefaultBinder,
+                null,
+                parameters.ToArray()
+            );
         }
 
-        public static dynamic? GetStaticProperty(string nSpace, string search, string fieldName)
+        public static dynamic? GetStaticProperty(string ns, string typeName, string propName)
         {
-            var assemblies = AppDomain.CurrentDomain
-                .GetAssemblies()
-                .Concat(LoadedAssemblies)
-                .ToHashSet();
-
-            IEnumerable<Type> types = assemblies
-                .Select(assembly => assembly.GetTypes())
+            var type = _cachedAssemblies
+                .Select(x => x.GetTypes())
                 .SelectMany(x => x)
-                .Where(x => x.Namespace == nSpace)
-                .Where(x => x.FullName != null && x.FullName.Contains(search));
+                .FirstOrDefault(x => x.Namespace == ns && x.Name == typeName);
 
-            IQueryable<PropertyInfo> fields = types
-                .First()
-                .GetProperties(
-                    BindingFlags.Instance
-                        | BindingFlags.Static
-                        | BindingFlags.NonPublic
-                        | BindingFlags.Public
-                )
-                .Where(x => x.Name == fieldName)
-                .AsQueryable();
+            var prop = type?
+                .GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                .FirstOrDefault(x => x.Name == propName);
 
-            var result = fields.FirstOrDefault();
-
-            return result?.GetValue(null);
+            return prop?.GetValue(null);
         }
 
         public static dynamic? CreateInstanceOfType(
-            string nSpace,
+            string ns,
             string search,
             object[] parameters
         )
         {
-            var assemblies = AppDomain.CurrentDomain
-                .GetAssemblies()
-                .Concat(LoadedAssemblies)
-                .ToHashSet();
-
-            Type type = assemblies
+            Type type = _cachedAssemblies
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
-                .Where(x => x.Namespace == nSpace)
+                .Where(x => x.Namespace == ns)
                 .Where(x => x.FullName != null && x.Name == search)
                 .First();
 
             return Activator.CreateInstance(type, parameters);
+        }
+
+        public static dynamic GetTypes(string ns)
+        {
+            Type[] types = _cachedAssemblies
+                .Select(assembly => assembly.GetTypes())
+                .SelectMany(x => x)
+                .Where(x => x.Namespace == ns)
+                .GroupBy(x => new { x.Name })
+                .Select(x => x.Last())
+                .ToArray();
+
+            return types;
         }
     }
 }

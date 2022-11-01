@@ -9,6 +9,8 @@ import { _guards } from "./partials/modules/guards/_guards"
 import { _http } from "./partials/modules/http/_http"
 import { _std } from "./partials/modules/std/_std"
 import { _crypto } from "./partials/statics/_Crypto"
+import { $ } from "./partials/utils/$"
+import { addPrototypeExtension } from "./partials/utils/addPrototypeExtension"
 
 const Melon = {
     std: _std,
@@ -22,12 +24,15 @@ const Melon = {
     Version: _Version
 }
 
+addPrototypeExtension(Object, "$", $);
+
 globalThis.console = Melon.console as any;
 globalThis.crypto = Melon.crypto;
 globalThis.fs = Melon.fs;
 
 globalThis.setTimeout = Melon.std.time.setTimeout as any;
 globalThis.setInterval = Melon.std.time.setInterval as any;
+globalThis.fetch = Melon.http.fetch;
 
 globalThis.Map = _Map as any;
 globalThis.Set = _Set as any;

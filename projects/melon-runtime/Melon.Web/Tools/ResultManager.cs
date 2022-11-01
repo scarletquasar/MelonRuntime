@@ -52,7 +52,7 @@ namespace Melon.Web.Tools
             return result!;
         }
 
-        public static IResult GetHttpResult(JsValue result)
+        public static object GetHttpResult(JsValue result)
         {
             if (result is null)
             {

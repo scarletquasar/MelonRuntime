@@ -6,12 +6,16 @@ using Melon.Library.Static.InteropReflection;
 using Melon.Models.Library;
 using Microsoft.VisualBasic.FileIO;
 using Jint.Native;
+using System.Text.Json.Nodes;
+using DotnetFetch.Models;
+using System.Dynamic;
+using System.Text;
 
 namespace Melon.Library.Static
 {
     public static class InternalBinding
     {
-        public static Dictionary<string, dynamic> LocalEnvironmentVariables { get; } = new() { };
+        public static Dictionary<string, dynamic> LocalEnvironmentVariables { get; } = new();
         public static Dictionary<string, dynamic> Dictionary { get; } =
             new()
             {
@@ -20,18 +24,33 @@ namespace Melon.Library.Static
                     new Func<Func<JsValue, JsValue[], JsValue>, string>(Functions.StringifyFunction) 
                 },
                 { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
-                { "LocalEnvironmentVariables", LocalEnvironmentVariables! },
+                { "LocalEnvironmentVariables", LocalEnvironmentVariables },
                 { "ProcessExit", new Action<int>(Environment.Exit) },
-                { "SetTimeout", new Action<int, int>(Time.SetTimeout) },
-                { "SetInterval", new Action<int, int>(Time.SetInterval) },
                 { "ReadFileText", new Func<string, string>(File.ReadAllText) },
+                { 
+                    "ReadFileTextAsync", 
+                    new Func<string, CancellationToken, Task<string>>(File.ReadAllTextAsync) 
+                },
                 { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
+                { 
+                    "WriteFileTextAsync",
+                    new Func<string, string?, CancellationToken, Task>(File.WriteAllTextAsync)
+                },
                 { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
+                {
+                    "ReadFileBytesAsync",
+                    new Func<string, CancellationToken, Task<byte[]>>(File.ReadAllBytesAsync)
+                },
                 { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
+                { 
+                    "WriteFileBytesAsync", 
+                    new Func<string, byte[], CancellationToken, Task>(File.WriteAllBytesAsync) 
+                },
                 { "DeleteFile", new Action<string>(File.Delete) },
                 { "CopyFile", new Action<string, string, bool>(File.Copy) },
                 { "MoveFile", new Action<string, string, bool>(File.Move) },
                 { "RenameFile", new Action<string, string>(FileSystem.RenameFile) },
+                { "RenameDirectory", new Action<string, string>(FileSystem.RenameDirectory) },
                 { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
                 { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
                 {
@@ -63,8 +82,12 @@ namespace Melon.Library.Static
                     new Action<string>(WebApplicationManager.ExecuteWebApplication)
                 },
                 {
-                    "FetchRequest",
+                    "HttpRequest",
                     new Func<string, string, string, string, HttpResponse>(Http.Request)
+                },
+                {
+                    "Fetch",
+                    new Func<string, ExpandoObject?, Task<Response>>(Http.Fetch)
                 },
                 {
                     "CallStaticMethod",
@@ -76,7 +99,12 @@ namespace Melon.Library.Static
                     "GetStaticProperty",
                     new Func<string, string, string, dynamic?>(ReflectionHelper.GetStaticProperty)
                 },
+                { "GetTypes", new Func<string, dynamic>(ReflectionHelper.GetTypes) },
                 { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
+                { 
+                    "LoadAssemblyAsync", 
+                    new Func<string, Task<string?>>(ReflectionHelper.LoadAssemblyAsync) 
+                },
                 { "RemoveAssembly", new Action<string>(ReflectionHelper.RemoveAssembly) },
                 {
                     "GetLoadedAssemblies",
@@ -98,7 +126,7 @@ namespace Melon.Library.Static
                     new Func<string, string, dynamic?>(RealmManager.GetRealmProperty)
                 },
                 { "CreateThread", new Func<JsValue, Thread>(ThreadingManager.CreateThread) },
-                { "CreateTask", new Func<JsValue, Task<object>>(ThreadingManager.CreateTask) }
+                { "CreateTask", new Func<JsValue, Task<JsValue>>(ThreadingManager.CreateTask) }
             };
     }
 }

@@ -11,14 +11,16 @@ import { _createTask } from "./threading/_createTask";
 import { _createThread } from "./threading/_createThread";
 import { _Task } from "./threading/_Task";
 import { _Thread } from "./threading/_Thread";
+import { _getFactories } from "./_getFactories";
 
 const _dotnet = {
+    getFactories: _getFactories,
     getStaticMethod: _getStaticMethod,
     getStaticProperty: _getStaticProperty,
     loadAssembly: _loadAssembly,
     removeAssembly: _removeAssembly,
     getLoadedAssemblies: _getLoadedAssemblies,
-    loadAsemblyAsync: _loadAssemblyAsync,
+    loadAssemblyAsync: _loadAssemblyAsync,
     threading: {
         createTask: _createTask,
         createThread: _createThread,

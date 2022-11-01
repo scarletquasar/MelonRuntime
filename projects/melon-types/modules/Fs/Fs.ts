@@ -19,6 +19,8 @@ declare const Fs: {
     createDirectoryAsync: (path: string) => Promise<void>;
     deleteDirectory: (path: string) => void;
     deleteDirectoryAsync: (path: string) => Promise<void>;
+    renameDirectory: (path: string, newName: string) => void;
+    renameDirectoryAsync: (path: string, newName: string) => Promise<void>;
 }
 
 export { Fs }

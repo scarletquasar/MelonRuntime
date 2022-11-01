@@ -6,7 +6,7 @@ namespace Melon.Web.Tools
 {
     public static class HttpResultTools
     {
-        internal static IResult GetHttpResult(JsValue obj)
+        internal static object GetHttpResult(JsValue obj)
         {
             var httpResult = obj.AsObject();
 
@@ -36,12 +36,12 @@ namespace Melon.Web.Tools
             };
         }
 
-        internal static IResult GetSpecificResult(string type, string response)
+        internal static object GetSpecificResult(string type, string response)
         {
             return type switch
             {
                 "text/plain" => Results.Content(response, type),
-                "application/json" => Results.Ok(response),
+                "application/json" => response,
                 _ => Results.Content(response, type),
             };
         }

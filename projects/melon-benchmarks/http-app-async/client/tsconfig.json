@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "outDir": "build",
+      "types": [
+        "melon-types"
+      ],
+      "lib": [ "es2022" ]
+    }
+}

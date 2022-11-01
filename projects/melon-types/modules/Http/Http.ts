@@ -11,16 +11,26 @@ declare const Http: {
         body?: Record<string, any>, 
         headers?: Record<string, any>
     ) => Promise<HttpResponse>;
+    fetch: (
+        target: string, 
+        options?: Record<string, any>
+    ) => Promise<HttpResponse>;
     app: (options?: {
         name: string, 
         host: string, 
         port: number, 
         enableHttps: boolean 
     }) => HttpApplication;
-    result: 
-        (statusCode: number, response?: any, headers?: Record<string, any>) => HttpComposedResponse;
-    static:
-        (response: any, type: `${string}/${string}`, headers?: Record<string, any>) => HttpComposedResponse;
+    result: (
+        statusCode: number, 
+        response?: any, 
+        headers?: Record<string, any>
+    ) => HttpComposedResponse;
+    static: (
+        response: any, 
+        type: `${string}/${string}`, 
+        headers?: Record<string, any>
+    ) => HttpComposedResponse;
 }
 
 export { Http }

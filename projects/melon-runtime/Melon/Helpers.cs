@@ -19,8 +19,6 @@ namespace Melon
 
         internal static void WaitForScript()
         {
-            CLNConsole.Write("> ", ConsoleColor.Red);
-
             var script = Console.ReadLine() ?? "";
             var engine = Runtime.Engine;
 
@@ -41,14 +39,14 @@ namespace Melon
             catch (Exception e) when (e is ParserException || e is JavaScriptException)
             {
                 dynamic ex = e;
-                CLNConsole.WriteLine($"> [{ex.Error}] ", ConsoleColor.Red);
+                CLNConsole.WriteLine($"[{ex.Error}] ", ConsoleColor.Red);
 
                 if (keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
             }
             catch (Exception e)
             {
-                CLNConsole.WriteLine($"> [{e.GetType().Name}] {e.Message} ", ConsoleColor.Red);
+                CLNConsole.WriteLine($"[{e.GetType().Name}] {e.Message} ", ConsoleColor.Red);
 
                 if (keepStackTracing)
                     CLNConsole.WriteLine(e.StackTrace ?? "", ConsoleColor.DarkRed);
@@ -66,14 +64,9 @@ namespace Melon
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
 
-            CLNConsole.Write("》 Melon ", ConsoleColor.Yellow);
-            CLNConsole.Write(version, ConsoleColor.Cyan);
+            CLNConsole.Write("Melon ", ConsoleColor.Magenta);
+            CLNConsole.Write(version, ConsoleColor.Green);
             Console.WriteLine();
-        }
-
-        internal static List<string> GetCommandArguments(string[] args)
-        {
-            return args.Where(x => !x.StartsWith("--")).ToList();
         }
     }
 }

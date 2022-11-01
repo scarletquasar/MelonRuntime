@@ -1,4 +1,5 @@
 import { _Version } from "../../constructors/_Version";
+import { _nextTick } from "./async/_nextTick";
 import { _checkAll } from "./boolean/_checkAll";
 import { _checkOne } from "./boolean/_checkOne";
 import { _baseDirectory } from "./environment/_baseDirectory";
@@ -13,10 +14,14 @@ import { _exit } from "./process/_exit";
 import { _osInformation } from "./system/_osInformation";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
+import { _Timer } from "./time/_Timer";
 import { _shift } from "./_shift";
 
 const _std = {
     shift: _shift,
+    async: {
+        nextTick: _nextTick
+    },
     melon: {
         currentVersion: new _Version()
     },
@@ -31,7 +36,8 @@ const _std = {
     time: {
         _timers: [],
         setInterval: _setInterval,
-        setTimeout: _setTimeout
+        setTimeout: _setTimeout,
+        Timer: _Timer
     },
     system: {
         osInformation: _osInformation

@@ -5,6 +5,7 @@
  */
 declare const Std: {
     shift(): _shift,
+    async: _async,
     melon: _melon,
     boolean: _boolean,
     json: _json,
