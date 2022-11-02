@@ -1,0 +1,11 @@
+{
+    "scripts": {
+        "_build_core": "cd ./projects/melon-core && npm run build && cd ../..",
+        "_apply_core_bundle_windows": "xcopy .\\projects\\melon-core\\dist\\core.js .\\projects\\melon-runtime\\Melon.Library\\Bundle\\core.js /Y",
+        "_apply_core_bundle_linux": "cp ./projects/melon-core/dist/core.js ./projects/melon-runtime/Melon.Library/Bundle/core.js",
+        "_build_runtime": "cd ./projects/melon-runtime && npm run build && cd ../..",
+        "_run": "cd ./projects/melon-runtime && npm run dev && cd ../..",
+        "dev:win": "npm run _build_core && npm run _apply_core_bundle_windows && npm run _build_runtime && npm run _run",
+        "dev:linux": "npm run _build_core && npm run _apply_core_bundle_linux && npm run _build_runtime && npm run _run"
+    }
+}
