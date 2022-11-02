@@ -71,7 +71,7 @@ namespace Melon.Web.Extensions
                     return ResultManager.GetHttpResult(evaluation);
                 }
 
-                webApp.Map(endpoint.Route!, operation);
+                webApp.MapMethods(endpoint.Route!, new List<string>(){ endpoint.Method!}, operation);
             }
 
             return webApp;
