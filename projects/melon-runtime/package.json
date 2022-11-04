@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Fast modern .NET JavaScript runtime",
   "type": "module",
   "scripts": {
@@ -35,5 +35,8 @@
   "homepage": "https://github.com/MelonRuntime/Melon#readme",
   "bin": {
     "melon": "Commands/melon.js"
+  },
+  "dependencies": {
+    "axios": "^1.1.3"
   }
 }
