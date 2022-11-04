@@ -1,7 +1,7 @@
 {
   "name": "melon-runtime",
-  "version": "2.4.1",
-  "description": "Declarative modern .NET JavaScript runtime",
+  "version": "2.4.2",
+  "description": "Fast modern .NET JavaScript runtime",
   "type": "module",
   "scripts": {
     "build": "dotnet publish Melon -o Output",

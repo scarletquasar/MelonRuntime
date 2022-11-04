@@ -6,7 +6,7 @@ function _getFactories(namespace: string) {
     const constructors: Record<string, { new: (...args: any) => any }> = {};
 
     types.forEach(type => {
-        const name = type.name.charAt(0).toLowerCase() + type.name.slice(1);
+        const name = type.name[0].toLowerCase() + type.name.slice(1);
 
         constructors[name] = {
             new: (...args: any) => {

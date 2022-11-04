@@ -7,8 +7,6 @@ const _internalConsts = {
     COMPARATION_LENGTH_IS_DIFFERENT: "The lengths of the compared values are different",
     COMPARATION_BASE_IS_DIFFERENT: "The base values of the comparation are different",
     NO_SUPPORT_FOR_THE_OBJECT: "There is no support for the current object type. Did you miss a customModifier?",
-    //data.PgDocumentClient
-    INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME: "The name is invalid, should contain only letters and numbers"
 }
 
 export { _internalConsts }
