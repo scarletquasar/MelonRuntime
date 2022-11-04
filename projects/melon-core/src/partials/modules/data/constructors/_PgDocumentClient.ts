@@ -1,8 +1,11 @@
 import { DatabaseProviderOptions } from "../../../../types/data/DatabaseProviderOptions";
 import { InvalidArgumentError } from "../../../errors/InvalidArgumentError";
+import { _guards } from "../../guards/_guards";
 import { _internalConsts } from "../../internalConsts/_internalConsts";
 import { _nextTick } from "../../std/async/_nextTick";
 import { _PgClient } from "./_PgClient";
+
+const { isNullOrWhiteSpace } = _guards.string;
 
 class _PgDocumentClient {
     #provider: _PgClient;
@@ -10,7 +13,7 @@ class _PgDocumentClient {
     constructor(options: DatabaseProviderOptions) {
         const invalidOptions = 
             (Object.keys(options) as (string | number | boolean)[])
-            .filter(option => option[1] === null || option[1] === "" || option[1] === 0)
+            .filter(option => option[1] === null || isNullOrWhiteSpace(option[1]) || option[1] === 0)
             .map(option => option[0]);
         
         if(invalidOptions.length > 0) {
