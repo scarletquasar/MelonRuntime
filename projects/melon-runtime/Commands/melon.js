@@ -2,9 +2,12 @@
 import { fileURLToPath } from 'url';
 import { spawn, spawnSync } from 'child_process';
 import path from 'path';
+import axios from "axios";
 
 const spawnOptions = { stdio: "inherit" };
 let args = process.argv.slice(2);
+
+const integrityReal = await axios.get("")
 
 //Commands implementation
 if(!process.argv.includes("--ignore-update")) {

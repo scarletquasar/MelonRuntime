@@ -35,5 +35,8 @@
   "homepage": "https://github.com/MelonRuntime/Melon#readme",
   "bin": {
     "melon": "Commands/melon.js"
+  },
+  "dependencies": {
+    "axios": "^1.1.3"
   }
 }
