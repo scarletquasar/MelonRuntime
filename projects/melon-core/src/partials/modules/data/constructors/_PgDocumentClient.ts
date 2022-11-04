@@ -1,4 +1,5 @@
 import { DatabaseProviderOptions } from "../../../../types/data/DatabaseProviderOptions";
+import { InvalidArgumentError } from "../../../errors/InvalidArgumentError";
 import { _internalConsts } from "../../internalConsts/_internalConsts";
 import { _std } from "../../std/_std";
 import { _PgClient } from "./_PgClient";
@@ -20,7 +21,7 @@ class _PgDocumentClient {
 
     async createDictionaryAsync(name: string) {
         if(!this.#__checkStringPattern(name)) {
-            throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
         const script = `
@@ -41,7 +42,7 @@ class _PgDocumentClient {
             !this.#__checkStringPattern(dictionary) ||
             !this.#__checkStringPattern(name)
         ) {
-            throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
         const documentString = JSON.stringify(document);
@@ -60,7 +61,7 @@ class _PgDocumentClient {
             !this.#__checkStringPattern(dictionary) ||
             !this.#__checkStringPattern(name)
         ) {
-            throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
         const documentString = JSON.stringify(document);
@@ -79,7 +80,7 @@ class _PgDocumentClient {
             !this.#__checkStringPattern(dictionary) ||
             !this.#__checkStringPattern(name)
         ) {
-            throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
         const script = `
@@ -95,7 +96,7 @@ class _PgDocumentClient {
             !this.#__checkStringPattern(dictionary) ||
             !this.#__checkStringPattern(name)
         ) {
-            throw new Error(_internalConsts.INVALID_PGDOCUMENTCLIENT_IDENTIFIER_NAME);
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
         const script = `

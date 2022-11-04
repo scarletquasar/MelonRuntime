@@ -1,4 +1,5 @@
 import { DotnetFetchExpression } from "../../../types/dotnet/DotnetFetchExpression";
+import { InvalidArgumentError } from "../../errors/InvalidArgumentError";
 
 /* Melon.dotnet.getStaticMethod(expression: string)
 /  Returns (if exists) the expression-equivalent static method 
@@ -11,6 +12,12 @@ function _getStaticMethod<T>(expression: DotnetFetchExpression): (...args: any) 
     const namespace = parts[0];
     const type = parts[1];
     const method = parts[2];
+
+    if(parts.includes(null) || parts.includes("")) {
+        const causes = parts.filter(part => part === null || part === "");
+    
+        throw new InvalidArgumentError(...causes);
+    }
 
     const finalMethod = function (...args: any[]) {
         const callStaticMethodBinding = _$internalBinding["CallStaticMethod"];
