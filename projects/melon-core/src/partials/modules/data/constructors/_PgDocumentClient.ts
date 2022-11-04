@@ -1,13 +1,22 @@
 import { DatabaseProviderOptions } from "../../../../types/data/DatabaseProviderOptions";
 import { InvalidArgumentError } from "../../../errors/InvalidArgumentError";
 import { _internalConsts } from "../../internalConsts/_internalConsts";
-import { _std } from "../../std/_std";
+import { _nextTick } from "../../std/async/_nextTick";
 import { _PgClient } from "./_PgClient";
 
 class _PgDocumentClient {
     #provider: _PgClient;
 
     constructor(options: DatabaseProviderOptions) {
+        const invalidOptions = 
+            (Object.keys(options) as (string | number | boolean)[])
+            .filter(option => option[1] === null || option[1] === "" || option[1] === 0)
+            .map(option => option[0]);
+        
+        if(invalidOptions.length > 0) {
+            throw new InvalidArgumentError(...invalidOptions);
+        }
+
         this.#provider = new _PgClient(options);
     }
 
@@ -31,7 +40,7 @@ class _PgDocumentClient {
             );
         `;
 
-        await _std.async.nextTick();
+        await _nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -52,7 +61,7 @@ class _PgDocumentClient {
             VALUES ('${name}', '${documentString}')
         `;
 
-        await _std.async.nextTick();
+        await _nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -71,7 +80,7 @@ class _PgDocumentClient {
             WHERE name = '${name}'
         `;
 
-        await _std.async.nextTick();
+        await _nextTick();
         this.#provider.executeNonQuery(script);
     }
 
@@ -87,7 +96,7 @@ class _PgDocumentClient {
             SELECT document FROM ${dictionary} WHERE name = '${name}'
         `;
 
-        await _std.async.nextTick();
+        await _nextTick();
         return this.#provider.executeQuery<TDocument>(script)[0].document;
     }
 
@@ -103,7 +112,7 @@ class _PgDocumentClient {
             DELETE FROM ${dictionary} WHERE name = '${name}'
         `;
 
-        await _std.async.nextTick();
+        await _nextTick();
         this.#provider.executeNonQuery(script);
     }
 }
