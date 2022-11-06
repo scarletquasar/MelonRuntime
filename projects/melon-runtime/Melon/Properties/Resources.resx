@@ -126,7 +126,7 @@
 }</value>
   </data>
   <data name="NewProjectJsIndex" xml:space="preserve">
-    <value>console.log("Hello world");</value>
+    <value>console.log(Melon.std.process.env.HELLO_WORLD);</value>
   </data>
   <data name="NewProjectJsPackageInfo" xml:space="preserve">
     <value>{

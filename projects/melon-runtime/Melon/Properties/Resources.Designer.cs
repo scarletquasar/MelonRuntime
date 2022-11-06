@@ -81,7 +81,7 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world&quot;);.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(Melon.std.process.env.HELLO_WORLD);.
         /// </summary>
         internal static string NewProjectJsIndex {
             get {
