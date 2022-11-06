@@ -81,7 +81,9 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(Melon.std.process.env.HELLO_WORLD);.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a const { getEnvironmentVariable } = Melon.std.environment;
+        ///
+        ///console.log(getEnvironmentVariable(&quot;HELLO_WORLD&quot;));.
         /// </summary>
         internal static string NewProjectJsIndex {
             get {

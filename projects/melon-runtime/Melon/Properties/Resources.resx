@@ -126,7 +126,9 @@
 }</value>
   </data>
   <data name="NewProjectJsIndex" xml:space="preserve">
-    <value>console.log(Melon.std.process.env.HELLO_WORLD);</value>
+    <value>const { getEnvironmentVariable } = Melon.std.environment;
+
+console.log(getEnvironmentVariable("HELLO_WORLD"));</value>
   </data>
   <data name="NewProjectJsPackageInfo" xml:space="preserve">
     <value>{
