@@ -117,13 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DotEnv" xml:space="preserve">
+    <value>HELLO_WORLD=Hello world!</value>
+  </data>
   <data name="NewProjectJsBabelRc" xml:space="preserve">
     <value>{
     "presets": ["@babel/preset-env"]
 }</value>
   </data>
   <data name="NewProjectJsIndex" xml:space="preserve">
-    <value>console.log("Hello world");</value>
+    <value>const { getEnvironmentVariables } = Melon.std.environment;
+
+console.log(getEnvironmentVariables()["HELLO_WORLD"]);</value>
   </data>
   <data name="NewProjectJsPackageInfo" xml:space="preserve">
     <value>{
@@ -292,7 +297,9 @@ babel/
 .pnp.*</value>
   </data>
   <data name="NewProjectTsIndex" xml:space="preserve">
-    <value>console.log("Hello world");</value>
+    <value>const { getEnvironmentVariables } = Melon.std.environment;
+
+console.log(getEnvironmentVariables()["HELLO_WORLD"]);</value>
   </data>
   <data name="NewProjectTsPackageInfo" xml:space="preserve">
     <value>{

@@ -61,6 +61,15 @@ namespace Melon.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a HELLO_WORLD=Hello world!.
+        /// </summary>
+        internal static string DotEnv {
+            get {
+                return ResourceManager.GetString("DotEnv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
         ///}.
@@ -72,7 +81,9 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world&quot;);.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a const { getEnvironmentVariables } = Melon.std.environment;
+        ///
+        ///console.log(getEnvironmentVariables()[&quot;HELLO_WORLD&quot;]);.
         /// </summary>
         internal static string NewProjectJsIndex {
             get {
@@ -167,7 +178,9 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a console.log(&quot;Hello world&quot;);.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a const { getEnvironmentVariables } = Melon.std.environment;
+        ///
+        ///console.log(getEnvironmentVariables()[&quot;HELLO_WORLD&quot;]);.
         /// </summary>
         internal static string NewProjectTsIndex {
             get {

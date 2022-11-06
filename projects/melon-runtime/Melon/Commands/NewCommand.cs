@@ -51,6 +51,7 @@ namespace Melon.Commands
         {
             return new()
             {
+                new(".env", "./.env", Resources.DotEnv),
                 new("src/index.ts", "./src/index.ts", Resources.NewProjectTsIndex),
                 new(".babelrc", "./.babelrc", Resources.NewProjectTsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectTsPackageInfo),
@@ -73,6 +74,7 @@ namespace Melon.Commands
         {
             return new()
             {
+                new(".env", "./.env", Resources.DotEnv),
                 new("src/index.js", "./src/index.js", Resources.NewProjectJsIndex),
                 new(".babelrc", "./.babelrc", Resources.NewProjectJsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectJsPackageInfo),
