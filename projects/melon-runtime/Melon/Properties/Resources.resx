@@ -297,7 +297,9 @@ babel/
 .pnp.*</value>
   </data>
   <data name="NewProjectTsIndex" xml:space="preserve">
-    <value>console.log("Hello world");</value>
+    <value>const { getEnvironmentVariable } = Melon.std.environment;
+
+console.log(getEnvironmentVariable("HELLO_WORLD"));</value>
   </data>
   <data name="NewProjectTsPackageInfo" xml:space="preserve">
     <value>{
