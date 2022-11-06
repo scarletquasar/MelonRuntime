@@ -61,6 +61,15 @@ namespace Melon.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a HELLO_WORLD=Hello world!.
+        /// </summary>
+        internal static string DotEnv {
+            get {
+                return ResourceManager.GetString("DotEnv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
         ///}.
