@@ -11,6 +11,9 @@ import { _std } from "./partials/modules/std/_std"
 import { _crypto } from "./partials/statics/_Crypto"
 import { $ } from "./partials/utils/$"
 import { addPrototypeExtension } from "./partials/utils/addPrototypeExtension"
+import { getEnv } from "./partials/utils/getEnv"
+
+getEnv();
 
 const Melon = {
     std: _std,
