@@ -21,7 +21,7 @@ const app = http.app();
 app.get("/", async () => "Hello world");
 app.run();
 
-//App running in http://localhost:80
+//Listening to http://localhost:80
 ```
 
 ## Intensive async I/O operations
