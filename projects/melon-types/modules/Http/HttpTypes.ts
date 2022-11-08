@@ -14,8 +14,9 @@ declare interface HttpResponse {
 
 declare interface HttpRequest {
     query: Record<string, any>;
-    body: any;
+    body: string;
     headers: Record<string, any>;
+    values: Record<string, any>;
 }
 
 declare interface HttpComposedResponse {
