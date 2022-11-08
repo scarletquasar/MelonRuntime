@@ -1,6 +1,6 @@
 import { DotnetInstanceExpression } from "../../../../types/dotnet/DotnetInstanceExpression";
 import { Realm } from "../../../../types/dotnet/Realm";
-import { _crypto } from "../../../statics/_Crypto";
+import { _crypto } from "../../../statics/_crypto";
 
 class _Realm implements Realm {
     name: string;
