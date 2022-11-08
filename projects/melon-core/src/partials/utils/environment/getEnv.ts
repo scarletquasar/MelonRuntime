@@ -1,17 +1,21 @@
-import { _getStaticMethod } from "../../modules/dotnet/_getStaticMethod";
+import { _guards } from "../../modules/guards/_guards";
 import { _readText } from "../../modules/fs/_readText";
-import { _nextTick } from "../../modules/std/async/_nextTick";
+import { _getStaticMethod } from "../../modules/dotnet/_getStaticMethod";
 import { _setEnvironmentVariable } from "../../modules/std/environment/_setEnvironmentVariable";
 import { envParse } from "./envParse";
 
-const getFiles = _getStaticMethod<string[]>("System.IO:Directory:GetFiles");
+const { isNullOrWhiteSpace } = _guards.string;
 
 function getEnv() {
-    const file = getFiles("./", "*.env")[0];
-    const content = _readText(file);
-    const envObject = envParse<Record<string, any>>(content);
+    const content = _readText("./.env");
 
-    Object.entries(envObject).forEach(item => _setEnvironmentVariable(item[0], item[1]));
+    if(!isNullOrWhiteSpace(content)) {
+        const envObject = envParse(content) as Record<string, any>;
+    
+        Object
+            .entries(envObject)
+            .forEach(item => _setEnvironmentVariable(item[0], item[1]));
+    }
 }
 
 export { getEnv }
