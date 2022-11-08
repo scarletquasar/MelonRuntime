@@ -5,7 +5,7 @@
     query,
     body,
     headers,
-    isAsync
+    routeValues
 ) {
     const { _apps: apps } = Melon.http;
     const { tryParse } = Melon.std.json;
@@ -18,18 +18,15 @@
     const request = {
         query: tryParse(query),
         body: tryParse(body),
-        headers: tryParse(headers)
+        headers: tryParse(headers),
+        values: tryParse(routeValues)
     }
 
     const result = () => targetEndpoint.callback(request);
 
-    if (isAsync) {
-        const uuid = "pending_melon_http_promise_" + crypto.randomUUID();
-        webapp._promises[uuid] = result;
-        return uuid;
-    }
-
-    return result;
+    const uuid = "pending_melon_http_promise_" + crypto.randomUUID();
+    webapp._promises[uuid] = result;
+    return uuid;
 })(
     '{appIdentifier}',
     '{method}',
@@ -37,5 +34,5 @@
     '{serializedQuery}',
     '{serializedBody}',
     '{serializedHeaders}',
-    true
+    '{serializedRouteValues}'
 )

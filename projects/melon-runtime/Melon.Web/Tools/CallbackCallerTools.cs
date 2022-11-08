@@ -8,9 +8,10 @@ namespace Melon.Web.Tools
             string appIdentifier,
             string method,
             string route,
-            string serializedQuery = "{}",
-            string serializedHeaders = "{}",
-            string serializedBody = "{}"
+            string serializedQuery,
+            string serializedHeaders,
+            string serializedBody,
+            string serializedRouteValues
         )
         {
             var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -23,7 +24,8 @@ namespace Melon.Web.Tools
                 .Replace("{route}", route)
                 .Replace("{serializedQuery}", serializedQuery)
                 .Replace("{serializedBody}", serializedBody)
-                .Replace("{serializedHeaders}", serializedHeaders);
+                .Replace("{serializedHeaders}", serializedHeaders)
+                .Replace("{serializedRouteValues}", serializedRouteValues);
             return result;
         }
     }
