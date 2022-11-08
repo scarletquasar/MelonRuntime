@@ -31,16 +31,24 @@ namespace Melon.Web.Extensions
                         x => string.Join("", x.Value)
                     );
 
+                    var routeValues = request.RouteValues.ToDictionary(
+                        x => x.Key,
+                        x => string.Join("", x.Value)
+                    );
+
                     var stringQuery = JsonSerializer.Serialize(query);
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
+                    var stringRouteValues = JsonSerializer.Serialize(routeValues);
 
                     var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
                         identifierName,
                         endpoint!.Method!,
                         endpoint!.Route!,
                         stringQuery,
-                        stringHeaders
+                        stringHeaders,
+                        stringBody,
+                        stringRouteValues
                     );
 
                     var evaluation = engine!.Evaluate(callbackCaller);
@@ -71,7 +79,7 @@ namespace Melon.Web.Extensions
                     return ResultManager.GetHttpResult(evaluation);
                 }
 
-                webApp.MapMethods(endpoint.Route!, new List<string>(){ endpoint.Method!}, operation);
+                webApp.MapMethods(endpoint.Route!, new List<string>(){ endpoint.Method! }, operation);
             }
 
             return webApp;
