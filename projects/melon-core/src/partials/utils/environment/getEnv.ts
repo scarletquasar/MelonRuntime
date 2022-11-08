@@ -5,8 +5,12 @@ import { _setEnvironmentVariable } from "../../modules/std/environment/_setEnvir
 import { envParse } from "./envParse";
 
 const { isNullOrWhiteSpace } = _guards.string;
+const getFiles = _getStaticMethod<string[]>("System.IO:Directory:GetFiles");
 
 function getEnv() {
+    if(getFiles("./", "*.env").length === 0)
+        return;
+        
     const content = _readText("./.env");
 
     if(!isNullOrWhiteSpace(content)) {
