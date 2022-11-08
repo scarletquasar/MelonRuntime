@@ -1,7 +1,6 @@
 const _crypto = {
     randomUUID() {
-        const callStaticMethodBinding = _$internalBinding["CallStaticMethod"];
-        const rawUUID = callStaticMethodBinding("System", "Guid", "NewGuid", []);
+        const rawUUID = _$internalBinding["CallStaticMethod"]("System", "Guid", "NewGuid", []);
 
         return rawUUID.toString();
     }
