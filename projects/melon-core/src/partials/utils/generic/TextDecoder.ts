@@ -1,5 +1,3 @@
-//TODO FIX TEXT DECODER
-
 class TextDecoder {
     decode(octets: number[]) {
         let string = "";
@@ -8,11 +6,11 @@ class TextDecoder {
             let octet = octets[i];
 
             const getDataFromOctet = (octet: number) => ({
+                [<any>true]: { bytesNeeded: 0, codePoint: 0 },
                 [<any>(octet <= 0x7F)]: { bytesNeeded: 0, codePoint: octet & 0xFF },
                 [<any>(octet <= 0xDF)]: { bytesNeeded: 0, codePoint: octet & 0x1F },
                 [<any>(octet <= 0xEF)]: { bytesNeeded: 0, codePoint: octet & 0x0F },
-                [<any>(octet <= 0xF4)]: { bytesNeeded: 0, codePoint: octet & 0x07 },
-                [<any>true]: { bytesNeeded: 0, codePoint: 0 }
+                [<any>(octet <= 0xF4)]: { bytesNeeded: 0, codePoint: octet & 0x07 }
             }[<any>true])
     
             let { bytesNeeded, codePoint } = getDataFromOctet(octet);
