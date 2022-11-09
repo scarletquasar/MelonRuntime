@@ -30,3 +30,7 @@ declare const fetch: (target: string, options?: Record<string, any>) => Promise<
 declare class TextEncoder {
     encode: (string: string) => number[]
 }
+
+declare class TextDecoder {
+    decode: (octet: number[]) => string
+}
