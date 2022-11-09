@@ -26,3 +26,7 @@ declare const fs: typeof import ("./modules/Fs/Fs").Fs;
 declare const setTimeout: (callback: Function, delay: number) => void;
 declare const setInterval: (callback: Function, delay: number) => void;
 declare const fetch: (target: string, options?: Record<string, any>) => Promise<HttpResponse>;
+
+declare class TextEncoder {
+    encode: (string: string) => number[]
+}
