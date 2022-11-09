@@ -41,10 +41,10 @@ namespace Melon.Tests.Melon.dotnet
             Runtime.Engine = _engine;
 
             var script = @"
-                const task = new Melon.dotnet.threading.Task(() => 1);
-                task.start();
-                task.wait();
-                task.result;
+                const taskConstructor = new Melon.dotnet.threading.Task(() => 1);
+                taskConstructor.start();
+                taskConstructor.wait();
+                taskConstructor.result;
             ";
 
             var result = _engine.Evaluate(script).AsNumber();
