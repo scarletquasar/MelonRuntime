@@ -12,6 +12,7 @@ import { _crypto } from "./partials/statics/_crypto"
 import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
+import { TextEncoder } from "./partials/utils/generic/TextEncoder"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
@@ -38,6 +39,7 @@ globalThis.fetch = Melon.http.fetch;
 
 globalThis.Map = <any>_Map;
 globalThis.Set = <any>_Set;
+globalThis.TextEncoder = TextEncoder;
 
 globalThis.Melon = Melon;
 
