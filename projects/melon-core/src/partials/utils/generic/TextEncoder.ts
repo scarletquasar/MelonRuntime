@@ -11,11 +11,11 @@ class TextEncoder {
         let i = 0;
     
         const getDataFromCodePoint = (codePoint: number) => ({
+            [<any>true]: { c: 0, bits: 0 },
             [<any>(codePoint <= 0x0000007F)]: { c: 0, bits: 0x00 },
             [<any>(codePoint <= 0x000007FF)]: { c: 6, bits: 0xC0 },
             [<any>(codePoint <= 0x0000FFFF)]: { c: 12, bits: 0xE0 },
-            [<any>(codePoint <= 0x001FFFFF)]: { c: 18, bits: 0xF0 },
-            [<any>true]: { c: 0, bits: 0 }
+            [<any>(codePoint <= 0x001FFFFF)]: { c: 18, bits: 0xF0 }
         }[<any>true])
     
         while (i < length) {
