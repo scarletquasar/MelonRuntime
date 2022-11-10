@@ -7,8 +7,12 @@ import { _PgClient } from "./_PgClient";
 
 const { isNullOrWhiteSpace } = _guards.string;
 
+function checkStringPattern(string: string) {
+    return /^[A-Za-z0-9]*$/.test(string);
+}
+
 class _PgDocumentClient {
-    #provider: _PgClient;
+    _provider: _PgClient;
 
     constructor(options: DatabaseProviderOptions) {
         const invalidOptions = 
@@ -20,11 +24,7 @@ class _PgDocumentClient {
             throw new InvalidArgumentError(...invalidOptions);
         }
 
-        this.#provider = new _PgClient(options);
-    }
-
-    #__checkStringPattern(string: string) {
-        return /^[A-Za-z0-9]*$/.test(string);
+        this._provider = new _PgClient(options);
     }
 
     /* Dictionaries: Alias to tables, in this context are collections to
@@ -32,7 +32,7 @@ class _PgDocumentClient {
     /  storage environments and cases. */
 
     async createDictionaryAsync(name: string) {
-        if(!this.#__checkStringPattern(name)) {
+        if(!checkStringPattern(name)) {
             throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
 
@@ -44,15 +44,15 @@ class _PgDocumentClient {
         `;
 
         await _nextTick();
-        this.#provider.executeNonQuery(script);
+        this._provider.executeNonQuery(script);
     }
 
     //Documents
 
     async addDocumentAsync<TDocument>(dictionary: string, name: string, document: TDocument) {
         if(
-            !this.#__checkStringPattern(dictionary) ||
-            !this.#__checkStringPattern(name)
+            !checkStringPattern(dictionary) ||
+            !checkStringPattern(name)
         ) {
             throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
@@ -65,13 +65,13 @@ class _PgDocumentClient {
         `;
 
         await _nextTick();
-        this.#provider.executeNonQuery(script);
+        this._provider.executeNonQuery(script);
     }
 
     async updateDocumentAsync<TDocument>(dictionary: string, name: string, document: TDocument) {
         if(
-            !this.#__checkStringPattern(dictionary) ||
-            !this.#__checkStringPattern(name)
+            !checkStringPattern(dictionary) ||
+            !checkStringPattern(name)
         ) {
             throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
@@ -84,13 +84,13 @@ class _PgDocumentClient {
         `;
 
         await _nextTick();
-        this.#provider.executeNonQuery(script);
+        this._provider.executeNonQuery(script);
     }
 
     async getDocumentAsync<TDocument>(dictionary: string, name: string) {
         if(
-            !this.#__checkStringPattern(dictionary) ||
-            !this.#__checkStringPattern(name)
+            !checkStringPattern(dictionary) ||
+            !checkStringPattern(name)
         ) {
             throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
@@ -100,13 +100,13 @@ class _PgDocumentClient {
         `;
 
         await _nextTick();
-        return this.#provider.executeQuery<TDocument>(script)[0].document;
+        return this._provider.executeQuery<TDocument>(script)[0].document;
     }
 
     async deleteDocumentAsync(dictionary: string, name: string) {
         if(
-            !this.#__checkStringPattern(dictionary) ||
-            !this.#__checkStringPattern(name)
+            !checkStringPattern(dictionary) ||
+            !checkStringPattern(name)
         ) {
             throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
         }
@@ -116,7 +116,7 @@ class _PgDocumentClient {
         `;
 
         await _nextTick();
-        this.#provider.executeNonQuery(script);
+        this._provider.executeNonQuery(script);
     }
 }
 
