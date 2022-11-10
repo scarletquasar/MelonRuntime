@@ -13,7 +13,8 @@ const __dirname = path.dirname(__filename);
 
 //Commands implementation
 if(!process.argv.includes("--ignore-update")) {
-    const integrityReal = await axios.get("https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt")
+    const integrityRealResponse = await axios.get("https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt")
+    const integrityReal = integrityRealResponse.data;
     const integrityLocal = fs.readFileSync(__dirname.replace('Commands', 'integrity.txt')).toString();
     
     const shouldUpdate = Number(integrityReal) > Number(integrityLocal);
