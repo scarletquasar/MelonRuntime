@@ -1,6 +1,8 @@
-declare type HttpMethod = 
-    "get" | "post" | "patch" | "delete" | "head" | "options" |
-    "GET" | "POST" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
+type UpperAndLowerCase<T extends string> = Uppercase<T> | Lowercase<T>;
+
+declare type HttpMethod = UpperAndLowerCase<"get"> | UpperAndLowerCase<"post">
+  | UpperAndLowerCase<"patch"> | UpperAndLowerCase<"delete"> | UpperAndLowerCase<"head">
+  | UpperAndLowerCase<"options">;
 
 declare interface HttpResponse {
     body: string;
