@@ -32,10 +32,10 @@ declare interface HttpEndpoint {
 }
 
 declare type HttpCallbackFunction = 
-    (request: HttpRequest) => string | HttpComposedResponse;
+    (request?: HttpRequest) => string | HttpComposedResponse;
 
 declare type HttpAsyncCallbackFunction = 
-    (request: HttpRequest) => Promise<string> | Promise<HttpComposedResponse>;
+    (request?: HttpRequest) => Promise<string> | Promise<HttpComposedResponse>;
 
 declare interface HttpApplication {
     name: string;
