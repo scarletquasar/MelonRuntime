@@ -53,30 +53,19 @@ namespace Melon.Web.Extensions
 
                     var evaluation = engine!.Evaluate(callbackCaller);
 
-                    if (evaluation.IsString() && evaluation.AsString().StartsWith("pending_melon_http_promise_"))
+                    var promiseResult = await ResultManager.ExecutePromise(
+                        engine,
+                        identifierName,
+                        evaluation.AsString()
+                    );
+
+                    var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
+                    foreach (var header in promiseResultHeaders)
                     {
-                        var promiseResult = await ResultManager.ExecutePromise(
-                            engine,
-                            identifierName,
-                            evaluation.AsString()
-                        );
-
-                        var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
-                        foreach (var header in promiseResultHeaders)
-                        {
-                            context.Response.Headers.Add(header.Key, header.Value.ToString());
-                        }
-
-                        return ResultManager.GetHttpResult(promiseResult);
+                        context.Response.Headers.Add(header.Key, header.Value.ToString());
                     }
 
-                    var syncResultHeaders = HttpResultTools.GetHttpHeaders(evaluation);
-                    foreach (var header in syncResultHeaders)
-                    {
-                        context.Response.Headers.Add(header.Key, header.Value);
-                    }
-
-                    return ResultManager.GetHttpResult(evaluation);
+                    return ResultManager.GetHttpResult(promiseResult);
                 }
 
                 webApp.MapMethods(endpoint.Route!, new List<string>(){ endpoint.Method! }, operation);
