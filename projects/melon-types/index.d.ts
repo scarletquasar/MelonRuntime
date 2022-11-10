@@ -1,6 +1,7 @@
 /// <reference path="./modules/Http/HttpTypes.ts" />
 /// <reference path="./modules/Std/StdTypes.ts" />
 /// <reference path="./modules/Dotnet/DotnetTypes.ts" />
+/// <reference path="./modules/Data/DataTypes.ts" />
 
 /**
  * The console interface provides access to the debugging/output console
