@@ -15,19 +15,10 @@ namespace Melon.Web.Tools
         {
             JsValue? result = null;
 
-            using var promiseCallerIdentifier = new EngineOperation(engine)
-                .WithBase("Melon")
-                .WithProperty("http")
-                .WithProperty("_apps")
-                .WithProperty(identifier)
-                .WithProperty("_promises")
-                .WithProperty(promiseId);
+            var promiseCallerIdentifier = $"Melon.http._apps['{identifier}']._promises['{promiseId}']";
+            var promise = engine.Evaluate(promiseCallerIdentifier + "()");
 
-            var promiseCaller = promiseCallerIdentifier.As<JsValue>();
-
-            var promise = engine.Invoke(promiseCaller);
-
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 bool finished = false;
                 while (!finished)
@@ -35,7 +26,7 @@ namespace Melon.Web.Tools
                     try
                     {
                         result = promise.UnwrapIfPromise();
-                        promiseCallerIdentifier.Set("undefined");
+                        engine.Evaluate(promiseCallerIdentifier + " = undefined");
                         finished = true;
                     }
                     catch (PromiseRejectedException)
@@ -44,7 +35,7 @@ namespace Melon.Web.Tools
                     }
                     catch (InvalidOperationException)
                     {
-                        await Task.Delay(1);
+                        Thread.Sleep(1);
                     }
                 }
             });
