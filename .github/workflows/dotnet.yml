@@ -20,11 +20,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies 1
-      run: cd /projects/melon-runtime/
-    - name: Restore dependencies 2
+    - name: Restore dependencies
+      working-directory: ./projects/melon-runtime
       run: dotnet restore
     - name: Build
-      run: dotnet build /projects/melon-runtime/Melon/Melon.csproj --no-restore
+      working-directory: ./projects/melon-runtime/Melon
+      run: dotnet build Melon.csproj --no-restore
     - name: Test
-      run: dotnet test /projects/melon-runtime/Melon.Tests/Melon.Tests.csproj --no-build --verbosity normal
+      working-directory: ./projects/melon-runtime/Melon.Tests
+      run: dotnet test Melon.Tests.csproj --no-build --verbosity normal
