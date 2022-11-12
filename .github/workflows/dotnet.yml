@@ -20,7 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore dependencies 1
+      run: cd /projects/melon-runtime/
+    - name: Restore dependencies 2
       run: dotnet restore
     - name: Build
       run: dotnet build /projects/melon-runtime/Melon/Melon.csproj --no-restore
