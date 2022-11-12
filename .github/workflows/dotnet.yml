@@ -28,4 +28,4 @@ jobs:
       run: dotnet build Melon.csproj --no-restore
     - name: Test
       working-directory: ./projects/melon-runtime/Melon.Tests
-      run: dotnet test Melon.Tests.csproj --no-build --verbosity normal
+      run: dotnet test Melon.Tests.csproj --verbosity normal
