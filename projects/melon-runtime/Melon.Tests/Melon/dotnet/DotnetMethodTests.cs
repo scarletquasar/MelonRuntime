@@ -33,14 +33,13 @@ namespace Melon.Tests.Melon.dotnet
         public void GetStaticPropertyShouldWorkCorrectly()
         {
             var script = @"
-                const title = Melon.dotnet.getStaticProperty('System:Console:Title');
-                title
+                const fgColor = Melon.dotnet.getStaticProperty('System:Console:ForegroundColor');
+                fgColor
             ";
 
             var result = _engine.Evaluate(script);
 
-            Assert.True(result.IsString());
-            Assert.NotEmpty(result.AsString());
+            Assert.True(result.IsNumber());
         }
 
         [Fact]

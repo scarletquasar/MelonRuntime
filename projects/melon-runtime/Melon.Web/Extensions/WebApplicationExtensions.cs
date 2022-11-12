@@ -39,6 +39,12 @@ namespace Melon.Web.Extensions
                     var stringQuery = JsonSerializer.Serialize(query);
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
+
+                    stringBody = stringBody
+                        .Replace("\n", "")
+                        .Replace("\r", "")
+                        .Replace("\t", "");
+
                     var stringRouteValues = JsonSerializer.Serialize(routeValues);
 
                     var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
@@ -60,9 +66,17 @@ namespace Melon.Web.Extensions
                     );
 
                     var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
+
                     foreach (var header in promiseResultHeaders)
                     {
-                        context.Response.Headers.Add(header.Key, header.Value.ToString());
+                        if(context.Response.Headers.ContainsKey(header.Key))
+                        {
+                            context.Response.Headers[header.Key] = header.Value;
+                        }
+                        else
+                        {
+                            context.Response.Headers.Add(header.Key, header.Value.ToString());
+                        }
                     }
 
                     return ResultManager.GetHttpResult(promiseResult);
