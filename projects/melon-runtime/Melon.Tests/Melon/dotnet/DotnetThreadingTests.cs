@@ -7,93 +7,96 @@ namespace Melon.Tests.Melon.dotnet
 {
     public class DotnetThreadingTests
     {
-        private readonly Jint.Engine _engine;
+        private readonly EngineBuilder _builder;
 
         public DotnetThreadingTests()
         {
-            var builder = new EngineBuilder();
-            builder.Load("Bundle/core");
-            _engine = builder.Build();
+            _builder = new EngineBuilder();
+            _builder.Load("Bundle/core");
         }
 
         [Fact]
         public void CreateTaskShouldWorkCorrectly()
         {
-            Runtime.Engine = _engine;
+            Runtime.Engine = _builder.Build();
+            lock(Runtime.Engine) 
+            {
+                var script = @"
+                    const task = Melon.dotnet.threading.createTask(() => 1);
+                    task.start();
+                    task.wait();
+                    task.result;
+                ";
 
-            var script = @"
-                const task = Melon.dotnet.threading.createTask(() => 1);
-                task.start();
-                task.wait();
-                task.result;
-            ";
+                var result = Runtime.Engine.Evaluate(script).AsNumber();
 
-            var result = _engine.Evaluate(script).AsNumber();
+                Assert.Equal(1, result);
 
-            Assert.Equal(1, result);
-
-            Runtime.Engine = null;
+                Runtime.Engine = null;
+            }
         }
 
         [Fact]
         public void TaskConstructorShouldWorkCorrectly()
         {
-            Runtime.Engine = _engine;
+            Runtime.Engine = _builder.Build();
+            lock(Runtime.Engine) {
+                var script = @"
+                    const taskConstructor = new Melon.dotnet.threading.Task(() => 1);
+                    taskConstructor.start();
+                    taskConstructor.wait();
+                    taskConstructor.result;
+                ";
 
-            var script = @"
-                const taskConstructor = new Melon.dotnet.threading.Task(() => 1);
-                taskConstructor.start();
-                taskConstructor.wait();
-                taskConstructor.result;
-            ";
+                var result = Runtime.Engine.Evaluate(script).AsNumber();
 
-            var result = _engine.Evaluate(script).AsNumber();
+                Assert.Equal(1, result);
 
-            Assert.Equal(1, result);
-
-            Runtime.Engine = null;
+                Runtime.Engine = null;
+            }
         }
 
         [Fact]
         public void CreateThreadShouldWorkCorrectly()
         {
-            Runtime.Engine = _engine;
+            Runtime.Engine = _builder.Build();
 
-            var script = @"
-                let value = 0;
-                const thread = Melon.dotnet.threading.createThread(() => value = 1);
-                thread.start();
+            lock (Runtime.Engine)
+            {
+                var script = @"
+                    let value = 0;
+                    const thread = Melon.dotnet.threading.createThread(() => value = 1);
+                    thread.start();
                 
-                while(value != 1) { }
-                value
-            ";
+                    while(value != 1) { }
+                    value
+                ";
 
-            var result = _engine.Evaluate(script).AsNumber();
-
-            Assert.Equal(1, result);
-
-            Runtime.Engine = null;
+                var result = Runtime.Engine.Evaluate(script).AsNumber();
+                Assert.Equal(1, result);
+                Runtime.Engine = null;
+            }
         }
 
         [Fact]
         public void ThreadConstructorShouldWorkCorrectly()
         {
-            Runtime.Engine = _engine;
-
-            var script = @"
-                let value = 0;
-                const thread = new Melon.dotnet.threading.Thread(() => value = 1);
-                thread.start();
+            Runtime.Engine = _builder.Build();
+            lock (Runtime.Engine)
+            {
+                var script = @"
+                    let value = 0;
+                    const thread = new Melon.dotnet.threading.Thread(() => value = 1);
+                    thread.start();
                 
-                while(value != 1) { }
-                value
-            ";
+                    while(value != 1) { }
+                    value
+                ";
 
-            var result = _engine.Evaluate(script).AsNumber();
-
-            Assert.Equal(1, result);
-
-            Runtime.Engine = null;
+                var result = Runtime.Engine.Evaluate(script).AsNumber();
+                Assert.Equal(1, result);
+                Runtime.Engine = null;
+            }
         }
     }
 }
