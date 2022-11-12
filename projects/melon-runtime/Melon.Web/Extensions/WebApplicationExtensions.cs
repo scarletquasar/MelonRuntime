@@ -66,9 +66,17 @@ namespace Melon.Web.Extensions
                     );
 
                     var promiseResultHeaders = HttpResultTools.GetHttpHeaders(promiseResult);
+
                     foreach (var header in promiseResultHeaders)
                     {
-                        context.Response.Headers.Add(header.Key, header.Value.ToString());
+                        if(context.Response.Headers.ContainsKey(header.Key))
+                        {
+                            context.Response.Headers[header.Key] = header.Value;
+                        }
+                        else
+                        {
+                            context.Response.Headers.Add(header.Key, header.Value.ToString());
+                        }
                     }
 
                     return ResultManager.GetHttpResult(promiseResult);

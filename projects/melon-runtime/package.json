@@ -1,6 +1,6 @@
 {
   "name": "melon-runtime",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "Fast modern .NET JavaScript runtime",
   "type": "module",
   "scripts": {
