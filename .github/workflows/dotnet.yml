@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build /projects/melon-runtime/Melon.sln --no-restore
+      run: dotnet build /projects/melon-runtime/Melon/Melon.csproj --no-restore
     - name: Test
-      run: dotnet test /projects/melon-runtime/Melon.sln --no-build --verbosity normal
+      run: dotnet test /projects/melon-runtime/Melon.Tests/Melon.Tests.csproj --no-build --verbosity normal
