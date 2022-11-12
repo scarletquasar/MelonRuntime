@@ -39,6 +39,12 @@ namespace Melon.Web.Extensions
                     var stringQuery = JsonSerializer.Serialize(query);
                     var stringHeaders = JsonSerializer.Serialize(headers);
                     var stringBody = await new StreamReader(request.Body).ReadToEndAsync();
+
+                    stringBody = stringBody
+                        .Replace("\n", "")
+                        .Replace("\r", "")
+                        .Replace("\t", "");
+
                     var stringRouteValues = JsonSerializer.Serialize(routeValues);
 
                     var callbackCaller = await CallbackCallerTools.GetCallbackCaller(
