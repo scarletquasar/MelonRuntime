@@ -8,5 +8,10 @@ namespace Melon.Library.Static.Generic
         {
             return JsonConvert.DeserializeObject<object>(JsonConvert.SerializeObject(value))!;
         }
+
+        public static List<object> CreateList(object[] values)
+        {
+            return values.ToList();
+        }
     }
 }

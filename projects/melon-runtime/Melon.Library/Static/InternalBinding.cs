@@ -19,20 +19,21 @@ namespace Melon.Library.Static
         public static Dictionary<string, dynamic> Dictionary { get; } =
             new()
             {
-                { 
-                    "StringifyFunction", 
-                    new Func<Func<JsValue, JsValue[], JsValue>, string>(Functions.StringifyFunction) 
+                { "CreateList", new Func<object[], List<object>>(Generic.Object.CreateList) },
+                {
+                    "StringifyFunction",
+                    new Func<Func<JsValue, JsValue[], JsValue>, string>(Functions.StringifyFunction)
                 },
                 { "DeepClone", new Func<object, object>(Generic.Object.Clone) },
                 { "LocalEnvironmentVariables", LocalEnvironmentVariables },
                 { "ProcessExit", new Action<int>(Environment.Exit) },
                 { "ReadFileText", new Func<string, string>(File.ReadAllText) },
-                { 
-                    "ReadFileTextAsync", 
-                    new Func<string, CancellationToken, Task<string>>(File.ReadAllTextAsync) 
+                {
+                    "ReadFileTextAsync",
+                    new Func<string, CancellationToken, Task<string>>(File.ReadAllTextAsync)
                 },
                 { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
-                { 
+                {
                     "WriteFileTextAsync",
                     new Func<string, string?, CancellationToken, Task>(File.WriteAllTextAsync)
                 },
@@ -42,9 +43,9 @@ namespace Melon.Library.Static
                     new Func<string, CancellationToken, Task<byte[]>>(File.ReadAllBytesAsync)
                 },
                 { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
-                { 
-                    "WriteFileBytesAsync", 
-                    new Func<string, byte[], CancellationToken, Task>(File.WriteAllBytesAsync) 
+                {
+                    "WriteFileBytesAsync",
+                    new Func<string, byte[], CancellationToken, Task>(File.WriteAllBytesAsync)
                 },
                 { "DeleteFile", new Action<string>(File.Delete) },
                 { "CopyFile", new Action<string, string, bool>(File.Copy) },
@@ -101,9 +102,9 @@ namespace Melon.Library.Static
                 },
                 { "GetTypes", new Func<string, dynamic>(ReflectionHelper.GetTypes) },
                 { "LoadAssembly", new Func<string, string?>(ReflectionHelper.LoadAssembly) },
-                { 
-                    "LoadAssemblyAsync", 
-                    new Func<string, Task<string?>>(ReflectionHelper.LoadAssemblyAsync) 
+                {
+                    "LoadAssemblyAsync",
+                    new Func<string, Task<string?>>(ReflectionHelper.LoadAssemblyAsync)
                 },
                 { "RemoveAssembly", new Action<string>(ReflectionHelper.RemoveAssembly) },
                 {

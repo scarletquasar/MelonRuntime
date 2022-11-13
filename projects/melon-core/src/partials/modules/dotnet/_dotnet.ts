@@ -12,6 +12,7 @@ import { _createThread } from "./threading/_createThread";
 import { _Task } from "./threading/_Task";
 import { _Thread } from "./threading/_Thread";
 import { _getFactories } from "./_getFactories";
+import { _createList } from "./_createList";
 
 const _dotnet = {
     getFactories: _getFactories,
@@ -27,6 +28,7 @@ const _dotnet = {
         Task: _Task,
         Thread: _Thread
     },
+    createList: _createList,
     types: _types,
     Realm: _Realm
 }
