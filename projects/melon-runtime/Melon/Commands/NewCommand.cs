@@ -76,7 +76,6 @@ namespace Melon.Commands
             {
                 new(".env", "./.env", Resources.DotEnv),
                 new("src/index.js", "./src/index.js", Resources.NewProjectJsIndex),
-                new(".babelrc", "./.babelrc", Resources.NewProjectJsBabelRc),
                 new("package.json", "./package.json", Resources.NewProjectJsPackageInfo),
                 new(
                     "webpack.config.production.js",
