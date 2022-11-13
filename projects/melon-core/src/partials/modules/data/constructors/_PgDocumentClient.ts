@@ -103,6 +103,26 @@ class _PgDocumentClient {
         return this._provider.executeQuery<TDocument>(script)[0].document;
     }
 
+    async getDocuments<TDocument>(dictionary: string, filter?: any) {
+        if(!checkStringPattern(dictionary)) {
+            throw new InvalidArgumentError("The name is invalid, should contain only letters and numbers");
+        }
+
+        const script = `
+            SELECT * FROM ${dictionary}
+        `;
+
+        await _nextTick();
+
+        let result = this._provider.executeQuery<TDocument[]>(script);
+
+        if(filter) {
+            result = result.filter(filter);
+        }
+
+        return result;
+    }
+
     async deleteDocumentAsync(dictionary: string, name: string) {
         if(
             !checkStringPattern(dictionary) ||

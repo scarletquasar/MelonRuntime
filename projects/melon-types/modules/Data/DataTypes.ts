@@ -8,6 +8,7 @@ declare interface DatabaseDocumentClient {
     addDocumentAsync: <TDocument>(dictionary: string, name: string, document: TDocument) => Promise<void>;
     updateDocumentAsync: <TDocument>(dictionary: string, name: string, document: TDocument) => Promise<void>;
     getDocumentAsync: <TDocument>(dictionary: string, name: string) => Promise<TDocument>;
+    getDocuments: <TDocument>(dictionary: string, filter?: (item: TDocument) => boolean) => Promise<TDocument[]>;
     deleteDocumentAsync: (dictionary: string, name: string) => Promise<void>;
 }
 
