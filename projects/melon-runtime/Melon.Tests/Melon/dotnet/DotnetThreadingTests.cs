@@ -1,6 +1,7 @@
 ﻿using Jint;
 using Melon.Engine.Builders;
 using Melon.Static.Runtime;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Melon.Tests.Melon.dotnet
@@ -19,6 +20,7 @@ namespace Melon.Tests.Melon.dotnet
         public void CreateTaskShouldWorkCorrectly()
         {
             Runtime.Engine = _builder.Build();
+
             lock(Runtime.Engine) 
             {
                 var script = @"
@@ -31,16 +33,17 @@ namespace Melon.Tests.Melon.dotnet
                 var result = Runtime.Engine.Evaluate(script).AsNumber();
 
                 Assert.Equal(1, result);
-
-                Runtime.Engine = null;
             }
+
+            Runtime.Engine = null;
         }
 
         [Fact]
         public void TaskConstructorShouldWorkCorrectly()
         {
             Runtime.Engine = _builder.Build();
-            lock(Runtime.Engine) {
+            lock(Runtime.Engine) 
+            {
                 var script = @"
                     const taskConstructor = new Melon.dotnet.threading.Task(() => 1);
                     taskConstructor.start();

@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
     <PackageReference Include="DotnetFetch" Version="1.0.0" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-2042" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2043" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
     <PackageReference Include="Npgsql" Version="6.0.6" />

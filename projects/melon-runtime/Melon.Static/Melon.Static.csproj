@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-2042" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2043" />
   </ItemGroup>
 
   <ItemGroup>
