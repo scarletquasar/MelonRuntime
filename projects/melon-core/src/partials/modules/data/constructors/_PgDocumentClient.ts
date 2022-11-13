@@ -114,7 +114,9 @@ class _PgDocumentClient {
 
         await _nextTick();
 
-        let result = this._provider.executeQuery<TDocument[]>(script);
+        let result: TDocument[] = this._provider
+            .executeQuery<any[]>(script)
+            .map(x => JSON.parse(x.document));
 
         if(filter) {
             result = result.filter(filter);
