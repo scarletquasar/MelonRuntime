@@ -17,7 +17,7 @@
 
     const request = {
         query: tryParse(query),
-        body: tryParse(body),
+        body,
         headers: tryParse(headers),
         values: tryParse(routeValues)
     }
