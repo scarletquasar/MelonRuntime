@@ -70,17 +70,6 @@ namespace Melon.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a {
-        ///    &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
-        ///}.
-        /// </summary>
-        internal static string NewProjectJsBabelRc {
-            get {
-                return ResourceManager.GetString("NewProjectJsBabelRc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a const { getEnvironmentVariables } = Melon.std.environment;
         ///
         ///console.log(getEnvironmentVariables()[&quot;HELLO_WORLD&quot;]);.
@@ -101,7 +90,6 @@ namespace Melon.Properties {
         ///  &quot;devDependencies&quot;: {
         ///    &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///    &quot;@babel/core&quot;: &quot;latest&quot;,
-        ///    &quot;@babel/preset-env&quot;: &quot;latest&quot;,
         ///    &quot;webpack-cli&quot;: &quot;latest&quot;
         ///  }
         ///}.
@@ -114,7 +102,7 @@ namespace Melon.Properties {
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
-        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;, &quot;@babel/preset-env&quot;]
+        ///    &quot;presets&quot;: [&quot;@babel/preset-typescript&quot;]
         ///}.
         /// </summary>
         internal static string NewProjectTsBabelRc {
@@ -198,8 +186,8 @@ namespace Melon.Properties {
         ///    &quot;devDependencies&quot;: {
         ///      &quot;@babel/cli&quot;: &quot;latest&quot;,
         ///      &quot;@babel/core&quot;: &quot;latest&quot;,
-        ///      &quot;@babel/preset-env&quot;: &quot;latest&quot;,
-        ///      &quot;@b [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///      &quot;@babel/preset-typescript&quot;: &quot;latest&quot;,
+        ///   [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string NewProjectTsPackageInfo {
             get {
