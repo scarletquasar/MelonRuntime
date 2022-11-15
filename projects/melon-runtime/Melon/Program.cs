@@ -3,6 +3,7 @@ using Cli.NET.Models;
 using Melon.Static.Runtime;
 using Melon.Commands;
 using Melon.Builders;
+using Newtonsoft.Json;
 
 namespace Melon
 {
@@ -11,6 +12,12 @@ namespace Melon
         internal static void Main(string[] args)
         {
             Console.Title = "Melon Runtime";
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
             Helpers.DisplayMelonDefaultInformation();
 

@@ -24,7 +24,7 @@ namespace Melon.Web.Tools
                 200 => GetSpecificResult(type, response),
                 404 => Results.NotFound(response),
                 401 => Results.Unauthorized(),
-                400 => Results.BadRequest(response),
+                400 => Results.Json(JsonSerializer.Deserialize<object>(response), statusCode: 400),
                 409 => Results.Conflict(response),
                 204 => Results.NoContent(),
                 422 => Results.UnprocessableEntity(response),
