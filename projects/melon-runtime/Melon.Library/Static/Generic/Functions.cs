@@ -1,5 +1,6 @@
 ﻿using Jint.Native;
 using Jint.Runtime.Interop;
+using Jint.Native.Error;
 
 namespace Melon.Library.Static.Generic
 {
@@ -9,8 +10,11 @@ namespace Melon.Library.Static.Generic
         {
             var obj = (dynamic)function;
 
-            if(obj.Target.GetType() != typeof(ClrFunctionInstance))
-               return obj.Target.FunctionDeclaration.ToString();
+            if (obj.Target.GetType() == typeof(ErrorConstructor))
+                return "function() { [Error] }";
+
+            if (obj.Target.GetType() != typeof(ClrFunctionInstance))
+                return obj.Target.FunctionDeclaration.ToString();
 
             return "function() { [native code] }";
         }
