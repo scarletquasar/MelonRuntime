@@ -1,11 +1,6 @@
-//Internal default constructors
 import { _Map } from "./partials/constructors/_Map"
 import { _Set } from "./partials/constructors/_Set"
 import { _Version } from "./partials/constructors/_Version"
-import { TextEncoder } from "./partials/utils/generic/TextEncoder"
-import { TextDecoder } from "./partials/utils/generic/TextDecoder"
-
-//Internal default modules
 import { _console } from "./partials/modules/console/_console"
 import { _data } from "./partials/modules/data/_data"
 import { _dotnet } from "./partials/modules/dotnet/_dotnet"
@@ -14,11 +9,11 @@ import { _guards } from "./partials/modules/guards/_guards"
 import { _http } from "./partials/modules/http/_http"
 import { _std } from "./partials/modules/std/_std"
 import { _crypto } from "./partials/statics/_crypto"
-
-//Internal default utils
 import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
+import { TextEncoder } from "./partials/utils/generic/TextEncoder"
+import { TextDecoder } from "./partials/utils/generic/TextDecoder"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
