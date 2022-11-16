@@ -9,7 +9,7 @@ function __callLogger(color: ConsoleColor, args: any[]) {
 
     for(let currentIndex = 0; currentIndex < argsIndex; currentIndex++) {
         const current = args[currentIndex];
-        const serialized = serialize();
+        const serialized = serialize(current);
 
         //Info: If the serialized argument is a function, that means
         //that needs to be fixed, in order to be exposed to the logger
