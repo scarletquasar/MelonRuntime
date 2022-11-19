@@ -4,9 +4,9 @@
   "description": "Fast modern .NET JavaScript runtime",
   "type": "module",
   "scripts": {
-    "build": "dotnet publish Melon -o Output",
-    "exec": "dotnet exec Output/Melon.dll",
-    "dev": "dotnet watch --no-hot-reload --project Melon",
+    "build": "dotnet publish MelonRuntime.CLI -o Output",
+    "exec": "dotnet exec Output/MelonRuntime.CLI.dll",
+    "dev": "dotnet watch --no-hot-reload --project MelonRuntime.CLI",
     "core": "cd ../melon-core && npm run build && cd ../melon-runtime && cp ../melon-core/dist/core.js ./Melon.Library/Bundle/core.js",
     "prepublish": "npm run build"
   },

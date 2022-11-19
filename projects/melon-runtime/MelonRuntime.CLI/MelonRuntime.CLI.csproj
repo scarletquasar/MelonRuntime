@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+	<Version>2.7.0</Version>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cli.NET" Version="2.2.0-alpha" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2043" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MelonRuntime.Abstractions\MelonRuntime.Abstractions.csproj" />
+    <ProjectReference Include="..\MelonRuntime.Core\MelonRuntime.Core.csproj" />
+  </ItemGroup>
+
+</Project>

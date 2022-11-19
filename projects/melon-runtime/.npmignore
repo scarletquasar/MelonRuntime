@@ -1,10 +1,8 @@
 .vs
-*/Melon
-*/Melon.Engine
-*/Melon.Library
-*/Melon.Static
-*/Melon.Web
-*/Melon.Models
-*/Melon.Tests
+*/MelonRuntime
+*/MelonRuntime.Abstractions
+*/MelonRuntime.Core
+*/MelonRuntime.CLI
+*/MelonRuntime.Domain
 */*.csproj.user
 *.sln

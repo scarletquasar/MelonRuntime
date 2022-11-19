@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Builders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotnetFetch" Version="1.0.0" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2043" />
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="7.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MelonRuntime.Abstractions\MelonRuntime.Abstractions.csproj" />
+    <ProjectReference Include="..\MelonRuntime.Domain\MelonRuntime.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Scripts\core.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
