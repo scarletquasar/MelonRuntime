@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
 using MelonRuntime.JintExtensions;
+using Jint.Native.Function;
 
 namespace MelonRuntime.Core.Entities
 {
@@ -134,7 +135,14 @@ namespace MelonRuntime.Core.Entities
 
                         if (output.IsObject())
                         {
-                            value = JsonConvert.SerializeObject(output.AsDictionary(false));
+                            try
+                            {
+                                value = JsonConvert.SerializeObject(output.AsDictionary(false));
+                            }
+                            catch
+                            {
+                                value = output.AsFunctionString();
+                            }
                         }
 
                         if (output.IsArray()) value = output.AsArray().ToString();

@@ -9,6 +9,7 @@ using MelonRuntime.Core.Library;
 using MelonRuntime.Core;
 using Newtonsoft.Json;
 
+Console.Title = "Melon Runtime";
 DependencyRunner.Setup();
 
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings

@@ -15,20 +15,25 @@ namespace MelonRuntime.JintExtensions
             shadowEngine.SetValue("target", target);
             shadowEngine.SetValue("dictionaryReferenceAdd", dictionary.Add);
 
-            var elementsScript = @"
-                const entries = Object.entries(target);
-                const functions = entries.filter(x => x[1] instanceof Function);
-                const promises = entries.filter(x => x[1] instanceof Promise);
+            if(includeCallables)
+            {
+                shadowEngine.Execute(@"
+                    const entries = Object.entries(target);
+                    entries.forEach(entry => dictionaryReferenceAdd(entry[0], entry[1]));
+                ");
 
+                return dictionary;
+            }
+
+            // Note: Calling default JSON.stringify/parse from Jint will remove all unreproducible values,
+            // including functions, custom instances, promises, etc.
+            shadowEngine.Execute(@"
+                const stringified = JSON.stringify(target);
+                const parsed = JSON.parse(stringified);
+
+                const entries = Object.entries(parsed);
                 entries.forEach(entry => dictionaryReferenceAdd(entry[0], entry[1]));
-            ";
-
-            var callablesScript = @"
-                promises.forEach(entry => dictionaryReferenceAdd(entry[0], entry[1]));
-                functions.forEach(entry => dictionaryReferenceAdd(entry[0], entry[1]));
-            ";
-
-            shadowEngine.Execute(elementsScript + (includeCallables ? callablesScript : ""));
+            ");
 
             return dictionary;
         }
@@ -37,14 +42,14 @@ namespace MelonRuntime.JintExtensions
         {
             var obj = (dynamic)function;
 
-            if (obj.Target.GetType() == typeof(ErrorConstructor))
+            if (obj.GetType() == typeof(ErrorConstructor))
             {
                 return "function() { [Error] }";
             }
 
-            if (obj.Target.GetType() != typeof(ClrFunctionInstance))
+            if (obj.GetType() != typeof(ClrFunctionInstance))
             {
-                return obj.Target.FunctionDeclaration.ToString();
+                return obj.FunctionDeclaration.ToString();
             }
 
             return "function() { [native code] }";
