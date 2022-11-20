@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
 using MelonRuntime.JintExtensions;
-using Jint.Native.Function;
 
 namespace MelonRuntime.Core.Entities
 {

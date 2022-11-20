@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.Core", "MelonR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.Domain", "MelonRuntime.Domain\MelonRuntime.Domain.csproj", "{6159A454-4EE6-47E6-8FA7-1F6536157B7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonRuntime.JintExtensions", "MelonRuntime.JintExtensions\MelonRuntime.JintExtensions.csproj", "{2B879398-3DDC-472F-8781-E2DEC3388335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.JintExtensions", "MelonRuntime.JintExtensions\MelonRuntime.JintExtensions.csproj", "{2B879398-3DDC-472F-8781-E2DEC3388335}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StandalonePackages", "StandalonePackages", "{7D52107D-C090-4266-96B6-A705B3233916}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyPackages", "DependencyPackages", "{A8B71808-C362-4D89-A54F-4402438846C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RuntimeOnly", "RuntimeOnly", "{AD6CE587-0438-4FBC-857F-0359735EDF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26E48BD2-0D3D-496A-960C-5F58AA84463A} = {AD6CE587-0438-4FBC-857F-0359735EDF3C}
+		{E344B188-71D6-4ECE-8F22-B93C02D6B143} = {A8B71808-C362-4D89-A54F-4402438846C8}
+		{41509231-4709-4C59-A831-33D73EB6102C} = {A8B71808-C362-4D89-A54F-4402438846C8}
+		{6159A454-4EE6-47E6-8FA7-1F6536157B7D} = {A8B71808-C362-4D89-A54F-4402438846C8}
+		{2B879398-3DDC-472F-8781-E2DEC3388335} = {7D52107D-C090-4266-96B6-A705B3233916}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6AB0C26-5F24-4037-AAE1-386C2EE0667F}

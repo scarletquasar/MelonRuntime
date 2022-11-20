@@ -8,6 +8,7 @@ using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Core.Library.Threading;
 using MelonRuntime.Core.Library.Web;
 using MelonRuntime.Domain.Core.Library.Web;
+using Microsoft.VisualBasic.FileIO;
 using System.Dynamic;
 
 namespace MelonRuntime.Core.Library
@@ -44,7 +45,8 @@ namespace MelonRuntime.Core.Library
                 GetHttpClientBindings(),
                 GetThreadingBindings(),
                 GetRealmBindings(),
-                GetEnvironmentBindings()
+                GetEnvironmentBindings(),
+                GetFileSystemBindings()
             };
 
             return allBindings
@@ -184,6 +186,40 @@ namespace MelonRuntime.Core.Library
             return new()
             {
                 ["LocalEnvironmentVariables"] = _melon!.GetEnvironmentVariables()
+            };
+        }
+
+        private Dictionary<string, dynamic> GetFileSystemBindings()
+        {
+            return new()
+            {
+                { "ReadFileText", new Func<string, string>(File.ReadAllText) },
+                {
+                    "ReadFileTextAsync",
+                    new Func<string, CancellationToken, Task<string>>(File.ReadAllTextAsync)
+                },
+                { "WriteFileText", new Action<string, string?>(File.WriteAllText) },
+                {
+                    "WriteFileTextAsync",
+                    new Func<string, string?, CancellationToken, Task>(File.WriteAllTextAsync)
+                },
+                { "ReadFileBytes", new Func<string, byte[]>(File.ReadAllBytes) },
+                {
+                    "ReadFileBytesAsync",
+                    new Func<string, CancellationToken, Task<byte[]>>(File.ReadAllBytesAsync)
+                },
+                { "WriteFileBytes", new Action<string, byte[]>(File.WriteAllBytes) },
+                {
+                    "WriteFileBytesAsync",
+                    new Func<string, byte[], CancellationToken, Task>(File.WriteAllBytesAsync)
+                },
+                { "DeleteFile", new Action<string>(File.Delete) },
+                { "CopyFile", new Action<string, string, bool>(File.Copy) },
+                { "MoveFile", new Action<string, string, bool>(File.Move) },
+                { "RenameFile", new Action<string, string>(FileSystem.RenameFile) },
+                { "RenameDirectory", new Action<string, string>(FileSystem.RenameDirectory) },
+                { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
+                { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
             };
         }
     }
