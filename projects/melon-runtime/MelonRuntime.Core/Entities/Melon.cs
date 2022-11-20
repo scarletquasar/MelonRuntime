@@ -6,6 +6,8 @@ using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.Abstractions.JavaScript;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Newtonsoft.Json;
+using MelonRuntime.JintExtensions;
 
 namespace MelonRuntime.Core.Entities
 {
@@ -123,10 +125,21 @@ namespace MelonRuntime.Core.Entities
                 {
                     if (e.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach(var item in e.NewItems!) 
+                        var value = "undefined";
+                        var output = _output.Last();
+
+                        if (output.IsNumber()) value = output.AsNumber().ToString();
+                        if (output.IsBoolean()) value = output.AsBoolean().ToString();
+                        if (output.IsRegExp()) value = output.AsRegExp().ToString();
+
+                        if (output.IsObject())
                         {
-                            action(item);
+                            value = JsonConvert.SerializeObject(output.AsDictionary(false));
                         }
+
+                        if (output.IsArray()) value = output.AsArray().ToString();
+
+                        action(value);
                     }
                 }
             );

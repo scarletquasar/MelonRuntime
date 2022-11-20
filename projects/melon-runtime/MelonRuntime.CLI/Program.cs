@@ -14,7 +14,8 @@ DependencyRunner.Setup();
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 {
     Formatting = Formatting.Indented,
-    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+
 };
 
 var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
@@ -49,8 +50,14 @@ runtime.LoadFile(classlibPath + "/Scripts/core.js");
 
 runtime.AddOutputAction(obj =>
 {
-    CLNConsole.Write($"< ", ConsoleColor.Green);
-    Console.WriteLine(obj);
+    var value = Convert.ToString(obj)!;
+    var values = value.Split("\n").ToList();
+
+    values.ForEach(value =>
+    {
+        CLNConsole.Write($"< ", ConsoleColor.Green);
+        CLNConsole.WriteLine(value, ConsoleColor.DarkGray);
+    });
 });
 
 runtime.AddRuntimeErrorAction(obj =>

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.Abstractions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.Core", "MelonRuntime.Core\MelonRuntime.Core.csproj", "{41509231-4709-4C59-A831-33D73EB6102C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonRuntime.Domain", "MelonRuntime.Domain\MelonRuntime.Domain.csproj", "{6159A454-4EE6-47E6-8FA7-1F6536157B7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.Domain", "MelonRuntime.Domain\MelonRuntime.Domain.csproj", "{6159A454-4EE6-47E6-8FA7-1F6536157B7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonRuntime.JintExtensions", "MelonRuntime.JintExtensions\MelonRuntime.JintExtensions.csproj", "{2B879398-3DDC-472F-8781-E2DEC3388335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6159A454-4EE6-47E6-8FA7-1F6536157B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6159A454-4EE6-47E6-8FA7-1F6536157B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6159A454-4EE6-47E6-8FA7-1F6536157B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B879398-3DDC-472F-8781-E2DEC3388335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B879398-3DDC-472F-8781-E2DEC3388335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B879398-3DDC-472F-8781-E2DEC3388335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B879398-3DDC-472F-8781-E2DEC3388335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
