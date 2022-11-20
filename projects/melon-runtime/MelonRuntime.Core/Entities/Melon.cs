@@ -131,6 +131,7 @@ namespace MelonRuntime.Core.Entities
                         if (output.IsNumber()) value = output.AsNumber().ToString();
                         if (output.IsBoolean()) value = output.AsBoolean().ToString();
                         if (output.IsRegExp()) value = output.AsRegExp().ToString();
+                        if (output.IsString()) value = output.AsString();
 
                         if (output.IsObject())
                         {
