@@ -58,6 +58,11 @@ namespace MelonRuntime.Core.Entities
             return HandleInstructions(instructions);
         }
 
+        public JsValue EvaluateInstructionsDirectly(string instructions)
+        {
+            return _engineProvider.EvaluateInstructions(instructions);
+        }
+
         public void SendInstructions(string instructions)
         {
             HandleInstructions(instructions);

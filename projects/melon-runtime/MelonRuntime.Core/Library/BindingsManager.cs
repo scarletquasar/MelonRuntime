@@ -8,7 +8,9 @@ using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Core.Library.Threading;
 using MelonRuntime.Core.Library.Web;
 using MelonRuntime.Domain.Core.Library.Web;
+using MelonRuntime.WebServices.Entities;
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
 using System.Dynamic;
 
 namespace MelonRuntime.Core.Library
@@ -46,7 +48,8 @@ namespace MelonRuntime.Core.Library
                 GetThreadingBindings(),
                 GetRealmBindings(),
                 GetEnvironmentBindings(),
-                GetFileSystemBindings()
+                GetFileSystemBindings(),
+                GetWebServiceApplicationBindings()
             };
 
             return allBindings
@@ -220,6 +223,50 @@ namespace MelonRuntime.Core.Library
                 { "RenameDirectory", new Action<string, string>(FileSystem.RenameDirectory) },
                 { "CreateDirectory", new Func<string, DirectoryInfo>(Directory.CreateDirectory) },
                 { "DeleteDirectory", new Action<string, bool>(Directory.Delete) },
+            };
+        }
+
+        private Dictionary<string, dynamic> GetWebServiceApplicationBindings()
+        {
+            void executeFromStringParameters(string parameters)
+            {
+                var deserialized = JsonConvert.DeserializeObject<dynamic>(parameters)!;
+                string deserializedRoutes = deserialized.Routes;
+                string deserializedEchoes = deserialized.Echoes;
+
+                List<dynamic> endpointsBase = JsonConvert.DeserializeObject<List<dynamic>>(deserializedRoutes)!;
+                List<dynamic> echoesBase = JsonConvert.DeserializeObject<List<dynamic>>(deserializedEchoes)!;
+
+                var endpoints = endpointsBase
+                    .Select(x => new WebServiceApplicationEndpoint(
+                    new HttpMethod((string)x.method),
+                    (string)x.route,
+                    (string)deserialized.Name,
+                    _melon!))
+                    .ToList();
+
+                var echoes = echoesBase
+                    .Select(x => new WebServiceApplicationEcho(
+                    (string)x.host, 
+                    (int)x.port, 
+                    (bool)deserialized.EnableHttps))
+                    .ToList();
+
+                var application = new WebServiceApplication(
+                    endpoints,
+                    echoes,
+                    (string)deserialized.Host,
+                    (string)deserialized.Name,
+                    (int)deserialized.Port,
+                    (bool)deserialized.EnableHttps,
+                    _melon!);
+
+                application.Run();
+            }
+
+            return new()
+            {
+                ["SetupWebApplication"] = new Action<string>(executeFromStringParameters)
             };
         }
     }

@@ -23,6 +23,7 @@
     <ProjectReference Include="..\MelonRuntime.Abstractions\MelonRuntime.Abstractions.csproj" />
     <ProjectReference Include="..\MelonRuntime.Domain\MelonRuntime.Domain.csproj" />
     <ProjectReference Include="..\MelonRuntime.JintExtensions\MelonRuntime.JintExtensions.csproj" />
+    <ProjectReference Include="..\MelonRuntime.WebServices\MelonRuntime.WebServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>

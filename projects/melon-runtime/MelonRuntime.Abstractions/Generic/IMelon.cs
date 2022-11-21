@@ -1,4 +1,6 @@
-﻿namespace MelonRuntime.Abstractions.Generic
+﻿using Jint.Native;
+
+namespace MelonRuntime.Abstractions.Generic
 {
     public interface IMelon<TOutput>
     {
@@ -15,5 +17,6 @@
         public List<Exception> GetExternalErrors();
         public void SendInstructions(string instructions);
         public string? EvaluateInstructions(string instructions);
+        public JsValue EvaluateInstructionsDirectly(string instructions);
     }
 }
