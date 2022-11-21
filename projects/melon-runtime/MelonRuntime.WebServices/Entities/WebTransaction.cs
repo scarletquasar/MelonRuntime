@@ -53,12 +53,6 @@ namespace MelonRuntime.WebServices.Entities
 
             SetStatus(WebTransactionStatus.Finished);
 
-            if (result!.IsString())
-                return result!.AsString();
-
-            if (result!.IsObject())
-                return result!.AsObject();
-
             return result;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Cli.NET.Tools;
+using Jint;
 using Jint.Native;
 using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.Abstractions.WebServices.Entities;
@@ -74,10 +75,70 @@ namespace MelonRuntime.WebServices.Entities
 
             _endpoints.ForEach(endpoint =>
             {
+                async Task<object?> resolveAndGetMetadata(HttpRequest request, HttpContext context)
+                {
+                    var result = (JsValue?)await endpoint.Resolve(request);
+
+                    if (result == null)
+                    {
+                        return null;
+                    }
+
+                    if (result.IsString())
+                    {
+                        return result.AsString();
+                    }
+
+                    if (result.IsObject())
+                    {
+                        Dictionary<string, dynamic> httpHeaders = new();
+
+                        if (result != null)
+                        {
+                            var headersString = result.Get("headers") == JsValue.Undefined 
+                                ? "{}" 
+                                : result.Get("headers").AsString();
+
+                            httpHeaders = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(
+                                headersString
+                            )!;
+                        }
+
+                        foreach (var header in httpHeaders)
+                        {
+                            if (context.Response.Headers.ContainsKey(header.Key))
+                            {
+                                context.Response.Headers[header.Key] = header.Value;
+                            }
+                            else
+                            {
+                                context.Response.Headers.Add(header.Key, header.Value.ToString());
+                            }
+                        }
+
+                        var httpResult = result!.AsObject();
+
+                        var headers = JsonConvert.DeserializeObject<Dictionary<string, object>>(
+                            httpResult.Get("headers").AsString()
+                        );
+
+                        var response = httpResult.Get("response").AsString();
+                        var status = httpResult.Get("status").AsNumber();
+
+                        var type = Convert.ToString(headers!["Content-Type"])!;
+
+                        return Results.Json(
+                            JsonConvert.DeserializeObject<object>(response), statusCode: (int)status
+                        );
+                    }
+
+                    return result;
+                }
+
                 webApp.MapMethods(
                     endpoint.GetPath(), 
-                    new List<string>() { endpoint.GetMethod().ToString() }, 
-                    endpoint.Resolve);
+                    new List<string>() { endpoint.GetMethod().ToString() },
+                    resolveAndGetMetadata);
             });
 
             Console.WriteLine();
