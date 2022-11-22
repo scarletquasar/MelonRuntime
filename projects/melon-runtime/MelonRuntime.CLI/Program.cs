@@ -16,7 +16,6 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 {
     Formatting = Formatting.Indented,
     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-
 };
 
 var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
@@ -24,10 +23,11 @@ Static.CachedAssemblies = assembliesToCache;
 
 //Fist display screen
 
-var version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
+var version = Assembly.GetExecutingAssembly().GetName().Version!;
+var versionString = version.ToString(3);
 
 CLNConsole.Write("Melon ", ConsoleColor.Magenta);
-CLNConsole.Write(version, ConsoleColor.Green);
+CLNConsole.Write(versionString, ConsoleColor.Green);
 Console.WriteLine();
 Console.WriteLine();
 
@@ -46,6 +46,8 @@ runtime.SetInteropValue("_$internalBinding", bindings);
 
 var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
 runtime.LoadFile(classlibPath + "/Scripts/core.js");
+
+runtime.SendInstructions($"Melon.std.melon = {{major: {version.Major}, minor: {version.Minor}, patch: {version.Build}}}");
 
 //Output default actions
 
