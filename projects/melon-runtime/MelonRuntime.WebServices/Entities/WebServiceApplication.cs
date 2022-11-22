@@ -128,7 +128,7 @@ namespace MelonRuntime.WebServices.Entities
                         var type = Convert.ToString(headers!["Content-Type"])!;
 
                         return Results.Json(
-                            JsonConvert.DeserializeObject<object>(response), statusCode: (int)status
+                            System.Text.Json.JsonSerializer.Deserialize<object>(response), statusCode: (int)status
                         );
                     }
 
