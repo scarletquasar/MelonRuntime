@@ -19,7 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyPackages", "Depen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RuntimeOnly", "RuntimeOnly", "{AD6CE587-0438-4FBC-857F-0359735EDF3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonRuntime.WebServices", "MelonRuntime.WebServices\MelonRuntime.WebServices.csproj", "{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MelonRuntime.WebServices", "MelonRuntime.WebServices\MelonRuntime.WebServices.csproj", "{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingPackages", "TestingPackages", "{688DD50E-54A9-4423-928A-B74D62782FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelonRuntime.JavaScriptTests", "MelonRuntime.JavaScriptTests\MelonRuntime.JavaScriptTests.csproj", "{0E998EFF-6A5B-4C21-8685-24FEFE5CF599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E998EFF-6A5B-4C21-8685-24FEFE5CF599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E998EFF-6A5B-4C21-8685-24FEFE5CF599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E998EFF-6A5B-4C21-8685-24FEFE5CF599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E998EFF-6A5B-4C21-8685-24FEFE5CF599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 		{6159A454-4EE6-47E6-8FA7-1F6536157B7D} = {A8B71808-C362-4D89-A54F-4402438846C8}
 		{2B879398-3DDC-472F-8781-E2DEC3388335} = {7D52107D-C090-4266-96B6-A705B3233916}
 		{2A4459C0-6DC5-4ACF-BB40-9B46E32FBC8F} = {A8B71808-C362-4D89-A54F-4402438846C8}
+		{0E998EFF-6A5B-4C21-8685-24FEFE5CF599} = {688DD50E-54A9-4423-928A-B74D62782FCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6AB0C26-5F24-4037-AAE1-386C2EE0667F}

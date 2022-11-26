@@ -8,6 +8,7 @@ namespace MelonRuntime.Core
         public static void Setup()
         {
             _ = System.Text.Json.JsonSerializer.Serialize(new { });
+            _ = System.Guid.NewGuid();
         }
     }
 }
