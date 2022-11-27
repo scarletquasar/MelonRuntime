@@ -18,7 +18,7 @@ namespace MelonRuntime.CLI.Extensions
             var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
             runtime.LoadFile(classlibPath + "/Scripts/core.js");
 
-            var vStr = $"Melon.std.melon = {{major: {version.Major}, minor: {version.Minor}, patch: {version.Build}}}";
+            var vStr = $"Melon.std.melon.currentVersion = new Melon.Version({version.Major}, {version.Minor}, {version.Build})";
             runtime.SendInstructions(vStr);
 
             return runtime;

@@ -15,7 +15,7 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void StdShiftShouldWorkCorrectlyWithOneTrueOption()
+        public void ShiftShouldWorkCorrectlyWithOneTrueOption()
         {
             var script = @"
                 const { shift } = Melon.std;
@@ -30,7 +30,7 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void StdShiftShouldWorkCorrectlyWithOneFalseOption()
+        public void ShiftShouldWorkCorrectlyWithOneFalseOption()
         {
             var script = @"
                 const { shift } = Melon.std;
@@ -45,7 +45,7 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void StdShiftShouldWorkCorrectlyWithMultipleTrueOptions()
+        public void ShiftShouldWorkCorrectlyWithMultipleTrueOptions()
         {
             var script = @"
                 const { shift } = Melon.std;
@@ -62,7 +62,7 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void StdShiftShouldWorkCorrectlyWithMultipleFalseOptions()
+        public void ShiftShouldWorkCorrectlyWithMultipleFalseOptions()
         {
             var script = @"
                 const { shift } = Melon.std;
@@ -79,7 +79,7 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void StdShiftShouldWorkCorrectlyWithMultipleMiscOptions()
+        public void ShiftShouldWorkCorrectlyWithMultipleMiscOptions()
         {
             var script = @"
                 const { shift } = Melon.std;
