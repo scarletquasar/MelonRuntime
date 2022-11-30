@@ -1,5 +1,6 @@
-﻿//Sonme dependencies need to be (explicitly) used in order to be available in Melon core functions
-//Some usages will load MORE dependencies, this dangerously increase the entropy
+﻿//Some assembly dependencies need to be (explicitly) used in order to be available in Melon core functions
+
+using System.Reflection;
 
 namespace MelonRuntime.Core
 {
@@ -7,8 +8,9 @@ namespace MelonRuntime.Core
     {
         public static void Setup()
         {
-            _ = System.Text.Json.JsonSerializer.Serialize(new { });
-            _ = System.Guid.NewGuid();
+            Assembly.Load("System");
+            Assembly.Load("System.Console");
+            Assembly.Load("System.Text.Json");
         }
     }
 }
