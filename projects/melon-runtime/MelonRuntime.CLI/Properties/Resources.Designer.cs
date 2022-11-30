@@ -65,14 +65,14 @@ namespace MelonRuntime.CLI.Properties {
         ///
         ///  --help                 Shows all the available commands
         ///  --ignore-update        Execute ignoring Melon updates*
-        ///  load [string]          Loads an external module path to execute
+        ///  load [string]          Loads a module and start the execution
         ///  run  [string]          Executes a script directly
         ///  new  [string]          Create a Melon new project
         ///
         ///--------------------------------------------------------------------
         ///
         ///*: These commands are implemented outside Melon CLI,
-        ///in npm and can behave differently in some environ [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///in npm and can behave differently in some environme [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string HelpDefaultText {
             get {

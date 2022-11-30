@@ -122,7 +122,7 @@
 
   --help                 Shows all the available commands
   --ignore-update        Execute ignoring Melon updates*
-  load [string]          Loads an external module path to execute
+  load [string]          Loads a module and start the execution
   run  [string]          Executes a script directly
   new  [string]          Create a Melon new project
 

@@ -18,7 +18,7 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
 Static.CachedAssemblies = assembliesToCache;
 
-var argv = Environment.GetCommandLineArgs();
+var argv = Environment.GetCommandLineArgs().Skip(1);
 var version = Assembly.GetExecutingAssembly().GetName().Version!;
 var provider = DependencyManager.GetServiceProvider();
 var runtime = provider.GetRequiredService<IMelon<JsValue>>();
@@ -28,7 +28,7 @@ cli.DisplayHeader();
 cli.ExecuteEntryPoint();
 
 var flags = argv.Where(str => str.StartsWith("--"));
-var commands = argv.Skip(2).Where(str => !str.StartsWith("--"));
+var commands = argv.Where(str => !str.StartsWith("--"));
 
 if(flags.Count() + commands.Count() == 0)
 {
@@ -39,5 +39,18 @@ var executingFlag = flags.FirstOrDefault();
 
 if(executingFlag != null)
 {
-    cli.ExecuteCommand(executingFlag, Array.Empty<string>());
+    var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == executingFlag);
+    var rest = argv.Skip(itemIndex).ToArray();
+
+    cli.ExecuteInstruction(executingFlag, rest);
+}
+
+var executingCommand = commands.FirstOrDefault();
+
+if(executingCommand != null)
+{
+    var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == executingCommand);
+    var rest = argv.Skip(itemIndex).ToArray();
+
+    cli.ExecuteInstruction(executingCommand, rest);
 }

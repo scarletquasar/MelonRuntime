@@ -22,10 +22,8 @@ namespace MelonRuntime.CLI.Entities
                 .WithCoreFeatures(_runtimeVersion)
                 .WithConsoleOutput();
 
-            _commands.Add("--help", x =>
-            {
-                Console.WriteLine(Resources.HelpDefaultText);
-            });
+            _commands.Add("--help", HelpCommand);
+            _commands.Add("load", LoadCommand);
         }
 
         public void ExecuteEntryPoint()
@@ -43,7 +41,7 @@ namespace MelonRuntime.CLI.Entities
             _commands.Add(name, action);
         }
 
-        public void ExecuteCommand(string name, string[] args)
+        public void ExecuteInstruction(string name, string[] args)
         {
             if(_commands.ContainsKey(name))
             {
@@ -51,8 +49,8 @@ namespace MelonRuntime.CLI.Entities
                 return;
             }
 
-            CLNConsole.Write("> ", ConsoleColor.Red);
-            CLNConsole.Write(" command", ConsoleColor.White);
+            CLNConsole.Write(">", ConsoleColor.Red);
+            CLNConsole.Write(" Command", ConsoleColor.White);
             CLNConsole.Write($" {name}", ConsoleColor.Red);
             CLNConsole.WriteLine(" not found.", ConsoleColor.White);
         }
@@ -79,6 +77,16 @@ namespace MelonRuntime.CLI.Entities
             CLNConsole.Write(versionString, ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine();
+        }
+
+        private void HelpCommand(string[] args)
+        {
+            Console.WriteLine(Resources.HelpDefaultText);
+        }
+
+        private void LoadCommand(string[] args)
+        {
+            _melon.LoadFile(args[1], true);
         }
     }
 }
