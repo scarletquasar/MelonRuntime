@@ -10,7 +10,17 @@ namespace MelonRuntime.Core.Entities
 
         public JintProvider()
         {
-            _engine = new();
+            var currentPath = Directory.GetCurrentDirectory();
+
+            _engine = new(options =>
+            {
+                options.EnableModules(currentPath);
+            });
+        }
+
+        public void ImportModule(string path)
+        {
+            _engine.ImportModule(path);
         }
 
         public JsValue InteropInvoke(JsValue target)

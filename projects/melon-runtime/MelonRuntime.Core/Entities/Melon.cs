@@ -18,7 +18,6 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _runtimeErrors;
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
-
         private readonly Dictionary<string, object> _environmentVariables;
 
         public Melon(IJavaScriptEngine<JsValue> engineProvider)
@@ -31,10 +30,24 @@ namespace MelonRuntime.Core.Entities
             _environmentVariables = new();
         }
 
-        public void LoadFile(string path)
+        public static IMelon<JsValue> Create()
         {
-            var content = File.ReadAllText(path);
-            SendInstructions(content);
+            IJavaScriptEngine<JsValue> engineProvider = new JintProvider();
+            IMelon<JsValue> runtime = new Melon(engineProvider);
+
+            return runtime;
+        }
+
+        public void LoadFile(string path, bool isModule)
+        {
+            if(!isModule)
+            {
+                var content = File.ReadAllText(path);
+                SendInstructions(content);
+                return;
+            }
+
+            _engineProvider.ImportModule(path);
         }
 
         public JsValue InteropInvoke(JsValue target)

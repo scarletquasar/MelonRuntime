@@ -1,8 +1,7 @@
 using Jint.Native;
 using MelonRuntime.Abstractions.Generic;
-using MelonRuntime.Abstractions.JavaScript;
 using MelonRuntime.Core.Entities;
-using MelonRuntime.CLI.Extensions;
+using MelonRuntime.Core.Extensions;
 using System;
 using MelonRuntime.Core;
 
@@ -18,9 +17,7 @@ namespace MelonRuntime.JavaScriptTests
             
             DependencyRunner.Setup();
 
-            IJavaScriptEngine<JsValue> engineProvider = new JintProvider();
-            IMelon<JsValue> runtime = new Melon(engineProvider);
-
+            var runtime = Melon.Create();
             return runtime.WithCoreFeatures(new Version());
         }
     }

@@ -1,14 +1,12 @@
-﻿using Jint.Native;
-using MelonRuntime.CLI.Extensions;
-using MelonRuntime.Abstractions.Generic;
+﻿using MelonRuntime.CLI.Entities;
 using MelonRuntime.CLI;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using Cli.NET.Tools;
 using MelonRuntime.Core;
 using Newtonsoft.Json;
+using Microsoft.Extensions.DependencyInjection;
+using MelonRuntime.Abstractions.Generic;
+using Jint.Native;
+using System.Reflection;
 
-Console.Title = "Melon Runtime";
 DependencyRunner.Setup();
 
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -20,34 +18,27 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
 Static.CachedAssemblies = assembliesToCache;
 
-//Fist display screen
-
+var argv = Environment.GetCommandLineArgs();
 var version = Assembly.GetExecutingAssembly().GetName().Version!;
-var versionString = version.ToString(3);
+var provider = DependencyManager.GetServiceProvider();
+var runtime = provider.GetRequiredService<IMelon<JsValue>>();
+var cli = new MelonCLI(version, runtime);
 
-CLNConsole.Write("Melon ", ConsoleColor.Magenta);
-CLNConsole.Write(versionString, ConsoleColor.Green);
-Console.WriteLine();
-Console.WriteLine();
+cli.DisplayHeader();
+cli.ExecuteEntryPoint();
 
-//Dependency injection and bindings setup
+var flags = argv.Where(str => str.StartsWith("--"));
+var commands = argv.Skip(2).Where(str => !str.StartsWith("--"));
 
-IServiceCollection dependencies = new ServiceCollection();
-dependencies.AddMelonRuntime();
-ServiceProvider provider = dependencies.BuildServiceProvider();
-
-var runtime = provider
-    .GetRequiredService<IMelon<JsValue>>()
-    .WithCoreFeatures(version)
-    .WithConsoleOutput();
-
-void LoopInInstructionsHandler()
+if(flags.Count() + commands.Count() == 0)
 {
-    CLNConsole.Write("> ", ConsoleColor.Magenta);
-
-    var script = Console.ReadLine()!;
-    runtime!.SendInstructions(script);
-    LoopInInstructionsHandler();
+    cli.WaitForScript(() => true);
 }
 
-LoopInInstructionsHandler();
+var executingFlag = flags.FirstOrDefault();
+
+if(executingFlag != null)
+{
+
+    cli.ExecuteCommand(executingFlag, Array.Empty<string>());
+}

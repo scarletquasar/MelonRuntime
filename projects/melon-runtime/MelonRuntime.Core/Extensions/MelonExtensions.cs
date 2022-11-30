@@ -4,7 +4,7 @@ using Jint.Runtime;
 using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.Core.Library;
 
-namespace MelonRuntime.CLI.Extensions
+namespace MelonRuntime.Core.Extensions
 {
     public static class MelonExtensions
     {
@@ -16,7 +16,7 @@ namespace MelonRuntime.CLI.Extensions
             runtime.SetInteropValue("_$internalBinding", bindings);
 
             var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
-            runtime.LoadFile(classlibPath + "/Scripts/core.js");
+            runtime.LoadFile(classlibPath + "/Scripts/core.js", false);
 
             var vStr = $"Melon.std.melon.currentVersion = new Melon.Version({version.Major}, {version.Minor}, {version.Build})";
             runtime.SendInstructions(vStr);

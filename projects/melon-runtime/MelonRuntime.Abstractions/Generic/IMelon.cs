@@ -4,7 +4,7 @@ namespace MelonRuntime.Abstractions.Generic
 {
     public interface IMelon<TOutput>
     {
-        public void LoadFile(string path);
+        public void LoadFile(string path, bool isModule);
         public TOutput InteropInvoke(TOutput target);
         public void SetInteropValue(string identifier, object value);
         public void AddOutputAction(Action<object> action);
