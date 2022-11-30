@@ -11,8 +11,10 @@ let args = process.argv.slice(2);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const shouldCheckForUpdates = process.argv.filter(x => x.startsWith("--")).length > 0;
+
 //Commands implementation
-if(!process.argv.includes("--ignore-update")) {
+if(!shouldCheckForUpdates) {
     const integrityRealResponse = await axios.get("https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt")
     const integrityReal = integrityRealResponse.data;
     const integrityLocal = fs.readFileSync(__dirname.replace('Commands', 'integrity.txt')).toString();
@@ -27,7 +29,7 @@ if(!process.argv.includes("--ignore-update")) {
     instance.on('data', console.log);
 }
 
-if(process.argv.includes("--ignore-update")) {
+if(shouldCheckForUpdates) {
     args = args.filter(x => x != "--ignore-update");
 
     //Dotnet Melon implementation
