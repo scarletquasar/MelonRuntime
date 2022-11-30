@@ -39,6 +39,5 @@ var executingFlag = flags.FirstOrDefault();
 
 if(executingFlag != null)
 {
-
     cli.ExecuteCommand(executingFlag, Array.Empty<string>());
 }

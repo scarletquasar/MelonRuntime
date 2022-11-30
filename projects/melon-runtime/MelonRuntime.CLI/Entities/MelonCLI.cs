@@ -2,6 +2,7 @@
 using Jint.Native;
 using MelonRuntime.Abstractions.CLI;
 using MelonRuntime.Abstractions.Generic;
+using MelonRuntime.CLI.Properties;
 using MelonRuntime.Core.Extensions;
 
 namespace MelonRuntime.CLI.Entities
@@ -21,7 +22,10 @@ namespace MelonRuntime.CLI.Entities
                 .WithCoreFeatures(_runtimeVersion)
                 .WithConsoleOutput();
 
-            _commands.Add("--help", x => Console.WriteLine("test"));
+            _commands.Add("--help", x =>
+            {
+                Console.WriteLine(Resources.HelpDefaultText);
+            });
         }
 
         public void ExecuteEntryPoint()
