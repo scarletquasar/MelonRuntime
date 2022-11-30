@@ -28,11 +28,11 @@ if(!process.argv.includes("--ignore-update")) {
 }
 
 if(process.argv.includes("--ignore-update")) {
-    args = args.filter(x => !x.startsWith("--"));
+    args = args.filter(x => x != "--ignore-update");
 
     //Dotnet Melon implementation
     const outputDirectory = __dirname.replace('Commands', 'Output');
-    const melon = spawn('dotnet', ["exec", path.join(outputDirectory, "Melon.dll"), ...args], spawnOptions);
+    const melon = spawn('dotnet', ["exec", path.join(outputDirectory, "MelonRuntime.CLI.dll"), ...args], spawnOptions);
 
     melon.on('data', console.log);
 }

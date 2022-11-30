@@ -63,13 +63,16 @@ namespace MelonRuntime.CLI.Properties {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Available commands/flags in Melon Runtime
         ///
-        ///  --help            Shows all the available commands
-        ///  --ignore-update   Execute ignoring Melon updates*
+        ///  --help                 Shows all the available commands
+        ///  --ignore-update        Execute ignoring Melon updates*
+        ///  load [string]          Loads an external module path to execute
+        ///  run  [string]          Executes a script directly
+        ///  new  [string]          Create a Melon new project
         ///
-        ///=========================================
+        ///--------------------------------------------------------------------
         ///
         ///*: These commands are implemented outside Melon CLI,
-        ///in npm and can behave differently in some environments.
+        ///in npm and can behave differently in some environ [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string HelpDefaultText {
             get {
