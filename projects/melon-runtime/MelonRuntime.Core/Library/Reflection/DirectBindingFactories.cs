@@ -59,14 +59,15 @@ namespace MelonRuntime.Core.Library.Reflection
             object[] parameters
         )
         {
-            var type = Static.CachedAssemblies!
+            TryLoadAssembly(ns);
+
+            var types = Static.CachedAssemblies!
                 .Select(x => x.GetTypes())
                 .SelectMany(x => x)
-                .FirstOrDefault(x => x.Namespace == ns && x.Name == typeName);
+                .Where(x => x.Namespace == ns && x.Name == typeName);
 
-            var anyOf = type?.GetMethods().Any(x => x.Name == methodName);
-
-            var result = type?.InvokeMember(
+            var targetType = types.First();
+            var result = targetType.InvokeMember(
                 methodName,
                 BindingFlags.InvokeMethod,
                 Type.DefaultBinder,
@@ -79,6 +80,8 @@ namespace MelonRuntime.Core.Library.Reflection
 
         public dynamic GetStaticProperty(string ns, string typeName, string propName)
         {
+            TryLoadAssembly(ns);
+
             var type = Static.CachedAssemblies!
                 .Select(x => x.GetTypes())
                 .SelectMany(x => x)
@@ -99,6 +102,8 @@ namespace MelonRuntime.Core.Library.Reflection
             object[] parameters
         )
         {
+            TryLoadAssembly(ns);
+
             Type type = Static.CachedAssemblies!
                 .Select(assembly => assembly.GetTypes())
                 .SelectMany(x => x)
@@ -122,6 +127,15 @@ namespace MelonRuntime.Core.Library.Reflection
                 .ToArray();
 
             return (object)types ?? JsValue.Undefined;
+        }
+
+        private static void TryLoadAssembly(string assemblyName)
+        {
+            try
+            {
+                Assembly.Load(assemblyName);
+            }
+            catch (FileNotFoundException) { }
         }
     }
 }

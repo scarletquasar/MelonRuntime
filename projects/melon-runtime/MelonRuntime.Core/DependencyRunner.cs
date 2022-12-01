@@ -11,6 +11,7 @@ namespace MelonRuntime.Core
             Assembly.Load("System");
             Assembly.Load("System.Console");
             Assembly.Load("System.Text.Json");
+            Assembly.Load("System.Diagnostics.Process");
         }
     }
 }
