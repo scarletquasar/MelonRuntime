@@ -1,40 +1,59 @@
 #! /usr/bin/env node
-import { fileURLToPath } from 'url';
-import { spawn, spawnSync } from 'child_process';
-import path from 'path';
+
 import axios from "axios";
+import path from "path";
 import fs from "fs";
 
-const spawnOptions = { stdio: "inherit" };
-let args = process.argv.slice(2);
+import { fileURLToPath } from "url";
+import { spawn, spawnSync } from 'child_process';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const CHILD_SPAWN_OPTIONS = { stdio: "inherit" };
+const ARGUMENTS = process.argv.slice(2);
+const CURRENT_FILE = fileURLToPath(import.meta.url);
+const CURRENT_DIRECTORY = path.dirname(CURRENT_FILE);
+const MELON_ENTRY_POINT = "MelonRuntime.CLI.dll";
+const MELON_OUTPUT_DIRECTORY = CURRENT_DIRECTORY.replace('Commands', 'Output');
 
-const shouldCheckForUpdates = process.argv.filter(x => x.startsWith("--")).length > 0;
+const INTEGRITY_PATH = "https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt";
+const CURRENT_INTEGRITY_PATH = CURRENT_DIRECTORY.replace('Commands', 'integrity.txt');
 
-//Commands implementation
-if(!shouldCheckForUpdates) {
-    const integrityRealResponse = await axios.get("https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt")
-    const integrityReal = integrityRealResponse.data;
-    const integrityLocal = fs.readFileSync(__dirname.replace('Commands', 'integrity.txt')).toString();
+const enableUpdateChecking = process.argv.filter(x => x.startsWith("--")).length > 0;
+const npmIdentifier = /^win/.test(process.platform) ? "npm.cmd" : "npm";
+const npxIdentifier = /^win/.test(process.platform) ? "npx.cmd" : "npx";
+
+const melonUpdatePattern = ['install', 'melon-runtime@^2.x.x', '-g'];
+const melonExecutePattern = ['melon', '--ignore-update'];
+
+async function initializeMelon(checkForUpdates) {
+    if(checkForUpdates) {
+        try {
+            const integrity = await axios.get(INTEGRITY_PATH);
+            const realState = integrity.data;
     
-    const shouldUpdate = Number(integrityReal) > Number(integrityLocal);
-
-    if(shouldUpdate) {
-        spawnSync(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['install', 'melon-runtime@^2.x.x', '-g']);
+            const currentIntegrity =  fs.readFileSync(CURRENT_INTEGRITY_PATH);
+            const currentState = currentIntegrity.toString();
+    
+            const updateRequired = Number(realState) > Number(currentState);
+            updateRequired ? spawnSync(npmIdentifier, melonUpdatePattern) : {};
+    
+            const wrapper = spawn(npxIdentifier, [...melonExecutePattern, ...args], CHILD_SPAWN_OPTIONS);
+            wrapper.on("data", console.log);
+        }
+        catch(e) {}
     }
-    
-    const instance = spawn(/^win/.test(process.platform) ? 'npx.cmd' : 'npx', ['melon', '--ignore-update', ...args], spawnOptions);
-    instance.on('data', console.log);
-}
 
-if(shouldCheckForUpdates) {
-    args = args.filter(x => x != "--ignore-update");
+    const filteredArgs = ARGUMENTS.filter(x => x != "--ignore-update");
 
-    //Dotnet Melon implementation
-    const outputDirectory = __dirname.replace('Commands', 'Output');
-    const melon = spawn('dotnet', ["exec", path.join(outputDirectory, "MelonRuntime.CLI.dll"), ...args], spawnOptions);
+    const melon = spawn(
+        'dotnet', 
+        [
+            "exec", 
+            path.join(MELON_OUTPUT_DIRECTORY, MELON_ENTRY_POINT), ...filteredArgs
+        ], 
+        CHILD_SPAWN_OPTIONS
+    );
 
     melon.on('data', console.log);
 }
+
+await initializeMelon(enableUpdateChecking);
