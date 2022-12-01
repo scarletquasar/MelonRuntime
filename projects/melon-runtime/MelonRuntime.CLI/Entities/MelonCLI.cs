@@ -24,6 +24,7 @@ namespace MelonRuntime.CLI.Entities
 
             _commands.Add("--help", HelpCommand);
             _commands.Add("load", LoadCommand);
+            _commands.Add("run", RunCommand);
         }
 
         public void ExecuteEntryPoint()
@@ -87,6 +88,12 @@ namespace MelonRuntime.CLI.Entities
         private void LoadCommand(string[] args)
         {
             _melon.LoadFile(args[1], true);
+        }
+
+        private void RunCommand(string[] args)
+        {
+            _melon.SendInstructions(args[1]);
+            Environment.Exit(0);
         }
     }
 }
