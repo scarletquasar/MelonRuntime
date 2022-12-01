@@ -9,7 +9,7 @@ function _log(...args: any[]) {
         const serialized = serialize(object)
             .replaceAll("\\n", "\n")
             .replaceAll("\\r", "\r");
-            
+
         log(serialized);
     });
 };

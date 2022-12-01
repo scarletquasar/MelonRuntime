@@ -1,13 +1,13 @@
 {
   "name": "melon-runtime",
-  "version": "2.6.4",
-  "description": "Fast modern .NET JavaScript runtime",
+  "version": "2.7.0",
+  "description": ".NET JavaScript runtime",
   "type": "module",
   "scripts": {
-    "build": "dotnet publish Melon -o Output",
-    "exec": "dotnet exec Output/Melon.dll",
-    "dev": "dotnet watch --no-hot-reload --project Melon",
-    "core": "cd ../melon-core && npm run build && cd ../melon-runtime && cp ../melon-core/dist/core.js ./Melon.Library/Bundle/core.js",
+    "build": "dotnet publish MelonRuntime.CLI -o Output",
+    "exec": "dotnet exec Output/MelonRuntime.CLI.dll",
+    "dev": "dotnet watch --no-hot-reload --project MelonRuntime.CLI",
+    "core": "cd ../melon-core && npm run build && cd ../melon-runtime && cp ../melon-core/dist/core.js ./MelonRuntime.Core/Scripts/core.js",
     "prepublish": "npm run build"
   },
   "keywords": [
