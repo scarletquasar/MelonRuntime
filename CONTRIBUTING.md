@@ -1,6 +1,12 @@
 # Contributing to Melon
 
+![Contributors](https://img.shields.io/github/contributors/MelonRuntime/Melon)
+
 In Melon, there are some pipelines that must be followed in order to contribute and they are different according to the objective of the contribution. Below, there are some examples of how can you contribute by making a pull request/issue/discussion.
+
+> **Warning**
+>
+> Enhancement contribuitions **may** take the `development` 
 
 ## If you have an issue
 
