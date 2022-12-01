@@ -6,7 +6,7 @@ In Melon, there are some pipelines that must be followed in order to contribute 
 
 > **Warning**
 >
-> Enhancement contribuitions **may** take the `development` 
+> Enhancement contribuitions **may** take the `development` branch as base.
 
 ## If you have an issue
 
