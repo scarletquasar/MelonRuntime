@@ -148,13 +148,13 @@
     webapp._promises[uuid] = result;
     return uuid;
 })(
-    '{appIdentifier}',
-    '{method}',
-    '{route}',
-    '{serializedQuery}',
-    '{serializedBody}',
+    `{appIdentifier}`,
+    `{method}`,
+    `{route}`,
+    `{serializedQuery}`,
+    `{serializedBody}`,
     `{serializedHeaders}`,
-    '{serializedRouteValues}'
+    `{serializedRouteValues}`
 )</value>
   </data>
 </root>

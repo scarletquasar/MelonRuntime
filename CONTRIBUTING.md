@@ -16,7 +16,7 @@ In Melon, there are some pipelines that must be followed in order to contribute 
 
 Make sure your issue is clear and readable, is written in **english** and discuss about your motivations. Talk why you want the feature/solution/change and the positive impact in Melon.
 
-## 🟢 If you have an pull request
+## 🟢 If you have a pull request
 
 As the previous item, pull request descriptions must be writeen in **english**. Feature implementations and bug fixes should have tests (in the bugs case, you SHOULD make a test trying to reproduce the bug, this test acceptance criteria is the bug reprodution to fail).
 
