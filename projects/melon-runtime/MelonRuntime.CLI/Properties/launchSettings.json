@@ -1,8 +1,7 @@
 {
   "profiles": {
     "MelonRuntime.CLI": {
-      "commandName": "Project",
-      "commandLineArgs": "new"
+      "commandName": "Project"
     }
   }
 }
