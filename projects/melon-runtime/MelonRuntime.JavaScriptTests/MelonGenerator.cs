@@ -17,7 +17,7 @@ namespace MelonRuntime.JavaScriptTests
             
             DependencyRunner.Setup();
 
-            var runtime = Melon.Create();
+            var runtime = new Melon();
             return runtime.WithCoreFeatures(new Version());
         }
     }

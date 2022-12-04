@@ -30,12 +30,14 @@ namespace MelonRuntime.Core.Entities
             _environmentVariables = new();
         }
 
-        public static IMelon<JsValue> Create()
+        public Melon()
         {
-            IJavaScriptEngine<JsValue> engineProvider = new JintProvider();
-            IMelon<JsValue> runtime = new Melon(engineProvider);
-
-            return runtime;
+            _engineProvider = new JintProvider();
+            _output = new();
+            _runtimeErrors = new();
+            _externalErrors = new();
+            _realms = new Dictionary<string, IRealm>();
+            _environmentVariables = new();
         }
 
         public void LoadFile(string path, bool isModule)
