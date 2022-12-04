@@ -4,6 +4,7 @@ using MelonRuntime.Abstractions.CLI;
 using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.CLI.Properties;
 using MelonRuntime.Core.Extensions;
+using MelonRuntime.ProjectGenerator;
 
 namespace MelonRuntime.CLI.Entities
 {
@@ -25,6 +26,7 @@ namespace MelonRuntime.CLI.Entities
             _commands.Add("--help", HelpCommand);
             _commands.Add("load", LoadCommand);
             _commands.Add("run", RunCommand);
+            _commands.Add("new", NewCommand);
         }
 
         public void ExecuteEntryPoint()
@@ -94,6 +96,41 @@ namespace MelonRuntime.CLI.Entities
         {
             _melon.SendInstructions(args[1]);
             Environment.Exit(0);
+        }
+
+        private void NewCommand(string[] args)
+        {
+            var type = "typescript";
+            var path = "./";
+
+            if (args.Length > 1)
+            {
+                path = args[1];
+            }
+
+            if (args.Length > 2)
+            {
+                type = args[2];
+            }
+
+            var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
+            var projectWriter = new ProjectWriter(schema, path, true, true);
+
+            projectWriter.Write();
+
+            Console.WriteLine();
+
+            CLNConsole.Write(">", ConsoleColor.Magenta);
+            CLNConsole.Write(" Project", ConsoleColor.Yellow);
+            CLNConsole.Write(" created", ConsoleColor.Cyan);
+            CLNConsole.Write(" with success.", ConsoleColor.Yellow);
+            Console.WriteLine();
+
+            CLNConsole.Write(">", ConsoleColor.Magenta);
+            CLNConsole.Write(" Use", ConsoleColor.Yellow);
+            CLNConsole.Write(" npm install", ConsoleColor.Cyan);
+            CLNConsole.Write(" to install the dependencies.", ConsoleColor.Yellow);
+            Console.WriteLine();
         }
     }
 }

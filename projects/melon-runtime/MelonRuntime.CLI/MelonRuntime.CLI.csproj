@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MelonRuntime.Abstractions\MelonRuntime.Abstractions.csproj" />
     <ProjectReference Include="..\MelonRuntime.Core\MelonRuntime.Core.csproj" />
+    <ProjectReference Include="..\MelonRuntime.ProjectGenerator\MelonRuntime.ProjectGenerator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
