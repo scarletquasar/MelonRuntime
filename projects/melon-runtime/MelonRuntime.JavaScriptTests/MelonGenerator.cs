@@ -7,7 +7,6 @@ using MelonRuntime.Core;
 
 namespace MelonRuntime.JavaScriptTests
 {
-    
     public static class MelonGenerator
     {
         public static IMelon<JsValue> Get()

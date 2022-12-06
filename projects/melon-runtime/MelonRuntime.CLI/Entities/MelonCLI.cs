@@ -11,7 +11,7 @@ namespace MelonRuntime.CLI.Entities
     public class MelonCLI : IRuntimeCLI
     {
         private readonly Version _runtimeVersion;
-        private IDictionary<string, Action<string[]>> _commands;
+        private readonly IDictionary<string, Action<string[]>> _commands;
         private readonly IMelon<JsValue> _melon;
 
         public MelonCLI(Version runtimeVersion, IMelon<JsValue> melon)
@@ -87,50 +87,94 @@ namespace MelonRuntime.CLI.Entities
             Console.WriteLine(Resources.HelpDefaultText);
         }
 
+        private static void DisplayInvalidCommandUsage()
+        {
+            CLNConsole.Write("[Error]", ConsoleColor.Red);
+            CLNConsole.Write(" Invalid command usage.");
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
         private void LoadCommand(string[] args)
         {
-            _melon.LoadFile(args[1], true);
+            try
+            {
+                if (!args.Contains("--help"))
+                {
+                    _melon.LoadFile(args[1], true);
+                    return;
+                }
+            }
+            catch 
+            {
+                throw;
+                DisplayInvalidCommandUsage();
+            }
+
+            Console.WriteLine(Resources.HelpLoadText);
         }
 
         private void RunCommand(string[] args)
         {
-            _melon.SendInstructions(args[1]);
-            Environment.Exit(0);
+            try
+            {
+                if (!args.Contains("--help"))
+                {
+                    _melon.SendInstructions(args[1]);
+                    Environment.Exit(0);
+                }
+            }
+            catch
+            {
+                DisplayInvalidCommandUsage();
+            }
+
+            Console.WriteLine(Resources.HelpRunText);
         }
 
         private void NewCommand(string[] args)
         {
-            var type = "typescript";
-            var path = "./";
-
-            if (args.Length > 1)
+            try
             {
-                path = args[1];
-            }
+                if (!args.Contains("--help"))
+                {
+                    var type = "typescript";
+                    var path = "./";
 
-            if (args.Length > 2)
+                    if (args.Length > 1)
+                    {
+                        path = args[1];
+                    }
+
+                    if (args.Length > 2)
+                    {
+                        type = args[2];
+                    }
+
+                    var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
+                    var projectWriter = new ProjectWriter(schema, path, true, true);
+
+                    projectWriter.Write();
+
+                    Console.WriteLine();
+
+                    CLNConsole.Write(">", ConsoleColor.Magenta);
+                    CLNConsole.Write(" Project", ConsoleColor.Yellow);
+                    CLNConsole.Write(" created", ConsoleColor.Cyan);
+                    CLNConsole.Write(" with success.", ConsoleColor.Yellow);
+                    Console.WriteLine();
+
+                    CLNConsole.Write(">", ConsoleColor.Magenta);
+                    CLNConsole.Write(" Use", ConsoleColor.Yellow);
+                    CLNConsole.Write(" npm install", ConsoleColor.Cyan);
+                    CLNConsole.Write(" to install the dependencies.", ConsoleColor.Yellow);
+                    Console.WriteLine();
+                }
+            }
+            catch
             {
-                type = args[2];
+                DisplayInvalidCommandUsage();
             }
-
-            var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
-            var projectWriter = new ProjectWriter(schema, path, true, true);
-
-            projectWriter.Write();
-
-            Console.WriteLine();
-
-            CLNConsole.Write(">", ConsoleColor.Magenta);
-            CLNConsole.Write(" Project", ConsoleColor.Yellow);
-            CLNConsole.Write(" created", ConsoleColor.Cyan);
-            CLNConsole.Write(" with success.", ConsoleColor.Yellow);
-            Console.WriteLine();
-
-            CLNConsole.Write(">", ConsoleColor.Magenta);
-            CLNConsole.Write(" Use", ConsoleColor.Yellow);
-            CLNConsole.Write(" npm install", ConsoleColor.Cyan);
-            CLNConsole.Write(" to install the dependencies.", ConsoleColor.Yellow);
-            Console.WriteLine();
         }
     }
 }

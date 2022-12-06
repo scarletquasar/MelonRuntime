@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HelpDefaultText" xml:space="preserve">
-    <value>Available commands/flags in Melon Runtime
+    <value>Available commands/flags in Melon Runtime:
 
   --help                 Shows all the available commands
   --ignore-update        Execute ignoring Melon updates*
@@ -132,5 +132,24 @@
 in npm and can behave differently in some environments
 
 --------------------------------------------------------------------</value>
+  </data>
+  <data name="HelpLoadText" xml:space="preserve">
+    <value>[load] command usage:
+
+  load [relative path]   Loads a module and start the execution*
+  load --help            Shows a help screen with the command info
+
+--------------------------------------------------------------------
+
+*: Melon can take files with any extension as entry point, but,
+currently the content may be a valid JavaScript code
+
+--------------------------------------------------------------------</value>
+  </data>
+  <data name="HelpRunText" xml:space="preserve">
+    <value>[run] command usage:
+
+  run [script]           Executes a script command and ends the application
+  run --help             Shows a help screen with the command info</value>
   </data>
 </root>

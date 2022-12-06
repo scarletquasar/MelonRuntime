@@ -61,7 +61,7 @@ namespace MelonRuntime.CLI.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Available commands/flags in Melon Runtime
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Available commands/flags in Melon Runtime:
         ///
         ///  --help                 Shows all the available commands
         ///  --ignore-update        Execute ignoring Melon updates*
@@ -72,11 +72,42 @@ namespace MelonRuntime.CLI.Properties {
         ///--------------------------------------------------------------------
         ///
         ///*: These commands are implemented outside Melon CLI,
-        ///in npm and can behave differently in some environme [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///in npm and can behave differently in some environm [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string HelpDefaultText {
             get {
                 return ResourceManager.GetString("HelpDefaultText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a [load] command usage:
+        ///
+        ///  load [relative path]   Loads a module and start the execution*
+        ///  load --help            Shows a help screen with the command info
+        ///
+        ///--------------------------------------------------------------------
+        ///
+        ///*: Melon can take files with any extension as entry point, but,
+        ///currently the content may be a valid JavaScript code
+        ///
+        ///--------------------------------------------------------------------.
+        /// </summary>
+        internal static string HelpLoadText {
+            get {
+                return ResourceManager.GetString("HelpLoadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a [run] command usage:
+        ///
+        ///  run [script]           Executes a script command and ends the application
+        ///  run --help             Shows a help screen with the command info.
+        /// </summary>
+        internal static string HelpRunText {
+            get {
+                return ResourceManager.GetString("HelpRunText", resourceCulture);
             }
         }
     }

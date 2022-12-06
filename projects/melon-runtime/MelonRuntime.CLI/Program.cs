@@ -37,7 +37,7 @@ if(flags.Count() + commands.Count() == 0)
 
 var executingFlag = flags.FirstOrDefault();
 
-if(executingFlag != null)
+if(executingFlag != null && args.Length == 1)
 {
     var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == executingFlag);
     var rest = argv.Skip(itemIndex).ToArray();
