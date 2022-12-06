@@ -39,7 +39,7 @@ namespace MelonRuntime.Core.Library.Time
                         .EvaluateInstructionsDirectly($"{timerIdentifier}.active")
                         .AsBoolean();
 
-                    if(!isActive)
+                    if (!isActive) 
                     {
                         break;
                     }
