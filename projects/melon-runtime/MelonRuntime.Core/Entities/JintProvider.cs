@@ -10,11 +10,11 @@ namespace MelonRuntime.Core.Entities
 
         public JintProvider()
         {
-            var currentPath = Directory.GetCurrentDirectory();
+            var path = Path.GetPathRoot(Environment.SystemDirectory);
 
             _engine = new(options =>
             {
-                options.EnableModules(currentPath);
+                options.EnableModules(path!);
             });
         }
 

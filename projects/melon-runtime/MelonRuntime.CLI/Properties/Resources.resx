@@ -146,6 +146,19 @@ currently the content may be a valid JavaScript code
 
 --------------------------------------------------------------------</value>
   </data>
+  <data name="HelpNewText" xml:space="preserve">
+    <value>[new] command usage:
+
+  new [path?] [type?]      Creates a new Melon project in the target path*
+  new --help               Shows a help screen with the command info
+
+--------------------------------------------------------------------
+
+*: Type can be JavaScript (not recommended), if typed manually. Any
+other entry will be redirected to TypeScript
+
+--------------------------------------------------------------------</value>
+  </data>
   <data name="HelpRunText" xml:space="preserve">
     <value>[run] command usage:
 

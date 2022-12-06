@@ -100,6 +100,25 @@ namespace MelonRuntime.CLI.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a [new] command usage:
+        ///
+        ///  new [path?] [type?]      Creates a new Melon project in the target path*
+        ///  new --help               Shows a help screen with the command info
+        ///
+        ///--------------------------------------------------------------------
+        ///
+        ///*: Type can be JavaScript (not recommended), if typed manually. Any
+        ///other entry will be redirected to TypeScript
+        ///
+        ///--------------------------------------------------------------------.
+        /// </summary>
+        internal static string HelpNewText {
+            get {
+                return ResourceManager.GetString("HelpNewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a [run] command usage:
         ///
         ///  run [script]           Executes a script command and ends the application

@@ -107,7 +107,6 @@ namespace MelonRuntime.CLI.Entities
             }
             catch 
             {
-                throw;
                 DisplayInvalidCommandUsage();
             }
 
@@ -175,6 +174,8 @@ namespace MelonRuntime.CLI.Entities
             {
                 DisplayInvalidCommandUsage();
             }
+
+            Console.WriteLine(Resources.HelpNewText);
         }
     }
 }
