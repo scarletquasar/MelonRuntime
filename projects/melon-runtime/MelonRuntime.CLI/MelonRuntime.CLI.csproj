@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>2.7.2</Version>
+    <Version>2.7.3</Version>
 	<Description>Melon Runtime command line interface</Description>
   </PropertyGroup>
 
