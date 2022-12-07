@@ -15,33 +15,19 @@ namespace MelonRuntime.JavaScriptTests.Std
         }
 
         [Fact]
-        public void SetTimeoutShouldWorkCorrectly()
-        {
-            var script = @"
-                let result = 0;
-                setTimeout(() => result++, 10);
-                while(true) { if(result > 0) { break; } }
-                result;
-            ";
-
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
-
-            Assert.Equal(1, result);
-        }
-
-        [Fact]
         public void SetIntervalShouldWorkCorrectly()
         {
             var script = @"
-                let result = 0;
-                setInterval(() => result++, 10);
-                while(true) { if(result > 1) { break; } }
-                result;
+                let resultInterval = 0;
+                let intervalId = setInterval(() => resultInterval++, 10);
+                while(true) { if(resultInterval > 2) { break; } }
+                clearInterval(intervalId);
+                resultInterval;
             ";
 
             var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
 
-            Assert.Equal(2, result);
+            Assert.Equal(3, result);
         }
     }
 }
