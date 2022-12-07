@@ -169,6 +169,8 @@ namespace MelonRuntime.CLI.Entities
                     CLNConsole.Write(" to install the dependencies.", ConsoleColor.Yellow);
                     Console.WriteLine();
                 }
+
+                return;
             }
             catch
             {
