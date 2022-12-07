@@ -67,7 +67,7 @@ namespace MelonRuntime.CLI.Properties {
         ///  --ignore-update        Execute ignoring Melon updates*
         ///  load [string]          Loads a module and start the execution
         ///  run  [string]          Executes a script directly
-        ///  new  [string]          Create a Melon new project
+        ///  new  [str?] [str?]     Create a Melon new project
         ///
         ///--------------------------------------------------------------------
         ///
