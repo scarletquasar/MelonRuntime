@@ -8,7 +8,9 @@ namespace MelonRuntime.Core
     {
         public static void Setup()
         {
+            Assembly.Load("Cli.NET");
             Assembly.Load("System");
+            Assembly.Load("System.Runtime");
             Assembly.Load("System.Console");
             Assembly.Load("System.Text.Json");
             Assembly.Load("System.Diagnostics.Process");
