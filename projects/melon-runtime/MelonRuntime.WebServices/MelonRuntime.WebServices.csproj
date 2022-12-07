@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<Version>2.7.0</Version>
 	<Description>Provides features to create and host web applications with Melon.</Description>
+	<IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
