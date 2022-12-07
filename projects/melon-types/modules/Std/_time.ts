@@ -1,5 +1,6 @@
 declare type _time = {
-    setInterval: (callback: Function, delay: number) => void;
-    setTimeout: (callback: Function, delay: number) => void;
-    Timer: new (callback: Function, delay: number, repeat: boolean) => Timer
+    setInterval: (callback: Function, delay: number) => string;
+    setTimeout: (callback: Function, delay: number) => string;
+    clearInterval: (identifier: string) => void;
+    clearTimeout: (identifier: string) => void;
 }

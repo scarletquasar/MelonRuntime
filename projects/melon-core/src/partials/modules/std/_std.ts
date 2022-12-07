@@ -12,9 +12,11 @@ import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
 import { _osInformation } from "./system/_osInformation";
+import { Timer } from "./time/Timer";
+import { _clearInterval } from "./time/_clearInterval";
+import { _clearTimeout } from "./time/_clearTimeout";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
-import { _Timer } from "./time/_Timer";
 import { _shift } from "./_shift";
 
 const _std = {
@@ -34,10 +36,12 @@ const _std = {
         tryStringify: _tryStringify
     },
     time: {
-        _timers: [],
+        _timers: new Array<Timer>(),
         setInterval: _setInterval,
         setTimeout: _setTimeout,
-        Timer: _Timer
+        clearTimeout: _clearTimeout,
+        clearInterval: _clearInterval,
+        Timer
     },
     system: {
         osInformation: _osInformation

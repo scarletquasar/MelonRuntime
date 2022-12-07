@@ -1,16 +1,15 @@
+import { _crypto } from "../../../statics/_crypto";
 import { _std } from "../_std";
-import { _Timer } from "./_Timer";
+import { Timer } from "./Timer";
 
-/* setTimeout(callback, delay)
-/  Sets a timer (milisseconds) which executes a function or 
-/  specified piece of code once the timer expires.
-/  
-/  callback: function that will be executed
-/  delay: timer in milisseconds
-*/
+const defineTimeoutOf = _$internalBinding["DefineTimeoutOf"];
+
 function _setTimeout(callback: Function, delay: number) {
-    const timer = new _Timer(callback, delay, false);
-    return timer;
+    const identifier = _crypto.randomUUID();
+    _std.time._timers[identifier] = new Timer(callback);
+    defineTimeoutOf(identifier, delay);
+
+    return identifier;
 }
 
 export { _setTimeout }

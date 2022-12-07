@@ -24,8 +24,8 @@ jobs:
       working-directory: ./projects/melon-runtime
       run: dotnet restore
     - name: Build
-      working-directory: ./projects/melon-runtime/Melon
-      run: dotnet build Melon.csproj --no-restore
+      working-directory: ./projects/melon-runtime/MelonRuntime.CLI
+      run: dotnet build MelonRuntime.CLI.csproj --no-restore
     - name: Test
-      working-directory: ./projects/melon-runtime/Melon.Tests
-      run: dotnet test Melon.Tests.csproj --verbosity normal
+      working-directory: ./projects/melon-runtime/MelonRuntime.JavaScriptTests
+      run: dotnet test MelonRuntime.JavaScriptTests.csproj --verbosity normal
