@@ -106,14 +106,7 @@ namespace MelonRuntime.WebServices.Entities
 
                         foreach (var header in httpHeaders)
                         {
-                            if (context.Response.Headers.ContainsKey(header.Key))
-                            {
-                                context.Response.Headers[header.Key] = header.Value;
-                            }
-                            else
-                            {
-                                context.Response.Headers.Add(header.Key, header.Value.ToString());
-                            }
+                            context.Response.Headers[header.Key] = header.Value.ToString();
                         }
 
                         var httpResult = result!.AsObject();
@@ -126,6 +119,12 @@ namespace MelonRuntime.WebServices.Entities
                         var status = httpResult.Get("status").AsNumber();
 
                         var type = Convert.ToString(headers!["Content-Type"])!;
+                        context.Response.ContentType = type;
+
+                        if(type.ToLower().StartsWith("text"))
+                        {
+                            return Results.Content(response);
+                        }
 
                         return Results.Json(
                             System.Text.Json.JsonSerializer.Deserialize<object>(response), statusCode: (int)status
