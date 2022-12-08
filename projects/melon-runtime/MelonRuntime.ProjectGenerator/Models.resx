@@ -263,7 +263,20 @@ dist/
   </data>
   <data name="DefaultWebpackConfig" xml:space="preserve">
     <value>module.exports = {
-  mode: "production"
+  mode: "production",
+  optimization: {
+    minimize: false
+  },
+  stats: "none"
+}</value>
+  </data>
+  <data name="DevWebpackConfig" xml:space="preserve">
+    <value>module.exports = {
+    mode: "development",
+    optimization: {
+        minimize: false
+    },
+    stats: "none"
 }</value>
   </data>
   <data name="JavaScriptBabelrc" xml:space="preserve">
@@ -275,7 +288,8 @@ dist/
     <value>{
     "scripts": {
         "_webpack_from_babel": "webpack ./babel/main.js --config ./webpack.config.js",
-        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel",
+        "_webpack_dev_from_babel": "webpack ./babel/main.js --config webpack.config.dev.js",
+        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel --quiet",
         "dev": "npx melon load ./src/main.js",
         "build": "npm run _babel_from_source  &amp;&amp; npm run _webpack_from_babel",
         "go": "npx melon load ./dist/main.js"
@@ -309,8 +323,9 @@ dist/
     <value>{
     "scripts": {
         "_webpack_from_babel": "webpack ./babel/main.js --config ./webpack.config.js",
-        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel",
-        "dev": "npx melon load ./src/main.js",
+        "_webpack_dev_from_babel": "webpack ./babel/main.js --config webpack.config.dev.js",
+        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel --quiet",
+        "dev": "npm run _babel_from_source &amp;&amp; npm run _webpack_dev_from_babel &amp;&amp; npx melon load ./dist/main.js",
         "build": "npm run _babel_from_source  &amp;&amp; npm run _webpack_from_babel",
         "go": "npx melon load ./dist/main.js"
     },
