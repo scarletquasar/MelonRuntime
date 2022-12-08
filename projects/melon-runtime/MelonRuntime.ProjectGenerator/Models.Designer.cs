@@ -119,12 +119,31 @@ namespace MelonRuntime.ProjectGenerator {
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a module.exports = {
-        ///  mode: &quot;production&quot;
+        ///  mode: &quot;production&quot;,
+        ///  optimization: {
+        ///    minimize: false
+        ///  },
+        ///  stats: &quot;none&quot;
         ///}.
         /// </summary>
         internal static string DefaultWebpackConfig {
             get {
                 return ResourceManager.GetString("DefaultWebpackConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a module.exports = {
+        ///    mode: &quot;development&quot;,
+        ///    optimization: {
+        ///        minimize: false
+        ///    },
+        ///    stats: &quot;none&quot;
+        ///}.
+        /// </summary>
+        internal static string DevWebpackConfig {
+            get {
+                return ResourceManager.GetString("DevWebpackConfig", resourceCulture);
             }
         }
         
@@ -143,16 +162,14 @@ namespace MelonRuntime.ProjectGenerator {
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;scripts&quot;: {
         ///        &quot;_webpack_from_babel&quot;: &quot;webpack ./babel/main.js --config ./webpack.config.js&quot;,
-        ///        &quot;_babel_from_source&quot;: &quot;babel --extensions .js,.ts ./src/ --out-dir ./babel&quot;,
+        ///        &quot;_webpack_dev_from_babel&quot;: &quot;webpack ./babel/main.js --config webpack.config.dev.js&quot;,
+        ///        &quot;_babel_from_source&quot;: &quot;babel --extensions .js,.ts ./src/ --out-dir ./babel --quiet&quot;,
         ///        &quot;dev&quot;: &quot;npx melon load ./src/main.js&quot;,
         ///        &quot;build&quot;: &quot;npm run _babel_from_source  &amp;&amp; npm run _webpack_from_babel&quot;,
         ///        &quot;go&quot;: &quot;npx melon load ./dist/main.js&quot;
         ///    },
         ///    &quot;devDependencies&quot;: {
-        ///        &quot;@babel/cli&quot;: &quot;latest&quot;,
-        ///        &quot;@babel/core&quot;: &quot;latest&quot;,
-        ///        &quot;@babel/preset-env&quot;: &quot;latest&quot;,
-        ///  [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///       [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string JavaScriptPackageJson {
             get {
@@ -192,16 +209,11 @@ namespace MelonRuntime.ProjectGenerator {
         ///   Consulta uma cadeia de caracteres localizada semelhante a {
         ///    &quot;scripts&quot;: {
         ///        &quot;_webpack_from_babel&quot;: &quot;webpack ./babel/main.js --config ./webpack.config.js&quot;,
-        ///        &quot;_babel_from_source&quot;: &quot;babel --extensions .js,.ts ./src/ --out-dir ./babel&quot;,
-        ///        &quot;dev&quot;: &quot;npx melon load ./src/main.js&quot;,
+        ///        &quot;_webpack_dev_from_babel&quot;: &quot;webpack ./babel/main.js --config webpack.config.dev.js&quot;,
+        ///        &quot;_babel_from_source&quot;: &quot;babel --extensions .js,.ts ./src/ --out-dir ./babel --quiet&quot;,
+        ///        &quot;dev&quot;: &quot;npm run _babel_from_source &amp;&amp; npm run _webpack_dev_from_babel &amp;&amp; npx melon load ./dist/main.js&quot;,
         ///        &quot;build&quot;: &quot;npm run _babel_from_source  &amp;&amp; npm run _webpack_from_babel&quot;,
-        ///        &quot;go&quot;: &quot;npx melon load ./dist/main.js&quot;
-        ///    },
-        ///    &quot;devDependencies&quot;: {
-        ///        &quot;@babel/cli&quot;: &quot;latest&quot;,
-        ///        &quot;@babel/core&quot;: &quot;latest&quot;,
-        ///        &quot;@babel/preset-env&quot;: &quot;latest&quot;,
-        ///  [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ///        &quot;go&quot;: &quot;npx me [o restante da cadeia de caracteres foi truncado]&quot;;.
         /// </summary>
         internal static string TypeScriptPackageJson {
             get {

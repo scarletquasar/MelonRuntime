@@ -13,7 +13,8 @@ namespace MelonRuntime.ProjectGenerator
             new("package.json", "./package.json", Models.TypeScriptPackageJson),
             new("tsconfig.json", "./tsconfig.json", Models.TypeScriptConfig),
             new(".gitignore", "./.gitignore", Models.DefaultGitignore),
-            new("webpack.config.js", "./webpack.config.js", Models.DefaultWebpackConfig)
+            new("webpack.config.js", "./webpack.config.js", Models.DefaultWebpackConfig),
+            new("webpack.config.dev.js", "./webpack.config.dev.js", Models.DevWebpackConfig)
         };
 
         public static readonly Schema JavaScript = new()
@@ -23,7 +24,8 @@ namespace MelonRuntime.ProjectGenerator
             new(".babelrc", "./.babelrc", Models.JavaScriptBabelrc),
             new("package.json", "./package.json", Models.JavaScriptPackageJson),
             new(".gitignore", "./.gitignore", Models.DefaultGitignore),
-            new("webpack.config.js", "./webpack.config.js", Models.DefaultWebpackConfig)
+            new("webpack.config.js", "./webpack.config.js", Models.DefaultWebpackConfig),
+            new("webpack.config.dev.js", "./webpack.config.dev.js", Models.DevWebpackConfig)
         };
 
         public Schema Schema { get; }
