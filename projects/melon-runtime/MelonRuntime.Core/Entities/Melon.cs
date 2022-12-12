@@ -49,7 +49,18 @@ namespace MelonRuntime.Core.Entities
                 return;
             }
 
-            _engineProvider.ImportModule(path);
+            try
+            {
+                _engineProvider.ImportModule(path);
+            }
+            catch (Exception e) when (e is ParserException || e is JavaScriptException)
+            {
+                _runtimeErrors.Add(e);
+            }
+            catch (Exception e)
+            {
+                _externalErrors.Add(e);
+            }
         }
 
         public JsValue InteropInvoke(JsValue target)
