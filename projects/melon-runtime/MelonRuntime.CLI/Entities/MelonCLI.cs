@@ -14,9 +14,9 @@ namespace MelonRuntime.CLI.Entities
         private readonly IDictionary<string, Action<string[]>> _commands;
         private readonly IMelon<JsValue> _melon;
 
-        public MelonCLI(Version runtimeVersion, IMelon<JsValue> melon)
+        public MelonCLI(Version? runtimeVersion, IMelon<JsValue> melon)
         {
-            _runtimeVersion = runtimeVersion;
+            _runtimeVersion = runtimeVersion ?? new();
             _commands = new Dictionary<string, Action<string[]>>();
 
             _melon = melon

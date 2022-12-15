@@ -7,7 +7,7 @@ using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
 
-DependencyRunner.Setup();
+await DependencyRunner.Setup();
 
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 {
@@ -19,7 +19,7 @@ var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
 Static.CachedAssemblies = assembliesToCache;
 
 var argv = Environment.GetCommandLineArgs().Skip(1);
-var version = Assembly.GetExecutingAssembly().GetName().Version!;
+var version = Assembly.GetExecutingAssembly().GetName().Version;
 var provider = DependencyManager.GetServiceProvider();
 var runtime = provider.GetRequiredService<IMelon<JsValue>>();
 var cli = new MelonCLI(version, runtime);
