@@ -1,10 +1,10 @@
-import { _getStaticMethod } from "../dotnet/_getStaticMethod";
+import { getStaticMethod } from "../dotnet/getStaticMethod";
 import { _std } from "../std/_std";
 
-function _log(...args: any[]) {
-    const serialize = _getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
-    const log = _getStaticMethod("System:Console:WriteLine");
+const serialize = getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
+const log = getStaticMethod<void>("System:Console:WriteLine");
 
+function _log(...args: any[]) {
     Array.from(args).forEach(object => {
         const serialized = serialize(object)
             .replaceAll("\\n", "\n")

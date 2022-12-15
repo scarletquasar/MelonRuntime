@@ -1,15 +1,16 @@
 import { _guards } from "../../modules/guards/_guards";
 import { _readText } from "../../modules/fs/_readText";
-import { _getStaticMethod } from "../../modules/dotnet/_getStaticMethod";
+import { getStaticMethod } from "../../modules/dotnet/getStaticMethod";
 import { _setEnvironmentVariable } from "../../modules/std/environment/_setEnvironmentVariable";
 import { envParse } from "./envParse";
 
 const { isNullOrWhiteSpace } = _guards.string;
-const getFiles = _getStaticMethod<string[]>("System.IO:Directory:GetFiles");
+const getFiles = getStaticMethod<string[]>("System.IO:Directory:GetFiles");
 
 function getEnv() {
-    if(getFiles("./", "*.env").length === 0)
+    if(getFiles("./", "*.env").length === 0) {
         return;
+    }
         
     const content = _readText("./.env");
 

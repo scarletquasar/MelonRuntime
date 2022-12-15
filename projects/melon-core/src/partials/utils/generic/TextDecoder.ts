@@ -22,7 +22,8 @@ class TextDecoder {
                     codePoint = (codePoint << 6) | (octet & 0x3F);
                     k += 1;
                 }
-            } else {
+            } 
+            else {
                 codePoint = 0xFFFD;
                 bytesNeeded = octets.length - i;
             }
