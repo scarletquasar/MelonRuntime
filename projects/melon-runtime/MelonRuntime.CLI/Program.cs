@@ -7,50 +7,59 @@ using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
 
-await DependencyRunner.Setup();
-
-JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+namespace MelonRuntime
 {
-    Formatting = Formatting.Indented,
-    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-};
+    public class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            SetupJsonConfigurations();
 
-var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
-Static.CachedAssemblies = assembliesToCache;
+            var actions = new Task[]
+            {
+                DependencyRunner.Setup(),
+                SetupAssembliesCache()
+            };
 
-var argv = Environment.GetCommandLineArgs().Skip(1);
-var version = Assembly.GetExecutingAssembly().GetName().Version;
-var provider = DependencyManager.GetServiceProvider();
-var runtime = provider.GetRequiredService<IMelon<JsValue>>();
-var cli = new MelonCLI(version, runtime);
+            await Task.WhenAll(actions);
 
-cli.DisplayHeader();
-cli.ExecuteEntryPoint();
+            var argv = Array.AsReadOnly(args.Skip(1).ToArray());
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            var provider = DependencyManager.GetServiceProvider();
+            var runtime = provider.GetRequiredService<IMelon<JsValue>>();
+            var cli = new MelonCLI(version, runtime);
 
-var flags = argv.Where(str => str.StartsWith("--"));
-var commands = argv.Where(str => !str.StartsWith("--"));
+            cli.DisplayHeader();
+            cli.ExecuteEntryPoint();
 
-if(flags.Count() + commands.Count() == 0)
-{
-    cli.WaitForScript(() => true);
-}
+            if(argv.Count == 0)
+            {
+                cli.WaitForScript(() => true);
+            }
 
-var executingFlag = flags.FirstOrDefault();
+            var pivot = args.First();
+            var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == pivot);
+            var rest = argv.Skip(itemIndex).ToArray();
 
-if(executingFlag != null && args.Length == 1)
-{
-    var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == executingFlag);
-    var rest = argv.Skip(itemIndex).ToArray();
+            cli.ExecuteInstruction(pivot, rest);
+        }
 
-    cli.ExecuteInstruction(executingFlag, rest);
-}
+        private static void SetupJsonConfigurations()
+        {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
+        }
 
-var executingCommand = commands.FirstOrDefault();
-
-if(executingCommand != null)
-{
-    var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == executingCommand);
-    var rest = argv.Skip(itemIndex).ToArray();
-
-    cli.ExecuteInstruction(executingCommand, rest);
+        private static async Task SetupAssembliesCache()
+        {
+            await Task.Run(() =>
+            {
+                var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
+                Static.CachedAssemblies = assembliesToCache;
+            });
+        }
+    }
 }
