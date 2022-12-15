@@ -25,7 +25,7 @@ namespace MelonRuntime.Core
 
         private static IEnumerable<Task> ChunkModuleGetters(string[] values)
         {
-            var chunked = new ChunkedList<string>(values, 3);
+            var chunked = new ChunkedList<string>(values, values.Length / 3);
 
             var tasks = chunked.Select(operations =>
             {

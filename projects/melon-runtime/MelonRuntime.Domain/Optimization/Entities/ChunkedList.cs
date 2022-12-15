@@ -2,7 +2,7 @@
 {
     public class ChunkedList<T> : LinkedList<LinkedList<T>>
     {
-        public ChunkedList(IEnumerable<T> values, int groupQuantity)
+        public ChunkedList(IReadOnlyCollection<T> values, int groupQuantity)
         {
             var count = values is T[] v ? v.Length : values.Count();
 
