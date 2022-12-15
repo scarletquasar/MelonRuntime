@@ -1,2 +1,0 @@
-1. Start server [build + go]
-2. Start client [build + go]
