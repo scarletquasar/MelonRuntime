@@ -1,7 +1,7 @@
 {
     "scripts": {
-        "basic:hello-world": "hyperfine \"melon load ./basic/helloWorld/helloWorld.js --ignore-update\" \"node ./basic/helloWorld/helloWorld.js\" --warmup 3",
-        "basic:write-file-sync": "hyperfine \"melon load ./basic/io/writeMelon.js --ignore-update\" \"node ./basic/io/writeNode.js\" --warmup 3",
-        "basic:json": "hyperfine \"melon load ./basic/io/json.js --ignore-update\" \"node ./basic/io/json.js\" --warmup 3"
+        "basic:hello-world": "hyperfine \"melon load ./basic/helloWorld/helloWorld.js --ignore-update\" --warmup 3",
+        "basic:write-file-sync": "hyperfine \"melon load ./basic/io/writeMelon.js --ignore-update\" --warmup 3",
+        "basic:json": "hyperfine \"melon load ./basic/io/json.js --ignore-update\" --warmup 3"
     }
 }
