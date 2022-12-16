@@ -194,7 +194,7 @@ namespace MelonRuntime.Core.Entities
                 {
                     if (e.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (dynamic item in e.NewItems!)
+                        foreach (Exception item in e.NewItems!)
                         {
                             action(item);
                         }
@@ -210,7 +210,7 @@ namespace MelonRuntime.Core.Entities
                 {
                     if (e.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (dynamic item in e.NewItems!)
+                        foreach (Exception item in e.NewItems!)
                         {
                             action(item);
                         }

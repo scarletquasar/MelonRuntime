@@ -17,16 +17,18 @@ namespace MelonRuntime.CLI.Entities
         public MelonCLI(Version? runtimeVersion, IMelon<JsValue> melon)
         {
             _runtimeVersion = runtimeVersion ?? new();
-            _commands = new Dictionary<string, Action<string[]>>();
+            _commands = new Dictionary<string, Action<string[]>>()
+            {
+                ["--help"] = HelpCommand,
+                ["-help"] = HelpCommand,
+                ["load"] = LoadCommand,
+                ["run"] = RunCommand,
+                ["new"] = NewCommand
+            };
 
             _melon = melon
                 .WithCoreFeatures(_runtimeVersion)
                 .WithConsoleOutput();
-
-            _commands.Add("--help", HelpCommand);
-            _commands.Add("load", LoadCommand);
-            _commands.Add("run", RunCommand);
-            _commands.Add("new", NewCommand);
         }
 
         public void ExecuteEntryPoint()
