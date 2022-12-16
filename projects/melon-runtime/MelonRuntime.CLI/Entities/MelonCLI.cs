@@ -41,11 +41,6 @@ namespace MelonRuntime.CLI.Entities
             }
         }
 
-        public void AddCommand(string name, Action<string[]> action)
-        {
-            _commands.Add(name, action);
-        }
-
         public void ExecuteInstruction(string name, string[] args)
         {
             if(_commands.ContainsKey(name))
