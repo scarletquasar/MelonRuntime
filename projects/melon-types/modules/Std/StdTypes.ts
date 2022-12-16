@@ -18,3 +18,11 @@ declare enum Platform {
 declare interface Timer {
     cancel: () => void;
 }
+
+declare class TextEncoder {
+    encode: (string: string) => number[]
+}
+
+declare class TextDecoder {
+    decode: (octet: number[]) => string
+}
