@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
+using MelonRuntime.Core.Entities;
 
 namespace MelonRuntime
 {
@@ -14,6 +15,9 @@ namespace MelonRuntime
         public static async Task Main(string[] args)
         {
             SetupJsonConfigurations();
+
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            IMelon<JsValue> runtime = new Melon();
 
             var actions = new Task[]
             {
@@ -24,9 +28,6 @@ namespace MelonRuntime
             await Task.WhenAll(actions);
 
             var argv = Array.AsReadOnly(args.Skip(1).ToArray());
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            var provider = DependencyManager.GetServiceProvider();
-            var runtime = provider.GetRequiredService<IMelon<JsValue>>();
             var cli = new MelonCLI(version, runtime);
 
             cli.DisplayHeader();

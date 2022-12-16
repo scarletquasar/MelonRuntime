@@ -1,4 +1,4 @@
-﻿namespace MelonRuntime.Domain.Optimization.Entities
+﻿namespace MelonRuntime.Domain.Optimization.Entities.Generic
 {
     public class ChunkedList<T> : LinkedList<LinkedList<T>>
     {

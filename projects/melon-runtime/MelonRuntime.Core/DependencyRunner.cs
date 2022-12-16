@@ -1,5 +1,5 @@
 ﻿//Some assembly dependencies need to be (explicitly) used in order to be available in Melon core functions
-using MelonRuntime.Domain.Optimization.Entities;
+using MelonRuntime.Domain.Optimization.Entities.Generic;
 using System.Reflection;
 
 namespace MelonRuntime.Core

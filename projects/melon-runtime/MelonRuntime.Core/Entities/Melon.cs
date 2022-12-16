@@ -44,7 +44,16 @@ namespace MelonRuntime.Core.Entities
         {
             if(!isModule)
             {
-                var content = File.ReadAllText(path);
+                var stream = new FileStream(
+                    path, 
+                    FileMode.Open, 
+                    FileAccess.Read, 
+                    FileShare.Read);
+
+                var reader = new StreamReader(stream);
+
+                var content = reader.ReadToEnd();
+
                 SendInstructions(content);
                 return;
             }
