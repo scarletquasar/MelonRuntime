@@ -10,6 +10,7 @@
         "dev:win": "npm run build:win && npm run _run",
         "dev:linux": "npm run build:linux && npm run _run",
         "install-dev:win": "npm run build:win && cd ./projects/melon-runtime && npm i -g -f && cd ../..",
-        "install-dev:linux": "npm run build:linux && cd ./projects/melon-runtime && npm i -g -f && cd ../.."
+        "install-dev:linux": "npm run build:linux && cd ./projects/melon-runtime && npm i -g -f && cd ../..",
+        "all-benchmarks": "cd ./projects/melon-benchmarks/ && npm run all-benchmarks"
     }
 }
