@@ -56,7 +56,7 @@ namespace MelonRuntime
 
         private static async Task SetupAssembliesCache()
         {
-            await Task.Run(() =>
+            await Task.Factory.StartNew(() =>
             {
                 var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
                 Static.CachedAssemblies = assembliesToCache;

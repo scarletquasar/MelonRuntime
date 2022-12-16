@@ -10,12 +10,14 @@ namespace MelonRuntime.Core
         {
             var requiredModules = new string[]
             {
+                "netstandard",
                 "Cli.NET",
                 "System",
                 "System.Runtime",
                 "System.Console",
                 "System.Text.Json",
-                "System.Diagnostics.Process"
+                "System.Diagnostics.Process",
+                "Newtonsoft.Json"
             };
 
             var moduleGetters = ChunkModuleGetters(requiredModules);
