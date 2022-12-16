@@ -51,7 +51,6 @@ namespace MelonRuntime.Core.Entities
                     FileShare.Read);
 
                 var reader = new StreamReader(stream);
-
                 var content = reader.ReadToEnd();
 
                 SendInstructions(content);
@@ -130,19 +129,14 @@ namespace MelonRuntime.Core.Entities
 
         private string? HandleInstructions(string instructions)
         {
-            JsValue output = JsValue.Undefined;
+            JsValue outputItem = JsValue.Undefined;
             Exception? runtimeError = null;
             Exception? externalError = null;
 
             try
             {
-                output = _engineProvider.EvaluateInstructions(instructions);
-
-                _output.Add(output);
-            }
-            catch (Exception e) when (e is ParserException || e is JavaScriptException)
-            {
-                _runtimeErrors.Add(e);
+                outputItem = _engineProvider.EvaluateInstructions(instructions);
+                _output.Add(outputItem);
             }
             catch (Exception e)
             {
@@ -151,9 +145,9 @@ namespace MelonRuntime.Core.Entities
 
             string? finalOutput = null;
 
-            if (output.IsNumber()) finalOutput = output.AsNumber().ToString();
-            if (output.IsBoolean()) finalOutput = output.AsBoolean().ToString();
-            if (output.IsRegExp()) finalOutput = output.AsRegExp().ToString();
+            if (outputItem.IsNumber()) finalOutput = outputItem.AsNumber().ToString();
+            if (outputItem.IsBoolean()) finalOutput = outputItem.AsBoolean().ToString();
+            if (outputItem.IsRegExp()) finalOutput = outputItem.AsRegExp().ToString();
 
             return finalOutput?.ToString() ?? runtimeError?.ToString() ?? externalError?.ToString();
         }
@@ -228,6 +222,17 @@ namespace MelonRuntime.Core.Entities
         public void SetInteropValue(string identifier, object value)
         {
             _engineProvider.SetInteropValue(identifier, value);
+        }
+
+        private void HandleInternalExceptions(Exception e)
+        {
+            if(e is ParserException || e is JavaScriptException)
+            {
+                _runtimeErrors.Add(e);
+                return;
+            }
+
+            _externalErrors.Add(e);
         }
     }
 }
