@@ -12,6 +12,8 @@ import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
 import { _osInformation } from "./system/_osInformation";
+import { TextDecoder } from "./TextDecoder";
+import { TextEncoder } from "./TextEncoder";
 import { Timer } from "./time/Timer";
 import { _clearInterval } from "./time/_clearInterval";
 import { _clearTimeout } from "./time/_clearTimeout";
@@ -20,6 +22,8 @@ import { _setTimeout } from "./time/_setTimeout";
 import { _shift } from "./_shift";
 
 const _std = {
+    TextDecoder,
+    TextEncoder,
     shift: _shift,
     async: {
         nextTick: _nextTick
