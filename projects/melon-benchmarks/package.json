@@ -1,9 +1,10 @@
 {
     "scripts": {
+        "basic:do-nothing": "hyperfine \"melon load ./basic/empty/doNothing.js --ignore-update\" --warmup 3",
         "basic:hello-world": "hyperfine \"melon load ./basic/helloWorld/helloWorld.js --ignore-update\" --warmup 3",
         "basic:write-file-sync": "hyperfine \"melon load ./basic/io/writeMelon.js --ignore-update\" --warmup 3",
         "basic:json": "hyperfine \"melon load ./basic/io/json.js --ignore-update\" --warmup 3",
-        "basic:all": "npm run basic:hello-world && npm run basic:write-file-sync && npm run basic:json",
+        "basic:all": "npm run basic:do-nothing && npm run basic:hello-world && npm run basic:write-file-sync && npm run basic:json",
         "all-benchmarks": "npm run basic:all" 
     }
 }
