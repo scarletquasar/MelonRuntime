@@ -3,7 +3,7 @@ import { _getLoadedAssemblies } from "./_getLoadedAssemblies";
 import { getStaticMethod } from "./getStaticMethod";
 import { _getStaticProperty } from "./_getStaticProperty";
 import { _loadAssembly } from "./_loadAssembly";
-import { _Realm } from "./constructors/_Realm";
+import { _Realm } from "./_Realm";
 import { _removeAssembly } from "./_removeAssembly";
 import { _types } from "./_types";
 import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
