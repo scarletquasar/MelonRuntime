@@ -5,6 +5,8 @@ using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.CLI.Properties;
 using MelonRuntime.Core.Extensions;
 using MelonRuntime.ProjectGenerator;
+using Esprima;
+using Jint.Runtime;
 
 namespace MelonRuntime.CLI.Entities
 {
@@ -84,6 +86,16 @@ namespace MelonRuntime.CLI.Entities
             Console.WriteLine(Resources.HelpDefaultText);
         }
 
+        private static void HandleInternalExceptions(Exception exception) 
+        {
+            var isInternalError = exception is JavaScriptException || exception is ParserException;
+
+            if(!isInternalError) 
+            {
+                DisplayInvalidCommandUsage();
+            }
+        }
+
         private static void DisplayInvalidCommandUsage()
         {
             CLNConsole.Write("[Error]", ConsoleColor.Red);
@@ -98,13 +110,13 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.LoadFile(args[1], true);
+                    _melon.LoadFile(args[0], true);
                     return;
                 }
             }
-            catch 
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpLoadText);
@@ -116,13 +128,13 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.SendInstructions(args[1]);
+                    _melon.SendInstructions(args[0]);
                     Environment.Exit(0);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpRunText);
@@ -137,14 +149,14 @@ namespace MelonRuntime.CLI.Entities
                     var type = "typescript";
                     var path = "./";
 
-                    if (args.Length > 1)
+                    if (args.Length > 0)
                     {
-                        path = args[1];
+                        path = args[0];
                     }
 
-                    if (args.Length > 2)
+                    if (args.Length > 1)
                     {
-                        type = args[2];
+                        type = args[1];
                     }
 
                     var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
@@ -169,9 +181,9 @@ namespace MelonRuntime.CLI.Entities
 
                 return;
             }
-            catch
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpNewText);

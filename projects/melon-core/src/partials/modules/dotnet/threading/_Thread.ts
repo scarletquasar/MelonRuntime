@@ -1,54 +1,56 @@
 import { _createThread } from "./_createThread";
 
-class _Thread {
-    #__interop_thread: any;
+type ThreadAction = (...args: any[]) => any;
 
-    constructor(action: (...args: any[]) => void) {
-        this.#__interop_thread = _createThread(action);
+class _Thread {
+    private interopThread: any;
+
+    constructor(action: ThreadAction) {
+        this.interopThread = _createThread(action);
     }
 
     start() {
-        this.#__interop_thread.start();
+        this.interopThread.start();
     }
 
     unsafeStart() {
-        this.#__interop_thread.unsafeStart();
+        this.interopThread.unsafeStart();
     }
 
     abort() {
-        this.#__interop_thread.abort();
+        this.interopThread.abort();
     }
 
     suspend() {
-        this.#__interop_thread.suspend();
+        this.interopThread.suspend();
     }
 
     resume() {
-        this.#__interop_thread.resume();
+        this.interopThread.resume();
     }
 
     join() {
-        this.#__interop_thread.join();
+        this.interopThread.join();
     }
 
     yield() {
-        this.#__interop_thread.yield();
+        this.interopThread.yield();
     }
 
     memoryBarrier() {
-        this.#__interop_thread.memoryBarrier();
+        this.interopThread.memoryBarrier();
     }
 
     beginCriticalRegion() {
-        this.#__interop_thread.beginCriticalRegion();
+        this.interopThread.beginCriticalRegion();
     }
 
     endCriticalRegion() {
-        this.#__interop_thread.endCriticalRegion();
+        this.interopThread.endCriticalRegion();
     }
 
     unsafeGetInteropThread() {
-        return this.#__interop_thread;
+        return this.interopThread;
     }
 }
 

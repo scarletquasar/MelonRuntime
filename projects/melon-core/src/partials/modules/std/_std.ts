@@ -11,6 +11,7 @@ import { _tryStringify } from "./json/_tryStringify";
 import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
+import { SharedBag } from "./SharedBag";
 import { _osInformation } from "./system/_osInformation";
 import { TextDecoder } from "./TextDecoder";
 import { TextEncoder } from "./TextEncoder";
@@ -22,6 +23,7 @@ import { _setTimeout } from "./time/_setTimeout";
 import { _shift } from "./_shift";
 
 const _std = {
+    SharedBag,
     TextDecoder,
     TextEncoder,
     shift: _shift,
