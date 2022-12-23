@@ -1,5 +1,6 @@
 declare type DotnetFetchExpession = `${string}:${string}:${string}`;
 declare type DotnetInstanceExpression = `${string}:${string}${'' | ':'}${'' | string}`;
+declare type ThreadAction = (...args: any[]) => any;
 
 declare interface Realm {
     name: string;
@@ -10,11 +11,12 @@ declare interface Realm {
     close: (delay: number) => void;
 }
 
-declare interface Task<T> {
-    isCanceled: boolean;
-    isCompleted: boolean;
-    isCompletedSuccessfully: boolean;
-    isFaulted: boolean;
+declare class Task<T> {
+    constructor(action: (...args: any[]) => T);
+    get isCanceled(): boolean;
+    get isCompleted(): boolean;
+    get isCompletedSuccessfully(): boolean;
+    get isFaulted(): boolean;
     result: T;
     start: () => void;
     wait: () => void;
@@ -22,7 +24,10 @@ declare interface Task<T> {
     unsafeGetInteropTask: () => any;
 }
 
-declare interface Thread {
+declare class Thread {
+    constructor(action: (...args: any[]) => any);
+    static get currentThread(): Thread;
+    get isAlive(): boolean;
     start: () => void;
     unsafeStart: () => void;
     abort: () => void;
@@ -34,4 +39,6 @@ declare interface Thread {
     beginCriticalRegion: () => void;
     endCriticalRegion: () => void;
     unsafeGetInteropThread: () => any;
+    unsafeGetInteropAction: () => ThreadAction;
+    unsafeSetInteropThread: (interopThread: any) => void;
 }

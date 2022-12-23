@@ -1,8 +1,8 @@
-import { _getStaticMethod } from "./_getStaticMethod";
+import { getStaticMethod } from "./getStaticMethod";
 
 function _getFactories(namespace: string) {
     const types: any[] = _$internalBinding["GetTypes"](namespace);
-    const activator = _getStaticMethod("System:Activator:CreateInstance");
+    const activator = getStaticMethod("System:Activator:CreateInstance");
     const constructors: Record<string, { new: (...args: any) => any }> = {};
 
     types.forEach(type => {

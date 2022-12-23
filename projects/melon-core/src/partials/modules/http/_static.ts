@@ -1,4 +1,4 @@
-import { _getStaticMethod } from "../dotnet/_getStaticMethod";
+import { _getStaticMethod } from "../dotnet/getStaticMethod";
 import { _std } from "../std/_std"
 
 function _static(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {

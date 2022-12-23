@@ -25,7 +25,7 @@ namespace MelonRuntime.Core.Entities
 
         public JsValue InteropInvoke(JsValue target)
         {
-            return _engine.Invoke(target);
+            return _engine.Call(target);
         }
 
         public void Dispose()

@@ -19,6 +19,7 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
         private readonly Dictionary<string, object> _environmentVariables;
+        private readonly Queue<string> _nextInstructions;
 
         public Melon(IJavaScriptEngine<JsValue> engineProvider)
         {
@@ -28,6 +29,9 @@ namespace MelonRuntime.Core.Entities
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
             _environmentVariables = new();
+            _nextInstructions = new();
+
+            StartInstructionHandler();
         }
 
         public Melon()
@@ -38,13 +42,24 @@ namespace MelonRuntime.Core.Entities
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
             _environmentVariables = new();
+            _nextInstructions = new();
+            
+            StartInstructionHandler();
         }
 
         public void LoadFile(string path, bool isModule)
         {
             if(!isModule)
             {
-                var content = File.ReadAllText(path);
+                var stream = new FileStream(
+                    path, 
+                    FileMode.Open, 
+                    FileAccess.Read, 
+                    FileShare.Read);
+
+                var reader = new StreamReader(stream);
+                var content = reader.ReadToEnd();
+
                 SendInstructions(content);
                 return;
             }
@@ -89,6 +104,11 @@ namespace MelonRuntime.Core.Entities
             return _engineProvider.EvaluateInstructions(instructions);
         }
 
+        public void EnqueueInstructions(string instructions)
+        {
+            _nextInstructions.Enqueue(instructions);
+        }
+
         public void SendInstructions(string instructions)
         {
             HandleInstructions(instructions);
@@ -119,21 +139,32 @@ namespace MelonRuntime.Core.Entities
             return _output.ToList();
         }
 
+        private void StartInstructionHandler() {
+            var instructionHandler = async () => {
+                while(true) 
+                {
+                    if(_nextInstructions.TryDequeue(out var nextInstruction)) 
+                    {
+                        HandleInstructions(nextInstruction!);
+                    }
+
+                    await Task.Delay(100);
+                }
+            };
+
+            Task.Factory.StartNew(instructionHandler);
+        }
+
         private string? HandleInstructions(string instructions)
         {
-            JsValue output = JsValue.Undefined;
+            JsValue outputItem = JsValue.Undefined;
             Exception? runtimeError = null;
             Exception? externalError = null;
 
             try
             {
-                output = _engineProvider.EvaluateInstructions(instructions);
-
-                _output.Add(output);
-            }
-            catch (Exception e) when (e is ParserException || e is JavaScriptException)
-            {
-                _runtimeErrors.Add(e);
+                outputItem = _engineProvider.EvaluateInstructions(instructions);
+                _output.Add(outputItem);
             }
             catch (Exception e)
             {
@@ -142,9 +173,9 @@ namespace MelonRuntime.Core.Entities
 
             string? finalOutput = null;
 
-            if (output.IsNumber()) finalOutput = output.AsNumber().ToString();
-            if (output.IsBoolean()) finalOutput = output.AsBoolean().ToString();
-            if (output.IsRegExp()) finalOutput = output.AsRegExp().ToString();
+            if (outputItem.IsNumber()) finalOutput = outputItem.AsNumber().ToString();
+            if (outputItem.IsBoolean()) finalOutput = outputItem.AsBoolean().ToString();
+            if (outputItem.IsRegExp()) finalOutput = outputItem.AsRegExp().ToString();
 
             return finalOutput?.ToString() ?? runtimeError?.ToString() ?? externalError?.ToString();
         }
@@ -191,7 +222,7 @@ namespace MelonRuntime.Core.Entities
                 {
                     if (e.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (dynamic item in e.NewItems!)
+                        foreach (Exception item in e.NewItems!)
                         {
                             action(item);
                         }
@@ -207,7 +238,7 @@ namespace MelonRuntime.Core.Entities
                 {
                     if (e.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (dynamic item in e.NewItems!)
+                        foreach (Exception item in e.NewItems!)
                         {
                             action(item);
                         }
@@ -219,6 +250,17 @@ namespace MelonRuntime.Core.Entities
         public void SetInteropValue(string identifier, object value)
         {
             _engineProvider.SetInteropValue(identifier, value);
+        }
+
+        private void HandleInternalExceptions(Exception e)
+        {
+            if(e is ParserException || e is JavaScriptException)
+            {
+                _runtimeErrors.Add(e);
+                return;
+            }
+
+            _externalErrors.Add(e);
         }
     }
 }

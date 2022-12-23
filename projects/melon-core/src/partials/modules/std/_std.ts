@@ -11,16 +11,22 @@ import { _tryStringify } from "./json/_tryStringify";
 import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
+import { SharedBag } from "./SharedBag";
 import { _osInformation } from "./system/_osInformation";
+import { TextDecoder } from "./TextDecoder";
+import { TextEncoder } from "./TextEncoder";
 import { Timer } from "./time/Timer";
 import { _clearInterval } from "./time/_clearInterval";
 import { _clearTimeout } from "./time/_clearTimeout";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
-import { _shift } from "./_shift";
+import { shift } from "./shift";
 
 const _std = {
-    shift: _shift,
+    SharedBag,
+    TextDecoder,
+    TextEncoder,
+    shift,
     async: {
         nextTick: _nextTick
     },

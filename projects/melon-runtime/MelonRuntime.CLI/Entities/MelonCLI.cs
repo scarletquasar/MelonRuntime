@@ -5,6 +5,8 @@ using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.CLI.Properties;
 using MelonRuntime.Core.Extensions;
 using MelonRuntime.ProjectGenerator;
+using Esprima;
+using Jint.Runtime;
 
 namespace MelonRuntime.CLI.Entities
 {
@@ -12,21 +14,27 @@ namespace MelonRuntime.CLI.Entities
     {
         private readonly Version _runtimeVersion;
         private readonly IDictionary<string, Action<string[]>> _commands;
-        private readonly IMelon<JsValue> _melon;
+        private IMelon<JsValue> _melon;
 
-        public MelonCLI(Version runtimeVersion, IMelon<JsValue> melon)
+        public MelonCLI(Version? runtimeVersion, IMelon<JsValue> melon)
         {
-            _runtimeVersion = runtimeVersion;
-            _commands = new Dictionary<string, Action<string[]>>();
+            _runtimeVersion = runtimeVersion ?? new();
+            _commands = new Dictionary<string, Action<string[]>>()
+            {
+                ["--help"] = HelpCommand,
+                ["-help"] = HelpCommand,
+                ["load"] = LoadCommand,
+                ["run"] = RunCommand,
+                ["new"] = NewCommand
+            };
 
             _melon = melon
                 .WithCoreFeatures(_runtimeVersion)
-                .WithConsoleOutput();
+                .WithConsoleErrors();
+        }
 
-            _commands.Add("--help", HelpCommand);
-            _commands.Add("load", LoadCommand);
-            _commands.Add("run", RunCommand);
-            _commands.Add("new", NewCommand);
+        public void EnableConsoleOutput() {
+            _melon.AddConsoleOutput();
         }
 
         public void ExecuteEntryPoint()
@@ -37,11 +45,6 @@ namespace MelonRuntime.CLI.Entities
             {
                 _melon.LoadFile($"{currentPath}/main.js", true);
             }
-        }
-
-        public void AddCommand(string name, Action<string[]> action)
-        {
-            _commands.Add(name, action);
         }
 
         public void ExecuteInstruction(string name, string[] args)
@@ -87,6 +90,16 @@ namespace MelonRuntime.CLI.Entities
             Console.WriteLine(Resources.HelpDefaultText);
         }
 
+        private static void HandleInternalExceptions(Exception exception) 
+        {
+            var isInternalError = exception is JavaScriptException || exception is ParserException;
+
+            if(!isInternalError) 
+            {
+                DisplayInvalidCommandUsage();
+            }
+        }
+
         private static void DisplayInvalidCommandUsage()
         {
             CLNConsole.Write("[Error]", ConsoleColor.Red);
@@ -101,13 +114,13 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.LoadFile(args[1], true);
+                    _melon.LoadFile(args[0], true);
                     return;
                 }
             }
-            catch 
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpLoadText);
@@ -119,13 +132,13 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.SendInstructions(args[1]);
+                    _melon.SendInstructions(args[0]);
                     Environment.Exit(0);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpRunText);
@@ -140,14 +153,14 @@ namespace MelonRuntime.CLI.Entities
                     var type = "typescript";
                     var path = "./";
 
-                    if (args.Length > 1)
+                    if (args.Length > 0)
                     {
-                        path = args[1];
+                        path = args[0];
                     }
 
-                    if (args.Length > 2)
+                    if (args.Length > 1)
                     {
-                        type = args[2];
+                        type = args[1];
                     }
 
                     var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
@@ -172,9 +185,9 @@ namespace MelonRuntime.CLI.Entities
 
                 return;
             }
-            catch
+            catch(Exception e)
             {
-                DisplayInvalidCommandUsage();
+                HandleInternalExceptions(e);
             }
 
             Console.WriteLine(Resources.HelpNewText);
