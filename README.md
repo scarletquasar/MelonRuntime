@@ -6,23 +6,47 @@
 
 ## Why Melon?
 
-- Melon is based in [.NET](https://dotnet.microsoft.com/en-us/), a **cross-platform** open source framework for building powerful applications, this power is being extended to JavaScript and TypeScript projects with compatibility and interoperability by default.
-- Melon is architected to work within the npm (node package manager) environment, this means you can install existing packages that are compatible with the runtime's built-in api. We are also working to make more and more packages compatible.
-- Melon is designed to offer a quick solution for project prototyping, so that it offers the basics needed to create applications while offering scalability and maintainability when necessary.
+- Quick develop and prototype scalable solutions without having to worry about dependencies
+- Use features directly from [.NET](https://dotnet.microsoft.com/en-us/) directly from JavaScript
+- Use a wide range of [npm]() libraries by default 
 
 ## Web development
 
 Melon brings the power of ASP.NET to JavaScript, allowing you to build synchronous or asynchronous dedicated web applications with few lines, using an express-like interface that is easy and simple to use.
 
+<table>
+    <thead>
+        <tr>
+            <th>
+                Melon (No dependencies)
+            </th>
+            <th>
+                Node.js (Express)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> 
+
+
 ```ts
 const { http } = Melon;
 const app = http.app();
 
-app.get("/", async () => "Hello world");
+app.get("/", () => "Hello world");
 app.run();
-
-//Listening to http://localhost:80
 ```
+</td><td>
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello World"));
+app.listen(80, () => {});
+```
+</td></tr></tbody></table>
 
 ## Intensive async I/O operations
 
