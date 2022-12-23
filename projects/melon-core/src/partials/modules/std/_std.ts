@@ -12,7 +12,7 @@ import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
 import { SharedBag } from "./SharedBag";
-import { _osInformation } from "./system/_osInformation";
+import { osInformation } from "./system/osInformation";
 import { TextDecoder } from "./TextDecoder";
 import { TextEncoder } from "./TextEncoder";
 import { Timer } from "./time/Timer";
@@ -50,7 +50,7 @@ const _std = {
         Timer
     },
     system: {
-        osInformation: _osInformation
+        osInformation
     },
     environment: {
         baseDirectory: _baseDirectory,

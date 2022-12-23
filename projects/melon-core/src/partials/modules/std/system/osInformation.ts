@@ -1,6 +1,4 @@
 import { getStaticProperty } from "../../dotnet/getStaticProperty";
-import { _dotnet } from "../../dotnet/_dotnet";
-import { Platform } from "../enums/Platform";
 
 type InternalOSVersion = {
     Platform: Platform,
@@ -8,7 +6,18 @@ type InternalOSVersion = {
     ServicePack: string
 }
 
-const _osInformation = [
+enum Platform {
+    Win32S,
+    Win32Windows,
+    Win32NT,
+    WinCE,
+    Unix,
+    Xbox,
+    MacOSX,
+    Other
+}
+
+const osInformation = [
     "Platform",
     "VersionString",
     "ServicePack" 
@@ -19,4 +28,4 @@ const _osInformation = [
 ])
 .reduce((acc, val) => ({ ...acc, [<any>val[0]]: val[1]}), {});
 
-export { _osInformation }
+export { osInformation }
