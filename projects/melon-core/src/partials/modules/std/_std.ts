@@ -20,13 +20,13 @@ import { _clearInterval } from "./time/_clearInterval";
 import { _clearTimeout } from "./time/_clearTimeout";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
-import { _shift } from "./_shift";
+import { shift } from "./shift";
 
 const _std = {
     SharedBag,
     TextDecoder,
     TextEncoder,
-    shift: _shift,
+    shift,
     async: {
         nextTick: _nextTick
     },

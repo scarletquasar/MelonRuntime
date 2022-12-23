@@ -1,5 +1,3 @@
-import { _std } from "./_std";
-
 /* shift()
 /  Creates a callback chain that will execute one or more callbacks based
 /  in a condition that is related to the initial specified value.
@@ -8,19 +6,17 @@ import { _std } from "./_std";
 /  callback: function to be executed if the option is true
 /  finishOnTrue?: boolean telling if the execution will stop after the first true
 */
-function _shift() {
+function shift() {
     return {
-        option: (condition: boolean, callback: () => any, finishOnTrue = false) => {
-            if(condition) {
-                callback();
-
-                if(finishOnTrue)
-                    return;
+        option: (condition: boolean, callback: Function, finishOnTrue = false) => {
+            condition ? callback() : {};
+            if(finishOnTrue) {
+                return;
             }
-
-            return _std.shift();
+            
+            return shift();
         }
     }
 }
 
-export { _shift }
+export { shift }
