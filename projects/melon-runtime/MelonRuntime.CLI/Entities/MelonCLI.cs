@@ -14,7 +14,7 @@ namespace MelonRuntime.CLI.Entities
     {
         private readonly Version _runtimeVersion;
         private readonly IDictionary<string, Action<string[]>> _commands;
-        private readonly IMelon<JsValue> _melon;
+        private IMelon<JsValue> _melon;
 
         public MelonCLI(Version? runtimeVersion, IMelon<JsValue> melon)
         {
@@ -30,7 +30,11 @@ namespace MelonRuntime.CLI.Entities
 
             _melon = melon
                 .WithCoreFeatures(_runtimeVersion)
-                .WithConsoleOutput();
+                .WithConsoleErrors();
+        }
+
+        public void EnableConsoleOutput() {
+            _melon.AddConsoleOutput();
         }
 
         public void ExecuteEntryPoint()

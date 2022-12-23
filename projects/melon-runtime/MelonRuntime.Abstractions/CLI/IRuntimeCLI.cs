@@ -2,6 +2,7 @@
 {
     public interface IRuntimeCLI
     {
+        public void EnableConsoleOutput();
         public void WaitForScript(Func<bool> loopCondition);
         public void ExecuteInstruction(string command, string[] argv);
         public void ExecuteEntryPoint();

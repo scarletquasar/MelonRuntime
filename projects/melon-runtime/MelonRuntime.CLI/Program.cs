@@ -19,13 +19,8 @@ namespace MelonRuntime
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             IMelon<JsValue> runtime = new Melon();
 
-            var actions = new Task[]
-            {
-                DependencyRunner.Setup(),
-                SetupAssembliesCache()
-            };
-
-            await Task.WhenAll(actions);
+            await DependencyRunner.Setup();
+            await SetupAssembliesCache();
 
             var argv = Array.AsReadOnly(args.Skip(1).ToArray());
             var cli = new MelonCLI(version, runtime);
@@ -35,6 +30,7 @@ namespace MelonRuntime
 
             if(argv.Count == 0)
             {
+                cli.EnableConsoleOutput();
                 cli.WaitForScript(() => true);
             }
 

@@ -19,6 +19,7 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
         private readonly Dictionary<string, object> _environmentVariables;
+        private readonly Queue<string> _nextInstructions;
 
         public Melon(IJavaScriptEngine<JsValue> engineProvider)
         {
@@ -28,6 +29,9 @@ namespace MelonRuntime.Core.Entities
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
             _environmentVariables = new();
+            _nextInstructions = new();
+
+            StartInstructionHandler();
         }
 
         public Melon()
@@ -38,6 +42,9 @@ namespace MelonRuntime.Core.Entities
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
             _environmentVariables = new();
+            _nextInstructions = new();
+            
+            StartInstructionHandler();
         }
 
         public void LoadFile(string path, bool isModule)
@@ -97,6 +104,11 @@ namespace MelonRuntime.Core.Entities
             return _engineProvider.EvaluateInstructions(instructions);
         }
 
+        public void EnqueueInstructions(string instructions)
+        {
+            _nextInstructions.Enqueue(instructions);
+        }
+
         public void SendInstructions(string instructions)
         {
             HandleInstructions(instructions);
@@ -125,6 +137,22 @@ namespace MelonRuntime.Core.Entities
         public List<JsValue> GetOutput()
         {
             return _output.ToList();
+        }
+
+        private void StartInstructionHandler() {
+            var instructionHandler = async () => {
+                while(true) 
+                {
+                    if(_nextInstructions.TryDequeue(out var nextInstruction)) 
+                    {
+                        HandleInstructions(nextInstruction!);
+                    }
+
+                    await Task.Delay(100);
+                }
+            };
+
+            Task.Factory.StartNew(instructionHandler);
         }
 
         private string? HandleInstructions(string instructions)

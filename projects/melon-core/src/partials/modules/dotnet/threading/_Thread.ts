@@ -1,12 +1,43 @@
-import { _createThread } from "./_createThread";
+import { _crypto } from "../../../statics/_crypto";
+import { _nextTick } from "../../std/async/_nextTick";
+import { getStaticProperty } from "../getStaticProperty";
+import { createThread } from "./createThread";
 
 type ThreadAction = (...args: any[]) => any;
+type InteropThread = any;
 
-class _Thread {
-    private interopThread: any;
+class Thread {
+    private static threads: Record<string, Thread> = {};
 
-    constructor(action: ThreadAction) {
-        this.interopThread = _createThread(action);
+    private interopThread: InteropThread;
+    private interopAction: Function | Promise<any>
+
+    public identifier: string;
+
+    constructor(action?: ThreadAction) {
+        this.interopAction = action;
+
+        this.identifier = _crypto.randomUUID();
+        Thread.threads[this.identifier] = this;
+
+        this.interopThread = createThread(this.identifier);
+    }
+
+    static get currentThread() {
+        const interopThread = getStaticProperty<InteropThread>("System.Threading:Thread:CurrentThread");
+        const thread = new Thread();
+
+        thread.unsafeSetInteropThread(interopThread);
+
+        return thread;
+    }
+
+    get isAlive() {
+        return this.interopThread.isAlive;
+    }
+
+    get name() {
+        return this.interopThread.name;
     }
 
     start() {
@@ -52,6 +83,14 @@ class _Thread {
     unsafeGetInteropThread() {
         return this.interopThread;
     }
+
+    unsafeGetInteropAction() {
+        return this.interopAction;
+    }
+
+    unsafeSetInteropThread(interopThread: InteropThread) {
+        this.interopThread = interopThread;
+    }
 }
 
-export { _Thread }
+export { Thread }

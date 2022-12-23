@@ -3,4 +3,7 @@ module.exports = {
     output: {
       filename: "core.js",
     },
+    optimization: {
+      minimize: false
+    }
 };

@@ -24,20 +24,8 @@ namespace MelonRuntime.Core.Extensions
             return runtime;
         }
 
-        public static IMelon<JsValue> WithConsoleOutput(this IMelon<JsValue> runtime)
+        public static IMelon<JsValue> WithConsoleErrors(this IMelon<JsValue> runtime) 
         {
-            runtime.AddOutputAction(obj =>
-            {
-                var value = Convert.ToString(obj)!;
-                var values = value.Split("\n").ToList();
-
-                values.ForEach(value =>
-                {
-                    CLNConsole.Write($"< ", ConsoleColor.Green);
-                    CLNConsole.WriteLine(value, ConsoleColor.DarkGray);
-                });
-            });
-
             runtime.AddRuntimeErrorAction(obj =>
             {
                 CLNConsole.Write(obj.GetType().Name, ConsoleColor.Red);
@@ -63,6 +51,23 @@ namespace MelonRuntime.Core.Extensions
                 CLNConsole.Write(obj.GetType().Name, ConsoleColor.Red);
                 CLNConsole.Write($" < ", ConsoleColor.Green);
                 Console.WriteLine(obj.Message);
+            });
+
+            return runtime;
+        }
+
+        public static IMelon<JsValue> AddConsoleOutput(this IMelon<JsValue> runtime)
+        {
+            runtime.AddOutputAction(obj =>
+            {
+                var value = Convert.ToString(obj)!;
+                var values = value.Split("\n").ToList();
+
+                values.ForEach(value =>
+                {
+                    CLNConsole.Write($"< ", ConsoleColor.Green);
+                    CLNConsole.WriteLine(value, ConsoleColor.DarkGray);
+                });
             });
 
             return runtime;

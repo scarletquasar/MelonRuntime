@@ -14,7 +14,7 @@ namespace MelonRuntime.JavaScriptTests
             var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
             Static.CachedAssemblies = assembliesToCache;
             
-            DependencyRunner.Setup();
+            DependencyRunner.Setup().GetAwaiter().GetResult();
 
             var runtime = new Melon();
             return runtime.WithCoreFeatures(new Version());

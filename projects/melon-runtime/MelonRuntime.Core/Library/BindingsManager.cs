@@ -49,6 +49,7 @@ namespace MelonRuntime.Core.Library
                 GetThreadingBindings(),
                 GetRealmBindings(),
                 GetEnvironmentBindings(),
+                GetProcessBindings(),
                 GetFileSystemBindings(),
                 GetWebServiceApplicationBindings(),
                 GetTimeBindings()
@@ -126,9 +127,9 @@ namespace MelonRuntime.Core.Library
 
         private Dictionary<string, dynamic> GetThreadingBindings()
         {
-            Thread createThread(JsValue action)
+            Thread createThread(string identifier)
             {
-                return ThreadingManager.CreateThread(action, _melon!);
+                return ThreadingManager.CreateThread(identifier, _melon!);
             }
 
             Task<JsValue> createTask(JsValue action)
@@ -138,7 +139,7 @@ namespace MelonRuntime.Core.Library
 
             return new()
             {
-                ["CreateThread"] = new Func<JsValue, Thread>(createThread),
+                ["CreateThread"] = new Func<string, Thread>(createThread),
                 ["CreateTask"] = new Func<JsValue, Task<JsValue>>(createTask),
             };
         }
@@ -191,6 +192,14 @@ namespace MelonRuntime.Core.Library
             return new()
             {
                 ["LocalEnvironmentVariables"] = _melon!.GetEnvironmentVariables()
+            };
+        }
+
+        private Dictionary<string, dynamic> GetProcessBindings()
+        {
+            return new()
+            {
+                ["ProcessExit"] = new Action(() => Environment.Exit(0))
             };
         }
 
