@@ -10,7 +10,7 @@ import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
 import { _createTask } from "./threading/_createTask";
 import { createThread } from "./threading/createThread";
 import { _Task } from "./threading/_Task";
-import { Thread } from "./threading/_Thread";
+import { Thread } from "./threading/Thread";
 import { _getFactories } from "./_getFactories";
 import { _createList } from "./_createList";
 

@@ -26,3 +26,11 @@ declare class TextEncoder {
 declare class TextDecoder {
     decode: (octet: number[]) => string
 }
+
+declare class SharedBag<T> {
+    constructor(...content: T[]);
+    beginTransaction(): void;
+    closeTransaction(): void;
+    addFirst(item: T): number;
+    addLast(item: T): number;
+}

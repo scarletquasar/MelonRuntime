@@ -10,7 +10,7 @@ declare const Dotnet: {
         createTask: (action: Function) => any,
         createThread: (action: Function) => any,
         Task: new<T>(action: (...args: any[]) => T) => Task<T>,
-        Thread: new(action: (...args: any[]) => any) => Thread
+        Thread: Thread
     };
     types: {
         sbyte: (number: number) => {
