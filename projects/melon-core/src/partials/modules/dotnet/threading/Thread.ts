@@ -1,4 +1,5 @@
 import { _crypto } from "../../../statics/_crypto";
+import { _error } from "../../console/_error";
 import { _nextTick } from "../../std/async/_nextTick";
 import { getStaticProperty } from "../getStaticProperty";
 import { createThread } from "./createThread";
@@ -21,6 +22,11 @@ class Thread {
         Thread.threads[this.identifier] = this;
 
         this.interopThread = createThread(this.identifier);
+    }
+
+    static panic(message?: string) {
+        _error(message ?? "");
+        Thread.currentThread.abort(101);
     }
 
     static get currentThread() {
@@ -48,8 +54,8 @@ class Thread {
         this.interopThread.unsafeStart();
     }
 
-    abort() {
-        this.interopThread.abort();
+    abort(exitCode?: number) {
+        this.interopThread.abort(exitCode);
     }
 
     suspend() {

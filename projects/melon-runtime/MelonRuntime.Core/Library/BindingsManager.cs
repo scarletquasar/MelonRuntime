@@ -199,7 +199,7 @@ namespace MelonRuntime.Core.Library
         {
             return new()
             {
-                ["ProcessExit"] = new Action(() => Environment.Exit(0))
+                ["ProcessExit"] = new Action<int>(x => Environment.Exit(x))
             };
         }
 
