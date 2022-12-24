@@ -14,7 +14,7 @@ class Either<TLeft, TRight> {
         return either;
     }
 
-    fold<T>(left: (x: TLeft) => T, right: (x: TRight) => T) {
+    fold<T>(left: (x: TLeft) => T | void, right: (x: TRight) => T | void) {
         return !!this.leftValue ? left(this.leftValue) : right(this.rightValue); 
     }
 }

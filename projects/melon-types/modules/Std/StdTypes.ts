@@ -34,3 +34,16 @@ declare class SharedBag<T> {
     addFirst(item: T): number;
     addLast(item: T): number;
 }
+
+declare class Either<TLeft, TRight> {
+    static left<T>(value: T): Either<T, unknown>;
+    static right<T>(value: T): Either<unknown, T>;
+    fold<T>(left: (x: TLeft) => T | void, right: (x: TRight) => T | void): T | void;
+}
+
+declare class Result<TError extends Error, TResult> extends Either<TError, TResult> {
+    static left<T>(value: T): Either<T, unknown>;
+    static right<T>(value: T): Either<unknown, T>;
+    match<T>(left: (x: TError) => T | void, right: (x: TResult) => T | void): T | void;
+    join(message?: string): void;
+}

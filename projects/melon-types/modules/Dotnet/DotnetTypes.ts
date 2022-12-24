@@ -26,6 +26,7 @@ declare class Task<T> {
 
 declare class Thread {
     constructor(action: (...args: any[]) => any);
+    static panic(message?: string): void;
     static get currentThread(): Thread;
     get isAlive(): boolean;
     start: () => void;
