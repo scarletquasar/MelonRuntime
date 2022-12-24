@@ -1,3 +1,14 @@
+/// <reference path="./_async.ts" />
+/// <reference path="./_boolean.ts" />
+/// <reference path="./_environment.ts" />
+/// <reference path="./_json.ts" />
+/// <reference path="./_melon.ts" />
+/// <reference path="./_process.ts" />
+/// <reference path="./_shift.ts" />
+/// <reference path="./_system.ts" />
+/// <reference path="./_time.ts" />
+/// <reference path="./_functional.ts" />
+
 declare interface OSVersion {
     Platform: Platform,
     VersionString: string,

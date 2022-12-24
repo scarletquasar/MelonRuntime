@@ -1,14 +1,5 @@
 /// <reference path="./modules/Http/HttpTypes.ts" />
 /// <reference path="./modules/Std/StdTypes.ts" />
-/// <reference path="./modules/Std/_async.ts" />
-/// <reference path="./modules/Std/_boolean.ts" />
-/// <reference path="./modules/Std/_environment.ts" />
-/// <reference path="./modules/Std/_json.ts" />
-/// <reference path="./modules/Std/_melon.ts" />
-/// <reference path="./modules/Std/_process.ts" />
-/// <reference path="./modules/Std/_shift.ts" />
-/// <reference path="./modules/Std/_system.ts" />
-/// <reference path="./modules/Std/_time.ts" />
 /// <reference path="./modules/Dotnet/DotnetTypes.ts" />
 /// <reference path="./modules/Data/DataTypes.ts" />
 

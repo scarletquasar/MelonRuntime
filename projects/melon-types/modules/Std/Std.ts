@@ -12,7 +12,8 @@ declare const Std: {
     time: _time,
     system: _system,
     environment: _environment,
-    process: _process
+    process: _process,
+    SharedBag: new<T>(...content: T[]) => SharedBag<T>,
 }
 
 export { Std }
