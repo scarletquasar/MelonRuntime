@@ -21,6 +21,10 @@ import { _clearTimeout } from "./time/_clearTimeout";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
 import { shift } from "./shift";
+import { deserialize } from "./json/deserialize";
+import { serialize } from "./json/serialize";
+import { tryDeserialize } from "./json/tryDeserialize";
+import { trySerialize } from "./json/trySerialize";
 
 const _std = {
     SharedBag,
@@ -39,7 +43,11 @@ const _std = {
     },
     json: {
         tryParse: _tryParse,
-        tryStringify: _tryStringify
+        tryStringify: _tryStringify,
+        deserialize,
+        serialize,
+        tryDeserialize,
+        trySerialize
     },
     time: {
         _timers: new Array<Timer>(),
