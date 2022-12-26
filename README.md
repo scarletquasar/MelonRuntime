@@ -57,7 +57,7 @@ readability. Joining your results enrue that unrecoverable errors will panic the
     <thead>
         <tr>
             <th>
-                Melon (Result)
+                Melon (Result\<TError, TResult\>)
             </th>
             <th>
                 Node.js (try-catch hell)
@@ -102,7 +102,7 @@ try {
     try {
         const result2 = 
             JSON.stringify(result1);
-            
+
         console.log(result2);
     }
     catch(e) {
@@ -112,7 +112,6 @@ try {
 catch {
     process.exit(0);
 }
-const resul
 ```
 </td></tr></tbody></table>
 
