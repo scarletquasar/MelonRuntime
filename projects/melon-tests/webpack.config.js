@@ -3,5 +3,8 @@ module.exports = {
   optimization: {
     minimize: true
   },
+  output: {
+    filename: "tests.js",
+  },
   stats: "none"
 }

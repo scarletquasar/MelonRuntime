@@ -24,6 +24,14 @@ namespace MelonRuntime.Core.Extensions
             return runtime;
         }
 
+        public static IMelon<JsValue> ExecuteTests(this IMelon<JsValue> runtime)
+        {
+            var classlibPath = AppDomain.CurrentDomain.BaseDirectory;
+            runtime.LoadFile(classlibPath + "/Scripts/tests.js", false);
+
+            return runtime;
+        }
+
         public static IMelon<JsValue> WithConsoleErrors(this IMelon<JsValue> runtime) 
         {
             runtime.AddRuntimeErrorAction(obj =>
