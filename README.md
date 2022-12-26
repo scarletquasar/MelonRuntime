@@ -96,10 +96,13 @@ console.log(data);
 ```js
 const process = require('process');
 try {
-    const result1 = JSON.parse(someString);
+    const result1 = 
+        JSON.parse(someString);
 
     try {
-        const result2 = JSON.stringify(result1);
+        const result2 = 
+            JSON.stringify(result1);
+            
         console.log(result2);
     }
     catch(e) {
