@@ -51,7 +51,7 @@ app.listen(80, () => {});
 ## Railway-oriented programming
 
 Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
-readability.
+readability. Joining your results enrue that unrecoverable errors will panic the current thread while you can handle recoverable errors without any difficulty.
 
 <table>
     <thead>
@@ -75,7 +75,7 @@ const { tryDeserialize } = Melon.std.json;
 
 const result: Result<Error, T> = 
     tryDeserialize<T>(someString);
-    
+
 result.join();
 
 const data = result.match<T>(
