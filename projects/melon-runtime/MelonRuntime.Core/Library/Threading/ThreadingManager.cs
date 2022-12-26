@@ -9,7 +9,7 @@ namespace MelonRuntime.Core.Library.Threading
         {
             var thread = new Thread(() => {
                 var threads = "Melon.dotnet.threading.Thread.threads";
-                var function = melon.EvaluateInstructionsDirectly($"{threads}['{identifier}'].interopAction");
+                var function = melon.EvaluateInstructions($"{threads}['{identifier}'].interopAction");
 
                 melon.InteropInvoke(function);
             });

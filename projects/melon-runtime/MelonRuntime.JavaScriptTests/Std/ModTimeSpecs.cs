@@ -25,7 +25,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 resultInterval;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(3, result);
         }

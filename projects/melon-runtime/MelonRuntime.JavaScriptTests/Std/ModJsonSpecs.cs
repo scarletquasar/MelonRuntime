@@ -29,7 +29,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 stringified
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsString();
+            var result = _melon.EvaluateInstructions(script).AsString();
 
             Assert.Equal(jsonValue, result);
         }
@@ -49,7 +49,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 stringified
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsString();
+            var result = _melon.EvaluateInstructions(script).AsString();
 
             Assert.Equal(jsonValue, result);
         }

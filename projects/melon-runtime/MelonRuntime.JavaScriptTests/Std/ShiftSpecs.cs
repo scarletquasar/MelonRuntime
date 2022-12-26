@@ -24,7 +24,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 result;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(1, result);
         }
@@ -39,7 +39,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 result;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(0, result);
         }
@@ -56,7 +56,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 result;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(2, result);
         }
@@ -73,7 +73,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 result;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(0, result);
         }
@@ -91,7 +91,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 result;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsNumber();
+            var result = _melon.EvaluateInstructions(script).AsNumber();
 
             Assert.Equal(3, result);
         }

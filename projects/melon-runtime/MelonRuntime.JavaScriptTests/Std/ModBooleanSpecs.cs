@@ -23,7 +23,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 condition;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsBoolean();
+            var result = _melon.EvaluateInstructions(script).AsBoolean();
 
             Assert.False(result);
         }
@@ -37,7 +37,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 condition;
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsBoolean();
+            var result = _melon.EvaluateInstructions(script).AsBoolean();
 
             Assert.True(result);
         }

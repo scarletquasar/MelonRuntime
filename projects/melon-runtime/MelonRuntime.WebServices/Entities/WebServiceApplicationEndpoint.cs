@@ -75,7 +75,7 @@ namespace MelonRuntime.WebServices.Entities
                 .Replace("{serializedHeaders}", stringHeaders.Replace("\n", ""))
                 .Replace("{serializedRouteValues}", stringRouteValues);
 
-            var promiseId = _melon.EvaluateInstructionsDirectly(callerScript).AsString();
+            var promiseId = _melon.EvaluateInstructions(callerScript).AsString();
 
             var transaction = new WebTransaction($"Melon.http._apps['{_appIdentifier}']._promises['{promiseId}']", _melon);
             var task = Task.Factory.StartNew(() => transaction.ExecuteAndUnwrap());

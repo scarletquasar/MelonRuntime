@@ -94,12 +94,21 @@ namespace MelonRuntime.Core.Entities
             ((IDisposable)_engineProvider).Dispose();
         }
 
-        public string? EvaluateInstructions(string instructions)
+        public JsValue EnqueueEvaluation(string instructions)
         {
-            return HandleInstructions(instructions);
+            _nextInstructions.Enqueue(instructions);
+            while(true) 
+            {
+                if(_nextInstructions.TryDequeue(out var nextInstruction)) 
+                {
+                    return HandleInstructions(nextInstruction!);
+                }
+
+                Task.Delay(100).GetAwaiter().GetResult();
+            }
         }
 
-        public JsValue EvaluateInstructionsDirectly(string instructions)
+        public JsValue EvaluateInstructions(string instructions)
         {
             return _engineProvider.EvaluateInstructions(instructions);
         }
@@ -155,29 +164,19 @@ namespace MelonRuntime.Core.Entities
             Task.Factory.StartNew(instructionHandler);
         }
 
-        private string? HandleInstructions(string instructions)
+        private JsValue HandleInstructions(string instructions)
         {
-            JsValue outputItem = JsValue.Undefined;
-            Exception? runtimeError = null;
-            Exception? externalError = null;
-
             try
             {
-                outputItem = _engineProvider.EvaluateInstructions(instructions);
-                _output.Add(outputItem);
+                var result = _engineProvider.EvaluateInstructions(instructions);
+                return result;
             }
             catch (Exception e)
             {
                 _externalErrors.Add(e);
             }
 
-            string? finalOutput = null;
-
-            if (outputItem.IsNumber()) finalOutput = outputItem.AsNumber().ToString();
-            if (outputItem.IsBoolean()) finalOutput = outputItem.AsBoolean().ToString();
-            if (outputItem.IsRegExp()) finalOutput = outputItem.AsRegExp().ToString();
-
-            return finalOutput?.ToString() ?? runtimeError?.ToString() ?? externalError?.ToString();
+            return JsValue.Undefined;
         }
 
         public void AddOutputAction(Action<object> action)

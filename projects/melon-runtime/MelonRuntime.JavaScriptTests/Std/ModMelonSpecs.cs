@@ -21,7 +21,7 @@ namespace MelonRuntime.JavaScriptTests.Std
                 Melon.std.melon.currentVersion.toString()
             ";
 
-            var result = _melon.EvaluateInstructionsDirectly(script).AsString();
+            var result = _melon.EvaluateInstructions(script).AsString();
 
             Assert.NotEqual("0.0.0", result);
             Assert.Equal(3, result.Split(".").Length);
