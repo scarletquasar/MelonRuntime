@@ -73,10 +73,15 @@ readability.
 const { Thread } = Melon.dotnet.threading;
 const { tryDeserialize } = Melon.std.json;
 
-const result: Result<Error, T> = tryDeserialize<T>(someString);
+const result: Result<Error, T> = 
+    tryDeserialize<T>(someString);
+    
 result.join();
 
-const data = result.match<T>((error) => {}, (result) => result);
+const data = result.match<T>(
+    (error) => {}, 
+    (result) => result
+);
 console.log(data);
 ```
 </td><td>
