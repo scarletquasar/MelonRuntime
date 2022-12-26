@@ -64,5 +64,4 @@ const runStdTests = () => {
     })
 }
 
-runStdTests();
 export { runStdTests }
