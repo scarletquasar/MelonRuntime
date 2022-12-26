@@ -48,22 +48,47 @@ app.listen(80, () => {});
 ```
 </td></tr></tbody></table>
 
-## Intensive async I/O operations
+## Railway-oriented programming
 
-With the API of files and directories adapted to a JavaScript interface, it becomes simple to manage directories or files at the byte or text level in a simple and fast way, with just the use of simple methods without worrying about directly managing streams and cursors.
+Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
+readability.
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Melon (Result, Either)
+            </th>
+            <th>
+                Node.js (try-catch hell)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> 
+
 
 ```ts
-async function createFileAndReadContent() {
-  await fs.writeTextAsync("./hello.txt", "Hello world");
-  const content = await fs.readTextAsync("./hello.txt");
+const { Thread } = Melon.dotnet.threading;
+const { tryDeserialize } = Melon.std.json;
 
-  console.log(content);
-}
+const result: Result<Error, T> = tryDeserialize<T>(someString);
+result.join();
 
-createFileAndReadContent();
-
-//"Hello world"
+const data = result.match<T>((error) => {}, (result) => result);
+console.log(data);
 ```
+</td><td>
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello World"));
+app.listen(80, () => {});
+```
+</td></tr></tbody></table>
 
 ## Multithreading
 
