@@ -71,7 +71,10 @@ readability. Joining your results enrue that unrecoverable errors will panic the
 
 ```ts
 const { Thread } = Melon.dotnet.threading;
-const { tryDeserialize, trySerialize } = Melon.std.json;
+const { 
+    tryDeserialize, 
+    trySerialize 
+} = Melon.std.json;
 
 const result1: Result<Error, T> = 
     tryDeserialize<T>(someString);
