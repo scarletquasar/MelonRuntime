@@ -1,11 +1,4 @@
-/**
- * The Melon interface provides access to all the runtime features,
- * including direct reference to specification objects.
- */
 declare const Melon: {
-    /**
-     * Constructor of the Melon.Version class.
-     */
     Version: new(major: number, minor: number, patch: number) => Version,
     std: typeof import("./Std/Std").Std,
     http: typeof import("./Http/Http").Http,
@@ -14,7 +7,8 @@ declare const Melon: {
     console: typeof import("./Console/Console").Console,
     fs: typeof import("./Fs/Fs").Fs,
     dotnet: typeof import("./Dotnet/Dotnet").Dotnet,
-    data: typeof import("./Data/Data").Data
+    data: typeof import("./Data/Data").Data,
+    testing: typeof import("./Testing/Testing").Testing
 }
 
 export { Melon }

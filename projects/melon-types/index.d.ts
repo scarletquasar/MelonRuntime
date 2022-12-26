@@ -2,6 +2,7 @@
 /// <reference path="./modules/Std/StdTypes.ts" />
 /// <reference path="./modules/Dotnet/DotnetTypes.ts" />
 /// <reference path="./modules/Data/DataTypes.ts" />
+/// <reference path="./modules/Testing/TestingTypes.ts" />
 
 declare const console: typeof import("./modules/Console/Console").Console;
 declare const crypto: typeof import("./modules/Crypto/Crypto").Crypto; 
