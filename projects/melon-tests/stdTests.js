@@ -2,6 +2,25 @@ const { test } = Melon.testing;
 const { json, system } = Melon.std;
 
 const runStdTests = () => {
+    test("Melon.std.environment.getEnvironmentVariables() should return an object", assert => {
+        const variables = Melon.std.environment.getEnvironmentVariables();
+
+        assert.true(typeof variables == "object");
+    })
+
+    test("Melon.std.environment.setEnvironmentVariable() should work correctly", assert => {
+        Melon.std.environment.setEnvironmentVariable("test", "test");
+
+        assert.equals(Melon.std.environment.getEnvironmentVariables()["test"], "test");
+    })
+
+    test("Melon.std.environment.clearLocalEnvironmentVariableds() should work correctly", assert => {
+        Melon.std.environment.setEnvironmentVariable("test", "test");
+        Melon.std.environment.clearLocalEnvironmentVariables();
+
+        assert.equals(Melon.std.environment.getEnvironmentVariables()["test"], undefined);
+    })
+
     test("Melon.std.environment.baseDirectory should not be null or empty", assert => {
         assert.truthy(Melon.std.environment.baseDirectory);
     }) 
