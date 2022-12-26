@@ -5,6 +5,7 @@ using MelonRuntime.Abstractions.Library.Database;
 using MelonRuntime.Core.Entities;
 using MelonRuntime.Core.Library.Database;
 using MelonRuntime.Core.Library.Reflection;
+using MelonRuntime.Core.Library.Serialization;
 using MelonRuntime.Core.Library.Threading;
 using MelonRuntime.Core.Library.Time;
 using MelonRuntime.Core.Library.Web;
@@ -39,10 +40,11 @@ namespace MelonRuntime.Core.Library
             _bindingFactories = DirectBindingFactories.GetFactories();
         }
 
-        public IDictionary<string, dynamic> GetBindings()
+        public IDictionary<string, object> GetBindings()
         {
-            var allBindings = new List<Dictionary<string, dynamic>>()
+            var allBindings = new List<Dictionary<string, object>>()
             {
+                GetSerializationBindings(),
                 GetDirectDatabaseProviderBindings(),
                 GetDirectBindingFactories(),
                 GetHttpClientBindings(),
@@ -58,6 +60,15 @@ namespace MelonRuntime.Core.Library
             return allBindings
                 .SelectMany(x => x)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
+        }
+
+        private static Dictionary<string, object> GetSerializationBindings() 
+        {
+            return new()
+            {
+                ["Serialize"] = new Func<object, string>(SerializationManager.Serialize),
+                ["Deserialize"] = new Func<string, object?>(SerializationManager.Deserialize),
+            };
         }
 
         private static Dictionary<string, dynamic> GetDirectDatabaseProviderBindings()

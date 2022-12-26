@@ -15,13 +15,13 @@ namespace MelonRuntime.Core.Library.Time
         {
             var timerIdentifier = $"Melon.std.time._timers['{targetName}']";
 
-            Task.Factory.StartNew(async () =>
+            Task.Factory.StartNew((Func<Task>)(async () =>
             {
                 while (true)
                 {
-                    var isActive = melon
-                        .EvaluateInstructionsDirectly($"{timerIdentifier}.active")
-                        .AsBoolean();
+                    var isActive = JsValueExtensions
+                        .AsBoolean(melon
+                            .EvaluateInstructions($"{timerIdentifier}.active"));
 
                     if (!isActive) 
                     {
@@ -29,14 +29,15 @@ namespace MelonRuntime.Core.Library.Time
                     }
 
                     await Task.Delay(delay);
-                    melon.SendInstructions($"Melon.std.time._timers['{targetName}'].callback()");
+
+                    melon.EnqueueInstructions($"Melon.std.time._timers['{targetName}'].callback()");
 
                     if(oneTime)
                     {
                         break;
                     }
                 }
-            });
+            }));
         }
     }
 }

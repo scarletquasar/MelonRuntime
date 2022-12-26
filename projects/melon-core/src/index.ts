@@ -10,11 +10,13 @@ import { _crypto } from "./partials/statics/_crypto"
 import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
+import { testing } from "./partials/modules/testing/testing"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
 
 const Melon = {
+    testing,
     std: _std,
     data: _data,
     guards: _guards,
