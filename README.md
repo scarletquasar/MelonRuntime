@@ -57,7 +57,7 @@ readability. Joining your results enrue that unrecoverable errors will panic the
     <thead>
         <tr>
             <th>
-                Melon (Result, Either)
+                Melon (Result)
             </th>
             <th>
                 Node.js (try-catch hell)
@@ -71,27 +71,42 @@ readability. Joining your results enrue that unrecoverable errors will panic the
 
 ```ts
 const { Thread } = Melon.dotnet.threading;
-const { tryDeserialize } = Melon.std.json;
+const { tryDeserialize, trySerialize } = Melon.std.json;
 
-const result: Result<Error, T> = 
+const result1: Result<Error, T> = 
     tryDeserialize<T>(someString);
 
-result.join();
+const result2: Result<Error, string> = 
+    trySerialize(result1);
+
+result1.join();
+result2.join();
 
 const data = result.match<T>(
     (error) => {}, 
-    (result) => result
+    (result2) => result2
 );
 console.log(data);
 ```
 </td><td>
 
 ```js
-const express = require("express");
-const app = express();
+const process = require('process');
+try {
+    const result1 = JSON.parse(someString);
 
-app.get("/", (req, res) => res.send("Hello World"));
-app.listen(80, () => {});
+    try {
+        const result2 = JSON.stringify(result1);
+        console.log(result2);
+    }
+    catch(e) {
+        throw(e);
+    }
+}
+catch {
+    process.exit(0);
+}
+const resul
 ```
 </td></tr></tbody></table>
 
