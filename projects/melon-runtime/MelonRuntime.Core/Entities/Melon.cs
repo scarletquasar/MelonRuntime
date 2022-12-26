@@ -169,6 +169,7 @@ namespace MelonRuntime.Core.Entities
             try
             {
                 var result = _engineProvider.EvaluateInstructions(instructions);
+                _output.Add(result);
                 return result;
             }
             catch (Exception e)
