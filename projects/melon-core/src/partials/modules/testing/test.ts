@@ -14,13 +14,11 @@ function test(description: string, handler: (assert: Assert) => void) {
     _writeLine("");
 
     if(problems.length) {
-        problems.forEach(problem => {
-            _write("[Melon Test] ", "DarkYellow");
-            _write(problem, "Red");
-            _writeLine("");
-        });
+        _writeLine("");
+        const testErrorMessage = problems.join("\n");
+        const testError = new Error(testErrorMessage);
 
-        return;
+        throw testError;
     }
 
     _write("[Melon Test] ", "DarkYellow");

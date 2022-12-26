@@ -14,9 +14,9 @@ class Assert {
     }
 
     equals(excepted: any, actual: any) {
-        const result = _compare(excepted, actual);
+        const thisEquals = excepted === actual;
 
-        if(!result.equals) {
+        if(!thisEquals) {
             this.problems.push(`The objects doesn't match`);
         }
     } 
