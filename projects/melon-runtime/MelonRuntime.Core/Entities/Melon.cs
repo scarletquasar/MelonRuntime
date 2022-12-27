@@ -174,7 +174,7 @@ namespace MelonRuntime.Core.Entities
             }
             catch (Exception e)
             {
-                _externalErrors.Add(e);
+                _runtimeErrors.Add(e);
             }
 
             return JsValue.Undefined;
