@@ -37,6 +37,10 @@ namespace MelonRuntime.CLI.Entities
             _melon.AddConsoleOutput();
         }
 
+        /// <summary>
+        /// Executes the default entrypoint for a Melon Project.
+        /// Will use <c>main.js</c> as entry point, if exists.
+        /// </summary>
         public void ExecuteEntryPoint()
         {
             var currentPath = Directory.GetCurrentDirectory();

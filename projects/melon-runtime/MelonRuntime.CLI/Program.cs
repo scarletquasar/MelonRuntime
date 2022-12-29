@@ -22,7 +22,7 @@ namespace MelonRuntime
             await DependencyRunner.Setup();
             await SetupAssembliesCache();
 
-            var argv = Array.AsReadOnly(args.Skip(1).ToArray());
+            var argv = Array.AsReadOnly(args);
             var cli = new MelonCLI(version, runtime);
 
             cli.DisplayHeader();
