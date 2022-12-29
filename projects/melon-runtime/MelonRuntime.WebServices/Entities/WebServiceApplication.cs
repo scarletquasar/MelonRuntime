@@ -89,7 +89,22 @@ namespace MelonRuntime.WebServices.Entities
                         return result.AsString();
                     }
 
-                    if (result.IsObject())
+                    if (result.IsNumber())
+                    {
+                        return result.AsNumber();
+                    }
+
+                    if (result.IsBoolean())
+                    {
+                        return result.AsBoolean();
+                    }
+
+                    if (result.IsBigInt())
+                    {
+                        return result.AsBigInt64Array();
+                    }
+
+                    if (result.IsObject() || result.IsArray())
                     {
                         Dictionary<string, dynamic> httpHeaders = new();
 
@@ -131,7 +146,7 @@ namespace MelonRuntime.WebServices.Entities
                         );
                     }
 
-                    return result;
+                    return $"[object {result.Type}]";
                 }
 
                 webApp.MapMethods(

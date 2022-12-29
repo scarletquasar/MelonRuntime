@@ -14,8 +14,6 @@ class HttpResult<T> {
     private serialize = getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
 
     constructor(status: number, response: T, headers: Record<string, any>) {
-        const serialize = 
-
         this.status = status;
         this.response = this.serialize(response);
         this.headers = this.serialize(headers);
