@@ -125,7 +125,8 @@
     query,
     body,
     headers,
-    routeValues
+    routeValues,
+    url
 ) {
     const { _apps: apps } = Melon.http;
     const { tryParse } = Melon.std.json;
@@ -140,7 +141,8 @@
         body,
         headers: tryParse(headers),
         values: tryParse(routeValues),
-        method
+        method,
+        url
     }
 
     const result = () =&gt; targetEndpoint.callback(request);
@@ -155,7 +157,8 @@
     `{serializedQuery}`,
     `{serializedBody}`,
     `{serializedHeaders}`,
-    `{serializedRouteValues}`
+    `{serializedRouteValues}`,
+    `{url}`
 )</value>
   </data>
 </root>

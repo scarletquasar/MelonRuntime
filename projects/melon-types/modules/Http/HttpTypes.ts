@@ -20,6 +20,7 @@ declare interface HttpRequest {
     headers: Record<string, any>;
     values: Record<string, any>;
     method: string;
+    url: string;
 }
 
 declare interface HttpComposedResponse {
