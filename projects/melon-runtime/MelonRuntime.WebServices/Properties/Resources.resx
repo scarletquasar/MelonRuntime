@@ -139,7 +139,8 @@
         query: tryParse(query),
         body,
         headers: tryParse(headers),
-        values: tryParse(routeValues)
+        values: tryParse(routeValues),
+        method
     }
 
     const result = () =&gt; targetEndpoint.callback(request);
