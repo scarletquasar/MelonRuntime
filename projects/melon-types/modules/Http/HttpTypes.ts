@@ -36,10 +36,16 @@ declare interface HttpEndpoint {
 }
 
 declare type HttpCallbackFunction = 
-    (request?: HttpRequest) => string | HttpComposedResponse;
+    (request?: HttpRequest) => string | number | boolean | bigint | Array<any> | HttpComposedResponse;
 
 declare type HttpAsyncCallbackFunction = 
-    (request?: HttpRequest) => Promise<string> | Promise<HttpComposedResponse>;
+    (request?: HttpRequest) => 
+        Promise<number> | 
+        Promise<boolean> |
+        Promise<bigint> |
+        Promise<string> |
+        Promise<Array<any>> |
+        Promise<HttpComposedResponse>;
 
 declare interface HttpApplication {
     name: string;
