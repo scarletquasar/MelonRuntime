@@ -126,9 +126,8 @@ namespace MelonRuntime.WebServices.Entities
 
                         var httpResult = result!.AsObject();
 
-                        var headers = JsonConvert.DeserializeObject<Dictionary<string, object>>(
-                            httpResult.Get("headers").AsString()
-                        );
+                        var resultHeadersString = httpResult.Get("headers").AsString();
+                        var headers = JsonConvert.DeserializeObject<Dictionary<string, object>>(resultHeadersString);
 
                         var response = httpResult.Get("response").AsString();
                         var status = httpResult.Get("status").AsNumber();
