@@ -141,13 +141,17 @@ a dynamic development environment:
 
 ```ts
 const { Realm } = Melon.dotnet;
+
 const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
 const realm = new Realm();
 realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-const client = realm.get("httpClient"); 
-const task = client.getAsync(API_URL); //A Task<T> will be returned
+/* The HttpClient instance will be retrieved */
+const client = realm.get("httpClient");
+/* An active Task<T> will be created */
+const task = client.getAsync(API_URL);
+/* The Task<T> will be wrapped inside a promise */
 const promise = new Promise((resolve) => resolve(task.result));
 
 promise.then(result => console.log(result));
