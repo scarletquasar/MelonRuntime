@@ -48,6 +48,29 @@ app.listen(80, () => {});
 ```
 </td></tr></tbody></table>
 
+## .NET Interoperability
+
+Easy .NET interoperability is reachable with Melon **Realm** feature, allowing the developer to use its exclusive features in order to get
+a dynamic development environment:
+
+```ts
+const { Realm } = Melon.dotnet;
+
+const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
+
+const realm = new Realm();
+realm.setInstance("httpClient", "System.Net.Http:HttpClient");
+
+/* The HttpClient instance will be retrieved */
+const client = realm.get("httpClient");
+/* An active Task<T> will be created */
+const task = client.getAsync(API_URL);
+/* The Task<T> will be wrapped inside a promise */
+const promise = new Promise((resolve) => resolve(task.result));
+
+promise.then(result => console.log(result));
+```
+
 ## Railway-oriented programming
 
 Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
@@ -76,11 +99,8 @@ const {
     trySerialize 
 } = Melon.std.json;
 
-const result1: Result<Error, T> = 
-    tryDeserialize<T>(someString);
-
-const result2: Result<Error, string> = 
-    trySerialize(result1);
+const result1 = tryDeserialize<T>(someString);
+const result2 = trySerialize(result1);
 
 result1.join();
 result2.join();
@@ -114,45 +134,3 @@ catch {
 }
 ```
 </td></tr></tbody></table>
-
-## Multithreading
-
-Multithreaded parallel work can be done simply with Melon, the runtime uses an interface that creates a .NET "Thread" object and allows direct developer interaction via JavaScript, with automatic management by the internal CLR.
-
-```ts
-const { Thread } = Melon.dotnet.threading;
-
-const workerThread = new Thread(() => {
-  fs.writeText("./hello.txt", "Hello world");
-  const content = fs.readText("./hello.txt");
-
-  console.log(content);
-});
-
-workerThread.start();
-
-//"Hello world"
-```
-
-## .NET Interoperability
-
-Easy .NET interoperability is reachable with Melon **Realm** feature, allowing the developer to use its exclusive features in order to get
-a dynamic development environment:
-
-```ts
-const { Realm } = Melon.dotnet;
-
-const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
-
-const realm = new Realm();
-realm.setInstance("httpClient", "System.Net.Http:HttpClient");
-
-/* The HttpClient instance will be retrieved */
-const client = realm.get("httpClient");
-/* An active Task<T> will be created */
-const task = client.getAsync(API_URL);
-/* The Task<T> will be wrapped inside a promise */
-const promise = new Promise((resolve) => resolve(task.result));
-
-promise.then(result => console.log(result));
-```
