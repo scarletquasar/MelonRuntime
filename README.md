@@ -63,9 +63,9 @@ realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
 /* The HttpClient instance will be retrieved */
 const client = realm.get("httpClient");
-/* An active Task<T> will be created */
+/* An active Task<JsValue> will be created */
 const task = client.getAsync(API_URL);
-/* The Task<T> will be wrapped inside a promise */
+/* The Task<JsValue> will be wrapped inside a promise */
 const promise = new Promise((resolve) => resolve(task.result));
 
 promise.then(result => console.log(result));
