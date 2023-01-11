@@ -16,6 +16,7 @@ namespace MelonRuntime.Core
                 "System.Runtime",
                 "System.Console",
                 "System.Text.Json",
+                "System.Net.Http",
                 "System.Diagnostics.Process",
                 "Newtonsoft.Json"
             };

@@ -134,18 +134,21 @@ workerThread.start();
 //"Hello world"
 ```
 
-## Direct .NET interop
+## .NET Interoperability
 
-It is possible to create a .NET instance manipulation object quickly using the Realm constructor, with it, there is the possibility to create instances with direct interoperability for use in code.
+Easy .NET interoperability is reachable with Melon **Realm** feature, allowing the developer to use its exclusive features in order to get
+a dynamic development environment:
 
 ```ts
 const { Realm } = Melon.dotnet;
+const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
 const realm = new Realm();
-realm.setInstance("randomInstance", "System:Random");
-const randomInstance = realm.get("randomInstance");
+realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-console.log(randomInstance.next());
+const client = realm.get("httpClient"); 
+const task = client.getAsync(API_URL); //A Task<T> will be returned
+const promise = new Promise((resolve) => resolve(task.result));
 
-//1144300903
+promise.then(result => console.log(result));
 ```
