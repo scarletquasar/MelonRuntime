@@ -4,5 +4,6 @@
 */MelonRuntime.Core
 */MelonRuntime.CLI
 */MelonRuntime.Domain
+*/MelonRuntime.JavaScriptTests
 */*.csproj.user
 *.sln

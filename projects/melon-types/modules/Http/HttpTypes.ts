@@ -19,6 +19,8 @@ declare interface HttpRequest {
     body: string;
     headers: Record<string, any>;
     values: Record<string, any>;
+    method: string;
+    url: string;
 }
 
 declare interface HttpComposedResponse {
@@ -34,10 +36,21 @@ declare interface HttpEndpoint {
 }
 
 declare type HttpCallbackFunction = 
-    (request?: HttpRequest) => string | HttpComposedResponse;
+    (request?: HttpRequest) => string | number | boolean | bigint | Array<any>  | HttpComposedResponse;
 
 declare type HttpAsyncCallbackFunction = 
-    (request?: HttpRequest) => Promise<string> | Promise<HttpComposedResponse>;
+    (request?: HttpRequest) => 
+        Promise<number> | 
+        Promise<boolean> |
+        Promise<bigint> |
+        Promise<string> |
+        Promise<Array<any>> |
+        Promise<HttpComposedResponse>;
+
+declare type EndpointFunction = (
+    route: string, 
+    callback: HttpCallbackFunction | HttpAsyncCallbackFunction
+) => void
 
 declare interface HttpApplication {
     name: string;
@@ -45,34 +58,13 @@ declare interface HttpApplication {
     port: number;
     enableHttps: boolean;
     getEndpoints: () => HttpEndpoint[];
-    get: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    post: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    delete: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    patch: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    put: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    options: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
-    head: (
-        route: string, 
-        callback: HttpCallbackFunction | HttpAsyncCallbackFunction
-    ) => void;
+    get: EndpointFunction;
+    post: EndpointFunction;
+    delete: EndpointFunction;
+    patch: EndpointFunction;
+    put: EndpointFunction;
+    options: EndpointFunction;
+    head: EndpointFunction;
     listen: (port: number, host?: string) => void;
-    run: () => void;
+    run: () => never;
 }

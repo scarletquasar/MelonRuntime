@@ -1,5 +1,3 @@
-import { _Map } from "./partials/constructors/_Map"
-import { _Set } from "./partials/constructors/_Set"
 import { _Version } from "./partials/constructors/_Version"
 import { _console } from "./partials/modules/console/_console"
 import { _data } from "./partials/modules/data/_data"
@@ -12,13 +10,13 @@ import { _crypto } from "./partials/statics/_crypto"
 import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
-import { TextEncoder } from "./partials/utils/generic/TextEncoder"
-import { TextDecoder } from "./partials/utils/generic/TextDecoder"
+import { testing } from "./partials/modules/testing/testing"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
 
 const Melon = {
+    testing,
     std: _std,
     data: _data,
     guards: _guards,
@@ -30,21 +28,27 @@ const Melon = {
     Version: _Version
 }
 
-globalThis.console = <any>Melon.console;
-globalThis.crypto = Melon.crypto;
-globalThis.fs = Melon.fs;
+const { console, crypto, fs } = Melon;
+const { fetch } = Melon.http;
+const { TextEncoder, TextDecoder } = Melon.std;
+const { setTimeout, setInterval, clearTimeout, clearInterval } = Melon.std.time;
 
-globalThis.setTimeout = <any>Melon.std.time.setTimeout;
-globalThis.setInterval = <any>Melon.std.time.setInterval;
-globalThis.clearTimeout = <any>Melon.std.time.clearTimeout;
-globalThis.clearInterval = <any>Melon.std.time.clearInterval;
-globalThis.fetch = Melon.http.fetch;
+const globalExpositions = {
+    console,
+    crypto,
+    fs,
+    setTimeout,
+    setInterval,
+    clearTimeout,
+    clearInterval,
+    fetch,
+    TextDecoder,
+    TextEncoder,
+    Melon
+}
 
-globalThis.Map = <any>_Map;
-globalThis.Set = <any>_Set;
-globalThis.TextEncoder = TextEncoder;
-globalThis.TextDecoder = TextDecoder;
-
-globalThis.Melon = Melon;
+Object.entries(globalExpositions).forEach(entry => {
+    globalThis[entry[0]] = entry[1];
+});
 
 export { Melon }

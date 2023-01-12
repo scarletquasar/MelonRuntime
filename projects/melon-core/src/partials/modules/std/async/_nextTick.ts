@@ -13,7 +13,7 @@ async function _nextTick(delay?: number) {
         return now - then;
     }
 
-    return 0;
+    return then;
 }
 
 export { _nextTick }

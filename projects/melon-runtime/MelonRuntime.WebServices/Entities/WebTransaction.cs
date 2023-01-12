@@ -31,7 +31,7 @@ namespace MelonRuntime.WebServices.Entities
             JsValue? result = null;
             bool finished = false;
 
-            var promiseOrResult = _melon.EvaluateInstructionsDirectly(_callerScript + "()");
+            var promiseOrResult = _melon.EvaluateInstructions(_callerScript + "()");
             SetStatus(WebTransactionStatus.Running);
 
             while (!finished)

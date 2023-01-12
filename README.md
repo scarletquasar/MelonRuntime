@@ -48,54 +48,89 @@ app.listen(80, () => {});
 ```
 </td></tr></tbody></table>
 
-## Intensive async I/O operations
+## .NET Interoperability
 
-With the API of files and directories adapted to a JavaScript interface, it becomes simple to manage directories or files at the byte or text level in a simple and fast way, with just the use of simple methods without worrying about directly managing streams and cursors.
-
-```ts
-async function createFileAndReadContent() {
-  await fs.writeTextAsync("./hello.txt", "Hello world");
-  const content = await fs.readTextAsync("./hello.txt");
-
-  console.log(content);
-}
-
-createFileAndReadContent();
-
-//"Hello world"
-```
-
-## Multithreading
-
-Multithreaded parallel work can be done simply with Melon, the runtime uses an interface that creates a .NET "Thread" object and allows direct developer interaction via JavaScript, with automatic management by the internal CLR.
-
-```ts
-const { Thread } = Melon.dotnet.threading;
-
-const workerThread = new Thread(() => {
-  fs.writeText("./hello.txt", "Hello world");
-  const content = fs.readText("./hello.txt");
-
-  console.log(content);
-});
-
-workerThread.start();
-
-//"Hello world"
-```
-
-## Direct .NET interop
-
-It is possible to create a .NET instance manipulation object quickly using the Realm constructor, with it, there is the possibility to create instances with direct interoperability for use in code.
+Easy .NET interoperability is reachable with Melon **Realm** feature, allowing the developer to use its exclusive features in order to get
+a dynamic development environment:
 
 ```ts
 const { Realm } = Melon.dotnet;
 
+const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
+
 const realm = new Realm();
-realm.setInstance("randomInstance", "System:Random");
-const randomInstance = realm.get("randomInstance");
+realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-console.log(randomInstance.next());
+/* The HttpClient instance will be retrieved */
+const client = realm.get("httpClient");
+/* An active Task<JsValue> will be created */
+const task = client.getAsync(API_URL);
+/* The Task<JsValue> will be wrapped inside a promise */
+const promise = new Promise((resolve) => resolve(task.result));
 
-//1144300903
+promise.then(result => console.log(result));
 ```
+
+## Railway-oriented programming
+
+Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
+readability. Joining your results enrue that unrecoverable errors will panic the current thread while you can handle recoverable errors without any difficulty.
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Melon (Result\<TError, TResult\>)
+            </th>
+            <th>
+                Node.js (try-catch hell)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> 
+
+
+```ts
+const { Thread } = Melon.dotnet.threading;
+const { 
+    tryDeserialize, 
+    trySerialize 
+} = Melon.std.json;
+
+const result1 = tryDeserialize<T>(someString);
+const result2 = trySerialize(result1);
+
+result1.join();
+result2.join();
+
+const data = result.match<T>(
+    (error) => {}, 
+    (result2) => result2
+);
+console.log(data);
+```
+</td><td>
+
+```js
+const process = require('process');
+try {
+    const result1 = 
+        JSON.parse(someString);
+
+    try {
+        const result2 = 
+            JSON.stringify(result1);
+
+        console.log(result2);
+    }
+    catch(e) {
+        throw(e);
+    }
+}
+catch {
+    process.exit(0);
+}
+```
+</td></tr></tbody></table>

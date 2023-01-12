@@ -1,5 +1,5 @@
-import { _dotnet } from "../../dotnet/_dotnet";
+import { getStaticMethod } from "../../dotnet/getStaticMethod";
 
-const _argv = _dotnet.getStaticMethod<string[]>("System:Environment:GetCommandLineArgs")();
+const _argv = getStaticMethod<string[]>("System:Environment:GetCommandLineArgs")();
 
 export { _argv }

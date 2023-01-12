@@ -1,12 +1,18 @@
 import { _std } from "../std/_std";
 import { ConsoleColor } from "../../../types/console/ConsoleColor";
-import { _getStaticMethod } from "../dotnet/_getStaticMethod";
+import { getStaticMethod } from "../dotnet/getStaticMethod";
 
 function _write(target: any, color: ConsoleColor = "White") {
-    const serialize = _getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
-    const log = _getStaticMethod("Cli.NET.Tools:CLNConsole:Write");
+    const log = getStaticMethod<void>("Cli.NET.Tools:CLNConsole:Write");
+    
+    if(typeof target != "string") {
+        const serialize = getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
+    
+        log(serialize(target), color);
+        return;
+    }
 
-    log(serialize(target), color);
+    log(target, color);
 }
 
 export { _write }

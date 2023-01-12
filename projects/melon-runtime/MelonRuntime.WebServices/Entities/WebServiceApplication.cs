@@ -89,7 +89,22 @@ namespace MelonRuntime.WebServices.Entities
                         return result.AsString();
                     }
 
-                    if (result.IsObject())
+                    if (result.IsNumber())
+                    {
+                        return result.AsNumber();
+                    }
+
+                    if (result.IsBoolean())
+                    {
+                        return result.AsBoolean();
+                    }
+
+                    if (result.IsBigInt())
+                    {
+                        return result.AsBigInt64Array();
+                    }
+
+                    if (result.IsObject() || result.IsArray())
                     {
                         Dictionary<string, dynamic> httpHeaders = new();
 
@@ -111,9 +126,8 @@ namespace MelonRuntime.WebServices.Entities
 
                         var httpResult = result!.AsObject();
 
-                        var headers = JsonConvert.DeserializeObject<Dictionary<string, object>>(
-                            httpResult.Get("headers").AsString()
-                        );
+                        var resultHeadersString = httpResult.Get("headers").AsString();
+                        var headers = JsonConvert.DeserializeObject<Dictionary<string, object>>(resultHeadersString);
 
                         var response = httpResult.Get("response").AsString();
                         var status = httpResult.Get("status").AsNumber();
@@ -131,7 +145,7 @@ namespace MelonRuntime.WebServices.Entities
                         );
                     }
 
-                    return result;
+                    return $"[object {result.Type}]";
                 }
 
                 webApp.MapMethods(

@@ -11,16 +11,26 @@ import { _tryStringify } from "./json/_tryStringify";
 import { _argv } from "./process/_argv";
 import { _env } from "./process/_env";
 import { _exit } from "./process/_exit";
-import { _osInformation } from "./system/_osInformation";
+import { SharedBag } from "./SharedBag";
+import { osInformation } from "./system/osInformation";
+import { TextDecoder } from "./TextDecoder";
+import { TextEncoder } from "./TextEncoder";
 import { Timer } from "./time/Timer";
 import { _clearInterval } from "./time/_clearInterval";
 import { _clearTimeout } from "./time/_clearTimeout";
 import { _setInterval } from "./time/_setInterval";
 import { _setTimeout } from "./time/_setTimeout";
-import { _shift } from "./_shift";
+import { shift } from "./shift";
+import { deserialize } from "./json/deserialize";
+import { serialize } from "./json/serialize";
+import { tryDeserialize } from "./json/tryDeserialize";
+import { trySerialize } from "./json/trySerialize";
 
 const _std = {
-    shift: _shift,
+    SharedBag,
+    TextDecoder,
+    TextEncoder,
+    shift,
     async: {
         nextTick: _nextTick
     },
@@ -33,7 +43,11 @@ const _std = {
     },
     json: {
         tryParse: _tryParse,
-        tryStringify: _tryStringify
+        tryStringify: _tryStringify,
+        deserialize,
+        serialize,
+        tryDeserialize,
+        trySerialize
     },
     time: {
         _timers: new Array<Timer>(),
@@ -44,7 +58,7 @@ const _std = {
         Timer
     },
     system: {
-        osInformation: _osInformation
+        osInformation
     },
     environment: {
         baseDirectory: _baseDirectory,

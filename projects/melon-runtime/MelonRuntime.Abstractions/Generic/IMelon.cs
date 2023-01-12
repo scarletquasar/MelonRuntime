@@ -15,8 +15,9 @@ namespace MelonRuntime.Abstractions.Generic
         public List<TOutput> GetOutput();
         public List<Exception> GetRuntimeErrors();
         public List<Exception> GetExternalErrors();
+        public void EnqueueInstructions(string instructions);
+        public JsValue EnqueueEvaluation(string instructions);
         public void SendInstructions(string instructions);
-        public string? EvaluateInstructions(string instructions);
-        public JsValue EvaluateInstructionsDirectly(string instructions);
+        public JsValue EvaluateInstructions(string instructions);
     }
 }

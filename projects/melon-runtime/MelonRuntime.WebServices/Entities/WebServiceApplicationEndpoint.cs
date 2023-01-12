@@ -66,16 +66,17 @@ namespace MelonRuntime.WebServices.Entities
             var stringBody = new StreamReader(request.Body).ReadToEndAsync().Result;
             var stringRouteValues = JsonConvert.SerializeObject(routeValues);
 
-            var callerScript = Resources.CallbackCaller               
+            var callerScript = Resources.CallbackCaller
                 .Replace("{appIdentifier}", _appIdentifier)
                 .Replace("{method}", request.Method)
                 .Replace("{route}", _path)
                 .Replace("{serializedQuery}", stringQuery)
                 .Replace("{serializedBody}", stringBody)
                 .Replace("{serializedHeaders}", stringHeaders.Replace("\n", ""))
-                .Replace("{serializedRouteValues}", stringRouteValues);
+                .Replace("{serializedRouteValues}", stringRouteValues)
+                .Replace("{url}", request.Path);
 
-            var promiseId = _melon.EvaluateInstructionsDirectly(callerScript).AsString();
+            var promiseId = _melon.EvaluateInstructions(callerScript).AsString();
 
             var transaction = new WebTransaction($"Melon.http._apps['{_appIdentifier}']._promises['{promiseId}']", _melon);
             var task = Task.Factory.StartNew(() => transaction.ExecuteAndUnwrap());

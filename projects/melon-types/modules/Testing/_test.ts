@@ -1,0 +1,1 @@
+declare type _test = (description: string, test: (assert: Assert) => void) => void;

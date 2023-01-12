@@ -5,6 +5,7 @@ using MelonRuntime.Abstractions.Library.Database;
 using MelonRuntime.Core.Entities;
 using MelonRuntime.Core.Library.Database;
 using MelonRuntime.Core.Library.Reflection;
+using MelonRuntime.Core.Library.Serialization;
 using MelonRuntime.Core.Library.Threading;
 using MelonRuntime.Core.Library.Time;
 using MelonRuntime.Core.Library.Web;
@@ -39,16 +40,18 @@ namespace MelonRuntime.Core.Library
             _bindingFactories = DirectBindingFactories.GetFactories();
         }
 
-        public IDictionary<string, dynamic> GetBindings()
+        public IDictionary<string, object> GetBindings()
         {
-            var allBindings = new List<Dictionary<string, dynamic>>()
+            var allBindings = new List<Dictionary<string, object>>()
             {
+                GetSerializationBindings(),
                 GetDirectDatabaseProviderBindings(),
                 GetDirectBindingFactories(),
                 GetHttpClientBindings(),
                 GetThreadingBindings(),
                 GetRealmBindings(),
                 GetEnvironmentBindings(),
+                GetProcessBindings(),
                 GetFileSystemBindings(),
                 GetWebServiceApplicationBindings(),
                 GetTimeBindings()
@@ -57,6 +60,15 @@ namespace MelonRuntime.Core.Library
             return allBindings
                 .SelectMany(x => x)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
+        }
+
+        private static Dictionary<string, object> GetSerializationBindings() 
+        {
+            return new()
+            {
+                ["Serialize"] = new Func<object, string>(SerializationManager.Serialize),
+                ["Deserialize"] = new Func<string, object?>(SerializationManager.Deserialize),
+            };
         }
 
         private static Dictionary<string, dynamic> GetDirectDatabaseProviderBindings()
@@ -126,9 +138,9 @@ namespace MelonRuntime.Core.Library
 
         private Dictionary<string, dynamic> GetThreadingBindings()
         {
-            Thread createThread(JsValue action)
+            Thread createThread(string identifier)
             {
-                return ThreadingManager.CreateThread(action, _melon!);
+                return ThreadingManager.CreateThread(identifier, _melon!);
             }
 
             Task<JsValue> createTask(JsValue action)
@@ -138,7 +150,7 @@ namespace MelonRuntime.Core.Library
 
             return new()
             {
-                ["CreateThread"] = new Func<JsValue, Thread>(createThread),
+                ["CreateThread"] = new Func<string, Thread>(createThread),
                 ["CreateTask"] = new Func<JsValue, Task<JsValue>>(createTask),
             };
         }
@@ -191,6 +203,14 @@ namespace MelonRuntime.Core.Library
             return new()
             {
                 ["LocalEnvironmentVariables"] = _melon!.GetEnvironmentVariables()
+            };
+        }
+
+        private Dictionary<string, dynamic> GetProcessBindings()
+        {
+            return new()
+            {
+                ["ProcessExit"] = new Action<int>(x => Environment.Exit(x))
             };
         }
 

@@ -1,16 +1,13 @@
+declare type RequestActivatorFunction<T extends Promise<HttpResponse> | HttpResponse> = (
+    target: string, 
+    method?: HttpMethod, 
+    body?: Record<string, any>, 
+    headers?: Record<string, any>
+) => T
+
 declare const Http: {
-    request: (
-        target: string, 
-        method?: HttpMethod, 
-        body?: Record<string, any>, 
-        headers?: Record<string, any>
-    ) => HttpResponse;
-    requestAsync: (
-        target: string, 
-        method?: HttpMethod, 
-        body?: Record<string, any>, 
-        headers?: Record<string, any>
-    ) => Promise<HttpResponse>;
+    request: RequestActivatorFunction<HttpResponse>;
+    requestAsync: RequestActivatorFunction<Promise<HttpResponse>>;
     fetch: (
         target: string, 
         options?: Record<string, any>
