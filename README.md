@@ -80,7 +80,7 @@ readability. Joining your results enrue that unrecoverable errors will panic the
     <thead>
         <tr>
             <th>
-                Melon (Result\<TError, TResult\>)
+                Melon (Result)
             </th>
             <th>
                 Node.js (try-catch hell)
