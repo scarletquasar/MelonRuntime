@@ -105,9 +105,9 @@ const result2 = trySerialize(result1);
 result1.join();
 result2.join();
 
-const data = result.match<T>(
-    (error) => {}, 
-    (result2) => result2
+const data = result2.match<T>(
+    error => {}, 
+    value => value
 );
 console.log(data);
 ```
