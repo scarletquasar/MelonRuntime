@@ -4,6 +4,7 @@ using MelonRuntime.Core.Entities;
 using MelonRuntime.Core.Extensions;
 using System;
 using MelonRuntime.Core;
+using static MelonRuntime.Core.DependencyRunner;
 
 namespace MelonRuntime.JavaScriptTests
 {
@@ -14,7 +15,7 @@ namespace MelonRuntime.JavaScriptTests
             var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
             Static.CachedAssemblies = assembliesToCache;
             
-            DependencyRunner.Setup().GetAwaiter().GetResult();
+            LoadRequiredAssemblies();
 
             var runtime = new Melon().WithCoreFeatures(new Version());
                 
