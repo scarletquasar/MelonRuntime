@@ -6,6 +6,7 @@ using Jint.Native;
 using System.Reflection;
 using MelonRuntime.Core.Entities;
 using static MelonRuntime.Core.DependencyRunner;
+using MelonRuntime.Domain.JsonConverters;
 
 namespace MelonRuntime
 {
@@ -45,6 +46,12 @@ namespace MelonRuntime
             {
                 Formatting = Formatting.Indented,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Converters = new JsonConverter[] 
+                { 
+                    new InvariantJsonConverter<double>(),
+                    new InvariantJsonConverter<float>(),
+                    new InvariantJsonConverter<decimal>()
+                }
             };
         }
 
