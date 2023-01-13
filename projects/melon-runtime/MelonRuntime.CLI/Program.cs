@@ -5,20 +5,21 @@ using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
 using MelonRuntime.Core.Entities;
+using static MelonRuntime.Core.DependencyRunner;
 
 namespace MelonRuntime
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             SetupJsonConfigurations();
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             IMelon<JsValue> runtime = new Melon();
 
-            await DependencyRunner.Setup();
-            await SetupAssembliesCache();
+            LoadRequiredAssemblies();
+            LoadDomainAssemblies();
 
             var cli = new MelonCLI(version, runtime);
 
@@ -32,7 +33,7 @@ namespace MelonRuntime
             }
 
             var pivot = args.First();
-            var itemIndex = Array.FindIndex<string>(args, x => x == pivot);
+            var itemIndex = Array.FindIndex(args, x => x == pivot);
             var rest = args.Skip(itemIndex).ToArray();
 
             cli.ExecuteInstruction(pivot, rest);
@@ -47,13 +48,10 @@ namespace MelonRuntime
             };
         }
 
-        private static async Task SetupAssembliesCache()
+        private static void LoadDomainAssemblies()
         {
-            await Task.Factory.StartNew(() =>
-            {
-                var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
-                Static.CachedAssemblies = assembliesToCache;
-            });
+            var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
+            Static.CachedAssemblies = assembliesToCache;
         }
     }
 }

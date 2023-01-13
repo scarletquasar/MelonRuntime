@@ -6,9 +6,9 @@ namespace MelonRuntime.Core
 {
     public static class DependencyRunner
     {
-        public static async Task Setup()
+        public static void LoadRequiredAssemblies()
         {
-            var requiredModules = new string[]
+            var requiredAssemblies = new string[]
             {
                 "netstandard",
                 "Cli.NET",
@@ -21,29 +21,9 @@ namespace MelonRuntime.Core
                 "Newtonsoft.Json"
             };
 
-            var moduleGetters = ChunkModuleGetters(requiredModules);
-            
-            await Task.WhenAll(moduleGetters);
-        }
-
-        private static IEnumerable<Task> ChunkModuleGetters(string[] values)
-        {
-            var chunked = new ChunkedList<string>(values, values.Length / 3);
-
-            var tasks = chunked.Select(operations =>
-            {
-                var loadChunk = Task.Factory.StartNew(() =>
-                {
-                    foreach (var operation in operations)
-                    {
-                        Assembly.Load(operation);
-                    }
-                });
-
-                return loadChunk;
-            });
-
-            return tasks;
+            foreach (var assembly in requiredAssemblies) {
+                Assembly.Load(assembly);
+            }
         }
     }
 }
