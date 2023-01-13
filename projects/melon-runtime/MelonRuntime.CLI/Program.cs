@@ -1,42 +1,41 @@
 ﻿using MelonRuntime.CLI.Entities;
-using MelonRuntime.CLI;
 using MelonRuntime.Core;
 using Newtonsoft.Json;
-using Microsoft.Extensions.DependencyInjection;
 using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
 using MelonRuntime.Core.Entities;
+using static MelonRuntime.Core.DependencyRunner;
+using MelonRuntime.Domain.JsonConverters;
 
 namespace MelonRuntime
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             SetupJsonConfigurations();
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             IMelon<JsValue> runtime = new Melon();
 
-            await DependencyRunner.Setup();
-            await SetupAssembliesCache();
+            LoadRequiredAssemblies();
+            LoadDomainAssemblies();
 
-            var argv = Array.AsReadOnly(args);
             var cli = new MelonCLI(version, runtime);
 
             cli.DisplayHeader();
             cli.ExecuteEntryPoint();
 
-            if(argv.Count == 0)
+            if(args.Length == 0)
             {
                 cli.EnableConsoleOutput();
                 cli.WaitForScript(() => true);
             }
 
             var pivot = args.First();
-            var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == pivot);
-            var rest = argv.Skip(itemIndex).ToArray();
+            var itemIndex = Array.FindIndex(args, x => x == pivot);
+            var rest = args.Skip(itemIndex).ToArray();
 
             cli.ExecuteInstruction(pivot, rest);
         }
@@ -47,16 +46,19 @@ namespace MelonRuntime
             {
                 Formatting = Formatting.Indented,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Converters = new JsonConverter[] 
+                { 
+                    new InvariantJsonConverter<double>(),
+                    new InvariantJsonConverter<float>(),
+                    new InvariantJsonConverter<decimal>()
+                }
             };
         }
 
-        private static async Task SetupAssembliesCache()
+        private static void LoadDomainAssemblies()
         {
-            await Task.Factory.StartNew(() =>
-            {
-                var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
-                Static.CachedAssemblies = assembliesToCache;
-            });
+            var assembliesToCache = AppDomain.CurrentDomain.GetAssemblies();
+            Static.CachedAssemblies = assembliesToCache;
         }
     }
 }

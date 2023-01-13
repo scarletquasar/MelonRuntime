@@ -4,9 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<Version>2.7.0</Version>
+	<Version>2.8.1</Version>
 	<Description>Helper entities for Melon related packages.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MelonRuntime.Abstractions\MelonRuntime.Abstractions.csproj" />
