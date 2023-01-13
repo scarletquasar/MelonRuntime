@@ -1,8 +1,6 @@
 ﻿using MelonRuntime.CLI.Entities;
-using MelonRuntime.CLI;
 using MelonRuntime.Core;
 using Newtonsoft.Json;
-using Microsoft.Extensions.DependencyInjection;
 using MelonRuntime.Abstractions.Generic;
 using Jint.Native;
 using System.Reflection;
@@ -22,21 +20,20 @@ namespace MelonRuntime
             await DependencyRunner.Setup();
             await SetupAssembliesCache();
 
-            var argv = Array.AsReadOnly(args);
             var cli = new MelonCLI(version, runtime);
 
             cli.DisplayHeader();
             cli.ExecuteEntryPoint();
 
-            if(argv.Count == 0)
+            if(args.Length == 0)
             {
                 cli.EnableConsoleOutput();
                 cli.WaitForScript(() => true);
             }
 
             var pivot = args.First();
-            var itemIndex = Array.FindIndex<string>(argv.ToArray(), x => x == pivot);
-            var rest = argv.Skip(itemIndex).ToArray();
+            var itemIndex = Array.FindIndex<string>(args, x => x == pivot);
+            var rest = args.Skip(itemIndex).ToArray();
 
             cli.ExecuteInstruction(pivot, rest);
         }

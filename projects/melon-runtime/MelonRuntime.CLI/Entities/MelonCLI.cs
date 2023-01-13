@@ -5,8 +5,8 @@ using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.CLI.Properties;
 using MelonRuntime.Core.Extensions;
 using MelonRuntime.ProjectGenerator;
-using Esprima;
 using Jint.Runtime;
+using Esprima;
 
 namespace MelonRuntime.CLI.Entities
 {
