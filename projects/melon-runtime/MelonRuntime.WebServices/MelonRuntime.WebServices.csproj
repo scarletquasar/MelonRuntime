@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<Version>2.8.1</Version>
+	<Version>2.8.2</Version>
 	<Description>Provides features to create and host web applications with Melon.</Description>
 	<IsPackable>true</IsPackable>
   </PropertyGroup>
