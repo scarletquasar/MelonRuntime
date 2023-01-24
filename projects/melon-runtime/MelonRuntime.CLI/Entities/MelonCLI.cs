@@ -157,14 +157,14 @@ namespace MelonRuntime.CLI.Entities
                     var type = "typescript";
                     var path = "./";
 
-                    if (args.Length > 0)
-                    {
-                        path = args[0];
-                    }
-
                     if (args.Length > 1)
                     {
-                        type = args[1];
+                        path = args[1];
+                    }
+
+                    if (args.Length > 2)
+                    {
+                        type = args[2];
                     }
 
                     var schema = type == "javascript" ? ProjectWriter.JavaScript : ProjectWriter.TypeScript;
