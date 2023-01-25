@@ -68,6 +68,11 @@ namespace MelonRuntime.Core.Entities
             {
                 _engineProvider.ImportModule(path);
             }
+            catch (NotSupportedException)
+            {
+                var e = new FileLoadException($"Can't load \"{path}\"");
+                _runtimeErrors.Add(e);
+            }
             catch (Exception e) when (e is ParserException || e is JavaScriptException)
             {
                 _runtimeErrors.Add(e);

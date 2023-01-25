@@ -118,7 +118,7 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.LoadFile(args[0], true);
+                    _melon.LoadFile(args[1], true);
                     return;
                 }
             }
@@ -136,7 +136,7 @@ namespace MelonRuntime.CLI.Entities
             {
                 if (!args.Contains("--help"))
                 {
-                    _melon.SendInstructions(args[0]);
+                    _melon.SendInstructions(args[1]);
                     Environment.Exit(0);
                 }
             }
