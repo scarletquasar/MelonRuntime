@@ -57,20 +57,22 @@ a dynamic development environment:
 /* Basic example of retrieving a Task from the internal CLR
    using the Realm feature and wrapping it inside a standard
    JavaScript Promise object, allowing it to be used asynchronously */
-   
-const { Realm } = Melon.dotnet;
 
-const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
+async function httpGetFromCLR() {
+    const { Realm } = Melon.dotnet;
 
-const realm = new Realm();
-realm.setInstance("httpClient", "System.Net.Http:HttpClient");
+    const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
-const client = realm.get("httpClient");
-const task = client.getAsync(API_URL);
-const promise = new Promise((resolve) => resolve(task.result));
+    const realm = new Realm();
+    realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-const result = await promise;
-console.log(result);
+    const client = realm.get("httpClient");
+    const task = client.getAsync(API_URL);
+    const promise = new Promise((resolve) => resolve(task.result));
+
+    const result = await promise;
+    console.log(result);
+}
 ```
 
 ## Railway-oriented programming
