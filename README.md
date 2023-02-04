@@ -8,7 +8,7 @@
 
 - Quick develop and prototype scalable solutions without having to worry about dependencies
 - Use features directly from [.NET](https://dotnet.microsoft.com/en-us/) directly from JavaScript
-- Use a wide range of runtime agnostic [npm](npmjs.com) libraries by default 
+- Use a wide range of runtime agnostic [npm](https://npmjs.com) libraries by default 
 
 ## Web development
 
@@ -43,7 +43,7 @@ app.run();
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => res.send("Hello World"));
+app.get("/", (req, res) => res.send("Hello world"));
 app.listen(80, () => {});
 ```
 </td></tr></tbody></table>
