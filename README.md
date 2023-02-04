@@ -69,7 +69,8 @@ const client = realm.get("httpClient");
 const task = client.getAsync(API_URL);
 const promise = new Promise((resolve) => resolve(task.result));
 
-promise.then(console.log);
+const result = await promise;
+console.log(result);
 ```
 
 ## Railway-oriented programming
