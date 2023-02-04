@@ -8,7 +8,7 @@
 
 - Quick develop and prototype scalable solutions without having to worry about dependencies
 - Use features directly from [.NET](https://dotnet.microsoft.com/en-us/) directly from JavaScript
-- Use a wide range of [npm]() libraries by default 
+- Use a wide range of runtime agnostic [npm](npmjs.com) libraries by default 
 
 ## Web development
 
@@ -54,6 +54,10 @@ Easy .NET interoperability is reachable with Melon **Realm** feature, allowing t
 a dynamic development environment:
 
 ```ts
+/* Basic example of retrieving a Task<T> from the internal CLR
+   using the Realm feature and wrapping it inside a standard
+   JavaScript Promise object, allowing it to be used asynchronously */
+   
 const { Realm } = Melon.dotnet;
 
 const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
@@ -61,14 +65,11 @@ const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 const realm = new Realm();
 realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-/* The HttpClient instance will be retrieved */
 const client = realm.get("httpClient");
-/* An active Task<JsValue> will be created */
 const task = client.getAsync(API_URL);
-/* The Task<JsValue> will be wrapped inside a promise */
 const promise = new Promise((resolve) => resolve(task.result));
 
-promise.then(result => console.log(result));
+promise.then(console.log);
 ```
 
 ## Railway-oriented programming
@@ -93,7 +94,6 @@ readability. Joining your results enrue that unrecoverable errors will panic the
 
 
 ```ts
-const { Thread } = Melon.dotnet.threading;
 const { 
     tryDeserialize, 
     trySerialize 
@@ -106,7 +106,7 @@ result1.join();
 result2.join();
 
 const data = result2.match<T>(
-    error => {}, 
+    _ => {}, 
     value => value
 );
 console.log(data);
