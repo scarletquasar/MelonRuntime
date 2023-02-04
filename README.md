@@ -54,7 +54,7 @@ Easy .NET interoperability is reachable with Melon **Realm** feature, allowing t
 a dynamic development environment:
 
 ```ts
-/* Basic example of retrieving a Task<T> from the internal CLR
+/* Basic example of retrieving a Task from the internal CLR
    using the Realm feature and wrapping it inside a standard
    JavaScript Promise object, allowing it to be used asynchronously */
    
