@@ -78,7 +78,7 @@ async function httpGetFromCLR() {
 ## Railway-oriented programming
 
 Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
-readability. Joining your results enrue that unrecoverable errors will panic the current thread while you can handle recoverable errors without any difficulty.
+readability. Joining your results ensure that unrecoverable errors will panic the current thread while you can handle recoverable errors without any difficulty.
 
 <table>
     <thead>
