@@ -1,64 +1,54 @@
-# <img src="https://avatars.githubusercontent.com/u/105192336?s=400&u=4375e36be647d2a64727bbefc2382c2801897b39&v=4" width="26"> Melon [![npm version](https://badgen.net/npm/v/melon-runtime/)](https://www.npmjs.com/package/melon-runtime) [![npm downloads](https://badgen.net/npm/dm/melon-runtime)](https://www.npmjs.com/package/melon-runtime) [![license](https://badgen.net/github/license/MelonRuntime/Melon)](#)
+<img align="left" src="https://i.imgur.com/w2aYNRW.png" width="235">
 
-> **Melon** is a fast modern .NET JavaScript runtime focused in rapid prototyping of projects, using minimal dependencies and functional programming.
+# The Melon Runtime Project
 
-| 📚 [Official documentation](https://melon-docs.vercel.app/docs/intro) | 💬 [Discord Server](https://discord.gg/wDJDT9Yq7C) |
-| - | - |
+Melon is an *asynchronous-first** multi-threaded JavaScript runtime based on the .NET environment. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
 
-## Why Melon?
+[Documentation (alpha)](https://melon-docs.vercel.app/docs/intro) - [Discord server](https://discord.gg/wDJDT9Yq7C) - [CityJS conference presentation](https://youtu.be/lD39kjrXRvo?t=18715)
 
-- Quick develop and prototype scalable solutions without having to worry about dependencies
-- Use features directly from [.NET](https://dotnet.microsoft.com/en-us/) directly from JavaScript
-- Use a wide range of runtime agnostic [npm](https://npmjs.com) libraries by default 
+<br>
 
-## Web development
+> **Warning**
+>
+> Melon is **NOT** production-ready yet, the project is currently being developed and being battle-tested in different environments. Most of the required features, fixes and optimizations are not ready yet. Use in real-world projects at your own risk.
 
-Melon brings the power of ASP.NET to JavaScript, allowing you to build synchronous or asynchronous dedicated web applications with few lines, using an express-like interface that is easy and simple to use.
+# Features spotlight
 
-<table>
-    <thead>
-        <tr>
-            <th>
-                Melon (No dependencies)
-            </th>
-            <th>
-                Node.js (Express)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td> 
+> Below, are listed **some** features that **already are** in the project or that **are in construction**
 
+## <img align="left" src="https://i.imgur.com/ZFJPQik.png" width="40"> EventChain
 
-```ts
+Melon is directly affected by how [.NET tasks](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) works, meaning that the feature can be used to make clean, reusable "event loops" that are smartly selected to perform specific actions, reducing inconsistencies and providing an entirely controlled group of threads that can be used for any purpose. *Melon runs asynchronously by default and all the internal api is designed to profit from tasks.
+
+### 🔎 How this works?
+
+In .NET, there is a feature called *thread pool*, when you try to do an asynchronous task, one thread from that pool is recovered and reused to do the action, then, cleaned and turned ready to use again. With Melon, instead this is extended by the creation of an object called `EventChain()` that is a thread pool containing threads that contains *event loops*, so, the runtime does all the work of cleaning and reusing these *event loops*.
+
+## <img align="left" src="https://i.imgur.com/z0uFDdq.png" width="40"> Integrated Development Toolkit
+
+Melon is *strictly* designed to offer the best and easier **prototyping reliability**, so it contains a lot of features that enables the final developer to create entire applications with minimal (or zero) dependencies and also rewrite parts (or the entire) code easily without having coupled architectures and patterns.
+
+### 🔎 How this works?
+
+Melon comes with a rich, well prepared API that contains the most used (and loved) tools to fit in the modern application development world. For example, th Melon is possible to *easily* create a WebAPI with no dependencies:
+
+```typescript
 const { http } = Melon;
 const app = http.app();
 
 app.get("/", () => "Hello world");
 app.run();
 ```
-</td><td>
 
-```js
-const express = require("express");
-const app = express();
+## <img align="left" src="https://i.imgur.com/WEa64y7.png" width="40"> .NET Realms
 
-app.get("/", (req, res) => res.send("Hello world"));
-app.listen(80, () => {});
-```
-</td></tr></tbody></table>
+`Realm()` is a feature designed to create and manipulate objects inside the .NET runtime instead of dealing with it inside the JavaScript engine, it allows the developer to create anything in CLR and recover it in the script without losing features or behaviors.
 
-## .NET Interoperability
+### 🔎 How this works?
 
-Easy .NET interoperability is reachable with Melon **Realm** feature, allowing the developer to use its exclusive features in order to get
-a dynamic development environment:
+Creating a realm and manipulating instances is simple, there are some helper methods created to instance and change objects:
 
-```ts
-/* Basic example of retrieving a Task from the internal CLR
-   using the Realm feature and wrapping it inside a standard
-   JavaScript Promise object, allowing it to be used asynchronously */
-   
+```typescript
 const { Realm } = Melon.dotnet;
 const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
@@ -74,66 +64,3 @@ async function httpGetFromCLR() {
     console.log(result);
 }
 ```
-
-## Railway-oriented programming
-
-Functional approach to the execution of functions sequentially, focusing on rational program orientation, performance saving and
-readability. Joining your results ensure that unrecoverable errors will panic the current thread while you can handle recoverable errors without any difficulty.
-
-<table>
-    <thead>
-        <tr>
-            <th>
-                Melon (Result)
-            </th>
-            <th>
-                Node.js (try-catch hell)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td> 
-
-
-```ts
-const { 
-    tryDeserialize, 
-    trySerialize 
-} = Melon.std.json;
-
-const result1 = tryDeserialize<T>(someString);
-const result2 = trySerialize(result1);
-
-result1.join();
-result2.join();
-
-const data = result2.match<T>(
-    _ => {}, 
-    value => value
-);
-console.log(data);
-```
-</td><td>
-
-```js
-const process = require('process');
-try {
-    const result1 = 
-        JSON.parse(someString);
-
-    try {
-        const result2 = 
-            JSON.stringify(result1);
-
-        console.log(result2);
-    }
-    catch(e) {
-        throw(e);
-    }
-}
-catch {
-    process.exit(0);
-}
-```
-</td></tr></tbody></table>
