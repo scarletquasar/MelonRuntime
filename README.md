@@ -91,3 +91,11 @@ Then, you will be able to use one of the buid/debug commands:
 | `install-dev:win` | Builds the binaries and installs Melon as a global npm package from the local source (Windows) |
 | `install-dev:linux` | Builds the binaries and installs Melon as a global npm package from the local source (Linux) |
 | `all-benchmarks` | Executes all Melon debug benchmarks (requires [Hyperfine](https://github.com/sharkdp/hyperfine)) |
+
+### Opening in Visual Studio Community or JetBrains Rider
+
+To open the C# solution `.sln` file and get access to the main runtime code just follow the path:
+
+```
+Melon > projects > melon-runtime > MelonRuntime.sln
+```
