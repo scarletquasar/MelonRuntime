@@ -64,3 +64,30 @@ async function httpGetFromCLR() {
     console.log(result);
 }
 ```
+
+# Compiling from source
+
+### Supported platforms
+
+Melon supposts a wide range of plataforms that are also supported by [.NET 6](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md) and [NodeJS](https://github.com/nodejs/node/blob/main/BUILDING.md#supported-platforms).
+
+### Building via command line
+
+Clone the repository using the following command:
+
+```bash
+git clone https://github.com/MelonRuntime/Melon.git [path]
+cd [path]
+```
+
+Then, you will be able to use one of the buid/debug commands:
+
+| Command | Description |
+| ------- | ----------- |
+| `build:win` | Builds the Melon binaries (Windows) |
+| `build:linux` | Builds the Melon binaries (Linux) |
+| `dev:win` | Builds the binaries and executes the program using hot reloading (only C#) (Windows) |
+| `dev:linux` | Builds the binaries and executes the program using hot reloading (only C#) (Linux) |
+| `install-dev:win` | Builds the binaries and installs Melon as a global npm package from the local source (Windows) |
+| `install-dev:linux` | Builds the binaries and installs Melon as a global npm package from the local source (Linux) |
+| `all-benchmarks` | Executes all Melon debug benchmarks (requires [Hyperfine](https://github.com/sharkdp/hyperfine)) |
