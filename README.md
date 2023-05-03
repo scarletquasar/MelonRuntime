@@ -69,7 +69,7 @@ async function httpGetFromCLR() {
 
 ### Supported platforms
 
-Melon supposts a wide range of plataforms that are also supported by [.NET 6](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md) and [NodeJS](https://github.com/nodejs/node/blob/main/BUILDING.md#supported-platforms).
+Melon supports a wide range of platforms that are also supported by [.NET 6](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md) and [NodeJS](https://github.com/nodejs/node/blob/main/BUILDING.md#supported-platforms).
 
 ### Building via command line
 
