@@ -196,12 +196,12 @@ namespace MelonRuntime.Core.Library
         }
         private Dictionary<string, dynamic> GetEventBindings()
         {
-            void createEvent(string name, int caller, int type, JsValue[] actions)
+            void createEvent(string name, int caller, int type, Func<JsValue, JsValue[], JsValue>[] actions)
             {
                 var targetEvent = new Event(
                     _melon!, 
                     (EventCaller)caller, 
-                    (EventType)type, 
+                    (EventType)type,
                     actions);
 
                 EventManager.CreateEvent(name, targetEvent, _melon!);
@@ -229,11 +229,11 @@ namespace MelonRuntime.Core.Library
 
             return new()
             {
-                ["CreateEvent"] = new Action<string, int, int, JsValue[]>(createEvent),
+                ["CreateEvent"] = new Action<string, int, int, Func<JsValue, JsValue[], JsValue>[]>(createEvent),
                 ["DeleteEvent"] = new Action<string, int>(deleteEvent),
                 ["RunEvent"] = new Func<string, Task>(runEvent),
                 ["SetEventPausedState"] = new Action<string, bool>(setEventPausedState),
-                ["FinishEvent"] = new Action<string>(finishEvent),
+                ["FinishEvent"] = new Action<string>(finishEvent)
             };
         }
 

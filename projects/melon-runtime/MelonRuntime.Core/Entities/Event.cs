@@ -29,16 +29,16 @@ namespace MelonRuntime.Core.Entities
         public bool Paused { get; set; }
 
         private readonly IMelon<JsValue> _melon;
-        private readonly LinkedList<JsValue> _actions;
+        private readonly LinkedList<Func<JsValue, JsValue[], JsValue>> _actions;
 
         public Event(
             IMelon<JsValue> melon,
             EventCaller caller,
             EventType type,
-            JsValue[] actions)
+            Func<JsValue, JsValue[], JsValue>[] actions)
         {
             _melon = melon;
-            _actions = new LinkedList<JsValue>(actions);
+            _actions = new LinkedList<Func<JsValue, JsValue[], JsValue>>(actions);
 
             Metadata = new ConcurrentBag<string>();
             Caller = caller;
@@ -55,7 +55,10 @@ namespace MelonRuntime.Core.Entities
 
             if (!Paused)
             {
-                await Task.Run(() => _melon.InteropInvoke(_actions.First()));
+                await Task.Run(() => _actions.First().Invoke(
+                    JsValue.Null, 
+                    Array.Empty<JsValue>()));
+
                 _actions.RemoveFirst();
             }
 
