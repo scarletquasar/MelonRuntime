@@ -2,6 +2,7 @@
 using Jint.Native;
 using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.Abstractions.Library.Database;
+using MelonRuntime.Core.Entities;
 using MelonRuntime.Core.Library.Database;
 using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Core.Library.Serialization;
@@ -25,11 +26,7 @@ namespace MelonRuntime.Core.Library
 
         public static BindingsManager GetManager(IMelon<JsValue> melon)
         {
-            if (_instance is null)
-            {
-                _instance = new BindingsManager(melon);
-            }
-
+            _instance ??= new BindingsManager(melon);
             return _instance;
         }
 
@@ -49,6 +46,7 @@ namespace MelonRuntime.Core.Library
                 GetHttpClientBindings(),
                 GetThreadingBindings(),
                 GetRealmBindings(),
+                GetEventBindings(),
                 GetEnvironmentBindings(),
                 GetProcessBindings(),
                 GetFileSystemBindings(),
@@ -194,6 +192,48 @@ namespace MelonRuntime.Core.Library
                 ["SetRealmScriptProperty"] = new Action<string, string, dynamic>(setRealmScriptProperty),
                 ["SetRealmInstanceProperty"] = 
                     new Action<string, string, string, string, object[]>(setRealmInstanceProperty)
+            };
+        }
+        private Dictionary<string, dynamic> GetEventBindings()
+        {
+            void createEvent(string name, int caller, int type, JsValue[] actions)
+            {
+                var targetEvent = new Event(
+                    _melon!, 
+                    (EventCaller)caller, 
+                    (EventType)type, 
+                    actions);
+
+                EventManager.CreateEvent(name, targetEvent, _melon!);
+            }
+
+            void deleteEvent(string name, int delay)
+            {
+                EventManager.DeleteEvent(name, delay, _melon!);
+            }
+
+            async Task runEvent(string name)
+            {
+                await EventManager.RunEvent(name, _melon!);
+            }
+
+            void setEventPausedState(string name, bool state)
+            {
+                EventManager.SetEventPausedState(name, state, _melon!);
+            }
+
+            void finishEvent(string name)
+            {
+                EventManager.FinishEvent(name, _melon!);
+            }
+
+            return new()
+            {
+                ["CreateEvent"] = new Action<string, int, int, JsValue[]>(createEvent),
+                ["DeleteEvent"] = new Action<string, int>(deleteEvent),
+                ["RunEvent"] = new Func<string, Task>(runEvent),
+                ["SetEventPausedState"] = new Action<string, bool>(setEventPausedState),
+                ["FinishEvent"] = new Action<string>(finishEvent),
             };
         }
 
