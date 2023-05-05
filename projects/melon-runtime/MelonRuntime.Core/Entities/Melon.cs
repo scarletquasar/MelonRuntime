@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
 using MelonRuntime.JintExtensions;
+using System.Collections.Concurrent;
+using System.Linq;
 
 namespace MelonRuntime.Core.Entities
 {
@@ -18,6 +20,7 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _runtimeErrors;
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
+        private readonly ConcurrentDictionary<string, Event> _events;
         private readonly Dictionary<string, object> _environmentVariables;
         private readonly Queue<string> _nextInstructions;
 
@@ -28,6 +31,7 @@ namespace MelonRuntime.Core.Entities
             _runtimeErrors = new();
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
+            _events = new();
             _environmentVariables = new();
             _nextInstructions = new();
 
@@ -41,6 +45,7 @@ namespace MelonRuntime.Core.Entities
             _runtimeErrors = new();
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
+            _events = new();
             _environmentVariables = new();
             _nextInstructions = new();
             
@@ -136,6 +141,11 @@ namespace MelonRuntime.Core.Entities
         public Dictionary<string, IRealm> GetRealms()
         {
             return _realms;
+        }
+
+        public Dictionary<string, T> GetEvents<T>()
+        {
+            return _events.ToDictionary(x => x.Key, x => (T)(object)x.Value);
         }
 
         public List<Exception> GetRuntimeErrors()

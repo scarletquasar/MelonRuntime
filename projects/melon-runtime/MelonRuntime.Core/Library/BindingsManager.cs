@@ -2,7 +2,6 @@
 using Jint.Native;
 using MelonRuntime.Abstractions.Generic;
 using MelonRuntime.Abstractions.Library.Database;
-using MelonRuntime.Core.Entities;
 using MelonRuntime.Core.Library.Database;
 using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Core.Library.Serialization;

@@ -4,7 +4,7 @@ using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Domain.Core.Entities;
 using Microsoft.CSharp.RuntimeBinder;
 
-namespace MelonRuntime.Core.Entities
+namespace MelonRuntime.Core
 {
     public static class RealmManager
     {
