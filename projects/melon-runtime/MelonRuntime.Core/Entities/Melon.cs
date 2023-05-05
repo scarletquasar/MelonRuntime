@@ -20,7 +20,7 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _runtimeErrors;
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
-        private readonly ConcurrentDictionary<string, Event> _events;
+        private readonly ConcurrentDictionary<string, object> _events;
         private readonly Dictionary<string, object> _environmentVariables;
         private readonly Queue<string> _nextInstructions;
 
@@ -143,9 +143,9 @@ namespace MelonRuntime.Core.Entities
             return _realms;
         }
 
-        public Dictionary<string, T> GetEvents<T>()
+        public Dictionary<string, object> GetEvents()
         {
-            return _events.ToDictionary(x => x.Key, x => (T)(object)x.Value);
+            return _events;
         }
 
         public List<Exception> GetRuntimeErrors()

@@ -11,7 +11,7 @@ namespace MelonRuntime.Abstractions.Generic
         public void AddRuntimeErrorAction(Action<Exception> action);
         public void AddExternalErrorAction(Action<Exception> action);
         public Dictionary<string, IRealm> GetRealms();
-        public Dictionary<string, T> GetEvents<T>();
+        public Dictionary<string, object> GetEvents();
         public Dictionary<string, object> GetEnvironmentVariables();
         public List<TOutput> GetOutput();
         public List<Exception> GetRuntimeErrors();
