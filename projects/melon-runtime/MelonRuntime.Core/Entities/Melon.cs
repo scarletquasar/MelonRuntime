@@ -18,7 +18,6 @@ namespace MelonRuntime.Core.Entities
         private readonly ObservableCollection<Exception> _runtimeErrors;
         private readonly ObservableCollection<Exception> _externalErrors;
         private readonly Dictionary<string, IRealm> _realms;
-        private readonly Dictionary<string, dynamic> _events;
         private readonly Dictionary<string, object> _environmentVariables;
         private readonly Queue<string> _nextInstructions;
 
@@ -29,7 +28,6 @@ namespace MelonRuntime.Core.Entities
             _runtimeErrors = new();
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
-            _events = new();
             _environmentVariables = new();
             _nextInstructions = new();
 
@@ -43,7 +41,6 @@ namespace MelonRuntime.Core.Entities
             _runtimeErrors = new();
             _externalErrors = new();
             _realms = new Dictionary<string, IRealm>();
-            _events = new();
             _environmentVariables = new();
             _nextInstructions = new();
             
@@ -139,11 +136,6 @@ namespace MelonRuntime.Core.Entities
         public Dictionary<string, IRealm> GetRealms()
         {
             return _realms;
-        }
-
-        public Dictionary<string, dynamic> GetEvents()
-        {
-            return _events;
         }
 
         public List<Exception> GetRuntimeErrors()

@@ -11,6 +11,7 @@ import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
 import { testing } from "./partials/modules/testing/testing"
+import { runtime } from "./partials/modules/runtime/runtime"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
@@ -25,6 +26,7 @@ const Melon = {
     dotnet: _dotnet,
     crypto: _crypto,
     console: _console,
+    runtime,
     Version: _Version
 }
 
