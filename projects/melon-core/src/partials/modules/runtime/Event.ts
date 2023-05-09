@@ -22,6 +22,22 @@ class EventChain {
         this.events.set(name, event);
         this.events.get(name).run();
     }
+
+    static getEvents(condition: Function = null) {
+        if (!condition) {
+            return this.events;
+        }
+        
+        const resultMap = new Map<string, Event>();
+
+        for (const event of this.events) {
+            if (condition(event[1])) {
+                resultMap.set(event[0], event[1]);
+            }
+        }
+
+        return resultMap;
+    }
 }
 
 class Event {
@@ -30,7 +46,6 @@ class Event {
     private type: EventType;
     private caller: EventCaller;
     private finished: boolean;
-    private modificationObject: any;
 
     get isFinished() {
         return this.finished;
@@ -55,19 +70,15 @@ class Event {
         this.caller = caller;
     }
 
-    async run<T>(): Promise<T> {
+    async run(): Promise<void> {
         if (!this.actions.length || this.finished) {
-            return this.modificationObject as T;
+            return;
         }
 
         const nextAction = this.actions.shift();
-        const actionWrapper = () => {
-            this.modificationObject = nextAction(this.modificationObject);
-        }
-
-        const promise = new Promise(resolve => resolve(actionWrapper()));
+        const promise = new Promise(resolve => resolve(nextAction()));
         await promise;
-        await this.run<T>();
+        await this.run();
     }
 
     finish() {
