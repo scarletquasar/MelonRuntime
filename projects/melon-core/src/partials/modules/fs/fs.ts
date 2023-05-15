@@ -1,0 +1,51 @@
+import {
+    readText,
+    writeText,
+    readBytes,
+    writeBytes,
+    readTextAsync,
+    writeTextAsync,
+    readBytesAsync,
+    writeBytesAsync,
+    deleteFile,
+    deleteFileAsync,
+    moveFile,
+    moveFileAsync,
+    copyFile,
+    copyFileAsync,
+    renameFile,
+    renameFileAsync,
+    createDirectory,
+    createDirectoryAsync,
+    deleteDirectory,
+    deleteDirectoryAsync,
+    renameDirectory,
+    renameDirectoryAsync
+} from "./fs-raw-file-management";
+
+const _fs = {
+    readText,
+    writeText,
+    readBytes,
+    writeBytes,
+    readTextAsync,
+    writeTextAsync,
+    readBytesAsync,
+    writeBytesAsync,
+    deleteFile,
+    deleteFileAsync,
+    moveFile,
+    moveFileAsync,
+    copyFile,
+    renameFile,
+    renameFileAsync,
+    copyFileAsync,
+    createDirectory,
+    createDirectoryAsync,
+    deleteDirectory,
+    deleteDirectoryAsync,
+    renameDirectory,
+    renameDirectoryAsync
+}
+
+export { _fs }
