@@ -2,7 +2,7 @@ import { _Version } from "./partials/constructors/_Version"
 import { _console } from "./partials/modules/console/_console"
 import { _data } from "./partials/modules/data/_data"
 import { _dotnet } from "./partials/modules/dotnet/_dotnet"
-import { _fs } from "./partials/modules/fs/_fs"
+import { _fs } from "./partials/modules/fs/fs"
 import { _guards } from "./partials/modules/guards/_guards"
 import { _http } from "./partials/modules/http/_http"
 import { _std } from "./partials/modules/std/_std"
@@ -11,6 +11,7 @@ import { $ } from "./partials/utils/generic/$"
 import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
 import { getEnv } from "./partials/utils/environment/getEnv"
 import { testing } from "./partials/modules/testing/testing"
+import { runtime } from "./partials/modules/runtime/runtime"
 
 getEnv();
 addPrototypeExtension(Object, "$", $);
@@ -25,6 +26,7 @@ const Melon = {
     dotnet: _dotnet,
     crypto: _crypto,
     console: _console,
+    runtime,
     Version: _Version
 }
 

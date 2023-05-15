@@ -26,11 +26,7 @@ namespace MelonRuntime.Core.Library
 
         public static BindingsManager GetManager(IMelon<JsValue> melon)
         {
-            if (_instance is null)
-            {
-                _instance = new BindingsManager(melon);
-            }
-
+            _instance ??= new BindingsManager(melon);
             return _instance;
         }
 
