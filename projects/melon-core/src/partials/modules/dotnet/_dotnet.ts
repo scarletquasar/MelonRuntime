@@ -1,36 +1,35 @@
-import { _internalConsts } from "../internalConsts/_internalConsts";
-import { _getLoadedAssemblies } from "./_getLoadedAssemblies";
-import { getStaticMethod } from "./getStaticMethod";
-import { getStaticProperty } from "./getStaticProperty";
-import { _loadAssembly } from "./_loadAssembly";
-import { _Realm } from "./_Realm";
-import { _removeAssembly } from "./_removeAssembly";
 import { _types } from "./_types";
-import { _loadAssemblyAsync } from "./_loadAssemblyAsync";
-import { _createTask } from "./threading/_createTask";
-import { createThread } from "./threading/createThread";
-import { _Task } from "./threading/_Task";
-import { Thread } from "./threading/Thread";
-import { _getFactories } from "./_getFactories";
-import { _createList } from "./_createList";
+import { 
+    getFactories, 
+    getStaticMethod, 
+    getStaticProperty, 
+    removeAssembly, 
+    getLoadedAssemblies, 
+    loadAssemblyAsync, 
+    createList, 
+    loadAssembly
+} from "./dotnet-interop-core";
+import { Realm } from "./dotnet-realm-core";
+import { createTask, createThread, Task, Thread } from "./dotnet-threading-core";
+ 
 
 const _dotnet = {
-    getFactories: _getFactories,
+    getFactories,
     getStaticMethod,
     getStaticProperty,
-    loadAssembly: _loadAssembly,
-    removeAssembly: _removeAssembly,
-    getLoadedAssemblies: _getLoadedAssemblies,
-    loadAssemblyAsync: _loadAssemblyAsync,
+    loadAssembly,
+    removeAssembly,
+    getLoadedAssemblies,
+    loadAssemblyAsync,
     threading: {
-        createTask: _createTask,
+        createTask,
         createThread,
-        Task: _Task,
+        Task,
         Thread
     },
-    createList: _createList,
+    createList,
     types: _types,
-    Realm: _Realm
+    Realm
 }
 
 export { _dotnet }

@@ -1,9 +1,8 @@
-import { _internalConsts } from "../internalConsts/_internalConsts";
-
+const INVALID_NUMBER_CAPACITY = "The number capacity is invalid for that type";
 const _types = {
     sbyte: (number: number) => {
         if (number > 127 || number < -128) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -15,7 +14,7 @@ const _types = {
     },
     byte: (number: number) => {
         if (number > 255 || number < 0) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -27,7 +26,7 @@ const _types = {
     },
     short: (number: number) => {
         if (number > 32767 || number < -32768) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -39,7 +38,7 @@ const _types = {
     },
     ushort: (number: number) => {
         if (number > 65535 || number < 0) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -51,7 +50,7 @@ const _types = {
     },
     int: (number: number) => {
         if (number > 2147483647 || number < -2147483648) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -63,7 +62,7 @@ const _types = {
     },
     uint: (number: number) => {
         if (number > 4294967295 || number < 0) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -75,7 +74,7 @@ const _types = {
     },
     long: (number: number) => {
         if (number > 9223372036854775807 || number < -9223372036854775808) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
@@ -87,7 +86,7 @@ const _types = {
     },
     ulong: (number: number) => {
         if (number > 18446744073709551615 || number < 0) {
-            throw new RangeError(_internalConsts.INVALID_NUMBER_CAPACITY);
+            throw new RangeError(INVALID_NUMBER_CAPACITY);
         }
 
         const value = Math.floor(number);
