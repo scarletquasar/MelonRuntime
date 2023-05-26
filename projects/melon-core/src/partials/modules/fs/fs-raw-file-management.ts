@@ -1,4 +1,4 @@
-import { _Task } from "../dotnet/threading/_Task";
+import { Task } from "../dotnet/dotnet-threading-core";
 import { _nextTick } from "../std/async/_nextTick";
 import { ReadFileError, TransactFileError, TransactDirectoryError, WriteFileError } from "./fs-default-errors";
 
@@ -50,7 +50,7 @@ function writeBytes(path: string, bytes: number[]) {
 }
 
 async function writeBytesAsync(path: string, bytes: number[]) {
-    const task = <_Task<number[]>>_$internalBinding["WriteFileBytesAsync"](path, bytes);
+    const task = <Task<number[]>>_$internalBinding["WriteFileBytesAsync"](path, bytes);
 
     try {
         await Promise.resolve(task.result);
@@ -110,7 +110,7 @@ function readBytes(path: string): number[] {
 }
 
 async function readBytesAsync(path: string): Promise<number[]> {
-    const task = <_Task<number[]>>_$internalBinding["ReadFileBytesAsync"](path);
+    const task = <Task<number[]>>_$internalBinding["ReadFileBytesAsync"](path);
 
     try {
         return await Promise.resolve(task.result);
@@ -130,7 +130,7 @@ function readText(path: string): string {
 }
 
 async function readTextAsync(path: string): Promise<string> {
-    const task = <_Task<string>>_$internalBinding["ReadFileTextAsync"](path);
+    const task = <Task<string>>_$internalBinding["ReadFileTextAsync"](path);
 
     try {
         return await Promise.resolve(task.result);

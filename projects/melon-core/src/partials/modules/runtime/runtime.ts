@@ -5,5 +5,6 @@ const eventChain = new EventChain();
 
 export const runtime = {
     Event,
+    EventChain,
     eventChain
 }

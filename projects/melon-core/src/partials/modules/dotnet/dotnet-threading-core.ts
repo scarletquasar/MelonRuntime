@@ -144,11 +144,11 @@ class Task<T> {
                     return null;
                 }
 
-                if (task.status <= 4 || !this.isCompleted) {
-                    return resolver();
+                if (task.status == 4 || this.isCompleted) {
+                    resolve(task.result);
                 }
-    
-                resolve(task.result);
+                
+                return resolver();
             }
         });
 
