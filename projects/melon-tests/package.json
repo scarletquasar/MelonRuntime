@@ -2,7 +2,7 @@
     "scripts": {
         "_webpack_from_babel": "webpack ./babel/main.js --config ./webpack.config.js",
         "_webpack_dev_from_babel": "webpack ./babel/main.js --config webpack.config.dev.js",
-        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel --quiet",
+        "_babel_from_source": "babel --extensions .js,.ts ./src/ --out-dir ./babel",
         "dev": "npx melon load ./src/main.js",
         "build": "npm run _babel_from_source  && npm run _webpack_from_babel",
         "go": "npx melon load ./dist/main.js"
