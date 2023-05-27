@@ -14,7 +14,7 @@ const runStdTests = () => {
         assert.equals(Melon.std.environment.getEnvironmentVariables()["test"], "test");
     })
 
-    test("Melon.std.environment.clearLocalEnvironmentVariableds() should work correctly", assert => {
+    test("Melon.std.environment.clearLocalEnvironmentVariables() should work correctly", assert => {
         Melon.std.environment.setEnvironmentVariable("test", "test");
         Melon.std.environment.clearLocalEnvironmentVariables();
 
