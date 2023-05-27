@@ -135,9 +135,9 @@ class Task<T> {
     }
 
     async resolve(cancellationFunction: () => boolean = () => false) {
-        this.start();
-        this.wait();
         const promise = new Promise((resolve) => {
+            this.start();
+            this.wait();
             while(!this.isCompleted) {
                 if(cancellationFunction()) {
                     return null;
