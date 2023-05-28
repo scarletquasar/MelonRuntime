@@ -2,7 +2,7 @@
 
 # The Melon Runtime Project
 
-Melon is an *asynchronous-first** multi-threaded JavaScript runtime based on the .NET environment. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
+Melon is a JavaScript runtime based on the .NET environment with multi-threading capabilities. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
 
 [Documentation (alpha)](https://melon-docs.vercel.app/docs/intro) - [Discord server](https://discord.gg/wDJDT9Yq7C) - [CityJS conference presentation](https://youtu.be/lD39kjrXRvo?t=18715)
 
