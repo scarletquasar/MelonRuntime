@@ -1,4 +1,4 @@
-type Primitive = string | number | boolean | bigint | null | symbol;
+type Primitive = string | number | boolean | bigint | null | symbol | Primitive[];
 
 
 interface OutputFriendly {

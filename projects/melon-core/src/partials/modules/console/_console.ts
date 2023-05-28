@@ -1,4 +1,4 @@
-import { _Realm } from "../dotnet/_Realm";
+import { Realm } from "../dotnet/dotnet-realm-core";
 import { _clear } from "./_clear";
 import { _error } from "./_error";
 import { _log } from "./_log";
@@ -10,7 +10,7 @@ import { _write } from "./_write";
 import { _writeLine } from "./_writeLine";
 
 const _console = {
-    _timers: new _Realm(),
+    _timers: new Realm(),
     time: _time,
     timeEnd: _timeEnd,
     log: _log,
