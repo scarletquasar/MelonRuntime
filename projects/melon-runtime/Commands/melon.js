@@ -3,9 +3,10 @@
 import axios from "axios";
 import path from "path";
 import fs from "fs";
+import semver from "semver";
 
 import { fileURLToPath } from "url";
-import { spawn, spawnSync } from 'child_process';
+import { spawn } from 'child_process';
 
 const CHILD_SPAWN_OPTIONS = { stdio: "inherit" };
 const ARGUMENTS = process.argv.slice(2);
@@ -14,32 +15,35 @@ const CURRENT_DIRECTORY = path.dirname(CURRENT_FILE);
 const MELON_ENTRY_POINT = "MelonRuntime.CLI.dll";
 const MELON_OUTPUT_DIRECTORY = CURRENT_DIRECTORY.replace('Commands', 'Output');
 
-const INTEGRITY_PATH = "https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/integrity.txt";
-const CURRENT_INTEGRITY_PATH = CURRENT_DIRECTORY.replace('Commands', 'integrity.txt');
+const PACKAGE_PATH = "https://raw.githubusercontent.com/MelonRuntime/Melon/main/projects/melon-runtime/package.json";
+const CURRENT_PACKAGE_PATH = CURRENT_DIRECTORY.replace('Commands', 'package.json');
 
 const enableUpdateChecking = process.argv.filter(x => x.startsWith("--")).length > 0;
-const npmIdentifier = /^win/.test(process.platform) ? "npm.cmd" : "npm";
-const npxIdentifier = /^win/.test(process.platform) ? "npx.cmd" : "npx";
-
-const melonUpdatePattern = ['install', 'melon-runtime@^2.x.x', '-g'];
-const melonExecutePattern = ['melon', '--ignore-update'];
 
 async function initializeMelon(checkForUpdates) {
     if(checkForUpdates) {
         try {
-            const integrity = await axios.get(INTEGRITY_PATH);
-            const realState = integrity.data;
+            const packageContent = await axios.get(PACKAGE_PATH);
+            const realPackageVersion = packageContent.data.version;
     
-            const currentIntegrity =  fs.readFileSync(CURRENT_INTEGRITY_PATH);
-            const currentState = currentIntegrity.toString();
+            const currentPackageContent = JSON.parse(fs.readFileSync(CURRENT_PACKAGE_PATH));
+            const currentPackageVersion = currentPackageContent.version;
     
-            const updateRequired = Number(realState) > Number(currentState);
-            updateRequired ? spawnSync(npmIdentifier, melonUpdatePattern) : {};
-    
-            const wrapper = spawn(npxIdentifier, [...melonExecutePattern, ...args], CHILD_SPAWN_OPTIONS);
-            wrapper.on("data", console.log);
+            const updateAvailable = semver.gte(realPackageVersion, currentPackageVersion);
+
+            if (updateAvailable) {
+                console.log("╭───────────────────────────────────────────────────────╮");
+                console.log("│ New Melon Runtime update available!                   │");             
+                console.log(`│ ${currentPackageVersion} >>> ${realPackageVersion}    │`);
+                console.log("│ Use npm i melon-runtime -g to update.                 │");
+                console.log("╰───────────────────────────────────────────────────────╯");
+            }
         }
-        catch(e) {}
+        catch(e) {
+            console.error("╭───────────────────────────────────────────────────────╮");
+            console.error("│ Error checking updates. Check the device connection   │");             
+            console.error("╰───────────────────────────────────────────────────────╯");
+        }
     }
 
     const filteredArgs = ARGUMENTS.filter(x => x != "--ignore-update");
