@@ -1,6 +1,6 @@
 {
     "name": "melon-types",
-    "version": "2.8.0",
+    "version": "2.9.0",
     "description": "TypeScript types for melon-runtime development",
     "types": "./index.d.ts",
     "type": "module",
