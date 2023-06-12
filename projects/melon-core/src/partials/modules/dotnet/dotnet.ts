@@ -1,4 +1,3 @@
-import { _types } from "./_types";
 import { 
     getFactories, 
     getStaticMethod, 
@@ -7,13 +6,13 @@ import {
     getLoadedAssemblies, 
     loadAssemblyAsync, 
     createList, 
-    loadAssembly
+    loadAssembly,
+    types
 } from "./dotnet-interop-core";
 import { Realm } from "./dotnet-realm-core";
 import { createTask, createThread, Task, Thread } from "./dotnet-threading-core";
  
-
-const _dotnet = {
+const dotnet = {
     getFactories,
     getStaticMethod,
     getStaticProperty,
@@ -28,8 +27,8 @@ const _dotnet = {
         Thread
     },
     createList,
-    types: _types,
+    types,
     Realm
 }
 
-export { _dotnet }
+export { dotnet }

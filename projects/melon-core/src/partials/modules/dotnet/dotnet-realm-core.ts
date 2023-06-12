@@ -1,6 +1,6 @@
 import { DotnetInstanceExpression } from "../../../types/dotnet/DotnetInstanceExpression";
 import { OutputFriendly, Primitive } from "../../../types/generic-types";
-import { _crypto } from "../../statics/_crypto";
+import { _crypto } from "../../statics/_Crypto";
 import { Result } from "../std/functional/Result";
 
 class Realm implements OutputFriendly {

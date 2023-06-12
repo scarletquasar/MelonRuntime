@@ -1,4 +1,4 @@
-import { _crypto } from "../../statics/_crypto";
+import { _crypto } from "../../statics/_Crypto";
 import { _nextTick } from "../std/async/_nextTick";
 import { getStaticProperty } from "./dotnet-interop-core";
 import { InteropMethod } from "./dotnet-types";
