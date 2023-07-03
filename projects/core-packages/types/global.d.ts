@@ -1,3 +1,5 @@
+import { RealmConstructor } from "./internal/dotnet-realm-types";
+
 // Console types
 declare type ConsoleColor = import("./internal/console-types").ConsoleColor;
 // Generic types
@@ -84,7 +86,15 @@ declare type MelonStandardApi = {
         renameDirectoryAsync: import("./structural/fs-structural-types").FsRenameDirectoryAsync
     },
     dotnet: {
-        
+        Realm: RealmConstructor,
+        getFactories: import("./structural/dotnet-structural-types").DotnetGetFactories,
+        getStaticMethod: import("./structural/dotnet-structural-types").DotnetGetStaticMethod,
+        getStaticProperty: import("./structural/dotnet-structural-types").DotnetGetStaticProperty,
+        loadAssembly: import("./structural/dotnet-structural-types").DotnetLoadAssembly,
+        loadAssemblyAsync: import("./structural/dotnet-structural-types").DotnetLoadAssemblyAsync,
+        removeAssembly: import("./structural/dotnet-structural-types").DotnetRemoveAssembly,
+        getLoadedAssemblies: import("./structural/dotnet-structural-types").DotnetGetLoadedAssemblies,
+        createList: import("./structural/dotnet-structural-types").DotnetCreateList    
     }
 }
 

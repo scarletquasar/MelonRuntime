@@ -21,6 +21,9 @@ type DotnetInstanceExpression = `${string}:${string}`;
 type DotnetGetStaticMethodResult<T> = (...args: any) => T;
 type DotnetFetchExpression = `${string}:${string}:${string}`;
 type InteropMethod<T> = (...args: unknown[]) => T;
+type InteropFactory<T> =  {
+    new: (...args: any) => T
+}
 
 export { 
     TypedNumber, 
@@ -28,5 +31,6 @@ export {
     DotnetInstanceExpression,
     DotnetFetchExpression,
     DotnetGetStaticMethodResult,
-    InteropMethod
+    InteropMethod,
+    InteropFactory
 }
