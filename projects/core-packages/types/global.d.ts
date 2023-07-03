@@ -82,6 +82,9 @@ declare type MelonStandardApi = {
         deleteDirectoryAsync: import("./structural/fs-structural-types").FsDeleteDirectoryAsync,
         renameDirectory: import("./structural/fs-structural-types").FsRenameDirectory,
         renameDirectoryAsync: import("./structural/fs-structural-types").FsRenameDirectoryAsync
+    },
+    dotnet: {
+        
     }
 }
 

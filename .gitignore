@@ -1,7 +1,6 @@
 projects/melon-runtime/Output
-projects/melon-core/babel
-projects/melon-core/dist
-projects/melon-core/types
+projects/core-packages/logic/output
+projects/core-packages/types/output
 node_modules
 projects/melon-tests/dist
 projects/melon-tests/babel
