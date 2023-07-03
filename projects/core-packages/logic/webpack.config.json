@@ -1,0 +1,6 @@
+{
+  "mode": "production",
+  "output": {
+    "filename": "core.js"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "devDependencies": {
+        "@babel/core": "latest",
+        "@babel/preset-env": "latest",
+        "@babel/preset-typescript": "latest",
+        "webpack-cli": "latest",
+        "typescript": "latest"
+    }
+}
