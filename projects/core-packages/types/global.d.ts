@@ -22,6 +22,8 @@ declare type TypedNumber = import ("./internal/dotnet-interop-types").TypedNumbe
 // Database types
 declare type DatabaseProviderInternal = import ("./internal/database-types").DatabaseProviderInternal;
 declare type DatabaseProviderOptions = import ("./internal/database-types").DatabaseProviderOptions;
+// Crypto types
+declare type UUID = import("./internal/generic-types").UUID;
 
 // Structural types
 declare type MelonStandardApi = {
@@ -93,6 +95,17 @@ declare type MelonStandardApi = {
         removeAssembly: import("./structural/dotnet-structural-types").DotnetRemoveAssembly,
         getLoadedAssemblies: import("./structural/dotnet-structural-types").DotnetGetLoadedAssemblies,
         createList: import("./structural/dotnet-structural-types").DotnetCreateList    
+    },
+    crypto: {
+        randomUUID(): UUID,
+    },
+    runtime: {
+        Event: import("./internal/runtime-types").EventConstructor,
+        EventChain: import("./internal/runtime-types").EventChainConstructor,
+        eventChain: import("./internal/runtime-types").EventChain
+    },
+    testing: {
+        test: import("./structural/testing-structural-types").TestingTest
     }
 }
 

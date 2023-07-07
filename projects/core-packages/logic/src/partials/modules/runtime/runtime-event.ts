@@ -1,23 +1,11 @@
 import { OutputFriendly, Primitive } from "../../../../../types/internal/generic-types";
 import { _crypto } from "../../statics/_Crypto";
 import { _log } from "../console/_log";
-
-enum EventCaller {
-    System,
-    Cronjob,
-    User
-}
-
-enum EventType {
-    LocalInputOutput,
-    RemoteInputOutput,
-    InteropTransaction
-}
-
-type EventAction = {
-    name: string,
-    action: Function
-}
+import { 
+    EventType, 
+    EventCaller, 
+    EventAction 
+} from "../../../../../types/internal/runtime-types";
 
 class Event implements OutputFriendly {
     public name: string;
