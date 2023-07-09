@@ -106,6 +106,9 @@ declare type MelonStandardApi = {
     },
     testing: {
         test: import("./structural/testing-structural-types").TestingTest
+    },
+    http: {
+        
     }
 }
 
