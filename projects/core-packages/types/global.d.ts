@@ -144,7 +144,7 @@ declare type MelonStandardApi = {
           trySerialize: any;
         };
         time: {
-          _timers: Timer[];
+          _timers: any[];
           setInterval: any;
           setTimeout: any;
           clearTimeout: any;
