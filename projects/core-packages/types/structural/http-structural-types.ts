@@ -34,5 +34,6 @@ export {
     HttpFetch, 
     HttpRequestAsync,
     HttpFuncResult,
-    HttpFuncStatic
+    HttpFuncStatic,
+    HttpFuncApp
 }

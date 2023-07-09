@@ -7,11 +7,16 @@ declare type OutputFriendly = import("./internal/generic-types").OutputFriendly;
 declare type InternalOSVersion = import("./internal/system-types").InternalOSVersion;
 declare type Platform = import("./internal/system-types").Platform;
 // Http types
-declare type HttpComposedResponse = import ("./internal/http-types").HttpComposedResponse;
-declare type HttpRequest = import ("./internal/http-types").HttpRequest;
-declare type CorsOptions = import ("./internal/http-types").CorsOptions;
-declare type CallbackFunction = import ("./internal/http-types").CallbackFunction;
-declare type AsyncCallbackFunction = import ("./internal/http-types").AsyncCallbackFunction
+declare type HttpComposedResponse = import("./internal/http-types").HttpComposedResponse;
+declare type HttpResponse = import("./internal/http-types").HttpResponse;
+declare type HttpRequest = import("./internal/http-types").HttpRequest;
+declare type CallbackFunction = import("./internal/http-types").CallbackFunction;
+declare type AsyncCallbackFunction = import("./internal/http-types").AsyncCallbackFunction;
+declare type CorsOptions = import("./internal/http-types").CorsOptions;
+declare type HttpResult<T> = import("./internal/http-types").HttpResult<T>;
+declare type HttpEndpoint = import("./internal/http-types").HttpEndpoint;
+declare type HttpApplication = import("./internal/http-types").HttpApplication;
+declare type HttpApplicationOptions = import("./internal/http-types").HttpApplicationOptions;
 // Dotnet interoperability types
 declare type InteropMethod<T> = import ("./internal/dotnet-interop-types").InteropMethod<T>;
 declare type DotnetFetchExpression = import ("./internal/dotnet-interop-types").DotnetFetchExpression;
@@ -108,7 +113,12 @@ declare type MelonStandardApi = {
         test: import("./structural/testing-structural-types").TestingTest
     },
     http: {
-        
+        requestSync: import("./structural/http-structural-types").HttpRequestSync,
+        fetch: import("./structural/http-structural-types").HttpFetch,
+        requestAsync: import("./structural/http-structural-types").HttpRequestAsync,
+        result: import("./structural/http-structural-types").HttpFuncResult,
+        static: import("./structural/http-structural-types").HttpFuncStatic,
+        app: import("./structural/http-structural-types").HttpFuncApp,
     }
 }
 
