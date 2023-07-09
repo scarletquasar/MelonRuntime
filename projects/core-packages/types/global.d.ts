@@ -119,6 +119,52 @@ declare type MelonStandardApi = {
         result: import("./structural/http-structural-types").HttpFuncResult,
         static: import("./structural/http-structural-types").HttpFuncStatic,
         app: import("./structural/http-structural-types").HttpFuncApp,
+    },
+    std: {
+        SharedBag: import("./internal/std-types").SharedBagConstructor;
+        TextDecoder: any;
+        TextEncoder: any;
+        shift: any;
+        async: {
+          nextTick: any;
+        };
+        melon: {
+          currentVersion: any;
+        };
+        boolean: {
+          checkAll: any;
+          checkOne: any;
+        };
+        json: {
+          tryParse: any;
+          tryStringify: any;
+          deserialize: any;
+          serialize: any;
+          tryDeserialize: any;
+          trySerialize: any;
+        };
+        time: {
+          _timers: Timer[];
+          setInterval: any;
+          setTimeout: any;
+          clearTimeout: any;
+          clearInterval: any;
+          Timer: any;
+        };
+        system: {
+          osInformation: any;
+        };
+        environment: {
+          baseDirectory: any;
+          getEnvironmentVariables: any;
+          setEnvironmentVariable: any;
+          clearLocalEnvironmentVariables: any;
+        };
+        process: {
+          argv: any;
+          env: any;
+          exit: any;
+        };
     }
 }
 
