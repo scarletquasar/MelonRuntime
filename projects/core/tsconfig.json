@@ -4,6 +4,10 @@
       "lib": [ "es2022" ],
       "target": "es2022",
       "declaration": true,
-      "emitDeclarationOnly": true
+      "emitDeclarationOnly": true,
+      "paths": {
+        "@libtypes/*": ["./types/*"],
+        "@logic/*": ["./logic/*"]
+      }
     }
 }

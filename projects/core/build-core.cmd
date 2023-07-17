@@ -14,11 +14,10 @@ echo:
 
 call npm install @babel/cli @babel/core webpack-cli -g -f
 
-cd ./logic
 mkdir output
 
 call npm install -f
-call npx babel --extensions .ts ./src/ --out-dir ./output/babel
-call npx webpack ./output/babel/index.js --config webpack.config.json
+call npx babel --extensions .ts ./ --out-dir ./output/js-logic
+call npx webpack ./output/js-logic/logic/index.js --config webpack.config.json
 
 move ./dist ./output/final

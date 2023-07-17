@@ -4,7 +4,7 @@ import { _data } from "./partials/modules/data/_data"
 import { dotnet } from "./partials/modules/dotnet/dotnet"
 import { _fs } from "./partials/modules/fs/fs"
 import { _guards } from "./partials/modules/guards/_guards"
-import { _http } from "./partials/modules/http/_http"
+import { http } from "./partials/modules/http/http"
 import { _std } from "./partials/modules/std/_std"
 import { _crypto } from "./partials/statics/_Crypto"
 import { $ } from "./partials/utils/generic/$"
@@ -22,7 +22,7 @@ const Melon = {
     data: _data,
     guards: _guards,
     fs: _fs,
-    http: _http,
+    http,
     dotnet,
     crypto: _crypto,
     console: _console,

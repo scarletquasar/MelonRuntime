@@ -1,3 +1,5 @@
+// TODO: File deprecated
+
 const _internalConsts = {
     //dotnet.types.[numeric type]
     INVALID_NUMBER_CAPACITY: "The number capacity is invalid for that type",

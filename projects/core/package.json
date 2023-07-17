@@ -5,5 +5,12 @@
         "@babel/preset-typescript": "latest",
         "webpack-cli": "latest",
         "typescript": "latest"
+    },
+    "scripts": {
+        "postinstall": "link-module-alias"
+    },
+    "_moduleAliases": {
+        "@types": "./types",
+        "@logic": "./logic"
     }
 }

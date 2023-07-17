@@ -6,4 +6,12 @@ interface OutputFriendly {
     toLoggableOutput(): Record<string, Primitive> | Primitive;
 }
 
-export { Primitive, OutputFriendly, UUID, MimeType }
+interface Prototype<T> {
+    constructor: new (...args: any) => T
+}
+
+interface ScopedValue {
+    dispose: Function; 
+}
+
+export { ScopedValue, Prototype, Primitive, OutputFriendly, UUID, MimeType }

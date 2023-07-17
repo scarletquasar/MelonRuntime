@@ -1,11 +1,10 @@
-import { OutputFriendly, Primitive } from "../../../../../types/internal/generic-types";
-import { _crypto } from "../../statics/_Crypto";
-import { _log } from "../console/_log";
-import { 
-    EventType, 
-    EventCaller, 
-    EventAction 
-} from "../../../../../types/internal/runtime-types";
+//Type Imports
+import { OutputFriendly } from "@libtypes/internal/generic-types";
+import { EventType, EventCaller, EventAction } from "@libtypes/internal/runtime-types";
+
+//Logic Imports
+import { _crypto } from "@logic/partials/statics/_Crypto";
+import { _log } from "@logic/partials/modules/console/_log";
 
 class Event implements OutputFriendly {
     public name: string;
