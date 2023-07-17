@@ -10,7 +10,7 @@
         "postinstall": "link-module-alias"
     },
     "_moduleAliases": {
-        "@types": "./types",
-        "@logic": "./logic"
+        "types": "./types",
+        "logic": "./logic"
     }
 }

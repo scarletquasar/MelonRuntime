@@ -6,8 +6,8 @@
       "declaration": true,
       "emitDeclarationOnly": true,
       "paths": {
-        "@libtypes/*": ["./types/*"],
-        "@logic/*": ["./logic/*"]
+        "types/*": ["./types/*"],
+        "logic/*": ["./logic/*"]
       }
     }
 }
