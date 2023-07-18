@@ -1,12 +1,17 @@
 {
     "devDependencies": {
-        "@babel/core": "latest",
+        "@babel/cli": "7.0.0",
+        "@babel/core": "7.0.0",
         "@babel/preset-env": "latest",
         "@babel/preset-typescript": "latest",
-        "webpack-cli": "latest",
-        "typescript": "latest"
+        "babel-plugin-module-alias": "^1.6.0",
+        "babel-plugin-module-resolver": "^5.0.0",
+        "link-module-alias": "^1.2.0",
+        "typescript": "latest",
+        "webpack-cli": "latest"
     },
     "scripts": {
+        "preinstall": "which link-module-alias && link-module-alias clean || echo",
         "postinstall": "link-module-alias"
     },
     "_moduleAliases": {
