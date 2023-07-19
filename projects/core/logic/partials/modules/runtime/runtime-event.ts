@@ -1,6 +1,6 @@
 //Type Imports
-import { OutputFriendly } from "types/internal/generic-types";
-import { EventType, EventCaller, EventAction } from "types/internal/runtime-types";
+import type { OutputFriendly } from "types/internal/generic-types";
+import type { EventType, EventCaller, EventAction } from "types/internal/runtime-types";
 
 //Logic Imports
 import { _crypto } from "logic/partials/statics/_Crypto";
