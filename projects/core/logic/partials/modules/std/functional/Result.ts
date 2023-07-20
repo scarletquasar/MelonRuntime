@@ -1,11 +1,26 @@
-import { Thread } from "../../dotnet/dotnet-threading-core";
-import { Either } from "./Either";
+class Result<TLeft extends Error, TRight> {
+    protected leftValue: TLeft = null;
+    protected rightValue: TRight = null;
 
-class Result<TError extends Error, TValue> extends Either<TError, TValue> {
-    match = this.fold;
-    join(message?: string) {
-        if(this.leftValue != null) {
-            Thread.panic(message ?? this.leftValue.message);
+    static left<T extends Error>(value: T) {
+        const either = new Result<T, any>();
+        either.leftValue = value;
+        return either;
+    }
+
+    static right<T>(value: any) {
+        const either = new Result<any, T>();
+        either.leftValue = value;
+        return either;
+    }
+
+    match<T>(ok: (result: TRight) => T | void, catcher: (error: TLeft) => T | void) {
+        if (this.leftValue) {
+            return catcher(this.leftValue) as T;
+        }
+
+        if (this.rightValue) {
+            return ok(this.rightValue) as T;
         }
     }
 }

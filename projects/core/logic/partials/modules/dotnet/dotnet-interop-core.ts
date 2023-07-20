@@ -1,5 +1,5 @@
-import { DotnetFetchExpression, InteropMethod } from "../../../../../types/internal/dotnet-interop-types";
-import { OutputFriendly, Primitive, ScopedValue } from "../../../../../types/internal/generic-types";
+import { DotnetFetchExpression, InteropMethod } from "types/internal/dotnet-interop-types";
+import { OutputFriendly, Primitive, ScopedValue } from "types/internal/generic-types";
 import { Realm } from "./dotnet-realm-core";
 
 const INVALID_NUMBER_CAPACITY = "The number capacity is invalid for that type";

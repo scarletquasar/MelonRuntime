@@ -1,4 +1,4 @@
-import { OutputFriendly } from "../../../../../types/internal/generic-types";
+import type { OutputFriendly } from "types/internal/generic-types";
 import { getStaticMethod } from "../dotnet/dotnet-interop-core";
 import { _std } from "../std/_std";
 
