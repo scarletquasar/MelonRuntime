@@ -1,5 +1,6 @@
 import { interopCache } from "logic/runtime/interop-cache-core";
 import { Result } from "../std/functional/Result";
+import { TableLike } from "types/internal/generic-types";
 
 const serializeAndFix = (target: object) => {
     return interopCache.serialization
@@ -86,6 +87,65 @@ function clear(): Result<Error, []> {
     }
 }
 
-function error() {
+// The "number" in result means the quantity of printed lines
+function error(): Result<Error, number> {
+    try {
+        switch(arguments.length) {
+            case 0:
+                return Result.right(0);
     
+            case 1:
+                interopCache.clinet.writeLine(toLoggableOutput(arguments[0]), "Red");
+                return Result.right(1);
+    
+            default:
+                let base = 0;
+    
+                for(base; base < arguments.length; base++) {
+                    interopCache.clinet.writeLine(toLoggableOutput(arguments[base]), "Red");
+                }
+    
+                return Result.right(base);
+        }
+    }
+    catch (e) {
+        return Result.left(e);
+    }
+}
+
+// The "number" in result means the quantity of printed lines
+function warn(): Result<Error, number> {
+    try {
+        switch(arguments.length) {
+            case 0:
+                return Result.right(0);
+    
+            case 1:
+                interopCache.clinet.writeLine(toLoggableOutput(arguments[0]), "Yellow");
+                return Result.right(1);
+    
+            default:
+                let base = 0;
+    
+                for(base; base < arguments.length; base++) {
+                    interopCache.clinet.writeLine(toLoggableOutput(arguments[base]), "Yellow");
+                }
+    
+                return Result.right(base);
+        }
+    }
+    catch (e) {
+        return Result.left(e);
+    }
+}
+
+function table<TRow extends string | number | symbol, TColumn>(tableObject: TableLike<TRow, TColumn>): Result<Error, []> {
+    if (tableObject == null) {
+        const error = new Error("Null objects are not allowed");
+        return Result.left(error);
+    }
+
+    //todo
+    
+    return;
 }
