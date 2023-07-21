@@ -145,7 +145,7 @@ function table<TRow extends string | number | symbol, TColumn>(tableObject: Tabl
         return Result.left(error);
     }
 
-    //todo
+    const entries = Object.entries(tableObject);
     
     return;
 }
