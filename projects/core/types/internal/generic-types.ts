@@ -1,7 +1,7 @@
 type UUID = `${string}-${string}-${string}-${string}-${string}`;
 type MimeType = `${string}/${string}`;
 type Primitive = string | number | boolean | bigint | null | symbol | Primitive[];
-type TableLike<TRow extends string | number | symbol, TColumn> = Array<TColumn> | Record<TRow, TColumn>;
+type TableLike = Array<unknown> | Record<any, unknown>;
 
 interface OutputFriendly {
     toLoggableOutput(): Record<string, Primitive> | Primitive;

@@ -139,13 +139,64 @@ function warn(): Result<Error, number> {
     }
 }
 
-function table<TRow extends string | number | symbol, TColumn>(tableObject: TableLike<TRow, TColumn>): Result<Error, []> {
-    if (tableObject == null) {
+function table(data: TableLike): Result<Error, []> {
+    if (data == null) {
         const error = new Error("Null objects are not allowed");
         return Result.left(error);
     }
 
-    const entries = Object.entries(tableObject);
-    
-    return;
+    let table = "";
+
+    if (Array.isArray(data)) {
+        if (data.length === 0) {
+            interopCache.console.writeLine("");
+            return Result.right([]);
+        }
+
+        if (typeof data[0] === "object") {
+            const headers = Object.keys(data[0]);
+            table += "| " + headers.join(" | ") + " |\n";
+            table += "| " + "-".repeat(headers.length * 3 - 1) + " |\n";
+
+            data.forEach((item) => {
+                const row = Object.values(item).map((value) => String(value));
+                table += "| " + row.join(" | ") + " |\n";
+            });
+        } 
+        else {
+            table += "| Valor |\n";
+            table += "| " + "-".repeat(7) + " |\n";
+
+            data.forEach((value) => {
+                table += `| ${String(value).padEnd(5)} |\n`;
+            });
+        }
+    } 
+    else if (typeof data === "object" && data !== null) {
+        const keys = Object.keys(data);
+        if (keys.length === 0) {
+            interopCache.console.writeLine("");
+            return Result.right([]);
+        }
+
+        const values = Object.values(data).map((value) => String(value));
+        const maxKeyLength = keys.reduce((max, key) => Math.max(max, key.length), 0);
+        const maxValueLength = values.reduce((max, value) => Math.max(max, value.length), 0);
+
+        table += "+ " + "-".repeat(maxKeyLength) + " + " + "-".repeat(maxValueLength) + " +\n";
+
+        keys.forEach((key, index) => {
+            const value = values[index];
+            table += `| ${key.padEnd(maxKeyLength)} | ${value.padEnd(maxValueLength)} |\n`;
+        });
+
+        table += "+ " + "-".repeat(maxKeyLength) + " + " + "-".repeat(maxValueLength) + " +\n";
+    } else {
+        const error = new Error("Not tableable values are not allowed");
+        return Result.left(error);
+    }
+
+    interopCache.console.writeLine(table);
+    return Result.right([]);
 }
+
