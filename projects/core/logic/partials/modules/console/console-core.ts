@@ -200,3 +200,39 @@ function table(data: TableLike): Result<Error, []> {
     return Result.right([]);
 }
 
+class ConsoleTimer {
+    private started: Date;
+    private lastStep: Date;
+    private stopped: boolean;
+
+    private checkIfDateIsValid(date: Date): boolean {
+        if (Object.prototype.toString.call(date) === "[object Date]") {
+            if (isNaN(date.valueOf())) {
+                return false;
+            } 
+            return true;
+        }
+        return false;
+    }
+
+    getEllapsedTime(): Result<Error, Date> {
+        if (this.stopped) {
+            return Result.left(new Error("The timer was stopped"));
+        }
+
+        this.lastStep = new Date(Date.now());
+
+        if (this.checkIfDateIsValid(this.started)) {
+            return Result.right(new Date(this.started.valueOf() - this.lastStep.valueOf()));
+        }
+
+        return Result.left(new Error("Invalid start date"));
+    }
+
+    stop() {
+        const final = this.getEllapsedTime();
+        this.stopped = true;
+        return final;
+    }
+}
+
