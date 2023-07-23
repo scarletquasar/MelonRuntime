@@ -10,7 +10,11 @@ const interopCache = {
         clear: getStaticMethod<void>("System:Console:Clear")
     },
     clinet: {
-        writeLine: getStaticMethod<void>("Cli.NET.Tools:CLNConsole:WriteLine")
+        writeLine: getStaticMethod<void>("Cli.NET.Tools:CLNConsole:WriteLine"),
+        write: getStaticMethod<void>("Cli.NET.Tools:CLNConsole:Write")
+    },
+    io: {
+        getFiles: getStaticMethod<string[]>("System.IO:Directory:GetFiles")
     }
 }
 

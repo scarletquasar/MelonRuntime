@@ -1,6 +1,9 @@
 import { interopCache } from "logic/runtime/interop-cache-core";
-import { Result } from "../std/functional/Result";
+import { Result } from "logic/partials/modules/std/functional/Result";
 import { TableLike } from "types/internal/generic-types";
+import { ConsoleColor } from "types/internal/console-types"
+
+// Important: generally, "console" module operations are NOT thread-sade
 
 const serializeAndFix = (target: object) => {
     return interopCache.serialization
@@ -205,6 +208,12 @@ class ConsoleTimer {
     private lastStep: Date;
     private stopped: boolean;
 
+    public static timers: Record<string, ConsoleTimer>;
+
+    constructor() {
+        this.started = new Date(Date.now());
+    }
+
     private checkIfDateIsValid(date: Date): boolean {
         if (Object.prototype.toString.call(date) === "[object Date]") {
             if (isNaN(date.valueOf())) {
@@ -236,3 +245,70 @@ class ConsoleTimer {
     }
 }
 
+function time(label: string): Result<Error, ConsoleTimer> {
+    try {
+        const timer = new ConsoleTimer();
+        ConsoleTimer.timers[label] = timer;
+        return Result.right(ConsoleTimer.timers[label]);
+    }
+    catch(e) {
+        return Result.left(e);
+    }
+}
+
+function timeEnd(
+    label: string, 
+    showMessage = true, 
+    messageTemplate = "[%label] [%time]"
+): Result<Error, ConsoleTimer> {
+    const timer = ConsoleTimer.timers[label].stop();
+    
+    const result = timer.match<Date | Error>(
+        ok => ok,
+        error => error
+    )
+
+    if (result.constructor == Error) {
+        return Result.left(result);
+    }
+
+    if (showMessage) {
+        interopCache.console.writeLine(
+            messageTemplate
+                .replaceAll("%label", label)
+                .replaceAll("%time", result.toString())
+        );
+    }
+
+    return Result.right(ConsoleTimer.timers[label]);
+}
+
+function write(target: string, color: ConsoleColor): Result<Error, []> {
+    if(typeof target != "string") {
+        interopCache.clinet.write(interopCache.serialization.serialize(target), color);
+        return Result.right([]);
+    }
+
+    return Result.left(new Error("Invalid write value"));
+}
+
+function writeLine(target: string, color: ConsoleColor): Result<Error, []> {
+    if(typeof target != "string") {
+        interopCache.clinet.writeLine(interopCache.serialization.serialize(target), color);
+        return Result.right([]);
+    }
+
+    return Result.left(new Error("Invalid write value"));
+}
+
+export { 
+    log, 
+    clear, 
+    error, 
+    warn, 
+    table, 
+    time, 
+    timeEnd, 
+    write, 
+    writeLine 
+}

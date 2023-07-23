@@ -1,22 +1,28 @@
+// Utilitary imports
+import { setupEnvironmentVariables } from "logic/runtime/global-environment-core"
+import { $ } from "./partials/utils/generic/$"
+import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
+
+// Isolated imports
 import { _Version } from "./partials/constructors/_Version"
-import { _console } from "./partials/modules/console/_console"
-import { _data } from "./partials/modules/data/_data"
+
+// Module imports
+import { console as _console } from "logic/partials/modules/console/console"
 import { dotnet } from "./partials/modules/dotnet/dotnet"
+import { _crypto } from "./partials/statics/_Crypto"
 import { _fs } from "./partials/modules/fs/fs"
 import { _guards } from "./partials/modules/guards/_guards"
 import { http } from "./partials/modules/http/http"
 import { _std } from "./partials/modules/std/_std"
-import { _crypto } from "./partials/statics/_Crypto"
-import { $ } from "./partials/utils/generic/$"
-import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
-import { getEnv } from "./partials/utils/environment/getEnv"
+import { _data } from "./partials/modules/data/_data"
 import { testing } from "./partials/modules/testing/testing"
 import { runtime } from "./partials/modules/runtime/runtime"
 
-getEnv();
+setupEnvironmentVariables();
 addPrototypeExtension(Object, "$", $);
 
 const Melon = {
+    console: _console,
     testing,
     std: _std,
     data: _data,
@@ -25,32 +31,10 @@ const Melon = {
     http,
     dotnet,
     crypto: _crypto,
-    console: _console,
     runtime,
     Version: _Version
 }
 
-const { console, crypto, fs } = Melon;
-const { fetch } = Melon.http;
-const { TextEncoder, TextDecoder } = Melon.std;
-const { setTimeout, setInterval, clearTimeout, clearInterval } = Melon.std.time;
-
-const globalExpositions = {
-    console,
-    crypto,
-    fs,
-    setTimeout,
-    setInterval,
-    clearTimeout,
-    clearInterval,
-    fetch,
-    TextDecoder,
-    TextEncoder,
-    Melon
-}
-
-Object.entries(globalExpositions).forEach(entry => {
-    globalThis[entry[0]] = entry[1];
-});
+globalThis["Melon"] = Melon;
 
 export { Melon }

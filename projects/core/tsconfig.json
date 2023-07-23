@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "outDir": "types",
-      "lib": [ "es2022" ],
+      "lib": [ ],
       "target": "es2022",
       "declaration": true,
       "emitDeclarationOnly": true,
