@@ -1,7 +1,7 @@
 // Utilitary imports
-import { setupEnvironmentVariables } from "logic/runtime/global-environment-core"
-import { $ } from "./partials/utils/generic/$"
-import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension"
+import { setupEnvironmentVariables } from "logic/runtime/global-environment-core";
+import { addPrototypeExtension } from "./partials/utils/generic/addPrototypeExtension";
+import { and } from "logic/runtime/global-extensions";
 
 // Isolated imports
 import { _Version } from "./partials/constructors/_Version"
@@ -19,7 +19,7 @@ import { testing } from "./partials/modules/testing/testing"
 import { runtime } from "./partials/modules/runtime/runtime"
 
 setupEnvironmentVariables();
-addPrototypeExtension(Object, "$", $);
+addPrototypeExtension(Object, "and", and);
 
 const Melon = {
     console: _console,
