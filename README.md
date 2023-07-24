@@ -2,7 +2,7 @@
 
 # The Melon Runtime Project
 
-> *"Out of intense complexities, intense simplicities emerge" - Winston Churchill*
+> *“To make a lasting change in the direction of development of any important aspect of a society, reform is insufficient and revolution is required.” - Theodore J. Kaczynski*
 
 Melon is a JavaScript runtime based on the .NET environment with multi-threading capabilities. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
 
