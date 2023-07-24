@@ -302,9 +302,9 @@ function writeLine(target: string, color: ConsoleColor): Result<Error, []> {
 }
 
 export { 
-    log, 
-    clear, 
-    error, 
+    log,
+    clear,
+    error,
     warn, 
     table, 
     time, 
