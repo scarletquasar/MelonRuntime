@@ -1,19 +1,14 @@
-declare class Result<TError extends Error, TValue> extends Either<TError, TValue> {
-    match: (left: (error: TError) => void, right: (value: TValue) => void) => void;
-    join(message?: string): void;
-}
+declare class Result<TError extends Error, TRight> {
+    protected leftValue?: TError;
+    protected rightValue?: TRight;
 
-declare class Either<TLeft, TRight> {
-    protected leftValue: TLeft | null;
-    protected rightValue: TRight | null;
-
-    static left<T>(value: T): Either<T, any>;
-    static right<T>(value: T): Either<any, T>;
+    static left<T extends Error>(value: T): Result<T, any>;
+    static right<T>(value: T): Result<any, T>;
 
     fold<T>(
-      left: (value: TLeft) => T | void,
+      left: (value: TError) => T | void,
       right: (value: TRight) => T | void
     ): T | void;
 }
 
-export { Result, Either }
+export { Result }
