@@ -5,9 +5,9 @@ declare class Result<TError extends Error, TRight> {
     static left<T extends Error>(value: T): Result<T, any>;
     static right<T>(value: T): Result<any, T>;
 
-    fold<T>(
-      left: (value: TError) => T | void,
-      right: (value: TRight) => T | void
+    match<T>(
+      handler: (ok: TRight) => T | void,
+      catcher: (error: TError) => T | void
     ): T | void;
 }
 
