@@ -1,4 +1,4 @@
-<img align="left" src="https://i.imgur.com/w2aYNRW.png" width="235">
+<img align="left" src="https://i.imgur.com/w2aYNRW.png" width="230">
 
 # The Melon Runtime Project
 
