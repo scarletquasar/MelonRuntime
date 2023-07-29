@@ -8,7 +8,7 @@ import { mkdirSync, cpSync, rmSync, existsSync } from "fs"
 :: '@babel/cli' and 'webpack-cli' globally.
 */
 
-const CHILD_SPAWN_OPTIONS: unknown = { 
+export const CHILD_SPAWN_OPTIONS: unknown = { 
     stdio: "inherit",
     shell: true
 };
@@ -30,7 +30,7 @@ if (args.includes(" --help ")) {
 }
 
 console.log("──────────────────────────────────────────────────────");
-console.log("Melon Runtime Builder - Core Packages");  
+console.log("Melon Runtime Builder - Core");  
 console.log("──────────────────────────────────────────────────────");
 
 if (forceGlobalInstalls) {
