@@ -1,8 +1,8 @@
-import { _crypto } from "../../statics/_Crypto";
-import { _error } from "../console/_error";
-import { _nextTick } from "../std/async/_nextTick";
+import { _crypto } from "logic/partials/statics/_Crypto";
+import { error } from "logic/partials/modules/console/console-core";
+import { _nextTick } from "logic/partials/modules/std/async/_nextTick";
 import { getStaticProperty } from "./dotnet-interop-core";
-import { InteropMethod } from "../../../../../types/internal/dotnet-interop-types";;
+import { InteropMethod } from "types/internal/dotnet-interop-types";
 
 function createThread(identifier: string) {
     return _$internalBinding["CreateThread"](identifier);
@@ -97,7 +97,7 @@ class Thread {
     }
 
     static panic(message?: string) {
-        _error(message ?? "");
+        (<Function>error)(message ?? "");
         Thread.currentThread.abort(101);
     }
 }

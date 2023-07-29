@@ -1,5 +1,4 @@
-import { _write } from "../console/_write";
-import { _writeLine } from "../console/_writeLine";
+import { write, writeLine } from "logic/partials/modules/console/console-core";
 import { Assert, AssertHandler } from "./Assert";
 
 function test(description: string, handler: (assert: Assert) => void) {
@@ -8,22 +7,22 @@ function test(description: string, handler: (assert: Assert) => void) {
 
     const problems = AssertHandler.getProblems(assertInstance);
 
-    _writeLine("");
-    _write("[Melon Test] ", "DarkYellow");
-    _write(description, "Cyan");
-    _writeLine("");
+    (<Function>writeLine)("");
+    (<Function>write)("[Melon Test] ", "DarkYellow");
+    (<Function>write)(description, "Cyan");
+    (<Function>writeLine)("");
 
     if(problems.length) {
-        _writeLine("");
+        (<Function>writeLine)("");
         const testErrorMessage = problems.join("\n");
         const testError = new Error(testErrorMessage);
 
         throw testError;
     }
 
-    _write("[Melon Test] ", "DarkYellow");
-    _write("Ran with success", "Green");
-    _writeLine("");
+    (<Function>write)("[Melon Test] ", "DarkYellow");
+    (<Function>write)("Ran with success", "Green");
+    (<Function>writeLine)("");
 }
 
 export { test }

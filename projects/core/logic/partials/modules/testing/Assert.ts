@@ -1,4 +1,4 @@
-import { _compare } from "../data/_compare";
+import { _compare } from "logic/partials/modules/data/_compare";
 
 class AssertHandler {
     static getProblems(assert: Assert) {

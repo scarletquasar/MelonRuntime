@@ -1,5 +1,5 @@
-import { DotnetInstanceExpression } from "../../../../../types/internal/dotnet-interop-types";
-import { OutputFriendly, Primitive } from "../../../../../types/internal/generic-types";
+import { DotnetInstanceExpression } from "types/internal/dotnet-interop-types";
+import { OutputFriendly, Primitive } from "types/internal/generic-types";
 import { _crypto } from "../../statics/_Crypto";
 import { Result } from "../std/functional/Result";
 
