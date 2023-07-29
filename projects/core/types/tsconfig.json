@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
       "outDir": "types",
-      "lib": [ "es2022" ],
-      "target": "es2022",
+      "lib": [ "ESNext" ],
+      "target": "ESNext",
       "declaration": true,
       "emitDeclarationOnly": true
     }

@@ -1,15 +1,15 @@
 // Types testing script - Not meant to be executed, only to not have any development error
 
 // Melon.console
-const { console } = Melon;
+const c = Melon.console;
 
-console.log("Message");
-console.error("Error");
-console.warn("Warning");
-console.write("Data");
-console.writeLine("Title");
-console.table([1, 2], ["a", "b"]);
-console.time("Timer");
-console.timeEnd("Timer");
+c.log("Message");
+c.error("Error");
+c.warn("Warning");
+c.write("Data");
+c.writeLine("Title");
+c.table([1, 2], ["a", "b"]);
+c.time("Timer");
+c.timeEnd("Timer");
 
 //Melon.data
