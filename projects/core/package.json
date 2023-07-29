@@ -12,7 +12,8 @@
     },
     "scripts": {
         "preinstall": "which link-module-alias && link-module-alias clean || echo",
-        "postinstall": "link-module-alias"
+        "postinstall": "link-module-alias",
+        "build": "ts-node build-core.ts"
     },
     "_moduleAliases": {
         "types": "./types",
