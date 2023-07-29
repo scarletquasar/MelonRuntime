@@ -23,6 +23,12 @@ const args = process.argv;
 const forceGlobalInstalls = args.includes(" -i ");
 const keepCache = args.includes(" -kc ");
 
+if (args.includes(" --help ")) {
+    console.log(" --kc | Keep the previous build cache")
+    console.log(" -i   | Forces global installs")
+    process.exit(0);
+}
+
 console.log("──────────────────────────────────────────────────────");
 console.log("Melon Runtime Builder - Core Packages");  
 console.log("──────────────────────────────────────────────────────");
