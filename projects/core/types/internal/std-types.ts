@@ -7,4 +7,23 @@ interface SharedBag<T> {
 
 type SharedBagConstructor = new <T>(...content: T[]) => SharedBag<T>;
 
-export { SharedBag, SharedBagConstructor }
+interface TextEncoder {
+    encode(string: string): number[];
+}
+
+interface TextDecoder {
+    decode(octets: number[]): string;
+}
+
+type TextDecoderConstructor = new () => TextDecoder;
+type TextEncoderConstructor = new () => TextEncoder;
+
+
+export { 
+    SharedBag, 
+    SharedBagConstructor,
+    TextDecoder,
+    TextDecoderConstructor,
+    TextEncoder,
+    TextEncoderConstructor 
+}

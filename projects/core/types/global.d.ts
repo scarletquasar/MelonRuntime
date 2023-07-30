@@ -122,14 +122,14 @@ declare type MelonStandardApi = {
     },
     std: {
         SharedBag: import("./internal/std-types").SharedBagConstructor;
-        TextDecoder: any;
-        TextEncoder: any;
+        TextDecoder: import("./internal/std-types").TextDecoderConstructor;
+        TextEncoder: import("./internal/std-types").TextEncoderConstructor;
         shift: any;
         async: {
-          nextTick: any;
+          nextTick: (delay?: number) => Promise<void>;
         };
         melon: {
-          currentVersion: any;
+          currentVersion: import("./internal/generic-types").Version;
         };
         boolean: {
           checkAll: any;
