@@ -169,3 +169,7 @@ declare type MelonStandardApi = {
 }
 
 declare const Melon: MelonStandardApi;
+
+declare interface Object {
+  and: import("./internal/extension-types").and
+}

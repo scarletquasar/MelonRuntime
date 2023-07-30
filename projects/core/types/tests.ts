@@ -1,4 +1,4 @@
-// Types testing script - Not meant to be executed, only to not have any development error
+// Types testing script - Not meant to be executed
 
 // Melon.console
 const c = Melon.console;
