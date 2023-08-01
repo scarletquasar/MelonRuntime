@@ -15,7 +15,12 @@ interface ScopedValue {
     dispose: Function; 
 }
 
+module test {
+    export type a = 1
+}
+
 export {
+    test,
     TableLike,
     ScopedValue, 
     Prototype, 

@@ -1,3 +1,7 @@
+//Std types
+declare type Timer = import("./internal/std-types").Timer
+//Functional types
+declare type Result<TError extends Error, TValue> = import("./internal/functional-types").Result<TError, TValue>;
 // Console types
 declare type ConsoleColor = import("./internal/console-types").ConsoleColor;
 // Generic types
@@ -129,41 +133,40 @@ declare type MelonStandardApi = {
           nextTick: (delay?: number) => Promise<void>;
         };
         melon: {
-          currentVersion: import("./internal/generic-types").Version;
+          currentVersion: import("./internal/generic-types").test.a;
         };
         boolean: {
-          checkAll: any;
-          checkOne: any;
+          checkAll: <T>(method: Function, values: T[]) => boolean;
+          checkOne: <T>(method: Function, values: T[]) => boolean;
         };
         json: {
-          tryParse: any;
-          tryStringify: any;
-          deserialize: any;
-          serialize: any;
-          tryDeserialize: any;
-          trySerialize: any;
+          tryParse: <T>(json: string) => T;
+          tryStringify: (object: any) => string;
+          deserialize: <T>(json: string) => T;
+          serialize: (object: any) => string;
+          tryDeserialize: <T>(json: string) => Result<Error, T>;
+          trySerialize: (object: any) => Result<Error, string>;
         };
         time: {
-          _timers: any[];
-          setInterval: any;
-          setTimeout: any;
-          clearTimeout: any;
-          clearInterval: any;
-          Timer: any;
+          setInterval: (action: Function, delay: number) => void;
+          setTimeout: (action: Function, delay: number) => void;
+          clearTimeout: (id: string) => void;
+          clearInterval: (id: string) => void;
+          Timer: new (callback: Function) => Timer;
         };
         system: {
-          osInformation: any;
+          osInformation: Record<string, Primitive>;
         };
         environment: {
-          baseDirectory: any;
+          baseDirectory: string;
           getEnvironmentVariables: any;
           setEnvironmentVariable: any;
           clearLocalEnvironmentVariables: any;
         };
         process: {
-          argv: any;
-          env: any;
-          exit: any;
+          argv: string[];
+          env: Record<string, Primitive>;
+          exit: (code: number) => never;
         };
     }
 }

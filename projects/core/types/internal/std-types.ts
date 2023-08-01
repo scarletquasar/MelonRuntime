@@ -18,8 +18,14 @@ interface TextDecoder {
 type TextDecoderConstructor = new () => TextDecoder;
 type TextEncoderConstructor = new () => TextEncoder;
 
+interface Timer {
+    active: boolean;
+    callback: Function;
+    clear(): void;
+}
 
-export { 
+export {
+    Timer,
     SharedBag, 
     SharedBagConstructor,
     TextDecoder,
