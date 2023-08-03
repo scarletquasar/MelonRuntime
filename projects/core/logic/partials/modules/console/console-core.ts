@@ -167,7 +167,7 @@ function table(data: TableLike): Result<Error, []> {
             });
         } 
         else {
-            table += "| Valor |\n";
+            table += "| * |\n";
             table += "| " + "-".repeat(7) + " |\n";
 
             data.forEach((value) => {
