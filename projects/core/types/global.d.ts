@@ -133,7 +133,7 @@ declare type MelonStandardApi = {
           nextTick: (delay?: number) => Promise<void>;
         };
         melon: {
-          currentVersion: import("./internal/generic-types").test.a;
+          currentVersion: import("./internal/generic-types").Version;
         };
         boolean: {
           checkAll: <T>(method: Function, values: T[]) => boolean;
@@ -159,9 +159,9 @@ declare type MelonStandardApi = {
         };
         environment: {
           baseDirectory: string;
-          getEnvironmentVariables: any;
-          setEnvironmentVariable: any;
-          clearLocalEnvironmentVariables: any;
+          getEnvironmentVariables: () => Record<string, Primitive>;
+          setEnvironmentVariable: (key: string, value: Primitive) => void;
+          clearLocalEnvironmentVariables: () => void;
         };
         process: {
           argv: string[];
