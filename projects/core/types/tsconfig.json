@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "outDir": "types",
+      "lib": [ "ESNext" ],
+      "target": "ESNext",
+      "declaration": true,
+      "emitDeclarationOnly": true
+    }
+}

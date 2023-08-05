@@ -1,0 +1,17 @@
+{
+    "name": "melon-types",
+    "version": "3.0.0",
+    "description": "Robust development-time types for Melon Runtime.",
+    "types": "./global.d.ts",
+    "type": "module",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/MelonRuntime/Melon.git"
+    },
+    "author": "Victória Rose",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/MelonRuntime/Melon/issues"
+    },
+    "homepage": "https://github.com/MelonRuntime/Melon#readme"
+}

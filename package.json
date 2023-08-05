@@ -1,19 +1,6 @@
 {
     "scripts": {
-        "_build_core": "cd ./projects/melon-core && npm run build && cd ../..",
-        "_build_tests": "cd ./projects/melon-tests && npm run build && cd ../..",
-        "_apply_core_bundle_windows": "xcopy .\\projects\\melon-core\\dist\\core.js .\\projects\\melon-runtime\\MelonRuntime.Core\\Scripts\\core.js /Y",
-        "_apply_core_bundle_linux": "cp ./projects/melon-core/dist/core.js ./projects/melon-runtime/Melon.Library/Bundle/core.js",
-        "_apply_tests_bundle_windows": "xcopy .\\projects\\melon-tests\\dist\\tests.js .\\projects\\melon-runtime\\MelonRuntime.Core\\Scripts\\tests.js /Y",
-        "_apply_tests_bundle_linux": "cp ./projects/melon-tests/dist/tests.js ./projects/melon-runtime/Melon.Library/Bundle/tests.js",
-        "_build_runtime": "cd ./projects/melon-runtime && npm run build && cd ../..",
-        "_run": "cd ./projects/melon-runtime && npm run dev && cd ../..",
-        "build:win": "npm run _build_core && npm run _apply_core_bundle_windows && npm run _build_tests && npm run _apply_tests_bundle_windows && npm run _build_runtime",
-        "build:linux": "npm run _build_core && npm run _apply_core_bundle_linux && npm run _build_tests && npm run _apply_tests_bundle_linux && npm run _build_runtime",
-        "dev:win": "npm run build:win && npm run _run",
-        "dev:linux": "npm run build:linux && npm run _run",
-        "install-dev:win": "npm run build:win && cd ./projects/melon-runtime && npm i -g -f && cd ../..",
-        "install-dev:linux": "npm run build:linux && cd ./projects/melon-runtime && npm i -g -f && cd ../..",
-        "all-benchmarks": "cd ./projects/melon-benchmarks/ && npm run all-benchmarks"
+        "build": "cd projects/core && npm run build && cd ../native && npm run build",
+        "dev": "cd projects/native && npm run dev"
     }
 }

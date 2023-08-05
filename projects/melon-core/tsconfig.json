@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {
-      "outDir": "types",
-      "lib": [ "es2022" ],
-      "target": "es2022",
-      "declaration": true,
-      "emitDeclarationOnly": true
-    }
-}

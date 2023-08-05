@@ -1,0 +1,9 @@
+{
+  "mode": "production",
+  "output": {
+    "filename": "core.js"
+  },
+  "resolve": {
+    "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  }
+}
