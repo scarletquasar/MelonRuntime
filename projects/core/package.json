@@ -1,0 +1,22 @@
+{
+    "devDependencies": {
+        "@babel/cli": "7.0.0",
+        "@babel/core": "7.0.0",
+        "@babel/preset-env": "latest",
+        "@babel/preset-typescript": "latest",
+        "babel-plugin-module-alias": "^1.6.0",
+        "babel-plugin-module-resolver": "^5.0.0",
+        "link-module-alias": "^1.2.0",
+        "ts-node": "^10.9.1",
+        "typescript": "latest",
+        "webpack-cli": "latest"
+    },
+    "scripts": {
+        "postinstall": "link-module-alias",
+        "build": "ts-node build-core.ts"
+    },
+    "_moduleAliases": {
+        "types": "./types",
+        "logic": "./logic"
+    }
+}

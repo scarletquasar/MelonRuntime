@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "outDir": "types",
+      "lib": ["ES2023"],
+      "target": "ESNext",
+      "declaration": true,
+      "emitDeclarationOnly": true,
+      "paths": {
+        "types/*": ["./types/*"],
+        "logic/*": ["./logic/*"]
+      }
+    }
+}
