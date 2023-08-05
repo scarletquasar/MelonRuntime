@@ -1,7 +1,7 @@
-import { readText } from "logic/partials/modules/fs/fs-raw-file-management";
-import { _setEnvironmentVariable } from "logic/partials/modules/std/environment/_setEnvironmentVariable";
+import { readText } from "logic/api/modules/fs/fs-raw-file-management";
+import { _setEnvironmentVariable } from "logic/api/modules/std/environment/_setEnvironmentVariable";
 import { interopCache } from "logic/runtime/interop-cache-core";
-import { _guards } from "logic/partials/modules/guards/_guards";
+import { _guards } from "logic/api/modules/guards/_guards";
 import { Primitive } from "types/internal/generic-types";
 
 function setupEnvironmentVariables() {

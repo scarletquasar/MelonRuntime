@@ -1,4 +1,4 @@
-import { getStaticMethod } from "logic/partials/modules/dotnet/dotnet-interop-core";
+import { getStaticMethod } from "logic/api/modules/dotnet/dotnet-interop-core";
 
 const interopCache = {
     serialization: {

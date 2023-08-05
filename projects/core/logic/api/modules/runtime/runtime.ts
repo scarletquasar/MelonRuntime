@@ -1,5 +1,5 @@
 //Logic Imports
-import { EventChain, Event } from "logic/partials/modules/runtime/runtime-event";
+import { EventChain, Event } from "logic/api/modules/runtime/runtime-event";
 
 const eventChain = new EventChain();
 

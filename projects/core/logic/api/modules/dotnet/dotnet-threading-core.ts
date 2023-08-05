@@ -1,6 +1,6 @@
-import { _crypto } from "logic/partials/statics/_Crypto";
-import { error } from "logic/partials/modules/console/console-core";
-import { _nextTick } from "logic/partials/modules/std/async/_nextTick";
+import { _crypto } from "logic/api/statics/_Crypto";
+import { error } from "logic/api/modules/console/console-core";
+import { _nextTick } from "logic/api/modules/std/async/_nextTick";
 import { getStaticProperty } from "./dotnet-interop-core";
 import { InteropMethod } from "types/internal/dotnet-interop-types";
 

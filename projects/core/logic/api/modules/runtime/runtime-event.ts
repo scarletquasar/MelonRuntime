@@ -3,8 +3,8 @@ import type { OutputFriendly } from "types/internal/generic-types";
 import type { EventType, EventCaller, EventAction } from "types/internal/runtime-types";
 
 //Logic Imports
-import { _crypto } from "logic/partials/statics/_Crypto";
-import { _log } from "logic/partials/modules/console/_log";
+import { _crypto } from "logic/api/statics/_Crypto";
+import { _log } from "logic/api/modules/console/_log";
 
 class Event implements OutputFriendly {
     public name: string;

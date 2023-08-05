@@ -8,12 +8,12 @@ import {
 } from "types/internal/http-types";
 
 //Logic imports
-import { getStaticMethod } from "logic/partials/modules/dotnet/dotnet-interop-core";
-import { _tryStringify } from "logic/partials/modules/std/json/_tryStringify";
-import { _tryParse } from "logic/partials/modules/std/json/_tryParse";
-import { _nextTick } from "logic/partials/modules/std/async/_nextTick";
+import { getStaticMethod } from "logic/api/modules/dotnet/dotnet-interop-core";
+import { _tryStringify } from "logic/api/modules/std/json/_tryStringify";
+import { _tryParse } from "logic/api/modules/std/json/_tryParse";
+import { _nextTick } from "logic/api/modules/std/async/_nextTick";
 import { Melon } from "logic/index";
-import { http } from "logic/partials/modules/http/http";
+import { http } from "logic/api/modules/http/http";
 
 function $static(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
     const serialize = getStaticMethod("Newtonsoft.Json:JsonConvert:SerializeObject");

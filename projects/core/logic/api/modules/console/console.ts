@@ -1,4 +1,4 @@
-import { clear, error, log, table, time, timeEnd, warn, write, writeLine } from "logic/partials/modules/console/console-core";
+import { clear, error, log, table, time, timeEnd, warn, write, writeLine } from "logic/api/modules/console/console-core";
 
 const console = {
     time,

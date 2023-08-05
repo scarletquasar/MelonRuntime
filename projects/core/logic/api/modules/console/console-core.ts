@@ -1,5 +1,5 @@
 import { interopCache } from "logic/runtime/interop-cache-core";
-import { Result } from "logic/partials/modules/std/functional/Result";
+import { Result } from "logic/api/modules/std/functional/Result";
 import { TableLike } from "types/internal/generic-types";
 import { ConsoleColor } from "types/internal/console-types"
 
@@ -284,21 +284,31 @@ function timeEnd(
 }
 
 function write(target: string, color: ConsoleColor): Result<Error, []> {
-    if(typeof target != "string") {
-        interopCache.clinet.write(toLoggableOutput(target), color);
-        return Result.right([]);
+    try {
+        if (typeof target != "string") {
+            interopCache.clinet.write(toLoggableOutput(target), color);
+            return Result.right([]);
+        }
+    
+        return Result.left(new Error("Invalid write value"));
     }
-
-    return Result.left(new Error("Invalid write value"));
+    catch (e) {
+        return Result.left(e);
+    }
 }
 
 function writeLine(target: string, color: ConsoleColor): Result<Error, []> {
-    if(typeof target != "string") {
-        interopCache.clinet.writeLine(toLoggableOutput(target), color);
-        return Result.right([]);
+    try {
+        if (typeof target != "string") {
+            interopCache.clinet.writeLine(toLoggableOutput(target), color);
+            return Result.right([]);
+        }
+    
+        return Result.left(new Error("Invalid write value"));
     }
-
-    return Result.left(new Error("Invalid write value"));
+    catch (e) {
+        return Result.left(e);
+    }
 }
 
 export { 

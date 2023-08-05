@@ -1,4 +1,4 @@
-import { write, writeLine } from "logic/partials/modules/console/console-core";
+import { write, writeLine } from "logic/api/modules/console/console-core";
 import { Assert, AssertHandler } from "./Assert";
 
 function test(description: string, handler: (assert: Assert) => void) {
