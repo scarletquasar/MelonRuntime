@@ -17,6 +17,7 @@ import { _std } from "./partials/modules/std/_std"
 import { _data } from "./partials/modules/data/_data"
 import { testing } from "./partials/modules/testing/testing"
 import { runtime } from "./partials/modules/runtime/runtime"
+import { interopCache } from "./runtime/interop-cache-core";
 
 setupEnvironmentVariables();
 addPrototypeExtension(Object, "and", and);

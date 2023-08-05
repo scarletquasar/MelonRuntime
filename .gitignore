@@ -1,4 +1,6 @@
 projects/native/Output
+projects/native/bin
+projects/native/obj
 projects/core/output
 node_modules
 projects/tests/dist

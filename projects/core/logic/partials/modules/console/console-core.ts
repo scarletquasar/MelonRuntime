@@ -285,7 +285,7 @@ function timeEnd(
 
 function write(target: string, color: ConsoleColor): Result<Error, []> {
     if(typeof target != "string") {
-        interopCache.clinet.write(interopCache.serialization.serialize(target), color);
+        interopCache.clinet.write(toLoggableOutput(target), color);
         return Result.right([]);
     }
 
@@ -294,7 +294,7 @@ function write(target: string, color: ConsoleColor): Result<Error, []> {
 
 function writeLine(target: string, color: ConsoleColor): Result<Error, []> {
     if(typeof target != "string") {
-        interopCache.clinet.writeLine(interopCache.serialization.serialize(target), color);
+        interopCache.clinet.writeLine(toLoggableOutput(target), color);
         return Result.right([]);
     }
 
