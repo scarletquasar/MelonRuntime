@@ -99,5 +99,5 @@ Then, you will be able to use one of the buid/debug commands:
 To open the C# solution `.sln` file and get access to the main runtime code just follow the path:
 
 ```
-Melon > projects > melon-runtime > MelonRuntime.sln
+Melon > projects > native > MelonRuntime.sln
 ```
