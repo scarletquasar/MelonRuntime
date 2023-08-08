@@ -6,7 +6,6 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// Representation of an Assembly object in the interoperability context,
 	/// capable of open and use the internal namespaces of it. Can be created
 	/// from an external file. InteropAssembly
-	/// may be used only for raw contexts inside JavaScript to CLR interoperability
 	/// and is not useful as direct provider to get features from after the engine
 	/// startup operation.
 	/// </summary>
@@ -144,7 +143,10 @@ namespace MelonRuntime.Core.Library.Reflection {
 						type.GetConstructors(),
 						this,
 						GetAssembly(),
-						type);
+						type,
+						null, //TODO: add InteropMethod[]
+						null, //TODO: add InteropField[]
+						null); //TODO: add IntetopProperty[]
 						
 					return interopClass;
 				})
@@ -163,6 +165,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 		private InteropNamespace? _namespace;
 		private InteropMethod[]? _methods;
 		private InteropField[]? _fields;
+		private InteropProperty[]? _properties;
 		private Type? _type;
 		private ConstructorInfo[]? _constructors;
 		
@@ -177,7 +180,10 @@ namespace MelonRuntime.Core.Library.Reflection {
 			ConstructorInfo[]? constructors, 
 			InteropNamespace? @namespace, 
 			InteropAssembly? assembly,
-			Type? type)	
+			Type? type,
+			InteropMethod[]? methods,
+			InteropField[]? fields,
+			InteropProperty[]? properties)	
 		{
 			FullName = fullName;
 			IsStatic = isStatic;
@@ -187,6 +193,9 @@ namespace MelonRuntime.Core.Library.Reflection {
 			_namespace = @namespace;
 			_assembly = assembly;
 			_type = type;
+			_methods = methods;
+			_fields = fields;
+			_properties = properties;
 		}
 	}
 	
@@ -231,12 +240,26 @@ namespace MelonRuntime.Core.Library.Reflection {
 	
 	public class InteropField 
 	{
+		public string? Name { get; private set; }
+		public Type? Type;
 		
+		public InteropField(string? name, Type? type) 
+		{
+			Name = name;
+			Type = type;
+		}
 	}
 	
 	public class InteropProperty 
 	{
+		public string? Name { get; private set; }
+		public Type? Type;
 		
+		public InteropProperty(string? name, Type? type) 
+		{
+			Name = name;
+			Type = type;
+		}
 	}
 	
 	public class InteropMethod 
