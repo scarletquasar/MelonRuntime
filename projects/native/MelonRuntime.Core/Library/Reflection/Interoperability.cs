@@ -264,6 +264,10 @@ namespace MelonRuntime.Core.Library.Reflection {
 	
 	public class InteropMethod 
 	{
+		public string? Name { get; private set; }
+		public bool IsAsync { get; private set; }
 		
+		private (string, Type)[]? _parameters;
+		private Type[] _genericArguments;
 	}
 }
