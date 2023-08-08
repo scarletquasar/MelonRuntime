@@ -1,6 +1,9 @@
 using System.Reflection;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
+//INFO: The Interoperability module is a reworked version of the future deprecated BindingsManager with the objective of 
+//offering better, cached and reliable interoperability functions and models to create a better bridge between the JavaScript
+//interface and the  .NET CLR. It was made taking all the current features that can be used in the current CLR in consideration.
 namespace MelonRuntime.Core.Library.Reflection {
 	/// <summary>
 	/// Representation of an Assembly object in the interoperability context,
