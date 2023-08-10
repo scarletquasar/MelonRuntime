@@ -1,4 +1,4 @@
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Reflection;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
@@ -152,12 +152,16 @@ namespace MelonRuntime.Core.Library.Reflection {
 								.ToArray();
 								
 							var genericArguments = method.GetGenericArguments();
-								
+							var isAsync = 
+								(AsyncStateMachineAttribute?)method.GetCustomAttribute(type)
+								is not null;
+							
 							return new InteropMethod(
 								method.Name,
 								parameters!,
 								genericArguments,
-								method);
+								method,
+								isAsync);
 						})
 						.ToArray();
 						
@@ -300,9 +304,11 @@ namespace MelonRuntime.Core.Library.Reflection {
 			string? name, 
 			(string?, Type?)[]? parameters, 
 			Type?[]? genericArguments, 
-			MethodInfo? method) 
+			MethodInfo? method,
+			bool isAsync) 
 		{
 			Name = name;
+			IsAsync = isAsync;
 			
 			_parameters = parameters;
 			_genericArguments = genericArguments;
