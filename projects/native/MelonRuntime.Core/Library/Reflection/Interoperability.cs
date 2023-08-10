@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Reflection;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
@@ -139,6 +140,27 @@ namespace MelonRuntime.Core.Library.Reflection {
 				.Select(type => 
 				{
 					var isStatic = type.IsAbstract && type.IsSealed;
+					var methods = type
+						.GetMethods()
+						.Select(method => 
+						{
+							var parameters = method
+								.GetParameters()
+								.Select(parameter => (
+									parameter.Name, 
+									parameter.ParameterType))
+								.ToArray();
+								
+							var genericArguments = method.GetGenericArguments();
+								
+							return new InteropMethod(
+								method.Name,
+								parameters!,
+								genericArguments,
+								method);
+						})
+						.ToArray();
+						
 					var interopClass = new InteropClass(
 						fullName, 
 						isStatic, 
@@ -147,7 +169,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 						this,
 						GetAssembly(),
 						type,
-						null, //TODO: add InteropMethod[]
+						methods, //TODO: add InteropMethod[]
 						null, //TODO: add InteropField[]
 						null); //TODO: add IntetopProperty[]
 						
@@ -270,7 +292,21 @@ namespace MelonRuntime.Core.Library.Reflection {
 		public string? Name { get; private set; }
 		public bool IsAsync { get; private set; }
 		
-		private (string, Type)[]? _parameters;
-		private Type[] _genericArguments;
+		private (string?, Type)[] _parameters;
+		private Type?[]? _genericArguments;
+		private MethodInfo? _method;
+		
+		public InteropMethod(
+			string? name, 
+			(string?, Type?)[]? parameters, 
+			Type?[]? genericArguments, 
+			MethodInfo? method) 
+		{
+			Name = name;
+			
+			_parameters = parameters;
+			_genericArguments = genericArguments;
+			_method = method;
+		}
 	}
 }
