@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Reflection;
+using System.Collections.Specialized;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
 //INFO: The Interoperability module is a reworked version of the future deprecated BindingsManager with the objective of 
@@ -13,6 +14,64 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// and is not useful as direct provider to get features from after the engine
 	/// startup operation.
 	/// </summary>
+	public static class Interoperability 
+	{
+		private static HybridDictionary? _assemblyMemo;	
+		private static HybridDictionary? _typeMemo;
+		
+		/// <summary>
+		/// Cache initialization works getting the assemblies from the current domain
+		/// and using diverse execution strategies in order to maximize the filled gaps
+		/// during the cache aggregation. It is not guaranteed that all the assemblies,
+		/// classes, fields and methods will be available after the execution. This
+		/// optimization method is in constant evolution. Warning: this is an one-time
+		/// execution method due to its heavy nature and high resources consumption.
+		/// </summary>
+		public static void InitializeCache() 
+		{
+			var domainAssemblies = AppDomain.CurrentDomain
+				.GetAssemblies()
+				.Select(assembly => new InteropAssembly(
+					assembly, 
+					assembly.GetTypes()))
+				.ToArray();
+					
+			foreach (var assembly in domainAssemblies)
+			{
+				var name = Guid.NewGuid().ToString();
+                _assemblyMemo?.Add(name, (assembly.FullName ?? "", assembly));
+			}
+			
+			// netstandard
+			var assemblyNetstandard = Assembly.Load("netstandard");
+			var interopNetstandard = new InteropAssembly(
+				assemblyNetstandard,
+				assemblyNetstandard.GetTypes(), 
+				"netstandard");
+				
+			// System
+			var assemblySystem = Assembly.Load("System");
+			var interopSystem = new InteropAssembly(
+				assemblySystem, 
+				assemblySystem.GetTypes(), 
+				"System");
+				
+			// System.Text.Json
+			var assemblySystemTextJson = Assembly.Load("System.Text.Json");
+			var interopSystemTextJson = new InteropAssembly(
+				assemblySystemTextJson, 
+				assemblySystemTextJson.GetTypes(), 
+				"System.Text.Json.dll");
+				
+			// System.Net.Http
+			var assemblySystemNetHttp = Assembly.Load("System.Net.Http");
+			var interopSystemNetHttp = new InteropAssembly(
+				assemblySystemNetHttp, 
+				assemblySystemNetHttp.GetTypes(), 
+				"System.Net.Http.dll");
+		}
+	}
+	
 	public class InteropAssembly
 	{
 		public string? FullName { get; private set; }
@@ -21,6 +80,27 @@ namespace MelonRuntime.Core.Library.Reflection {
 		private Assembly? _assembly;
 		private Type[]? _types;
 		private bool _open;
+		private InteropNamespace[]? _namespaces;
+		
+		public InteropAssembly(Assembly assembly, Type[]? types, string? filePath = null) 
+		{
+			_assembly = assembly;
+			_types = types;
+			
+			_namespaces = _types?
+				.Select(type => new InteropNamespace(type?.FullName, this))
+				.ToArray();
+				
+			FilePath = filePath;
+			FullName = _assembly.FullName;
+			
+			_open = true;
+		}
+		
+		public InteropAssembly() 
+		{
+			_open = false;
+		}
 		
 		/// <summary>
 		/// Returns the target assembly object relative to the InteropAssembly
@@ -70,7 +150,6 @@ namespace MelonRuntime.Core.Library.Reflection {
 			
 			return (result, error);
 		}
-		
 		/// <summary>
 		/// Return all namespaces contained in a InteropAssembly as a
 		/// InteropNamespace[]
@@ -78,16 +157,14 @@ namespace MelonRuntime.Core.Library.Reflection {
 		public (InteropNamespace[]?, Exception?) GetNamespaces() 
 		{
 			Exception? error = null;
-			InteropNamespace[]? result = null;
-			
+
 			if (!_open)
 			{
 				error = new InvalidOperationException("The InteropAssembly was not initialized.");
-				return (result, error);
+				return (_namespaces, error);
 			}
 			
-			var namespaces = _types?.Select(type => new InteropNamespace(type?.FullName, this));
-			return (result, error);
+			return (_namespaces, error);
 		}
 	}
 	
@@ -165,6 +242,16 @@ namespace MelonRuntime.Core.Library.Reflection {
 						})
 						.ToArray();
 						
+					var fields = type
+						.GetFields()
+						.Select(field => new InteropField(field.Name, field.FieldType))
+						.ToArray();
+						
+					var properties = type
+						.GetProperties()
+						.Select(field => new InteropProperty(field.Name, field.PropertyType))
+						.ToArray();
+						
 					var interopClass = new InteropClass(
 						fullName, 
 						isStatic, 
@@ -173,9 +260,9 @@ namespace MelonRuntime.Core.Library.Reflection {
 						this,
 						GetAssembly(),
 						type,
-						methods, //TODO: add InteropMethod[]
-						null, //TODO: add InteropField[]
-						null); //TODO: add IntetopProperty[]
+						methods,
+						fields,
+						properties);
 						
 					return interopClass;
 				})
@@ -296,7 +383,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 		public string? Name { get; private set; }
 		public bool IsAsync { get; private set; }
 		
-		private (string?, Type)[] _parameters;
+		private (string?, Type?)[]? _parameters;
 		private Type?[]? _genericArguments;
 		private MethodInfo? _method;
 		

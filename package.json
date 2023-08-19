@@ -1,5 +1,6 @@
 {
     "scripts": {
+        "prepare": "cd projects/core && npm install && cd ../native && dotnet restore",
         "build": "cd projects/core && npm run build && cd ../native && npm run build",
         "dev": "cd projects/native && npm run dev"
     }
