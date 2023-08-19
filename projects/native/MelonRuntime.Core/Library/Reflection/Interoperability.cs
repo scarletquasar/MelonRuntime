@@ -90,6 +90,22 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystemDiagnosticsProcess, 
 				assemblySystemDiagnosticsProcess.GetTypes(), 
 				"System.Diagnostics.Process.dll");
+				
+			// External Newtonsoft.Json
+			
+			var assemblyNewtonsoftJson = Assembly.Load("Newtonsoft.Json");
+			var interopNewtonsoftJson = new InteropAssembly(
+				assemblyNewtonsoftJson, 
+				assemblyNewtonsoftJson.GetTypes(), 
+				"Newtonsoft.Json.dll");
+				
+			// External Cli.NET
+			
+			var assemblyCliNET = Assembly.Load("Cli.NET");
+			var interopCliNET = new InteropAssembly(
+				assemblyCliNET, 
+				assemblyCliNET.GetTypes(), 
+				"Cli.NET");
 		}
 	}
 	
