@@ -39,7 +39,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 			foreach (var assembly in domainAssemblies)
 			{
 				var name = Guid.NewGuid().ToString();
-                _assemblyMemo?.Add(name, (assembly.FullName ?? "", assembly));
+				_assemblyMemo?.Add(name, (assembly.FullName ?? "", assembly));
 			}
 			
 			// netstandard
@@ -56,6 +56,20 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystem.GetTypes(), 
 				"System");
 				
+			// System.Runtime
+			var assemblySystemRuntime = Assembly.Load("System.Runtime");
+			var interopSystemRuntime = new InteropAssembly(
+				assemblySystemRuntime, 
+				assemblySystemRuntime.GetTypes(), 
+				"System.Runtime");
+				
+			// System.Console
+			var assemblySystemConsole = Assembly.Load("System.Console");
+			var interopSystemConsole = new InteropAssembly(
+				assemblySystemConsole, 
+				assemblySystemConsole.GetTypes(), 
+				"System.Console");
+				
 			// System.Text.Json
 			var assemblySystemTextJson = Assembly.Load("System.Text.Json");
 			var interopSystemTextJson = new InteropAssembly(
@@ -69,6 +83,13 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystemNetHttp, 
 				assemblySystemNetHttp.GetTypes(), 
 				"System.Net.Http.dll");
+				
+			// System.Diagnostics.Process
+			var assemblySystemDiagnosticsProcess = Assembly.Load("System.Diagnostics.Process");
+			var interopSystemDiagnosticsProcess = new InteropAssembly(
+				assemblySystemDiagnosticsProcess, 
+				assemblySystemDiagnosticsProcess.GetTypes(), 
+				"System.Diagnostics.Process.dll");
 		}
 	}
 	
