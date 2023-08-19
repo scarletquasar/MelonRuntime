@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Reflection;
-using System.Collections.Specialized;
+using System.Text.Json;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
 //INFO: The Interoperability module is a reworked version of the future deprecated BindingsManager with the objective of 
@@ -16,8 +16,17 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// </summary>
 	public static class Interoperability 
 	{
-		private static HybridDictionary? _assemblyMemo;	
-		private static HybridDictionary? _typeMemo;
+		// Interoperability GUID-based memo, works with an unique id that
+		// will be obtained after the first <namespace:type?:target?>
+		// search that is already speed-up due to the cache capabilities.
+		private static IDictionary<string, InteropAssembly>? _assemblyMemo;	
+		private static IDictionary<string, InteropAssembly>? _typeMemo;
+		// Search-based memo where the enties are direct results of the
+		// interoperability searches. This is useful to get even faster
+		// results from the lookup table. Usually
+		// the specialized memo will get GUID-based ones as base to 
+		// fetch the target resources.
+		private static IDictionary<string, object[]>? _specializedMemo;
 		
 		/// <summary>
 		/// Cache initialization works getting the assemblies from the current domain
@@ -29,6 +38,11 @@ namespace MelonRuntime.Core.Library.Reflection {
 		/// </summary>
 		public static void InitializeCache() 
 		{
+			_assemblyMemo = new Dictionary<string, InteropAssembly>();
+			_typeMemo = new Dictionary<string, InteropAssembly>();
+			_specializedMemo = new Dictionary<string, object[]>();
+			
+			// Getting the InteropAssembly objects from the current active AppDomain
 			var domainAssemblies = AppDomain.CurrentDomain
 				.GetAssemblies()
 				.Select(assembly => new InteropAssembly(
@@ -39,15 +53,18 @@ namespace MelonRuntime.Core.Library.Reflection {
 			foreach (var assembly in domainAssemblies)
 			{
 				var name = Guid.NewGuid().ToString();
-				_assemblyMemo?.Add(name, (assembly.FullName ?? "", assembly));
+				_assemblyMemo?.Add(name, assembly);
 			}
 			
+			// Getting the InteropAssembly objects from specific loadable targets
 			// netstandard
 			var assemblyNetstandard = Assembly.Load("netstandard");
 			var interopNetstandard = new InteropAssembly(
 				assemblyNetstandard,
 				assemblyNetstandard.GetTypes(), 
 				"netstandard");
+				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopNetstandard);
 				
 			// System
 			var assemblySystem = Assembly.Load("System");
@@ -56,12 +73,16 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystem.GetTypes(), 
 				"System");
 				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystem);
+				
 			// System.Runtime
 			var assemblySystemRuntime = Assembly.Load("System.Runtime");
 			var interopSystemRuntime = new InteropAssembly(
 				assemblySystemRuntime, 
 				assemblySystemRuntime.GetTypes(), 
 				"System.Runtime");
+				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystemRuntime);
 				
 			// System.Console
 			var assemblySystemConsole = Assembly.Load("System.Console");
@@ -70,12 +91,16 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystemConsole.GetTypes(), 
 				"System.Console");
 				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystemConsole);
+				
 			// System.Text.Json
 			var assemblySystemTextJson = Assembly.Load("System.Text.Json");
 			var interopSystemTextJson = new InteropAssembly(
 				assemblySystemTextJson, 
 				assemblySystemTextJson.GetTypes(), 
 				"System.Text.Json.dll");
+				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystemTextJson);
 				
 			// System.Net.Http
 			var assemblySystemNetHttp = Assembly.Load("System.Net.Http");
@@ -84,6 +109,8 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystemNetHttp.GetTypes(), 
 				"System.Net.Http.dll");
 				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystemNetHttp);
+				
 			// System.Diagnostics.Process
 			var assemblySystemDiagnosticsProcess = Assembly.Load("System.Diagnostics.Process");
 			var interopSystemDiagnosticsProcess = new InteropAssembly(
@@ -91,21 +118,52 @@ namespace MelonRuntime.Core.Library.Reflection {
 				assemblySystemDiagnosticsProcess.GetTypes(), 
 				"System.Diagnostics.Process.dll");
 				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopSystemDiagnosticsProcess);
+				
 			// External Newtonsoft.Json
-			
 			var assemblyNewtonsoftJson = Assembly.Load("Newtonsoft.Json");
 			var interopNewtonsoftJson = new InteropAssembly(
 				assemblyNewtonsoftJson, 
 				assemblyNewtonsoftJson.GetTypes(), 
 				"Newtonsoft.Json.dll");
 				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopNewtonsoftJson);
+				
 			// External Cli.NET
-			
 			var assemblyCliNET = Assembly.Load("Cli.NET");
 			var interopCliNET = new InteropAssembly(
 				assemblyCliNET, 
 				assemblyCliNET.GetTypes(), 
 				"Cli.NET");
+				
+			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopCliNET);
+			
+			// Fills the specialized memo cache with the most common resources
+			// System.Text.Json.JsonSerializer.Serialize
+			var systemTextJsonSerialize1 = new Action<Stream, object?, Type, JsonSerializerOptions?>(JsonSerializer.Serialize);
+			var systemTextJsonSerialize2 = new Action<Stream, object?, Type, System.Text.Json.Serialization.JsonSerializerContext>(JsonSerializer.Serialize);
+			var systemTextJsonSerialize3 = new Func<object?, Type, JsonSerializerOptions?, string>(JsonSerializer.Serialize);
+			var systemTextJsonSerialize4 = new Action<Utf8JsonWriter, object?, Type, JsonSerializerOptions?>(JsonSerializer.Serialize);
+			var systemTextJsonSerialize5 = new Func<object, string>((object value) => JsonSerializer.Serialize(value));
+			
+			_specializedMemo.Add("System.Text.Json.JsonSerializer.Serialize", new object[]
+            {
+            	systemTextJsonSerialize1,
+				systemTextJsonSerialize2,
+				systemTextJsonSerialize3,
+				systemTextJsonSerialize4,
+				systemTextJsonSerialize5 
+			});
+			
+			// System.Text.Json.JsonSerializer.Derialize
+			
+			// MelonRuntime.Core.Library.Serialization.SerializationManager.Serialize
+			var melonSerializationManagerSerialize = new Func<object, string>(Serialization.SerializationManager.Serialize);
+			_specializedMemo.Add("MelonRuntime.Core.Library.Serialization.SerializationManager.Serialize", new[] { melonSerializationManagerSerialize });
+			
+			// MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize
+			var melonSerializationManagerDeserialize = new Func<string, object?>(Serialization.SerializationManager.Deserialize);
+			_specializedMemo.Add("MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize", new[] { melonSerializationManagerDeserialize });
 		}
 	}
 	
