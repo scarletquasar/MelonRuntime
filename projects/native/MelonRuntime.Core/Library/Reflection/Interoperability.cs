@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
+using System.Text.Json.Nodes;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
 //INFO: The Interoperability module is a reworked version of the future deprecated BindingsManager with the objective of 
@@ -12,7 +14,11 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// capable of open and use the internal namespaces of it. Can be created
 	/// from an external file. InteropAssembly
 	/// and is not useful as direct provider to get features from after the engine
-	/// startup operation.
+	/// startup operation. The caching strategy is divided in two phases, the first
+	/// one is to immediately cache the most common resources that will be used
+	/// by runtime operations and the second phase is keep some caching lazy load
+	/// and create it when the first related search is requested but also avoiding
+	/// performance peaks that can affect production-running applications directly.
 	/// </summary>
 	public static class Interoperability 
 	{
@@ -42,7 +48,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 			_typeMemo = new Dictionary<string, InteropAssembly>();
 			_specializedMemo = new Dictionary<string, object[]>();
 			
-			// Getting the InteropAssembly objects from the current active AppDomain
+			// 1. Getting the InteropAssembly objects from the current active AppDomain
 			var domainAssemblies = AppDomain.CurrentDomain
 				.GetAssemblies()
 				.Select(assembly => new InteropAssembly(
@@ -56,7 +62,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 				_assemblyMemo?.Add(name, assembly);
 			}
 			
-			// Getting the InteropAssembly objects from specific loadable targets
+			// 2. Getting the InteropAssembly objects from specific loadable targets
 			// netstandard
 			var assemblyNetstandard = Assembly.Load("netstandard");
 			var interopNetstandard = new InteropAssembly(
@@ -138,7 +144,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 				
 			_assemblyMemo?.Add(Guid.NewGuid().ToString(), interopCliNET);
 			
-			// Fills the specialized memo cache with the most common resources
+			// 3. Fills the specialized memo cache with the most common resources
 			// System.Text.Json.JsonSerializer.Serialize
 			var systemTextJsonSerialize1 = new Action<Stream, object?, Type, JsonSerializerOptions?>(JsonSerializer.Serialize);
 			var systemTextJsonSerialize2 = new Action<Stream, object?, Type, System.Text.Json.Serialization.JsonSerializerContext>(JsonSerializer.Serialize);
@@ -147,15 +153,28 @@ namespace MelonRuntime.Core.Library.Reflection {
 			var systemTextJsonSerialize5 = new Func<object, string>((object value) => JsonSerializer.Serialize(value));
 			
 			_specializedMemo.Add("System.Text.Json.JsonSerializer.Serialize", new object[]
-            {
-            	systemTextJsonSerialize1,
+			{
+				systemTextJsonSerialize1,
 				systemTextJsonSerialize2,
 				systemTextJsonSerialize3,
 				systemTextJsonSerialize4,
 				systemTextJsonSerialize5 
 			});
 			
-			// System.Text.Json.JsonSerializer.Derialize
+			// System.Text.Json.JsonSerializer.Deserialize
+			var systemTextJsonDeserialize1 = new Func<Stream, Type, JsonSerializerOptions?, object?>(JsonSerializer.Deserialize);
+			var systemTextJsonDeserialize2 = new Func<JsonNode?, JsonSerializerOptions?, object?>(JsonSerializer.Deserialize<object>);
+			var systemTextJsonDeserialize3 = new Func<string, object?>((string target) => 
+			{
+				return JsonSerializer.Deserialize<object>(target);
+			});
+			
+			_specializedMemo.Add("System.Text.Json.JsonSerializer.Deserialize", new object[]
+			{
+				systemTextJsonDeserialize1,
+				systemTextJsonDeserialize2,
+				systemTextJsonDeserialize3
+			});
 			
 			// MelonRuntime.Core.Library.Serialization.SerializationManager.Serialize
 			var melonSerializationManagerSerialize = new Func<object, string>(Serialization.SerializationManager.Serialize);
@@ -165,6 +184,8 @@ namespace MelonRuntime.Core.Library.Reflection {
 			var melonSerializationManagerDeserialize = new Func<string, object?>(Serialization.SerializationManager.Deserialize);
 			_specializedMemo.Add("MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize", new[] { melonSerializationManagerDeserialize });
 		}
+
+		
 	}
 	
 	public class InteropAssembly
@@ -475,22 +496,112 @@ namespace MelonRuntime.Core.Library.Reflection {
 	
 	public class InteropMethod 
 	{
+		/// <summary>
+		/// Find and invoke a method based on the parameters given to it. Requirement to allow
+		/// overloaded methods and caching the interoperability results at the same time in
+		/// JavaScript.
+		/// </summary>
+		/// <param name="parameters"></param>
+		/// <param name="typeParameters"></param>
+		/// <param name="methods"></param>
+		/// <returns></returns>
+		public static async Task<(object?, Exception?)> FindAndInvoke(object[] parameters, object[] typeParameters, InteropMethod[] methods) 
+		{
+			var targetMethods = methods.Where(method => 
+			{
+				// Ensures that if the method is generic, the type parameters correctly fits to it
+				var isMethodGeneric = method?._genericArguments?.Any() ?? false;
+				
+				if (isMethodGeneric)
+				{
+					if (!typeParameters.Any()) return false;
+					if (typeParameters.Length != method?._genericArguments?.Length) return false;
+					if (!Enumerable.SequenceEqual(typeParameters, method?._genericArguments ?? Array.Empty<Type>())) 
+					{
+						return false;
+					}
+				}
+
+				// Checks if the parameters fits to properly invoke the method
+				if (parameters.Length != method?._parameters?.Length) return false;
+				
+				var methodParameters = method?._parameters?.Select(parameter => parameter.Item2);
+				var actualParameters = parameters.Select(parameter => parameter.GetType());
+				if (!Enumerable.SequenceEqual(actualParameters, methodParameters ?? Array.Empty<Type>())) 
+				{
+					return false;
+				}
+				
+				return true;
+			});
+			
+			var method = targetMethods.FirstOrDefault();
+			
+			if (method == null) 
+			{
+				var error = new Exception("The target method does not exist with the current parameters");
+				return (null, error);
+			}
+			
+			return (await method.Invoke(parameters), null);
+		}
+		
 		public string? Name { get; private set; }
 		public bool IsAsync { get; private set; }
+		public bool ReturnsVoid { get; private set; }
 		
+		/// <summary>
+		/// Bind object is the instance where the method will
+		/// be executed, can null in case of static methods.
+		/// </summary>
+		private readonly object? _bindObject;
 		private (string?, Type?)[]? _parameters;
 		private Type?[]? _genericArguments;
 		private MethodInfo? _method;
+		
+		
+		public Type?[]? GetGenericArguments() 
+		{
+			return _genericArguments;
+		}
+		
+		public (string?, Type?)[]? GetParameters() 
+		{
+			return _parameters;
+		}
+		
+		public async Task<object?> Invoke(object[] parameters) 
+		{
+			if (ReturnsVoid) 
+			{
+				_method?.Invoke(_bindObject, parameters);
+				return null;
+			}
+			
+			if (IsAsync) 
+			{
+				var taskObject = (Task<object?>?)_method?.Invoke(_bindObject, parameters);
+				
+				if (taskObject != null) 
+				{
+					return await taskObject;
+				}
+			}
+			
+			return _method?.Invoke(_bindObject, parameters);
+		}
 		
 		public InteropMethod(
 			string? name, 
 			(string?, Type?)[]? parameters, 
 			Type?[]? genericArguments, 
 			MethodInfo? method,
-			bool isAsync) 
+			bool isAsync,
+			object? bindObject = null) 
 		{
 			Name = name;
 			IsAsync = isAsync;
+			ReturnsVoid = _method?.ReturnType == typeof(void);
 			
 			_parameters = parameters;
 			_genericArguments = genericArguments;
