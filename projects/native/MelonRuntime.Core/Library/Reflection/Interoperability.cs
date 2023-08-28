@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
 using System.Text.Json.Nodes;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
@@ -22,16 +21,25 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// </summary>
 	public static class Interoperability 
 	{
-		// Interoperability GUID-based memo, works with an unique id that
-		// will be obtained after the first <namespace:type?:target?>
-		// search that is already speed-up due to the cache capabilities.
+		/// <summary>
+		/// Interoperability GUID-based memo, works with an unique id that
+		/// will be obtained after the first <namespace:type?:target?>
+		/// search that is already speed-up due to the cache capabilities.
+		/// </summary>
 		private static IDictionary<string, InteropAssembly>? _assemblyMemo;	
-		private static IDictionary<string, InteropAssembly>? _typeMemo;
-		// Search-based memo where the enties are direct results of the
-		// interoperability searches. This is useful to get even faster
-		// results from the lookup table. Usually
-		// the specialized memo will get GUID-based ones as base to 
-		// fetch the target resources.
+		
+		/// <summary>
+		/// Type memo with [search]:[class|enum] results.
+		/// </summary>
+		private static IDictionary<string, object>? _typeMemo;
+		
+		/// <summary>
+		/// Search-based memo where the enties are direct results of the
+		/// interoperability searches. This is useful to get even faster
+		/// results from the lookup table. Usually
+		/// the specialized memo will get GUID-based ones as base to 
+		/// fetch the target resources.
+		/// </summary>
 		private static IDictionary<string, object[]>? _specializedMemo;
 		
 		/// <summary>
@@ -45,7 +53,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 		public static void InitializeCache() 
 		{
 			_assemblyMemo = new Dictionary<string, InteropAssembly>();
-			_typeMemo = new Dictionary<string, InteropAssembly>();
+			_typeMemo = new Dictionary<string, object>();
 			_specializedMemo = new Dictionary<string, object[]>();
 			
 			// 1. Getting the InteropAssembly objects from the current active AppDomain
@@ -184,8 +192,107 @@ namespace MelonRuntime.Core.Library.Reflection {
 			var melonSerializationManagerDeserialize = new Func<string, object?>(Serialization.SerializationManager.Deserialize);
 			_specializedMemo.Add("MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize", new[] { melonSerializationManagerDeserialize });
 		}
-
 		
+		/// <summary>
+		/// Method focused on finding a specific static method with overloads
+		/// based on a [namespace::type::name] search. The results can be used
+		/// in JavaScript with a wrapper class to interoperability purposes.
+		/// </summary>
+		private static InteropMethod[]? FindStaticMethod(string @namespace, string type, string name, bool forceNewSearch = true) 
+		{
+			var methodsFromSpecializedMemo = _specializedMemo?
+			.Where(memo => 
+			{
+				// If memo's first value is a method, then the rest already are 
+				var memoIsAction = memo.Value.FirstOrDefault()?.GetType()?.FullName?.StartsWith("System.Action") ?? false;
+				var memoIsFunc = memo.Value.FirstOrDefault()?.GetType()?.FullName?.StartsWith("System.Func") ?? false;
+				
+				return (memoIsAction || memoIsFunc) && memo.Key == $"{@namespace}.{type}.{name}";
+			})
+			.SelectMany(memo => memo.Value)
+			.Select(value => 
+			{
+				var methodInfo = (MethodInfo)((dynamic)value).Method;
+				
+				// TODO: Check if the value.GetType() is the correct one for this check
+				var isAsync = 
+					(AsyncStateMachineAttribute?)methodInfo?.GetCustomAttribute(value.GetType())
+					is not null;
+				
+				var parameters = methodInfo?
+					.GetParameters()
+					.Select(parameter => (parameter.Name, parameter.ParameterType))
+					.ToArray();
+				
+				var finalMethod = new InteropMethod(
+					methodInfo?.Name, 
+					parameters, 
+					methodInfo?.GetGenericArguments(), 
+					methodInfo, 
+					isAsync, 
+					methodInfo?.IsStatic ?? false);
+					
+				return finalMethod;
+			});
+			
+			if (!methodsFromSpecializedMemo?.Any() ?? false || forceNewSearch) 
+			{
+				var targetNamespace = _assemblyMemo?
+					.Select(memo => new InteropNamespace(memo.Value.FullName, memo.Value))
+					.FirstOrDefault(target => target.FullName == @namespace);
+					
+				var targetClasses = targetNamespace?.GetClasses();
+				var targetMethods = targetClasses?
+					.Select(targetClass => targetClass
+						.GetMethods()
+						.Where(method => method.Name == name))
+					.SelectMany(method => method);
+				
+				return Enumerable.Concat(
+					methodsFromSpecializedMemo ?? Array.Empty<InteropMethod>(), 
+					targetMethods ?? Array.Empty<InteropMethod>()).ToArray();
+			}
+			
+			return methodsFromSpecializedMemo?.ToArray();
+		}
+		
+		/// <summary>
+		/// Merhod focused in finding a specific class based on a [namespace::type]
+		/// search that will be handled in JavaScript with a wrapper class to 
+		/// interoperability purposes.
+		/// </summary>
+		private static InteropClass? FindClass(string @namespace, string name, bool forceNewSearch = true) 
+		{
+			var classesFromTypeMemo = _typeMemo?
+				.Select(memo => memo.Value)
+				.Where(obj => obj.GetType() == typeof(InteropClass))
+				.Cast<InteropClass>()
+				.Where(@class => @class.FullName == $"{@namespace}.{name}");
+				
+			if (!classesFromTypeMemo?.Any() ?? false || forceNewSearch) 
+			{
+				var targetClasses = _assemblyMemo?.Select(assembly => assembly
+					.Value
+					.GetNamespaces()
+					.Item1?
+					.Where(targetNamespace => targetNamespace.FullName == @namespace))
+					.SelectMany(x => x)
+					.SelectMany(targetNamespace => targetNamespace.GetClasses());
+					
+				foreach (var targetClass in targetClasses) 
+				{
+					_typeMemo?.Add(targetClass.FullName, targetClass);
+				}
+				
+				return targetClasses?.FirstOrDefault();
+			}
+			
+			return classesFromTypeMemo.FirstOrDefault();
+		}
+	
+		// TODO: create FindEnum
+		// TODO: create FindStaticProperty
+		// TODO: create FindStaticField
 	}
 	
 	public class InteropAssembly
@@ -354,7 +461,8 @@ namespace MelonRuntime.Core.Library.Reflection {
 								parameters!,
 								genericArguments,
 								method,
-								isAsync);
+								isAsync,
+								method.IsStatic);
 						})
 						.ToArray();
 						
@@ -389,6 +497,17 @@ namespace MelonRuntime.Core.Library.Reflection {
 		{
 			return _assembly;
 		}
+		
+		
+		public InteropClass[]? GetClasses() 
+		{
+			return _classes;
+		}
+		
+		public InteropEnum[]? GetEnums() 
+		{
+			return _enums;
+		}
 	}
 	
 	public class InteropClass
@@ -404,6 +523,17 @@ namespace MelonRuntime.Core.Library.Reflection {
 		public string? FullName { get; private set; }
 		public bool IsStatic { get; private set; }
 		public bool IsAbstract { get; private set; }
+		
+		public object? Instance(object[] parameters) 
+		{
+			if (_type == null) return null;
+			return Activator.CreateInstance(_type, parameters);
+		}
+		
+		public InteropMethod[] GetMethods() 
+		{
+			return _methods;
+		}
 		
 		public InteropClass(
 			string? fullName,
@@ -548,6 +678,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 		
 		public string? Name { get; private set; }
 		public bool IsAsync { get; private set; }
+		public bool IsStatic { get; private set; } 
 		public bool ReturnsVoid { get; private set; }
 		
 		/// <summary>
@@ -597,12 +728,15 @@ namespace MelonRuntime.Core.Library.Reflection {
 			Type?[]? genericArguments, 
 			MethodInfo? method,
 			bool isAsync,
+			bool isStatic,
 			object? bindObject = null) 
 		{
 			Name = name;
 			IsAsync = isAsync;
+			IsStatic = isStatic;
 			ReturnsVoid = _method?.ReturnType == typeof(void);
 			
+			_bindObject = bindObject;
 			_parameters = parameters;
 			_genericArguments = genericArguments;
 			_method = method;
