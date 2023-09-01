@@ -216,7 +216,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 			GlobalMemo.Add("sqlserver-query", getQueryFunction<SqlServerDirectDatabaseProvider>());
 			GlobalMemo.Add("postgresql-command", getNonQueryFunction<PostgreSQLDirectDatabaseProvider>());
 			GlobalMemo.Add("mysql-command", getNonQueryFunction<MySqlDirectDatabaseProvider>());
-			GlobalMemo.Add("mysql-command", getNonQueryFunction<SqlServerDirectDatabaseProvider>());
+			GlobalMemo.Add("sqlserver-command", getNonQueryFunction<SqlServerDirectDatabaseProvider>());
 		}
 		
 		/// <summary>
