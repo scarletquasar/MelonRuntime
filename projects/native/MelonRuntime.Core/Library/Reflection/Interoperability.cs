@@ -2,6 +2,8 @@ using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using MelonRuntime.Abstractions.Library.Database;
+using MelonRuntime.Core.Library.Database;
 
 //TODO: Work in progress class; Should not be used directly on the current modules.
 //INFO: The Interoperability module is a reworked version of the future deprecated BindingsManager with the objective of 
@@ -21,6 +23,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 	/// </summary>
 	public static class Interoperability 
 	{
+		public static IDictionary<string, object>? GlobalMemo { get; private set; }
 		/// <summary>
 		/// Interoperability GUID-based memo, works with an unique id that
 		/// will be obtained after the first <namespace:type?:target?>
@@ -191,6 +194,29 @@ namespace MelonRuntime.Core.Library.Reflection {
 			// MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize
 			var melonSerializationManagerDeserialize = new Func<string, object?>(Serialization.SerializationManager.Deserialize);
 			_specializedMemo.Add("MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize", new[] { melonSerializationManagerDeserialize });
+			
+			// 4. Fills the global memo with the default bindings
+			GlobalMemo = new Dictionary<string, object>();
+			
+			// Data bindings
+			static Func<string, dynamic, string> getQueryFunction<T>() where T : IDirectDatabaseProvider
+			{
+				var instance = (IDirectDatabaseProvider)Activator.CreateInstance(typeof(T))!;
+				return instance.ExecuteQuery;
+			}
+
+			static Func<string, dynamic, int> getNonQueryFunction<T>() where T : IDirectDatabaseProvider
+			{
+				var instance = (IDirectDatabaseProvider)Activator.CreateInstance(typeof(T))!;
+				return instance.ExecuteNonQuery;
+			}
+			
+			GlobalMemo.Add("postgresql-query", getQueryFunction<PostgreSQLDirectDatabaseProvider>());
+			GlobalMemo.Add("mysql-query", getQueryFunction<MySqlDirectDatabaseProvider>());
+			GlobalMemo.Add("sqlserver-query", getQueryFunction<SqlServerDirectDatabaseProvider>());
+			GlobalMemo.Add("postgresql-command", getNonQueryFunction<PostgreSQLDirectDatabaseProvider>());
+			GlobalMemo.Add("mysql-command", getNonQueryFunction<MySqlDirectDatabaseProvider>());
+			GlobalMemo.Add("mysql-command", getNonQueryFunction<SqlServerDirectDatabaseProvider>());
 		}
 		
 		/// <summary>
