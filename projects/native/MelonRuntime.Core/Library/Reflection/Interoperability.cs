@@ -279,6 +279,7 @@ namespace MelonRuntime.Core.Library.Reflection {
 					.SelectMany(x => x)
 					.SelectMany(targetNamespace => targetNamespace.GetClasses());
 					
+				if (targetClasses == null) return null;
 				foreach (var targetClass in targetClasses) 
 				{
 					_typeMemo?.Add(targetClass.FullName, targetClass);
@@ -287,12 +288,84 @@ namespace MelonRuntime.Core.Library.Reflection {
 				return targetClasses?.FirstOrDefault();
 			}
 			
-			return classesFromTypeMemo.FirstOrDefault();
+			return classesFromTypeMemo?.FirstOrDefault();
 		}
-	
-		// TODO: create FindEnum
-		// TODO: create FindStaticProperty
-		// TODO: create FindStaticField
+		private static InteropEnum? FindEnum(string @namespace, string name, bool forceNewSearch = true) 
+		{
+			var enumsFromTypeMemo = _typeMemo?
+				.Select(memo => memo.Value)
+				.Where(obj => obj.GetType() == typeof(InteropEnum))
+				.Cast<InteropEnum>()
+				.Where(@enum => @enum.FullName == $"{@namespace}.{name}");
+				
+			if (!enumsFromTypeMemo?.Any() ?? false || forceNewSearch) 
+			{
+				var targetEnums = _assemblyMemo?.Select(assembly => assembly
+					.Value
+					.GetNamespaces()
+					.Item1?
+					.Where(targetNamespace => targetNamespace.FullName == @namespace))
+					.SelectMany(x => x)
+					.SelectMany(targetNamespace => targetNamespace.GetEnums());
+				
+				if (targetEnums == null) return null;
+				foreach (var targetEnum in targetEnums) 
+				{
+					_typeMemo?.Add(targetEnum.FullName, targetEnum);
+				}
+				
+				return targetEnums?.FirstOrDefault();
+			}
+			
+			return enumsFromTypeMemo?.FirstOrDefault();
+		}
+		
+		/// <summary>
+		/// Method focused on finding a specific static property with overloads
+		/// based on a [namespace::type::name] search. The results can be used
+		/// in JavaScript with a wrapper class to interoperability purposes.
+		/// </summary>
+		private static object? FindStaticProperty(string @namespace, string type, string name, bool forceNewSearch = true) 
+		{
+			//Pre-warmer to fill the cache with the target type
+			_ = forceNewSearch ? FindClass(@namespace, type) : null;
+			
+			//Operation
+			var targetType = _typeMemo?
+				.Select(memo => memo.Value)
+				.Where(obj => obj.GetType() == typeof(InteropClass))
+				.Cast<InteropClass>()
+				.Where(@class => @class.FullName == $"{@namespace}.${type}")
+				.FirstOrDefault();
+
+			var prop = targetType?
+				.GetProperties()?
+				.Where(property => property.IsStatic)
+				.FirstOrDefault(x => x.Name == name);
+				
+			return prop?.Value;
+		}
+		
+		private static object? FindStaticField(string @namespace, string type, string name, bool forceNewSearch = true) 
+		{
+			//Pre-warmer to fill the cache with the target type
+			_ = forceNewSearch ? FindClass(@namespace, type) : null;
+			
+			//Operation
+			var targetType = _typeMemo?
+				.Select(memo => memo.Value)
+				.Where(obj => obj.GetType() == typeof(InteropClass))
+				.Cast<InteropClass>()
+				.Where(@class => @class.FullName == $"{@namespace}.${type}")
+				.FirstOrDefault();
+
+			var field = targetType?
+				.GetFields()?
+				.Where(field => field.IsStatic)
+				.FirstOrDefault(x => x.Name == name);
+				
+			return field?.Value;
+		}
 	}
 	
 	public class InteropAssembly
@@ -468,12 +541,16 @@ namespace MelonRuntime.Core.Library.Reflection {
 						
 					var fields = type
 						.GetFields()
-						.Select(field => new InteropField(field.Name, field.FieldType))
+						.Select(field => new InteropField(field.Name, field.FieldType, field.IsStatic, field.GetValue(null)))
 						.ToArray();
 						
 					var properties = type
 						.GetProperties()
-						.Select(field => new InteropProperty(field.Name, field.PropertyType))
+						.Select(prop => new InteropProperty(
+							prop.Name, 
+							prop.PropertyType, 
+							prop.GetAccessors(nonPublic: true)[0].IsStatic, 
+							prop.GetValue(null)))
 						.ToArray();
 						
 					var interopClass = new InteropClass(
@@ -530,9 +607,19 @@ namespace MelonRuntime.Core.Library.Reflection {
 			return Activator.CreateInstance(_type, parameters);
 		}
 		
-		public InteropMethod[] GetMethods() 
+		public InteropMethod[]? GetMethods() 
 		{
 			return _methods;
+		}
+		
+		public InteropProperty[]? GetProperties() 
+		{
+			return _properties;
+		}
+		
+		public InteropField[]? GetFields() 
+		{
+			return _fields;
 		}
 		
 		public InteropClass(
@@ -603,10 +690,14 @@ namespace MelonRuntime.Core.Library.Reflection {
 	public class InteropField 
 	{
 		public string? Name { get; private set; }
-		public Type? Type;
+		public Type? Type { get; private set; }
+		public bool IsStatic { get; private set; }
+		public object? Value { get; private set; }
 		
-		public InteropField(string? name, Type? type) 
+		public InteropField(string? name, Type? type, bool isStatic, object? value = null) 
 		{
+			Value = value;
+			IsStatic = isStatic;
 			Name = name;
 			Type = type;
 		}
@@ -615,10 +706,14 @@ namespace MelonRuntime.Core.Library.Reflection {
 	public class InteropProperty 
 	{
 		public string? Name { get; private set; }
-		public Type? Type;
+		public Type? Type { get; private set; }
+		public bool IsStatic { get; private set; }
+		public object? Value { get; private set; }
 		
-		public InteropProperty(string? name, Type? type) 
+		public InteropProperty(string? name, Type? type, bool isStatic, object? value = null) 
 		{
+			Value = value;
+			IsStatic = isStatic;
 			Name = name;
 			Type = type;
 		}
