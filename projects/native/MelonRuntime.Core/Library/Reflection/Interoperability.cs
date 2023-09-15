@@ -217,6 +217,13 @@ namespace MelonRuntime.Core.Library.Reflection {
 			GlobalMemo.Add("postgresql-command", getNonQueryFunction<PostgreSQLDirectDatabaseProvider>());
 			GlobalMemo.Add("mysql-command", getNonQueryFunction<MySqlDirectDatabaseProvider>());
 			GlobalMemo.Add("sqlserver-command", getNonQueryFunction<SqlServerDirectDatabaseProvider>());
+			
+			// Serialization bindings
+			GlobalMemo.Add("serialize", _specializedMemo["MelonRuntime.Core.Library.Serialization.SerializationManager.Serialize"][0]);
+			GlobalMemo.Add("deserialize", _specializedMemo["MelonRuntime.Core.Library.Serialization.SerializationManager.Deserialize"][0]);
+			
+			// Http Bindings
+			
 		}
 		
 		/// <summary>
