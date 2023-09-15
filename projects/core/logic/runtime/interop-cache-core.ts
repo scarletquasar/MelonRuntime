@@ -5,13 +5,9 @@ const interopCache = {
         serialize: getStaticMethod<string>("System.Text.Json:JsonSerializer:Serialize")
     },
     console: {
-        writeLine: getStaticMethod<void>("System:Console:WriteLine"),
         write: getStaticMethod<void>("System:Console:WriteLine"),
-        clear: getStaticMethod<void>("System:Console:Clear")
-    },
-    clinet: {
-        writeLine: getStaticMethod<void>("Cli.NET.Tools:CLNConsole:WriteLine"),
-        write: getStaticMethod<void>("Cli.NET.Tools:CLNConsole:Write")
+        clear: getStaticMethod<void>("System:Console:Clear"),
+        read: getStaticMethod<string | null>("System:Console:ReadLine")
     },
     io: {
         getFiles: getStaticMethod<string[]>("System.IO:Directory:GetFiles")

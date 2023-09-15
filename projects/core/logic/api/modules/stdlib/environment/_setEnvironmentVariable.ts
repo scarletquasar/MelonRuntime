@@ -1,4 +1,4 @@
-import { _std } from "../_std";
+import { _std } from "../stdlib";
 
 function _setEnvironmentVariable(key: string, value: any) {
     _$internalBinding["LocalEnvironmentVariables"][key] = value;

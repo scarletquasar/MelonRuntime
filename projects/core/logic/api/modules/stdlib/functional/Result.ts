@@ -25,4 +25,5 @@ class Result<TLeft extends Error, TRight> {
     }
 }
 
+
 export { Result }

@@ -1,4 +1,4 @@
-import { _std } from "../_std";
+import { _std } from "../stdlib";
 
 function _clearLocalEnvironmentVariables() {
     _$internalBinding["LocalEnvironmentVariables"].clear();
