@@ -47,6 +47,43 @@ class Moment {
         return new Moment(new Date());
     }
 
+    static inYears() {
+
+    }
+
+    static inMonths() {
+        
+    }
+
+    static inDays() {
+        
+    }
+
+    static inHours() {
+        
+    }
+
+    static inMinutes() {
+        
+    }
+
+    static inSeconds() {
+        
+    }
+
+    static inMilliseconds() {
+        
+    }
+
+    static inMicroseconds() {
+        
+    }
+
+    static inNanoseconds() {
+        
+    }
+
+
     copyWith(args: MomentArguments) {
         return new Moment({
             year: this.year + args.year ?? 0,
