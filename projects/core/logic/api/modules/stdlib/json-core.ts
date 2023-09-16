@@ -1,4 +1,4 @@
-import { Result } from "../functional/Result";
+import { Result } from "./functional-core";
 
 function deserialize<T>(json: string) {
     try {

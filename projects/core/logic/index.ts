@@ -3,9 +3,6 @@ import { setupEnvironmentVariables } from "logic/runtime/global-environment-core
 import { addPrototypeExtension } from "./runtime/injections-core";
 import { and } from "logic/runtime/global-extensions";
 
-// Isolated imports
-import { _Version } from "./api/constructors/_Version"
-
 // Module imports
 import { stdio } from "logic/api/modules/stdio/stdio"
 import { dotnet } from "./api/modules/dotnet/dotnet"
@@ -29,8 +26,7 @@ const Melon = {
     http,
     dotnet,
     crypto: _crypto,
-    runtime,
-    Version: _Version
+    runtime
 }
 
 globalThis["Melon"] = Melon;
