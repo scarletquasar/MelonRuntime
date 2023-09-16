@@ -44,7 +44,6 @@ namespace MelonRuntime.Core.Library
 				GetDirectDatabaseProviderBindings(),
 				GetDirectBindingFactories(),
 				GetHttpClientBindings(),
-				GetThreadingBindings(),
 				GetRealmBindings(),
 				GetEnvironmentBindings(),
 				GetProcessBindings(),
@@ -130,25 +129,6 @@ namespace MelonRuntime.Core.Library
 				["HttpRequest"] = httpRequest,
 				["HttpRequestAsync"] = httpRequestAsync,
 				["Fetch"] = fetchRequest
-			};
-		}
-
-		private Dictionary<string, dynamic> GetThreadingBindings()
-		{
-			Thread createThread(string identifier)
-			{
-				return ThreadingManager.CreateThread(identifier, _melon!);
-			}
-
-			Task<JsValue> createTask(JsValue action)
-			{
-				return ThreadingManager.CreateTask(action, _melon!);
-			}
-
-			return new()
-			{
-				["CreateThread"] = new Func<string, Thread>(createThread),
-				["CreateTask"] = new Func<JsValue, Task<JsValue>>(createTask),
 			};
 		}
 
