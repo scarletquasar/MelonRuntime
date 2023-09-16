@@ -25,6 +25,9 @@ class Result<TLeft extends Error, TRight> {
     }
 
     unwrap() {
+        if (this.rightValue == null || this.rightValue == undefined) {
+            throw new Error("The target value is not specified correctly and the operation is unsafe.");
+        }
         return this.rightValue;
     }
 
