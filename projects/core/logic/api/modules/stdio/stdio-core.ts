@@ -1,5 +1,5 @@
 import { interopCache } from "logic/runtime/interop-cache-core";
-import { Result } from "logic/api/modules/std/functional/Result";
+import { Result } from "../stdlib/functional-core";
 
 // Important: generally, "stdio" module operations are NOT thread-sade
 
