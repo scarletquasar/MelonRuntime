@@ -14,6 +14,7 @@ Melon is a JavaScript runtime based on the .NET environment with multi-threading
 > **Warning**
 >
 > Melon is **NOT** production-ready yet, the project is currently being developed and being battle-tested in different environments. Most of the required features, fixes and optimizations are not ready yet. Use in real-world projects at your own risk.
+> Even this README may not reflect the current published Melon situation yet.
 
 # Features spotlight
 
@@ -25,7 +26,7 @@ Melon's internal library is focused in providing a multi-threaded workflow with 
 
 ## Clear API with no mistery
 
-Melon is *strictly* designed to offer the best and easier **prototyping reliability**, so it contains a lot of features that enables the final developer to create entire applications with minimal (or zero) dependencies and also rewrite parts (or the entire) code easily without having coupled architectures and patterns. Below there is a direct snippet teaching how to create a basic rest-like API with Melon:
+Melon is *strictly* designed to offer the best and easier **prototyping reliability**, so it contains a lot of features that enables the final developer to create entire applications with minimal (or zero) dependencies and also rewrite parts (or the entire) code easily without having coupled architectures and patterns.
 
 ```typescript
 const { server } = Melon;
