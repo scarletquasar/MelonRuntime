@@ -30,7 +30,7 @@ namespace MelonRuntime.WebServices.Entities
             _port = port;
             _isHttpsEnabled = isHttpsEnabled;
 
-            melon.SendInstructions($"Melon.http._apps['{name}']._promises = {{}}");
+            melon.SendInstructions($"Melon.server._apps['{name}']._promises = {{}}");
         }
 
         public void AddEchoes(IWebServiceApplicationEcho[] echoes)
