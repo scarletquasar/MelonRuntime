@@ -5,16 +5,16 @@
 
 > *“The computing scientist’s main challenge is not to get confused by the complexities of his own making.” - Edsger Dijkstra*
 
-Melon is a JavaScript runtime based on the .NET environment with multi-threading capabilities. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
-
-[Documentation (alpha)](https://melon-docs.vercel.app/docs/intro) - [Discord server](https://discord.gg/wDJDT9Yq7C) - [CityJS conference presentation](https://youtu.be/lD39kjrXRvo?t=18715)
-
-<br>
-
 > **Warning**
 >
 > Melon is **NOT** production-ready yet, the project is currently being developed and being battle-tested in different environments. Most of the required features, fixes and optimizations are not ready yet. Use in real-world projects at your own risk.
 > Even this README may not reflect the current published Melon situation yet.
+ 
+Melon is a JavaScript runtime based on the .NET environment with multi-threading capabilities. The project is focused on offering a platform that eases project prototyping, having a clean control of asynchronous environments and parallel events and providing fully compatible interoperability with the .NET features and ecosystem.
+
+- **[Documentation (alpha)](https://melon-docs.vercel.app/docs/intro)**
+- **[Discord server](https://discord.gg/wDJDT9Yq7C)**
+- **[CityJS conference presentation](https://youtu.be/lD39kjrXRvo?t=18715)**
 
 # Features spotlight
 
