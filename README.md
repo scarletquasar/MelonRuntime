@@ -27,11 +27,11 @@ Melon's internal library is focused in providing a multi-threaded workflow with 
 Melon is *strictly* designed to offer the best and easier **prototyping reliability**, so it contains a lot of features that enables the final developer to create entire applications with minimal (or zero) dependencies and also rewrite parts (or the entire) code easily without having coupled architectures and patterns. Below there is a direct snippet teaching how to create a basic rest-like API with Melon:
 
 ```typescript
-const { http } = Melon;
-const app = http.app();
+const { server } = Melon;
+const host = server.createHost();
 
-app.get("/", () => "Hello world");
-app.run();
+host.get("/", () => "Hello world");
+host.run();
 ```
 
 ## <img align="left" src="https://i.imgur.com/WEa64y7.png" width="40"> .NET Realms
@@ -39,14 +39,14 @@ app.run();
 `Realm()` is a feature designed to create and manipulate objects inside the .NET runtime instead of dealing with it inside the JavaScript engine, it allows the developer to create anything in CLR and recover it in the script without losing features or behaviors. Below, there is a quick example on how to create and use the capabilities of a Realm object:
 
 ```typescript
-const { Realm } = Melon.dotnet;
+const { Bridge } = Melon.interop;
 const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
 
 async function httpGetFromCLR() {
-    let realm = new Realm();
+    let bridge = new Bridge();
     realm.setInstance("httpClient", "System.Net.Http:HttpClient");
 
-    let client = realm.get("httpClient");
+    let client = bridge.get("httpClient");
     let task = client.getAsync(API_URL);
     let promise = new Promise((resolve) => resolve(task.result));
 
