@@ -1,16 +1,16 @@
 import { DotnetInstanceExpression } from "types/internal/dotnet-interop-types";
 import { OutputFriendly, Primitive } from "types/internal/generic-types";
-import { _crypto } from "../../statics/_Crypto";
-import { Result } from "../std/functional/Result";
+import { newUuid } from "../stdlib/encryption-core";
+import { Result } from "../stdlib/functional-core";
 
-class Realm implements OutputFriendly {
+class Bridge implements OutputFriendly {
     name: string;
     locked: boolean;
 
     private itemNames: string[];
 
     constructor(name?: string) {
-        name ??= _crypto.randomUUID();
+        name ??= newUuid();
         _$internalBinding["CreateRealm"](name);
     }
 
@@ -87,4 +87,4 @@ class Realm implements OutputFriendly {
     }
 }
 
-export { Realm }
+export { Bridge }

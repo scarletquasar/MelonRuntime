@@ -1,7 +1,6 @@
-import { readText } from "logic/api/modules/fs/fs-raw-file-management";
-import { _setEnvironmentVariable } from "logic/api/modules/std/environment/_setEnvironmentVariable";
+import { rawfs } from "logic/api/modules/rawfs/rawfs-core";
+import { setEnvVar } from "logic/api/modules/stdlib/environment-core";
 import { interopCache } from "logic/runtime/interop-cache-core";
-import { _guards } from "logic/api/modules/guards/_guards";
 import { Primitive } from "types/internal/generic-types";
 
 function setupEnvironmentVariables() {
@@ -9,14 +8,14 @@ function setupEnvironmentVariables() {
         return;
     }
         
-    const content = readText("./.env");
+    const content = rawfs.readText("./.env");
 
-    if(!_guards.string.isNullOrWhiteSpace(content)) {
+    if(content != null && content != "") {
         const envObject = keyValueParse<Record<string, Primitive>>(content);
     
         Object
             .entries(envObject)
-            .forEach(item => _setEnvironmentVariable(item[0], item[1]));
+            .forEach(item => setEnvVar(item[0], item[1].toString()));
     }
 }
 

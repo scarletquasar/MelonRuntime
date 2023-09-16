@@ -1,14 +1,12 @@
 //Logic imports
-import { request, requestAsync, fetch, app, $static, result } from "logic/api/modules/http/http-basic-core"
+import { requestAsync, createHost, customResponse, objectResponse } from "logic/api/modules/http/http-basic-core"
 
-const http = {
+const server = {
     _apps: {},
-    request,
     requestAsync,
-    app,
-    result,
-    static: $static,
-    fetch
+    createHost,
+    objectResponse,
+    customResponse
 }
 
-export { http }
+export { server }

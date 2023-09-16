@@ -36,7 +36,7 @@ interface HttpResponse {
     statusCode: number;
     ok: boolean;
 
-    json<T>(): T;
+    json<T>(): Result<Error, T>;
     text(): string;
 }
 

@@ -4,6 +4,7 @@ import { deserialize, serialize } from "./json-core";
 import { exit, getPid } from "./process-core";
 import { Moment } from "./time-core";
 import { TextDecoder, TextEncoder } from "./encoding-core";
+import { newUuid } from "./encryption-core";
 
 const stdlib = {
     encoding: {
@@ -30,6 +31,9 @@ const stdlib = {
     },
     functional: {
         Result
+    },
+    encryption: {
+        newUuid
     }
 }
 

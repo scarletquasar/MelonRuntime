@@ -1,18 +1,11 @@
 import { Task } from "../dotnet/dotnet-threading-core";
-import { _nextTick } from "../std/async/_nextTick";
-import { 
-    ReadFileError, 
-    TransactFileError, 
-    TransactDirectoryError, 
-    WriteFileError 
-} from "./fs-default-errors";
 
 function copyFile(from: string, to: string) {
     try {
         _$internalBinding["CopyFile"](from, to, true);
     }
     catch(e) {
-        throw new TransactFileError(from, to, e);
+        throw new Error("copy error");
     }
 }
 
@@ -21,7 +14,7 @@ async function copyFileAsync(from: string, to: string) {
         await Promise.resolve(copyFile(from, to));
     }
     catch(e) {
-        throw new TransactFileError(from, to, e);
+        throw new Error("copy error");
     }
 }
 
@@ -30,7 +23,7 @@ function writeText(path: string, content: string) {
         _$internalBinding["WriteFileText"](path, content);
     }
     catch(e) {
-        throw new WriteFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -41,7 +34,7 @@ async function writeTextAsync(path: string, content: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new WriteFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -50,7 +43,7 @@ function writeBytes(path: string, bytes: number[]) {
         _$internalBinding["WriteFileBytes"](path, bytes);
     }
     catch(e) {
-        throw new WriteFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -61,7 +54,7 @@ async function writeBytesAsync(path: string, bytes: number[]) {
         await Promise.resolve(task.result);
     }
     catch(e) {
-        throw new WriteFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -70,7 +63,7 @@ function renameFile(path: string, newName: string) {
         _$internalBinding["RenameFile"](path, newName);
     }
     catch(e) {
-        throw new TransactFileError(path, newName, e);
+        throw new Error("internal error");
     }
 }
 
@@ -81,7 +74,7 @@ async function renameFileAsync(path: string, newName: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new TransactFileError(path, newName, e);
+        throw new Error("internal error");
     }
 }
 
@@ -90,7 +83,7 @@ function moveFile(from: string, to: string) {
         _$internalBinding["MoveFile"](from, to, true);
     }
     catch(e) {
-        throw new TransactFileError(from, to, e);
+        throw new Error("copy error");
     }
 }
 
@@ -101,7 +94,7 @@ async function moveFileAsync(from: string, to: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new TransactFileError(from, to, e);
+        throw new Error("copy error");
     }
 }
 
@@ -110,7 +103,7 @@ function readBytes(path: string): number[] {
         return _$internalBinding["ReadFileBytes"](path);
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -121,7 +114,7 @@ async function readBytesAsync(path: string): Promise<number[]> {
         return await Promise.resolve(task.result);
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -130,7 +123,7 @@ function readText(path: string): string {
         return _$internalBinding["ReadFileText"](path);
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -141,7 +134,7 @@ async function readTextAsync(path: string): Promise<string> {
         return await Promise.resolve(task.result);
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -150,7 +143,7 @@ function deleteFile(path: string) {
         _$internalBinding["DeleteFile"](path);
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -161,7 +154,7 @@ async function deleteFileAsync(path: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new ReadFileError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -170,7 +163,7 @@ function createDirectory(path: string) {
         _$internalBinding["CreateDirectory"](path);
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -181,7 +174,7 @@ async function createDirectoryAsync(path: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -190,7 +183,7 @@ function deleteDirectory(path: string) {
         _$internalBinding["DeleteDirectory"](path);
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -201,7 +194,7 @@ async function deleteDirectoryAsync(path: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -210,7 +203,7 @@ function renameDirectory(path: string, newName: string) {
         _$internalBinding["RenameDirectory"](path, newName);
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
@@ -221,11 +214,11 @@ async function renameDirectoryAsync(path: string, newName: string) {
         await Promise.resolve(action());
     }
     catch(e) {
-        throw new TransactDirectoryError(path, e);
+        throw new Error("internal error");
     }
 }
 
-export {  
+const rawfs = {  
     writeText,
     writeTextAsync,
     writeBytes,
@@ -249,3 +242,5 @@ export {
     renameDirectory,
     renameDirectoryAsync
 }
+
+export { rawfs }

@@ -8,14 +8,14 @@ import {
 } from "types/internal/http-types";
 
 //Logic imports
-import { getStaticMethod } from "logic/api/modules/dotnet/dotnet-interop-core";
-import { _tryStringify } from "logic/api/modules/std/json/_tryStringify";
-import { _tryParse } from "logic/api/modules/std/json/_tryParse";
-import { _nextTick } from "logic/api/modules/std/async/_nextTick";
+import { getStaticMethod } from "logic/api/modules/dotnet/interop-core";
 import { Melon } from "logic/index";
-import { http } from "logic/api/modules/http/http";
+import { server } from "logic/api/modules/http/http";
+import { deserialize, serialize } from "../stdlib/json-core";
+import { interopCache } from "logic/runtime/interop-cache-core";
+import { Result } from "../stdlib/functional-core";
 
-function $static(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
+function customResponse(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
     const serialize = getStaticMethod("Newtonsoft.Json:JsonConvert:SerializeObject");
     return {
         status: 200,
@@ -27,70 +27,45 @@ function $static(response: any, type: `${string}/${string}`, headers: Record<str
     }
 }
 
-// TODO: This is not real async, just a wrapper and needs review
 async function requestAsync(
     target: string,
     method: string = "GET",
     body: Record<string, any> = {},
     headers: Record<string, any> = {}
 ): Promise<HttpResponse> {
-    const result = request(target, method, body, headers);
+    const serializedBodyResult = serialize(body);
+    const serializedHeadersResult = serialize(headers);
 
-    return result;
-}
+    if(serializedBodyResult.isSuccess() && serializedHeadersResult.isSuccess()) {
+        const body = serializedBodyResult.unwrap();
+        const headers = serializedHeadersResult.unwrap();
 
-function request(
-    target: string,
-    method: string = "GET",
-    body: Record<string, any> = {},
-    headers: Record<string, any> = {}
-): HttpResponse {
-    const stringified = {
-        body: _tryStringify(body),
-        headers: _tryStringify(headers)
+        const rawResult = await Promise.resolve(interopCache.web.request(
+            target,
+            method, 
+            body, 
+            headers
+        ));
+
+        return new Response(
+            rawResult.Body ?? "",
+            rawResult.Headers ?? {},
+            rawResult.Latency ?? 0,
+            rawResult.StatusCode ?? 599,
+            rawResult.Ok ?? false
+        );
     }
 
-    const rawResult = _$internalBinding["HttpRequest"](
-        target,
-        method, 
-        stringified.body, 
-        stringified.headers
-    );
-
     return new Response(
-        rawResult.Body ?? "",
-        rawResult.Headers ?? {},
-        rawResult.Latency ?? 0,
-        rawResult.StatusCode ?? 599,
-        rawResult.Ok ?? false
+        "Invalid body or header values",
+        {},
+        0,
+        400,
+        false
     );
 }
 
-//TODO: This method is implementing some potentially dangerous blocker actions and needs review
-async function fetch(
-    target: string,
-    options: Record<string, any>
-): Promise<HttpResponse> {
-    const task = _$internalBinding["Fetch"](target, options);
-    const now = new Date().getTime();
-
-    while(task.status <= 4) {
-        await _nextTick(1);
-    }
-
-    const then = new Date().getTime();
-    const rawResult = task.result;
-
-    return new Response(
-        rawResult.body ?? "",
-        rawResult.headers ?? {},
-        now - then,
-        rawResult.statusCode ?? 599,
-        rawResult.ok ?? false
-    );
-}
-
-function app(options = { 
+function createHost(options = { 
     name: "webapp", 
     host: "localhost", 
     port: 80, 
@@ -101,11 +76,11 @@ function app(options = {
     const port = options.port;
     const enableHttps = options.enableHttps ?? false;
 
-    Melon.http._apps[name] = new HttpApplication(name, host, port, enableHttps);
-    return http._apps[name];
+    Melon.server._apps[name] = new HttpApplication(name, host, port, enableHttps);
+    return server._apps[name];
 }
 
-function result<T>(statusCode: number, response: any = {}, headers: Record<string, any> = {}) {
+function objectResponse<T>(statusCode: number, response: any = {}, headers: Record<string, any> = {}) {
     const headersObject = {
         "Content-Type": "application/json",
         ...headers
@@ -244,7 +219,7 @@ class Response implements HttpResponse {
     }
 
     json<T>() {
-        return _tryParse(this.body) as T;
+        return deserialize(this.body) as Result<Error, T>;
     }
 
     text() {
@@ -264,4 +239,4 @@ class Endpoint implements HttpEndpoint {
     }
 }
 
-export { request, requestAsync, fetch, app, $static, result }
+export { requestAsync, createHost, customResponse, objectResponse }

@@ -1,4 +1,5 @@
-import { getStaticMethod, getStaticProperty } from "logic/api/modules/dotnet/dotnet-interop-core";
+import { getStaticMethod, getStaticProperty } from "logic/api/modules/dotnet/interop-core";
+import { UUID } from "types/internal/generic-types";
 
 const interopCache = {
     serialization: {
@@ -22,6 +23,12 @@ const interopCache = {
     process: {
         exit: getStaticMethod<never>("System:Environment:Exit"),
         getCurrentProcess: getStaticMethod<any>("System.Diagnostics:Process:GetCurrentProcess")
+    },
+    guid: {
+        newGuid: getStaticMethod<UUID>("System:Guid:NewGuid")
+    },
+    web: {
+        request: _$internalBinding["HttpRequest"]
     }
 }
 

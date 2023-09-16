@@ -23,6 +23,14 @@ class Result<TLeft extends Error, TRight> {
             return ok(this.rightValue) as T;
         }
     }
+
+    unwrap() {
+        return this.rightValue;
+    }
+
+    isSuccess() {
+        return Boolean(this.leftValue); 
+    }
 }
 
 
