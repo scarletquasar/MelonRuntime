@@ -1,4 +1,4 @@
-import { getStaticMethod, getStaticProperty } from "logic/api/modules/dotnet/interop-core";
+import { getStaticMethod, getStaticProperty } from 'logic/api/modules/interop/interop-core';
 import { UUID } from "types/internal/generic-types";
 
 const interopCache = {
