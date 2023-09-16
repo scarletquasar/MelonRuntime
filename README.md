@@ -1,6 +1,7 @@
-<img align="left" src="https://i.imgur.com/w2aYNRW.png" width="200">
-
-# The Melon Runtime Project
+<div align="center">
+    <img align="center" src="https://i.imgur.com/w2aYNRW.png" width="150">
+    <h1>The Melon Runtime Project</h1>
+</div>
 
 > *“The computing scientist’s main challenge is not to get confused by the complexities of his own making.” - Edsger Dijkstra*
 
@@ -18,11 +19,11 @@ Melon is a JavaScript runtime based on the .NET environment with multi-threading
 
 > Below, are listed **some** features that **already are** in the project or that **are in construction**
 
-## <img align="left" src="https://i.imgur.com/ZFJPQik.png" width="40"> Multi-threaded Promises
+## Multi-threaded Promises
 
 Melon's internal library is focused in providing a multi-threaded workflow with the efficiency of using Promises. To achieve it, dotnet Task and Thread objects are binded to it allowing the final developer to use multi-threaded capabilities without having to do extra work, use libraries or appeal to archaic features like event-based worker threads.
 
-## <img align="left" src="https://i.imgur.com/z0uFDdq.png" width="40"> Integrated Development Toolkit
+## Clear API with no mistery
 
 Melon is *strictly* designed to offer the best and easier **prototyping reliability**, so it contains a lot of features that enables the final developer to create entire applications with minimal (or zero) dependencies and also rewrite parts (or the entire) code easily without having coupled architectures and patterns. Below there is a direct snippet teaching how to create a basic rest-like API with Melon:
 
@@ -34,7 +35,7 @@ host.get("/", () => "Hello world");
 host.run();
 ```
 
-## <img align="left" src="https://i.imgur.com/WEa64y7.png" width="40"> .NET Realms
+## Easy interop with .NET
 
 `Realm()` is a feature designed to create and manipulate objects inside the .NET runtime instead of dealing with it inside the JavaScript engine, it allows the developer to create anything in CLR and recover it in the script without losing features or behaviors. Below, there is a quick example on how to create and use the capabilities of a Realm object:
 
