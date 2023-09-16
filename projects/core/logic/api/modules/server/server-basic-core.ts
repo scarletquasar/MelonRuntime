@@ -8,9 +8,8 @@ import {
 } from "types/internal/http-types";
 
 //Logic imports
-import { getStaticMethod } from "logic/api/modules/dotnet/interop-core";
+import { getStaticMethod } from "../interop/interop-core";
 import { Melon } from "logic/index";
-import { server } from "logic/api/modules/http/http";
 import { deserialize, serialize } from "../stdlib/json-core";
 import { interopCache } from "logic/runtime/interop-cache-core";
 import { Result } from "../stdlib/functional-core";
@@ -240,3 +239,11 @@ class Endpoint implements HttpEndpoint {
 }
 
 export { requestAsync, createHost, customResponse, objectResponse }
+const server = {
+    _apps: {},
+    requestAsync,
+    createHost,
+    objectResponse,
+    customResponse
+}
+export { server }
