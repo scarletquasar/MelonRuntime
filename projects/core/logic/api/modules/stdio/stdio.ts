@@ -1,9 +1,13 @@
-import { clear, write, read } from "logic/api/modules/stdio/stdio-core";
+import { clear, write, read } from "logic/api/modules/stdio/stdio-console-core";
+import { storage } from "./stdio-storage-core";
 
 const stdio = {
-    write,
-    clear,
-    read
+    storage,
+    console: {
+        write,
+        clear,
+        read
+    }
 }
 
 export { stdio }

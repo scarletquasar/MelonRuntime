@@ -216,7 +216,7 @@ async function renameDirectoryAsync(path: string, newName: string) {
     }
 }
 
-const rawfs = {  
+const storage = {  
     writeText,
     writeTextAsync,
     writeBytes,
@@ -241,4 +241,4 @@ const rawfs = {
     renameDirectoryAsync
 }
 
-export { rawfs }
+export { storage }

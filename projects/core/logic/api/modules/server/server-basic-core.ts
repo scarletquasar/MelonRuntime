@@ -9,10 +9,10 @@ import {
 
 //Logic imports
 import { getStaticMethod } from "../interop/interop-core";
-import { Melon } from "logic/index";
 import { deserialize, serialize } from "../stdlib/json-core";
 import { interopCache } from "logic/runtime/interop-cache-core";
 import { Result } from "../stdlib/functional-core";
+import { newUuid } from "../stdlib/encryption-core";
 
 function customResponse(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
     const serialize = getStaticMethod("Newtonsoft.Json:JsonConvert:SerializeObject");
@@ -65,18 +65,17 @@ async function requestAsync(
 }
 
 function createHost(options = { 
-    name: "webapp", 
-    host: "localhost", 
+    host: "0.0.0.0", 
     port: 80, 
     enableHttps: false 
 }): HttpApplication {
-    const name = options.name;
-    const host = options.host;
-    const port = options.port;
+    const name = newUuid();
+    const host = options.host ?? "0.0.0.0";
+    const port = options.port ?? 80;
     const enableHttps = options.enableHttps ?? false;
 
-    Melon.server._apps[name] = new HttpApplication(name, host, port, enableHttps);
-    return server._apps[name];
+    globalThis.internal.webapps[name] = new HttpApplication(name, host, port, enableHttps);
+    return globalThis.internal.webapps[name];
 }
 
 function objectResponse<T>(statusCode: number, response: any = {}, headers: Record<string, any> = {}) {

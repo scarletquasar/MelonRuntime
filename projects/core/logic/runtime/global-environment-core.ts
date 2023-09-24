@@ -1,4 +1,4 @@
-import { rawfs } from "logic/api/modules/rawfs/rawfs-core";
+import { stdio } from "logic/api/modules/stdio/stdio";
 import { setEnvVar } from "logic/api/modules/stdlib/environment-core";
 import { interopCache } from "logic/runtime/interop-cache-core";
 import { Primitive } from "types/internal/generic-types";
@@ -8,7 +8,7 @@ function setupEnvironmentVariables() {
         return;
     }
         
-    const content = rawfs.readText("./.env");
+    const content = stdio.storage.readText("./.env");
 
     if(content != null && content != "") {
         const envObject = keyValueParse<Record<string, Primitive>>(content);

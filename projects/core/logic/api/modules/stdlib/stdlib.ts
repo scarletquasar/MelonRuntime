@@ -32,7 +32,7 @@ const stdlib = {
     functional: {
         Result
     },
-    encryption: {
+    crypt: {
         newUuid
     }
 }
