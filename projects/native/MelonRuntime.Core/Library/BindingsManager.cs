@@ -47,7 +47,11 @@ namespace MelonRuntime.Core.Library
 				GetProcessBindings(),
 				GetFileSystemBindings(),
 				GetWebServiceApplicationBindings(),
-				GetTimeBindings()
+				GetTimeBindings(),
+				new() 
+				{
+					["NewGuid"] = new Func<string>(() => Guid.NewGuid().ToString())
+				}
 			};
 
 			return allBindings

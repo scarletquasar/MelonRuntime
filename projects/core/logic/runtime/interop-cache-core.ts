@@ -25,7 +25,7 @@ const interopCache = {
         getCurrentProcess: getStaticMethod<any>("System.Diagnostics:Process:GetCurrentProcess")
     },
     guid: {
-        newGuid: getStaticMethod<UUID>("System:Guid:NewGuid")
+        newGuid: _$internalBinding["NewGuid"]
     },
     web: {
         request: _$internalBinding["HttpRequest"]
