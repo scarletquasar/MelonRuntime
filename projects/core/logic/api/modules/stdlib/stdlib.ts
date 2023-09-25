@@ -2,21 +2,21 @@ import { getArgs, getCurrentDir, getEnvVar, getEnvVars, setEnvVar } from "./envi
 import { Result } from "./functional-core";
 import { deserialize, serialize } from "./json-core";
 import { exit, getPid } from "./process-core";
-import { Moment } from "./time-core";
-import { TextDecoder, TextEncoder } from "./encoding-core";
+import { Moment, now } from "./time-core";
+import { ByteEncoding } from "./encoding-core";
 import { newUuid } from "./encryption-core";
 
 const stdlib = {
     encoding: {
-        TextDecoder,
-        TextEncoder
+        ByteEncoding,
     },
     json: {
         serialize,
         deserialize
     },
     time: {
-        Moment
+        Moment,
+        now
     },
     environment: {
         getArgs,

@@ -1,3 +1,5 @@
+import { Result } from "./functional-core";
+
 type MomentArguments = {
     year?: number;
     month?: number;
@@ -71,20 +73,25 @@ class Moment {
         if (shouldThrow) throw new Error("Invalid values for making a time representation.");
     }
 
-    copyWith(args: MomentArguments) {
+    new(modifiers: MomentArguments) {
         return new Moment({
-            year: this._year + args.year ?? 0,
-            month: this._month + args.month ?? 1,
-            day: this._day + args.day ?? 0,
-            hour: this._hour + args.hour ?? 0,
-            minute: this._minute + args.minute ?? 0,
-            second: this._second + args.second ?? 0,
-            millisecond: this._millisecond + args.millisecond ?? 0,
-            microsecond: this._microsecond + args.microsecond ?? 0,
-            nanosecond: this._nanosecond + args.nanosecond ?? 0,
-            timezoneModifier: args.timezoneModifier ?? 0,
+            year: this._year + modifiers.year ?? 0,
+            month: this._month + modifiers.month ?? 1,
+            day: this._day + modifiers.day ?? 0,
+            hour: this._hour + modifiers.hour ?? 0,
+            minute: this._minute + modifiers.minute ?? 0,
+            second: this._second + modifiers.second ?? 0,
+            millisecond: this._millisecond + modifiers.millisecond ?? 0,
+            microsecond: this._microsecond + modifiers.microsecond ?? 0,
+            nanosecond: this._nanosecond + modifiers.nanosecond ?? 0,
+            timezoneModifier: modifiers.timezoneModifier ?? 0,
         });
     }
 }
 
-export { Moment }
+function now(): Result<Error, Moment> {
+    const moment = new Moment(new Date(performance.now()));
+    return Result.right(moment);
+}
+
+export { Moment, now }

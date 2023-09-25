@@ -1,9 +1,13 @@
-class TextDecoder {
-    decode(octets: number[]) {
+import { Result } from "./functional-core";
+
+class ByteEncoding {
+    private memo: Record<string, number[]>;
+
+    fromOctets(bytes: number[]): Result<Error, string> {
         let string = "";
         let i = 0;
-        while (i < octets.length) {
-            let octet = octets[i];
+        while (i < bytes.length) {
+            let octet = bytes[i];
 
             const getDataFromOctet = (octet: number) => ({
                 [<any>true]: { bytesNeeded: 0, codePoint: 0 },
@@ -15,32 +19,29 @@ class TextDecoder {
     
             let { bytesNeeded, codePoint } = getDataFromOctet(octet);
     
-            if (octets.length - i - bytesNeeded > 0) {
+            if (bytes.length - i - bytesNeeded > 0) {
                 let k = 0;
                 while (k < bytesNeeded) {
-                    octet = octets[i + k + 1];
+                    octet = bytes[i + k + 1];
                     codePoint = (codePoint << 6) | (octet & 0x3F);
                     k += 1;
                 }
             } 
             else {
                 codePoint = 0xFFFD;
-                bytesNeeded = octets.length - i;
+                bytesNeeded = bytes.length - i;
             }
     
             string += String.fromCodePoint(codePoint);
             i += bytesNeeded + 1;
         }
     
-        return string;
+        return Result.right(string);
     }
-}
 
-class TextEncoder {
-    _memo: Record<string, number[]> = {};
-    encode(string: string) {
-        if(this._memo[string]) {
-            return this._memo[string];
+    toOctets(string: string): Result<Error, number[]> {
+        if(this.memo[string]) {
+            return Result.right(this.memo[string]);
         }
     
         const octets = [];
@@ -73,9 +74,9 @@ class TextEncoder {
             i += codePoint >= 0x10000 ? 2 : 1;
         }
     
-        this._memo[string] = octets;
-        return octets;
+        this.memo[string] = octets;
+        return Result.right(octets);
     }
 }
 
-export { TextDecoder, TextEncoder }
+export { ByteEncoding }

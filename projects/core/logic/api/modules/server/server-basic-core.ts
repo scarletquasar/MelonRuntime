@@ -31,7 +31,7 @@ async function requestAsync(
     method: string = "GET",
     body: Record<string, any> = {},
     headers: Record<string, any> = {}
-): Promise<HttpResponse> {
+): Promise<Result<Error, HttpResponse>> {
     const serializedBodyResult = serialize(body);
     const serializedHeadersResult = serialize(headers);
 
@@ -46,22 +46,22 @@ async function requestAsync(
             headers
         ));
 
-        return new Response(
+        return Result.right(new Response(
             rawResult.Body ?? "",
             rawResult.Headers ?? {},
             rawResult.Latency ?? 0,
             rawResult.StatusCode ?? 599,
             rawResult.Ok ?? false
-        );
+        ));
     }
 
-    return new Response(
+    return Result.right(new Response(
         "Invalid body or header values",
         {},
         0,
         400,
         false
-    );
+    ));
 }
 
 function createHost(options = { 

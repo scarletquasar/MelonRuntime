@@ -21,7 +21,7 @@ const interopCache = {
         setEnvironmentVariable: getStaticMethod<void>("System:Environment:SetEnvironmentVariable")
     },
     process: {
-        exit: getStaticMethod<never>("System:Environment:Exit"),
+        exit: _$internalBinding["ProcessExit"],
         getCurrentProcess: getStaticMethod<any>("System.Diagnostics:Process:GetCurrentProcess")
     },
     guid: {

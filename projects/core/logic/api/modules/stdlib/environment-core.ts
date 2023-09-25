@@ -1,12 +1,12 @@
 import { interopCache } from "logic/runtime/interop-cache-core";
 import { Result } from "./functional-core";
 
-function getArgs() {
-    return interopCache.environment.getCommandLineArgs();
+function getArgs(): Result<Error, string[]> {
+    return Result.right(interopCache.environment.getCommandLineArgs());
 }
 
-function getCurrentDir() {
-    return interopCache.environment.currentDirectory;
+function getCurrentDir(): Result<Error, string> {
+    return Result.right(interopCache.environment.currentDirectory);
 }
 
 function getEnvVar(key: string): Result<Error, string>  {
@@ -23,13 +23,13 @@ function getEnvVar(key: string): Result<Error, string>  {
     return Result.right(result);
 }
 
-function getEnvVars(): Record<string, string> {
-    return interopCache.environment.getEnvironmentVariables();
+function getEnvVars(): Result<Error, Record<string, string>> {
+    return Result.right(interopCache.environment.getEnvironmentVariables());
 }
 
 function setEnvVar(key: string, value: string | number | boolean | bigint) {
     const finalValue = value.toString();
-    interopCache.environment.setEnvironmentVariable(key, finalValue);
+    return Result.right(interopCache.environment.setEnvironmentVariable(key, finalValue));
 }
 
 export { getArgs, getCurrentDir, getEnvVar, getEnvVars, setEnvVar }

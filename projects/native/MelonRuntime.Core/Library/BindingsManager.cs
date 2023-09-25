@@ -11,6 +11,7 @@ using MelonRuntime.Domain.Core.Library.Web;
 using MelonRuntime.WebServices.Entities;
 using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Dynamic;
 
 namespace MelonRuntime.Core.Library
@@ -50,7 +51,8 @@ namespace MelonRuntime.Core.Library
 				GetTimeBindings(),
 				new() 
 				{
-					["NewGuid"] = new Func<string>(() => Guid.NewGuid().ToString())
+					["NewGuid"] = new Func<string>(() => Guid.NewGuid().ToString()),
+					["ProcessExit"] = new Action<int>((code) => Environment.Exit(code))
 				}
 			};
 
