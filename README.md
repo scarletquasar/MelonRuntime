@@ -1,5 +1,8 @@
-<img align="left" src="https://i.imgur.com/w2aYNRW.png" width="150">
-<h1>The Melon Runtime Project</h1>
+
+<div align="center">
+    <img src="https://i.imgur.com/w2aYNRW.png" width="150">
+    <h1>The Melon Runtime Project</h1>
+</div>
 
 
 > **Warning**
