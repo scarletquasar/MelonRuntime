@@ -3,26 +3,26 @@ import { UUID } from "types/internal/generic-types";
 
 const interopCache = {
     serialization: {
-        serialize: getStaticMethod<string>("System.Text.Json:JsonSerializer:Serialize")
+        serialize: getStaticMethod<string>("System.Text.Json:JsonSerializer:Serialize").unwrap()
     },
     console: {
-        write: getStaticMethod<void>("System:Console:WriteLine"),
-        clear: getStaticMethod<void>("System:Console:Clear"),
-        read: getStaticMethod<string | null>("System:Console:ReadLine")
+        write: getStaticMethod<void>("System:Console:WriteLine").unwrap(),
+        clear: getStaticMethod<void>("System:Console:Clear").unwrap(),
+        read: getStaticMethod<string | null>("System:Console:ReadLine").unwrap()
     },
     io: {
-        getFiles: getStaticMethod<string[]>("System.IO:Directory:GetFiles")
+        getFiles: getStaticMethod<string[]>("System.IO:Directory:GetFiles").unwrap()
     },
     environment: {
-        getCommandLineArgs: getStaticMethod<string[]>("System:Environment:GetCommandLineArgs"),
-        currentDirectory: getStaticProperty<string>("System:Environment:CurrentDirectory"),
-        getEnvironmentVariables: getStaticMethod<Record<string, any>>("System:Environment:GetEnvironmentVariables"),
-        getEnvironmentVariable: getStaticMethod<string>("System:Environment:GetEnvironmentVariable"),
-        setEnvironmentVariable: getStaticMethod<void>("System:Environment:SetEnvironmentVariable")
+        getCommandLineArgs: getStaticMethod<string[]>("System:Environment:GetCommandLineArgs").unwrap(),
+        currentDirectory: getStaticProperty<string>("System:Environment:CurrentDirectory").unwrap(),
+        getEnvironmentVariables: getStaticMethod<Record<string, any>>("System:Environment:GetEnvironmentVariables").unwrap(),
+        getEnvironmentVariable: getStaticMethod<string>("System:Environment:GetEnvironmentVariable").unwrap(),
+        setEnvironmentVariable: getStaticMethod<void>("System:Environment:SetEnvironmentVariable").unwrap()
     },
     process: {
         exit: _$internalBinding["ProcessExit"],
-        getCurrentProcess: getStaticMethod<any>("System.Diagnostics:Process:GetCurrentProcess")
+        getCurrentProcess: getStaticMethod<any>("System.Diagnostics:Process:GetCurrentProcess").unwrap()
     },
     guid: {
         newGuid: _$internalBinding["NewGuid"]

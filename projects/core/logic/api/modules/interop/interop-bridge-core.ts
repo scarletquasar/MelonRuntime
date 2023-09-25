@@ -10,7 +10,7 @@ class Bridge implements OutputFriendly {
     private itemNames: string[];
 
     constructor(name?: string) {
-        name ??= newUuid();
+        name ??= newUuid().unwrap();
         _$internalBinding["CreateRealm"](name);
     }
 

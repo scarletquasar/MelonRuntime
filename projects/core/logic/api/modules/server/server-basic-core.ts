@@ -14,15 +14,14 @@ import { interopCache } from "logic/runtime/interop-cache-core";
 import { Result } from "../stdlib/functional-core";
 import { newUuid } from "../stdlib/encryption-core";
 
-function customResponse(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {
-    const serialize = getStaticMethod("Newtonsoft.Json:JsonConvert:SerializeObject");
+function customResponse(response: any, type: `${string}/${string}`, headers: Record<string, any> = {}) {;
     return {
         status: 200,
         response,
         headers: serialize({
             "Content-Type": type,
             ...headers
-        })
+        }).unwrap()
     }
 }
 
@@ -68,14 +67,14 @@ function createHost(options = {
     host: "0.0.0.0", 
     port: 80, 
     enableHttps: false 
-}): HttpApplication {
-    const name = newUuid();
+}): Result<Error, HttpApplication> {
+    const name = newUuid().unwrap();
     const host = options.host ?? "0.0.0.0";
     const port = options.port ?? 80;
     const enableHttps = options.enableHttps ?? false;
 
     globalThis.internal.webapps[name] = new HttpApplication(name, host, port, enableHttps);
-    return globalThis.internal.webapps[name];
+    return Result.right(globalThis.internal.webapps[name]);
 }
 
 function objectResponse<T>(statusCode: number, response: any = {}, headers: Record<string, any> = {}) {
@@ -94,12 +93,10 @@ class HttpResult<T> {
     public response: string;
     public headers: string;
 
-    private serialize = getStaticMethod<string>("Newtonsoft.Json:JsonConvert:SerializeObject");
-
     constructor(status: number, response: T, headers: Record<string, any>) {
         this.status = status;
-        this.response = this.serialize(response);
-        this.headers = this.serialize(headers);
+        this.response = serialize(response).unwrap();
+        this.headers = serialize(headers).unwrap();
     }
 
     useCors(options: CorsOptions) {
@@ -109,7 +106,7 @@ class HttpResult<T> {
         headers["Access-Control-Request-Methods"] = options.methods ? options.methods.toString() : "*";
         headers["Access-Control-Allow-Origin"] = options.origin ? options.origin : "*";
 
-        this.headers = this.serialize(headers);
+        this.headers = serialize(headers).unwrap();
     }
 }
 

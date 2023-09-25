@@ -1,10 +1,11 @@
 import { DotnetFetchExpression, InteropMethod } from "types/internal/dotnet-interop-types";
+import { Result } from "../stdlib/functional-core";
 
 function getExpParts(expression: string) {
     return expression.split(":");
 }
 
-function getStaticMethod<T>(expression: DotnetFetchExpression): InteropMethod<T> {
+function getStaticMethod<T>(expression: DotnetFetchExpression): Result<Error, InteropMethod<T>> {
     const parts = getExpParts(expression);
     const method = (...args: unknown[]) => {
         return _$internalBinding["CallStaticMethod"](
@@ -15,10 +16,10 @@ function getStaticMethod<T>(expression: DotnetFetchExpression): InteropMethod<T>
         );
     }
 
-    return method;
+    return Result.right(method);
 }
 
-function getStaticProperty<T>(expression: DotnetFetchExpression): T {
+function getStaticProperty<T>(expression: DotnetFetchExpression): Result<Error, T> {
     const parts = getExpParts(expression);
     const property = _$internalBinding["GetStaticProperty"](
         parts[0], 
@@ -26,11 +27,12 @@ function getStaticProperty<T>(expression: DotnetFetchExpression): T {
         parts[2]
     );
 
-    return property;
+    return Result.right(property);
 }
 
-function loadAssembly(path: string) {
+function loadAssembly(path: string): Result<Error, []> {
     _$internalBinding["LoadAssembly"](path);
+    return Result.right([]);
 }
 
 export {
