@@ -21,7 +21,7 @@ function customResponse(response: any, type: `${string}/${string}`, headers: Rec
         headers: serialize({
             "Content-Type": type,
             ...headers
-        }).unwrap()
+        }).unwrap(true)
     }
 }
 
@@ -35,8 +35,8 @@ async function requestAsync(
     const serializedHeadersResult = serialize(headers);
 
     if(serializedBodyResult.isSuccess() && serializedHeadersResult.isSuccess()) {
-        const body = serializedBodyResult.unwrap();
-        const headers = serializedHeadersResult.unwrap();
+        const body = serializedBodyResult.unwrap(true);
+        const headers = serializedHeadersResult.unwrap(true);
 
         const rawResult = await Promise.resolve(interopCache.web.request(
             target,
@@ -68,7 +68,7 @@ function createHost(options = {
     port: 80, 
     enableHttps: false 
 }): Result<Error, HttpApplication> {
-    const name = newUuid().unwrap();
+    const name = newUuid().unwrap(true);
     const host = options.host ?? "0.0.0.0";
     const port = options.port ?? 80;
     const enableHttps = options.enableHttps ?? false;
@@ -95,8 +95,8 @@ class HttpResult<T> {
 
     constructor(status: number, response: T, headers: Record<string, any>) {
         this.status = status;
-        this.response = serialize(response).unwrap();
-        this.headers = serialize(headers).unwrap();
+        this.response = serialize(response).unwrap(true);
+        this.headers = serialize(headers).unwrap(true);
     }
 
     useCors(options: CorsOptions) {
@@ -106,7 +106,7 @@ class HttpResult<T> {
         headers["Access-Control-Request-Methods"] = options.methods ? options.methods.toString() : "*";
         headers["Access-Control-Allow-Origin"] = options.origin ? options.origin : "*";
 
-        this.headers = serialize(headers).unwrap();
+        this.headers = serialize(headers).unwrap(true);
     }
 }
 
@@ -236,7 +236,6 @@ class Endpoint implements HttpEndpoint {
 
 export { requestAsync, createHost, customResponse, objectResponse }
 const server = {
-    _apps: {},
     requestAsync,
     createHost,
     objectResponse,

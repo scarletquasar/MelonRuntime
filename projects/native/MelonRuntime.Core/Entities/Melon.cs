@@ -60,7 +60,8 @@ namespace MelonRuntime.Core.Entities
                 var reader = new StreamReader(stream);
                 var content = reader.ReadToEnd();
 
-                SendInstructions(content);
+                var a = EvaluateInstructions(content);
+                throw new Exception(a.AsString());
                 return;
             }
 

@@ -24,15 +24,15 @@ class Result<TLeft extends Error, TRight> {
         }
     }
 
-    unwrap() {
-        if (this.rightValue == null || this.rightValue == undefined) {
+    unwrap(forceUnsafe = false) {
+        if ((this.rightValue == null || this.rightValue == undefined) && !forceUnsafe) {
             throw new Error("The target value is not specified correctly and the operation is unsafe.");
         }
         return this.rightValue;
     }
 
     isSuccess() {
-        return Boolean(this.leftValue); 
+        return !Boolean(this.leftValue); 
     }
 }
 

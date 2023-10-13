@@ -5,7 +5,6 @@ using MelonRuntime.Abstractions.Library.Database;
 using MelonRuntime.Core.Library.Database;
 using MelonRuntime.Core.Library.Reflection;
 using MelonRuntime.Core.Library.Serialization;
-using MelonRuntime.Core.Library.Time;
 using MelonRuntime.Core.Library.Web;
 using MelonRuntime.Domain.Core.Library.Web;
 using MelonRuntime.WebServices.Entities;
@@ -45,10 +44,8 @@ namespace MelonRuntime.Core.Library
 				GetHttpClientBindings(),
 				GetRealmBindings(),
 				GetEnvironmentBindings(),
-				GetProcessBindings(),
 				GetFileSystemBindings(),
 				GetWebServiceApplicationBindings(),
-				GetTimeBindings(),
 				new() 
 				{
 					["NewGuid"] = new Func<string>(() => Guid.NewGuid().ToString()),
@@ -187,14 +184,6 @@ namespace MelonRuntime.Core.Library
 			};
 		}
 
-		private Dictionary<string, dynamic> GetProcessBindings()
-		{
-			return new()
-			{
-				["ProcessExit"] = new Action<int>(x => Environment.Exit(x))
-			};
-		}
-
 		private Dictionary<string, dynamic> GetFileSystemBindings()
 		{
 			return new()
@@ -270,25 +259,6 @@ namespace MelonRuntime.Core.Library
 			return new()
 			{
 				["SetupWebApplication"] = new Action<string>(executeFromStringParameters)
-			};
-		}
-
-		private Dictionary<string, dynamic> GetTimeBindings()
-		{
-			void defineTimeoutOf(string targetName, int delay)
-			{
-				TimeManager.DefineTimeoutOf(_melon!, targetName, delay);
-			}
-
-			void defineIntervalOf(string targetName, int delay)
-			{
-				TimeManager.DefineIntervalOf(_melon!, targetName, delay);
-			}
-
-			return new()
-			{
-				["DefineTimeoutOf"] = new Action<string, int>(defineTimeoutOf),
-				["DefineIntervalOf"] = new Action<string, int>(defineIntervalOf)
 			};
 		}
 	}
